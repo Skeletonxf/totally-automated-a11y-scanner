@@ -1,0 +1,5 @@
+When first installed, or whenever clicking the Help link Totally Automated Accessibility Scanner (TASS) opens an online help page: https://skeletonxf.gitlab.io/totally-automated-a11y-scanner/. This webpage does not collect any personal data, but your IP address and other browser/device information may be collected by GitLab. Similarly, many of the accessibility plugins in TASS contain links to third party websites such as the W3 which may collect your IP address and other browser/device information if you open them.
+
+TASS does not otherwise collect any personal data. TASS does not otherwise transmit any collected data anywhere.
+
+Please keep in mind that TASS's functionality may provide information to external websites as a result of its operation, as it modifies the webpages of external sites (and they could conceivably observe this with JavaScript), and any information provided through GitHub or GitLab for TASS such as screenshots is public.
