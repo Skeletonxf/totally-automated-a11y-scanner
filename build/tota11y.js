@@ -114,23 +114,21 @@
  *
  * Builds and mounts the toolbar.
  */
+
 // Require the base tota11y styles right away so they can be overwritten
 __webpack_require__(/*! ./less/tota11y.less */ "./less/tota11y.less");
-
 let $ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
-
 let plugins = __webpack_require__(/*! ./plugins */ "./plugins/index.js");
-
 let toolbar = __webpack_require__(/*! ./toolbar.js */ "./toolbar.js");
+const Toolbar = toolbar.toolbar;
 
-const Toolbar = toolbar.toolbar; // Chrome Accessibility Developer Tools - required once as a global
-
+// Chrome Accessibility Developer Tools - required once as a global
 __webpack_require__(/*! script-loader!./node_modules/accessibility-developer-tools/dist/js/axs_testing.js */ "./node_modules/script-loader/index.js!./node_modules/accessibility-developer-tools/dist/js/axs_testing.js");
-
 $(function () {
   var bar = new Toolbar();
-  bar.delegate(); // TODO: Make this customizable
+  bar.delegate();
 
+  // TODO: Make this customizable
   bar.appendTo($("body"));
 });
 
@@ -163,7 +161,7 @@ if(false) {}
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(/*! ../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")();
-exports.push([module.i, ".tota11y-dark-color-scheme {\n  background-color: #333 !important;\n  color: #f2f2f2 !important;\n}\n.tota11y-no-select {\n  -webkit-user-select: none !important;\n     -moz-user-select: none !important;\n      -ms-user-select: none !important;\n          user-select: none !important;\n}\n/**\n * Base styles for tota11y to make sure things look consistent under\n * reasonable circumstances.\n */\n.tota11y,\n.tota11y * {\n  border: none !important;\n  background-color: inherit !important;\n  box-sizing: border-box !important;\n  color: #f2f2f2 !important;\n  font-family: Arial !important;\n  font-size: 14px !important;\n  font-style: normal !important;\n  font-weight: 400 !important;\n  line-height: 1.35 !important;\n  margin: 0 !important;\n  padding: 0 !important;\n  text-align: left !important;\n  text-shadow: none !important;\n}\n.tota11y * {\n  height: auto !important;\n  width: auto !important;\n}\n.tota11y strong {\n  font-weight: bold !important;\n}\n.tota11y pre,\n.tota11y code {\n  background-color: #ddd !important;\n  border: none !important;\n  border-radius: 0 !important;\n  color: inherit !important;\n  font-family: monospace !important;\n  font-size: inherit !important;\n  line-height: inherit !important;\n}\n.tota11y pre {\n  padding: 5px 10px !important;\n  margin: 0 0 10px !important;\n  overflow-x: scroll !important;\n}\n.tota11y code {\n  border-radius: 2px !important;\n  display: inline !important;\n  padding: 1px !important;\n}\n.tota11y i,\n.tota11y em {\n  font-style: italic !important;\n}\n.tota11y p {\n  margin: 0 0 10px !important;\n}\n.tota11y a,\n.tota11y a:hover,\n.tota11y a:focus {\n  background-color: inherit !important;\n  color: inherit !important;\n  text-decoration: none !important;\n}\n.tota11y-toolbar {\n  background-color: #333 !important;\n  color: #f2f2f2 !important;\n  position: fixed !important;\n  top: auto !important;\n  right: auto !important;\n  bottom: 0 !important;\n  left: 10px !important;\n  border-top-left-radius: 5px !important;\n  border-top-right-radius: 5px !important;\n  overflow: hidden !important;\n  z-index: 9998 !important;\n}\n.tota11y-toolbar-toggle {\n  background-color: #333 !important;\n  display: block !important;\n  padding: 7px !important;\n  width: 100% !important;\n}\n.tota11y-toolbar-logo {\n  height: 25px !important;\n  margin: 0 auto !important;\n  text-align: center !important;\n  width: 35px !important;\n}\n.tota11y-toolbar-logo svg {\n  height: 25px !important;\n}\n.tota11y-toolbar-body {\n  display: none !important;\n}\n.tota11y-toolbar.tota11y-expanded .tota11y-toolbar-body {\n  display: block !important;\n}\n.tota11y-sr-only {\n  border: 0 !important;\n  clip: rect(0, 0, 0, 0) !important;\n  height: 1px !important;\n  margin: -1px !important;\n  overflow: hidden !important;\n  padding: 0 !important;\n  position: absolute !important;\n  width: 1px !important;\n}\n.tota11y-sidebar {\n  position: static !important;\n}\n.tota11y-sidebar .tota11y-plugin-description,\n.tota11y-sidebar .tota11y-setting-description {\n  width: auto !important;\n}\n.tota11y-sidebar .tota11y-plugin-indicator,\n.tota11y-sidebar .tota11y-setting-indicator {\n  margin: 0 10px !important;\n}\n.tota11y-sidebar .tota11y-plugin-switch,\n.tota11y-sidebar .tota11y-setting-switch {\n  padding: 9px 9px 9px 0 !important;\n}\n.tota11y-sidebar .tota11y-help {\n  position: absolute !important;\n  right: 10px !important;\n  top: 5px !important;\n}\n.tota11y-sidebar .tota11y-info-title:hover {\n  cursor: default !important;\n}\n.tota11y-sidebar.tota11y-toolbar {\n  border-top-left-radius: 0 !important;\n  border-top-right-radius: 0 !important;\n}\n.tota11y-disabled-toolbar {\n  pointer-events: none !important;\n  opacity: 0.5 !important;\n}\n.tota11y.tota11y-info.tota11y-sidebar:nth-child(2n+1) {\n  background-color: #4A5837 !important;\n}\n", ""]);
+exports.push([module.i, ".tota11y-dark-color-scheme {\n  background-color: #333 !important;\n  color: #f2f2f2 !important;\n}\n.tota11y-no-select {\n  -webkit-user-select: none !important;\n          user-select: none !important;\n}\n/**\n * Base styles for tota11y to make sure things look consistent under\n * reasonable circumstances.\n */\n.tota11y,\n.tota11y * {\n  border: none !important;\n  background-color: inherit !important;\n  box-sizing: border-box !important;\n  color: #f2f2f2 !important;\n  font-family: Arial !important;\n  font-size: 14px !important;\n  font-style: normal !important;\n  font-weight: 400 !important;\n  line-height: 1.35 !important;\n  margin: 0 !important;\n  padding: 0 !important;\n  text-align: left !important;\n  text-shadow: none !important;\n}\n.tota11y * {\n  height: auto !important;\n  width: auto !important;\n}\n.tota11y strong {\n  font-weight: bold !important;\n}\n.tota11y pre,\n.tota11y code {\n  background-color: #ddd !important;\n  border: none !important;\n  border-radius: 0 !important;\n  color: inherit !important;\n  font-family: monospace !important;\n  font-size: inherit !important;\n  line-height: inherit !important;\n}\n.tota11y pre {\n  padding: 5px 10px !important;\n  margin: 0 0 10px !important;\n  overflow-x: scroll !important;\n}\n.tota11y code {\n  border-radius: 2px !important;\n  display: inline !important;\n  padding: 1px !important;\n}\n.tota11y i,\n.tota11y em {\n  font-style: italic !important;\n}\n.tota11y p {\n  margin: 0 0 10px !important;\n}\n.tota11y a,\n.tota11y a:hover,\n.tota11y a:focus {\n  background-color: inherit !important;\n  color: inherit !important;\n  text-decoration: none !important;\n}\n.tota11y-toolbar {\n  background-color: #333 !important;\n  color: #f2f2f2 !important;\n  position: fixed !important;\n  top: auto !important;\n  right: auto !important;\n  bottom: 0 !important;\n  left: 10px !important;\n  border-top-left-radius: 5px !important;\n  border-top-right-radius: 5px !important;\n  overflow: hidden !important;\n  z-index: 9998 !important;\n}\n.tota11y-toolbar-toggle {\n  background-color: #333 !important;\n  display: block !important;\n  padding: 7px !important;\n  width: 100% !important;\n}\n.tota11y-toolbar-logo {\n  height: 25px !important;\n  margin: 0 auto !important;\n  text-align: center !important;\n  width: 35px !important;\n}\n.tota11y-toolbar-logo svg {\n  height: 25px !important;\n}\n.tota11y-toolbar-body {\n  display: none !important;\n}\n.tota11y-toolbar.tota11y-expanded .tota11y-toolbar-body {\n  display: block !important;\n}\n.tota11y-sr-only {\n  border: 0 !important;\n  clip: rect(0, 0, 0, 0) !important;\n  height: 1px !important;\n  margin: -1px !important;\n  overflow: hidden !important;\n  padding: 0 !important;\n  position: absolute !important;\n  width: 1px !important;\n}\n.tota11y-sidebar {\n  position: static !important;\n}\n.tota11y-sidebar .tota11y-plugin-description,\n.tota11y-sidebar .tota11y-setting-description {\n  width: auto !important;\n}\n.tota11y-sidebar .tota11y-plugin-indicator,\n.tota11y-sidebar .tota11y-setting-indicator {\n  margin: 0 10px !important;\n}\n.tota11y-sidebar .tota11y-plugin-switch,\n.tota11y-sidebar .tota11y-setting-switch {\n  padding: 9px 9px 9px 0 !important;\n}\n.tota11y-sidebar .tota11y-help {\n  position: absolute !important;\n  right: 10px !important;\n  top: 5px !important;\n}\n.tota11y-sidebar .tota11y-info-title:hover {\n  cursor: default !important;\n}\n.tota11y-sidebar.tota11y-toolbar {\n  border-top-left-radius: 0 !important;\n  border-top-right-radius: 0 !important;\n}\n.tota11y-disabled-toolbar {\n  pointer-events: none !important;\n  opacity: 0.5 !important;\n}\n.tota11y.tota11y-info.tota11y-sidebar:nth-child(2n+1) {\n  background-color: #4A5837 !important;\n}\n", ""]);
 
 /***/ }),
 
@@ -187,7 +185,7 @@ exports.push([module.i, "", ""]);
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")();
-exports.push([module.i, ".tota11y-dark-color-scheme {\n  background-color: #333 !important;\n  color: #f2f2f2 !important;\n}\n.tota11y-no-select {\n  -webkit-user-select: none !important;\n     -moz-user-select: none !important;\n      -ms-user-select: none !important;\n          user-select: none !important;\n}\n.tota11y-outlined {\n  outline: 2px solid #7882c8 !important;\n}\n.tota11y-nothingness {\n  color: #888 !important;\n}\n/* Only style the screen reader wand info panel section */\n.tota11y-sidebar.a11y-text-wand .tota11y-info-section.active {\n  height: 500px !important;\n  max-height: 50vh !important;\n}\n", ""]);
+exports.push([module.i, ".tota11y-dark-color-scheme {\n  background-color: #333 !important;\n  color: #f2f2f2 !important;\n}\n.tota11y-no-select {\n  -webkit-user-select: none !important;\n          user-select: none !important;\n}\n.tota11y-outlined {\n  outline: 2px solid #7882c8 !important;\n}\n.tota11y-nothingness {\n  color: #888 !important;\n}\n/* Only style the screen reader wand info panel section */\n.tota11y-sidebar.a11y-text-wand .tota11y-info-section.active {\n  height: 500px !important;\n  max-height: 50vh !important;\n}\n", ""]);
 
 /***/ }),
 
@@ -211,7 +209,7 @@ exports.push([module.i, ".tota11y-swatches {\n  margin-left: 5px !important;\n  
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")();
-exports.push([module.i, ".tota11y-dark-color-scheme {\n  background-color: #333 !important;\n  color: #f2f2f2 !important;\n}\n.tota11y-no-select {\n  -webkit-user-select: none !important;\n     -moz-user-select: none !important;\n      -ms-user-select: none !important;\n          user-select: none !important;\n}\n.tota11y-heading-outline {\n  color: #333 !important;\n}\n.tota11y-heading-outline-entry {\n  margin-bottom: 8px !important;\n}\n.tota11y-heading-outline-entry.heading-level-1 {\n  margin-left: 0 !important;\n}\n.tota11y-heading-outline-entry.heading-level-2 {\n  margin-left: 20px !important;\n}\n.tota11y-heading-outline-entry.heading-level-3 {\n  margin-left: 40px !important;\n}\n.tota11y-heading-outline-entry.heading-level-4 {\n  margin-left: 60px !important;\n}\n.tota11y-heading-outline-entry.heading-level-5 {\n  margin-left: 80px !important;\n}\n.tota11y-heading-outline-entry.heading-level-6 {\n  margin-left: 100px !important;\n}\n.tota11y-heading-outline-entry.heading-level-higher {\n  margin-left: 100px !important;\n}\n.tota11y-heading-outline-level {\n  position: relative !important;\n  top: -2px !important;\n  right: auto !important;\n  bottom: auto !important;\n  left: auto !important;\n  margin-right: 5px !important;\n  padding: 2px 3px !important;\n  pointer-events: none !important;\n}\n", ""]);
+exports.push([module.i, ".tota11y-dark-color-scheme {\n  background-color: #333 !important;\n  color: #f2f2f2 !important;\n}\n.tota11y-no-select {\n  -webkit-user-select: none !important;\n          user-select: none !important;\n}\n.tota11y-heading-outline {\n  color: #333 !important;\n}\n.tota11y-heading-outline-entry {\n  margin-bottom: 8px !important;\n}\n.tota11y-heading-outline-entry.heading-level-1 {\n  margin-left: 0 !important;\n}\n.tota11y-heading-outline-entry.heading-level-2 {\n  margin-left: 20px !important;\n}\n.tota11y-heading-outline-entry.heading-level-3 {\n  margin-left: 40px !important;\n}\n.tota11y-heading-outline-entry.heading-level-4 {\n  margin-left: 60px !important;\n}\n.tota11y-heading-outline-entry.heading-level-5 {\n  margin-left: 80px !important;\n}\n.tota11y-heading-outline-entry.heading-level-6 {\n  margin-left: 100px !important;\n}\n.tota11y-heading-outline-entry.heading-level-higher {\n  margin-left: 100px !important;\n}\n.tota11y-heading-outline-level {\n  position: relative !important;\n  top: -2px !important;\n  right: auto !important;\n  bottom: auto !important;\n  left: auto !important;\n  margin-right: 5px !important;\n  padding: 2px 3px !important;\n  pointer-events: none !important;\n}\n", ""]);
 
 /***/ }),
 
@@ -223,7 +221,7 @@ exports.push([module.i, ".tota11y-dark-color-scheme {\n  background-color: #333 
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")();
-exports.push([module.i, ".tota11y-dark-color-scheme {\n  background-color: #333 !important;\n  color: #f2f2f2 !important;\n}\n.tota11y-no-select {\n  -webkit-user-select: none !important;\n     -moz-user-select: none !important;\n      -ms-user-select: none !important;\n          user-select: none !important;\n}\n.tota11y-label {\n  background-color: #ffe800 !important;\n  border: 1px solid rgba(0, 0, 0, 0.1) !important;\n  cursor: default !important;\n  padding: 3px !important;\n  position: absolute !important;\n  z-index: 9997 !important;\n}\n.tota11y-label-error {\n  background-color: #ffaeae !important;\n}\n.tota11y-label-error-icon {\n  display: block !important;\n  float: left !important;\n  margin-right: 3px !important;\n  width: 12px !important;\n}\n.tota11y-label-success {\n  background-color: #b9eda9 !important;\n}\n.tota11y-label-warning {\n  background-color: #ffe800 !important;\n}\n.tota11y-label,\n.tota11y-label-text,\n.tota11y-label-detail,\n.tota11y-label-link,\n.tota11y-label-help {\n  color: #333 !important;\n  font-size: 12px !important;\n}\n.tota11y-label-text {\n  float: left !important;\n}\n.tota11y-label-detail {\n  clear: both !important;\n  display: none !important;\n  max-width: 300px !important;\n}\n.tota11y-label:hover .tota11y-label-detail {\n  display: block !important;\n}\n.tota11y-label-help {\n  float: left !important;\n  margin-left: 5px !important;\n}\n.tota11y-label-link:hover,\n.tota11y-label-link:focus {\n  opacity: 0.6 !important;\n  text-decoration: underline !important;\n}\n.tota11y-highlight {\n  background-color: rgba(120, 130, 200, 0.4) !important;\n  pointer-events: none !important;\n  position: absolute !important;\n  z-index: 9999 !important;\n}\n", ""]);
+exports.push([module.i, ".tota11y-dark-color-scheme {\n  background-color: #333 !important;\n  color: #f2f2f2 !important;\n}\n.tota11y-no-select {\n  -webkit-user-select: none !important;\n          user-select: none !important;\n}\n.tota11y-label {\n  background-color: #ffe800 !important;\n  border: 1px solid rgba(0, 0, 0, 0.1) !important;\n  cursor: default !important;\n  padding: 3px !important;\n  position: absolute !important;\n  z-index: 9997 !important;\n}\n.tota11y-label-error {\n  background-color: #ffaeae !important;\n}\n.tota11y-label-error-icon {\n  display: block !important;\n  float: left !important;\n  margin-right: 3px !important;\n  width: 12px !important;\n}\n.tota11y-label-success {\n  background-color: #b9eda9 !important;\n}\n.tota11y-label-warning {\n  background-color: #ffe800 !important;\n}\n.tota11y-label,\n.tota11y-label-text,\n.tota11y-label-detail,\n.tota11y-label-link,\n.tota11y-label-help {\n  color: #333 !important;\n  font-size: 12px !important;\n}\n.tota11y-label-text {\n  float: left !important;\n}\n.tota11y-label-detail {\n  clear: both !important;\n  display: none !important;\n  max-width: 300px !important;\n}\n.tota11y-label:hover .tota11y-label-detail {\n  display: block !important;\n}\n.tota11y-label-help {\n  float: left !important;\n  margin-left: 5px !important;\n}\n.tota11y-label-link:hover,\n.tota11y-label-link:focus {\n  opacity: 0.6 !important;\n  text-decoration: underline !important;\n}\n.tota11y-highlight {\n  background-color: rgba(120, 130, 200, 0.4) !important;\n  pointer-events: none !important;\n  position: absolute !important;\n  z-index: 9999 !important;\n}\n", ""]);
 
 /***/ }),
 
@@ -235,7 +233,7 @@ exports.push([module.i, ".tota11y-dark-color-scheme {\n  background-color: #333 
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")();
-exports.push([module.i, ".tota11y-dark-color-scheme {\n  background-color: #333 !important;\n  color: #f2f2f2 !important;\n}\n.tota11y-no-select {\n  -webkit-user-select: none !important;\n     -moz-user-select: none !important;\n      -ms-user-select: none !important;\n          user-select: none !important;\n}\n.tota11y-info {\n  background-color: #333 !important;\n  color: #f2f2f2 !important;\n  -webkit-user-select: none !important;\n     -moz-user-select: none !important;\n      -ms-user-select: none !important;\n          user-select: none !important;\n  border-radius: 5px !important;\n  position: fixed !important;\n  z-index: 9998 !important;\n  /*\n     * Avoid scrollbars on code snippets that are expandable as clicking\n     * scrollbars is difficult if the entire block is click to expand/collapse\n     */\n}\n.tota11y-info-controls {\n  float: right !important;\n}\n.tota11y-info-annotation-toggle {\n  float: left !important;\n  margin-right: 10px !important;\n}\n.tota11y-info-hidden {\n  display: none !important;\n}\n.tota11y-info-dismiss-trigger {\n  font-size: 25px !important;\n  line-height: 25px !important;\n  position: relative !important;\n  top: -2px !important;\n}\n.tota11y-info-title,\n.tota11y-info-body {\n  padding: 10px 10px 0 !important;\n}\n.tota11y-info-title:hover {\n  cursor: move !important;\n}\n.tota11y-info-tabs {\n  display: flex !important;\n  margin: 0 !important;\n  padding: 0 0 10px !important;\n}\n.tota11y-info-tab {\n  height: 30px !important;\n  list-style: none !important;\n  position: relative !important;\n  text-align: center !important;\n  width: 100% !important;\n  flex-grow: 1 !important;\n}\n.tota11y-info-tab-anchor {\n  position: absolute !important;\n  top: 0 !important;\n  right: 0 !important;\n  bottom: 0 !important;\n  left: 0 !important;\n  text-align: center !important;\n}\n.tota11y-info-tab-anchor-text {\n  line-height: 30px !important;\n}\n.tota11y-info-tab:hover {\n  background-color: #555 !important;\n}\n.tota11y-info-tab.active,\n.tota11y-info-tab.active:hover {\n  background-color: #f2f2f2 !important;\n}\n.tota11y-info-tab.active .tota11y-info-tab-anchor-text {\n  color: #333 !important;\n}\n.tota11y-info-sections {\n  position: relative !important;\n  height: 270px !important;\n  width: 400px !important;\n}\n.tota11y-info-section {\n  position: absolute !important;\n  top: 0 !important;\n  right: 0 !important;\n  bottom: 0 !important;\n  left: 0 !important;\n  background-color: #f2f2f2 !important;\n  display: none !important;\n  overflow-y: scroll !important;\n  padding: 10px !important;\n}\n.tota11y-info-section,\n.tota11y-info-section * {\n  color: #333 !important;\n}\n.tota11y-info-section.active {\n  display: block !important;\n}\n.tota11y-info-errors {\n  margin: 0 !important;\n  padding: 0 !important;\n}\n.tota11y-info-error {\n  list-style: none !important;\n  margin-bottom: 10px !important;\n}\n.tota11y-info-error-trigger {\n  display: block !important;\n}\n.tota11y-info-error-trigger.trigger-highlight {\n  background-color: rgba(120, 130, 200, 0.4) !important;\n}\n.tota11y-info-error-chevron {\n  display: inline-block !important;\n  font-size: 20px !important;\n  height: 14px !important;\n  line-height: 14px !important;\n  margin-right: 3px !important;\n  transform: rotateZ(90deg) !important;\n  transform-origin: 3px 8px !important;\n  transition: transform ease-in-out 50ms !important;\n}\n.tota11y-info-error-trigger.tota11y-collapsed .tota11y-info-error-chevron {\n  transform: rotateZ(0deg) !important;\n}\n.tota11y-info-error-title {\n  font-weight: bold !important;\n}\n.tota11y-info-error-scroll {\n  float: right !important;\n  margin-top: 3px !important;\n  padding-left: 5px !important;\n}\n.tota11y-info-error-scroll-glyph {\n  border-color: #333 !important;\n}\n.tota11y-info-error-scroll:hover .tota11y-info-error-scroll-glyph {\n  border-color: #999 !important;\n}\n.tota11y-info-error-scroll-lens {\n  border: 1px solid !important;\n  border-radius: 50% !important;\n  height: 8px !important;\n  width: 8px !important;\n}\n.tota11y-info-error-scroll-handle {\n  border-left: 1px solid !important;\n  height: 7px !important;\n  transform: translateX(-2px) translateY(-2px) rotate(45deg) !important;\n  width: 1px !important;\n}\n.tota11y-info-error-description {\n  font-size: 13px !important;\n  padding: 10px 0 0 !important;\n  -webkit-user-select: text !important;\n     -moz-user-select: text !important;\n      -ms-user-select: text !important;\n          user-select: text !important;\n}\n.tota11y-info-error-description-code-container {\n  margin-top: 10px !important;\n}\n.tota11y-info-error-description-code-container code {\n  display: block !important;\n  margin-top: 10px !important;\n  padding: 5px 10px !important;\n  word-wrap: break-word !important;\n}\n.tota11y-info-error-description.tota11y-collapsed {\n  display: none !important;\n}\n.tota11y-info-error-count {\n  background-color: red !important;\n  border-radius: 20px !important;\n  color: white !important;\n  display: inline !important;\n  margin-left: 5px !important;\n  padding: 1px 8px !important;\n}\n.tota11y-info .tota11y-info-about-title {\n  padding-bottom: 10px !important;\n  display: block !important;\n}\n.tota11y-info .tota11y-info-about-title-link {\n  text-decoration: underline !important;\n  font-weight: bold !important;\n}\n.tota11y-info .tota11y-info-resources {\n  font-weight: bold !important;\n}\n.tota11y-info .tota11y-info-resources li {\n  margin-left: 10px !important;\n}\n.tota11y-info a.tota11y-info-link {\n  text-decoration: underline !important;\n}\n.tota11y-info blockquote {\n  font-size: 11px !important;\n}\n.tota11y-info blockquote cite {\n  float: right !important;\n  margin: 11px 0 !important;\n  font-style: italic !important;\n}\n.tota11y-info blockquote:before {\n  content: open-quote !important;\n  font-size: 44px !important;\n  vertical-align: -20px !important;\n  line-height: 1px !important;\n}\n.tota11y-info blockquote:after {\n  content: close-quote !important;\n  font-size: 44px !important;\n  vertical-align: -10px !important;\n  line-height: 1px !important;\n  margin-left: calc(100% - 15px) !important;\n}\n.tota11y-info .tota11y-click-to-expand .tota11y-expandable {\n  max-height: 26px !important;\n  cursor: pointer !important;\n  overflow: hidden !important;\n  white-space: nowrap !important;\n  max-width: 100% !important;\n  text-overflow: ellipsis !important;\n}\n.tota11y-info .tota11y-click-to-expand .tota11y-expandable p {\n  overflow: hidden !important;\n  text-overflow: ellipsis !important;\n}\n.tota11y-info .tota11y-click-to-expand.tota11y-expanded .tota11y-expandable {\n  max-height: none !important;\n  overflow: auto !important;\n  white-space: normal !important;\n  text-overflow: clip !important;\n}\n.tota11y-info .tota11y-click-to-expand.tota11y-expanded .tota11y-expandable p {\n  overflow: auto !important;\n  text-overflow: clip !important;\n}\n.tota11y-info .tota11y-expandable code {\n  white-space: pre-wrap !important;\n}\n.tota11y-sidebar {\n  position: static !important;\n}\n.tota11y-sidebar .tota11y-info-sections {\n  width: auto !important;\n  height: auto !important;\n}\n.tota11y-sidebar .tota11y-info-section {\n  position: static !important;\n  overflow-y: auto !important;\n}\n.tota11y-sidebar .tota11y-info-body {\n  padding: 10px 0px 0 !important;\n}\n.tota11y-sidebar .tota11y-info-title {\n  padding: 10px 10px 0 !important;\n}\n.tota11y-sidebar .tota11y-info-error-inspect-element {\n  border: 3px solid #ddd !important;\n  border-radius: 5px !important;\n  display: block !important;\n  margin-top: 10px !important;\n  padding: 3px 10px !important;\n  font-weight: bold !important;\n  background-color: #f2f2f2 !important;\n  cursor: pointer !important;\n}\n.tota11y-sidebar .tota11y-info-error-inspect-element:disabled {\n  cursor: auto !important;\n  background-color: #ddd !important;\n  border-color: #999 !important;\n}\n", ""]);
+exports.push([module.i, ".tota11y-dark-color-scheme {\n  background-color: #333 !important;\n  color: #f2f2f2 !important;\n}\n.tota11y-no-select {\n  -webkit-user-select: none !important;\n          user-select: none !important;\n}\n.tota11y-info {\n  background-color: #333 !important;\n  color: #f2f2f2 !important;\n  -webkit-user-select: none !important;\n          user-select: none !important;\n  border-radius: 5px !important;\n  position: fixed !important;\n  z-index: 9998 !important;\n  /*\n     * Avoid scrollbars on code snippets that are expandable as clicking\n     * scrollbars is difficult if the entire block is click to expand/collapse\n     */\n}\n.tota11y-info-controls {\n  float: right !important;\n}\n.tota11y-info-annotation-toggle {\n  float: left !important;\n  margin-right: 10px !important;\n}\n.tota11y-info-hidden {\n  display: none !important;\n}\n.tota11y-info-dismiss-trigger {\n  font-size: 25px !important;\n  line-height: 25px !important;\n  position: relative !important;\n  top: -2px !important;\n}\n.tota11y-info-title,\n.tota11y-info-body {\n  padding: 10px 10px 0 !important;\n}\n.tota11y-info-title:hover {\n  cursor: move !important;\n}\n.tota11y-info-tabs {\n  display: flex !important;\n  margin: 0 !important;\n  padding: 0 0 10px !important;\n}\n.tota11y-info-tab {\n  height: 30px !important;\n  list-style: none !important;\n  position: relative !important;\n  text-align: center !important;\n  width: 100% !important;\n  flex-grow: 1 !important;\n}\n.tota11y-info-tab-anchor {\n  position: absolute !important;\n  top: 0 !important;\n  right: 0 !important;\n  bottom: 0 !important;\n  left: 0 !important;\n  text-align: center !important;\n}\n.tota11y-info-tab-anchor-text {\n  line-height: 30px !important;\n}\n.tota11y-info-tab:hover {\n  background-color: #555 !important;\n}\n.tota11y-info-tab.active,\n.tota11y-info-tab.active:hover {\n  background-color: #f2f2f2 !important;\n}\n.tota11y-info-tab.active .tota11y-info-tab-anchor-text {\n  color: #333 !important;\n}\n.tota11y-info-sections {\n  position: relative !important;\n  height: 270px !important;\n  width: 400px !important;\n}\n.tota11y-info-section {\n  position: absolute !important;\n  top: 0 !important;\n  right: 0 !important;\n  bottom: 0 !important;\n  left: 0 !important;\n  background-color: #f2f2f2 !important;\n  display: none !important;\n  overflow-y: scroll !important;\n  padding: 10px !important;\n}\n.tota11y-info-section,\n.tota11y-info-section * {\n  color: #333 !important;\n}\n.tota11y-info-section.active {\n  display: block !important;\n}\n.tota11y-info-errors {\n  margin: 0 !important;\n  padding: 0 !important;\n}\n.tota11y-info-error {\n  list-style: none !important;\n  margin-bottom: 10px !important;\n}\n.tota11y-info-error-trigger {\n  display: block !important;\n}\n.tota11y-info-error-trigger.trigger-highlight {\n  background-color: rgba(120, 130, 200, 0.4) !important;\n}\n.tota11y-info-error-chevron {\n  display: inline-block !important;\n  font-size: 20px !important;\n  height: 14px !important;\n  line-height: 14px !important;\n  margin-right: 3px !important;\n  transform: rotateZ(90deg) !important;\n  transform-origin: 3px 8px !important;\n  transition: transform ease-in-out 50ms !important;\n}\n.tota11y-info-error-trigger.tota11y-collapsed .tota11y-info-error-chevron {\n  transform: rotateZ(0deg) !important;\n}\n.tota11y-info-error-title {\n  font-weight: bold !important;\n}\n.tota11y-info-error-scroll {\n  float: right !important;\n  margin-top: 3px !important;\n  padding-left: 5px !important;\n}\n.tota11y-info-error-scroll-glyph {\n  border-color: #333 !important;\n}\n.tota11y-info-error-scroll:hover .tota11y-info-error-scroll-glyph {\n  border-color: #999 !important;\n}\n.tota11y-info-error-scroll-lens {\n  border: 1px solid !important;\n  border-radius: 50% !important;\n  height: 8px !important;\n  width: 8px !important;\n}\n.tota11y-info-error-scroll-handle {\n  border-left: 1px solid !important;\n  height: 7px !important;\n  transform: translateX(-2px) translateY(-2px) rotate(45deg) !important;\n  width: 1px !important;\n}\n.tota11y-info-error-description {\n  font-size: 13px !important;\n  padding: 10px 0 0 !important;\n  -webkit-user-select: text !important;\n          user-select: text !important;\n}\n.tota11y-info-error-description-code-container {\n  margin-top: 10px !important;\n}\n.tota11y-info-error-description-code-container code {\n  display: block !important;\n  margin-top: 10px !important;\n  padding: 5px 10px !important;\n  word-wrap: break-word !important;\n}\n.tota11y-info-error-description.tota11y-collapsed {\n  display: none !important;\n}\n.tota11y-info-error-count {\n  background-color: red !important;\n  border-radius: 20px !important;\n  color: white !important;\n  display: inline !important;\n  margin-left: 5px !important;\n  padding: 1px 8px !important;\n}\n.tota11y-info .tota11y-info-about-title {\n  padding-bottom: 10px !important;\n  display: block !important;\n}\n.tota11y-info .tota11y-info-about-title-link {\n  text-decoration: underline !important;\n  font-weight: bold !important;\n}\n.tota11y-info .tota11y-info-resources {\n  font-weight: bold !important;\n}\n.tota11y-info .tota11y-info-resources li {\n  margin-left: 10px !important;\n}\n.tota11y-info a.tota11y-info-link {\n  text-decoration: underline !important;\n}\n.tota11y-info blockquote {\n  font-size: 11px !important;\n}\n.tota11y-info blockquote cite {\n  float: right !important;\n  margin: 11px 0 !important;\n  font-style: italic !important;\n}\n.tota11y-info blockquote:before {\n  content: open-quote !important;\n  font-size: 44px !important;\n  vertical-align: -20px !important;\n  line-height: 1px !important;\n}\n.tota11y-info blockquote:after {\n  content: close-quote !important;\n  font-size: 44px !important;\n  vertical-align: -10px !important;\n  line-height: 1px !important;\n  margin-left: calc(100% - 15px) !important;\n}\n.tota11y-info .tota11y-click-to-expand .tota11y-expandable {\n  max-height: 26px !important;\n  cursor: pointer !important;\n  overflow: hidden !important;\n  white-space: nowrap !important;\n  max-width: 100% !important;\n  text-overflow: ellipsis !important;\n}\n.tota11y-info .tota11y-click-to-expand .tota11y-expandable p {\n  overflow: hidden !important;\n  text-overflow: ellipsis !important;\n}\n.tota11y-info .tota11y-click-to-expand.tota11y-expanded .tota11y-expandable {\n  max-height: none !important;\n  overflow: auto !important;\n  white-space: normal !important;\n  text-overflow: clip !important;\n}\n.tota11y-info .tota11y-click-to-expand.tota11y-expanded .tota11y-expandable p {\n  overflow: auto !important;\n  text-overflow: clip !important;\n}\n.tota11y-info .tota11y-expandable code {\n  white-space: pre-wrap !important;\n}\n.tota11y-sidebar {\n  position: static !important;\n}\n.tota11y-sidebar .tota11y-info-sections {\n  width: auto !important;\n  height: auto !important;\n}\n.tota11y-sidebar .tota11y-info-section {\n  position: static !important;\n  overflow-y: auto !important;\n}\n.tota11y-sidebar .tota11y-info-body {\n  padding: 10px 0px 0 !important;\n}\n.tota11y-sidebar .tota11y-info-title {\n  padding: 10px 10px 0 !important;\n}\n.tota11y-sidebar .tota11y-info-error-inspect-element {\n  border: 3px solid #ddd !important;\n  border-radius: 5px !important;\n  display: block !important;\n  margin-top: 10px !important;\n  padding: 3px 10px !important;\n  font-weight: bold !important;\n  background-color: #f2f2f2 !important;\n  cursor: pointer !important;\n}\n.tota11y-sidebar .tota11y-info-error-inspect-element:disabled {\n  cursor: auto !important;\n  background-color: #ddd !important;\n  border-color: #999 !important;\n}\n", ""]);
 
 /***/ }),
 
@@ -247,7 +245,7 @@ exports.push([module.i, ".tota11y-dark-color-scheme {\n  background-color: #333 
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(/*! ../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")();
-exports.push([module.i, ".tota11y-dark-color-scheme {\n  background-color: #333 !important;\n  color: #f2f2f2 !important;\n}\n.tota11y-no-select {\n  -webkit-user-select: none !important;\n     -moz-user-select: none !important;\n      -ms-user-select: none !important;\n          user-select: none !important;\n}\n.tota11y-plugin,\n.tota11y-setting {\n  -webkit-user-select: none !important;\n     -moz-user-select: none !important;\n      -ms-user-select: none !important;\n          user-select: none !important;\n  border-bottom: 1px solid #555 !important;\n  list-style: none !important;\n}\n.tota11y-plugin-switch,\n.tota11y-setting-switch {\n  align-items: center !important;\n  cursor: pointer !important;\n  display: flex !important;\n  padding: 12px 12px 12px 0 !important;\n  margin: 0 !important;\n}\n.tota11y-plugin-indicator,\n.tota11y-setting-indicator {\n  margin: 0 15px !important;\n}\n.tota11y-plugin-indicator,\n.tota11y-setting-indicator {\n  border-radius: 16px !important;\n  border: 1px solid #999 !important;\n  color: transparent !important;\n  font-size: 13px !important;\n  height: 16px !important;\n  line-height: 16px !important;\n  padding: 0 0 0 1px !important;\n  width: 16px !important;\n  min-width: 16px !important;\n  min-height: 16px !important;\n}\n.tota11y-plugin-checkbox:focus + .tota11y-plugin-indicator,\n.tota11y-plugin-checkbox:focus + .tota11y-setting-indicator,\n.tota11y-setting-checkbox:focus + .tota11y-plugin-indicator,\n.tota11y-setting-checkbox:focus + .tota11y-setting-indicator {\n  border-color: #639b24 !important;\n  background-color: #49721a !important;\n  color: #49721a !important;\n}\n.tota11y-plugin-checkbox:checked + .tota11y-plugin-indicator,\n.tota11y-plugin-checkbox:checked + .tota11y-setting-indicator,\n.tota11y-setting-checkbox:checked + .tota11y-plugin-indicator,\n.tota11y-setting-checkbox:checked + .tota11y-setting-indicator {\n  background-color: #639b24 !important;\n  border-color: #639b24 !important;\n  color: white !important;\n}\n.tota11y-plugin-title,\n.tota11y-setting-title {\n  font-weight: bold !important;\n}\n.tota11y-plugin-description,\n.tota11y-setting-description {\n  font-size: 11px !important;\n  font-style: italic !important;\n  width: 200px !important;\n  margin-right: 3px !important;\n}\n.tota11y-plugin-info-setting,\n.tota11y-setting-info-setting {\n  font-size: 11px !important;\n}\n.tota11y-plugins-separator {\n  font-size: 12px !important;\n  margin: 7px 15px 0 !important;\n  text-transform: uppercase !important;\n}\n", ""]);
+exports.push([module.i, ".tota11y-dark-color-scheme {\n  background-color: #333 !important;\n  color: #f2f2f2 !important;\n}\n.tota11y-no-select {\n  -webkit-user-select: none !important;\n          user-select: none !important;\n}\n.tota11y-plugin,\n.tota11y-setting {\n  -webkit-user-select: none !important;\n          user-select: none !important;\n  border-bottom: 1px solid #555 !important;\n  list-style: none !important;\n}\n.tota11y-plugin-switch,\n.tota11y-setting-switch {\n  align-items: center !important;\n  cursor: pointer !important;\n  display: flex !important;\n  padding: 12px 12px 12px 0 !important;\n  margin: 0 !important;\n}\n.tota11y-plugin-indicator,\n.tota11y-setting-indicator {\n  margin: 0 15px !important;\n}\n.tota11y-plugin-indicator,\n.tota11y-setting-indicator {\n  border-radius: 16px !important;\n  border: 1px solid #999 !important;\n  color: transparent !important;\n  font-size: 13px !important;\n  height: 16px !important;\n  line-height: 16px !important;\n  padding: 0 0 0 1px !important;\n  width: 16px !important;\n  min-width: 16px !important;\n  min-height: 16px !important;\n}\n.tota11y-plugin-checkbox:focus + .tota11y-plugin-indicator,\n.tota11y-plugin-checkbox:focus + .tota11y-setting-indicator,\n.tota11y-setting-checkbox:focus + .tota11y-plugin-indicator,\n.tota11y-setting-checkbox:focus + .tota11y-setting-indicator {\n  border-color: #639b24 !important;\n  background-color: #49721a !important;\n  color: #49721a !important;\n}\n.tota11y-plugin-checkbox:checked + .tota11y-plugin-indicator,\n.tota11y-plugin-checkbox:checked + .tota11y-setting-indicator,\n.tota11y-setting-checkbox:checked + .tota11y-plugin-indicator,\n.tota11y-setting-checkbox:checked + .tota11y-setting-indicator {\n  background-color: #639b24 !important;\n  border-color: #639b24 !important;\n  color: white !important;\n}\n.tota11y-plugin-title,\n.tota11y-setting-title {\n  font-weight: bold !important;\n}\n.tota11y-plugin-description,\n.tota11y-setting-description {\n  font-size: 11px !important;\n  font-style: italic !important;\n  width: 200px !important;\n  margin-right: 3px !important;\n}\n.tota11y-plugin-info-setting,\n.tota11y-setting-info-setting {\n  font-size: 11px !important;\n}\n.tota11y-plugins-separator {\n  font-size: 12px !important;\n  margin: 7px 15px 0 !important;\n  text-transform: uppercase !important;\n}\n", ""]);
 
 /***/ }),
 
@@ -423,7 +421,7 @@ var _logger2 = _interopRequireDefault(_logger);
 
 var _internalProtoAccess = __webpack_require__(/*! ./internal/proto-access */ "./node_modules/handlebars/dist/cjs/handlebars/internal/proto-access.js");
 
-var VERSION = '4.7.7';
+var VERSION = '4.7.8';
 exports.VERSION = VERSION;
 var COMPILER_REVISION = 8;
 exports.COMPILER_REVISION = COMPILER_REVISION;
@@ -514,7 +512,7 @@ var log = _logger2['default'].log;
 exports.log = log;
 exports.createFrame = _utils.createFrame;
 exports.logger = _logger2['default'];
-//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uLy4uL2xpYi9oYW5kbGViYXJzL2Jhc2UuanMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7Ozs7Ozs7cUJBQThDLFNBQVM7O3lCQUNqQyxhQUFhOzs7O3VCQUNJLFdBQVc7OzBCQUNSLGNBQWM7O3NCQUNyQyxVQUFVOzs7O21DQUNTLHlCQUF5Qjs7QUFFeEQsSUFBTSxPQUFPLEdBQUcsT0FBTyxDQUFDOztBQUN4QixJQUFNLGlCQUFpQixHQUFHLENBQUMsQ0FBQzs7QUFDNUIsSUFBTSxpQ0FBaUMsR0FBRyxDQUFDLENBQUM7OztBQUU1QyxJQUFNLGdCQUFnQixHQUFHO0FBQzlCLEdBQUMsRUFBRSxhQUFhO0FBQ2hCLEdBQUMsRUFBRSxlQUFlO0FBQ2xCLEdBQUMsRUFBRSxlQUFlO0FBQ2xCLEdBQUMsRUFBRSxVQUFVO0FBQ2IsR0FBQyxFQUFFLGtCQUFrQjtBQUNyQixHQUFDLEVBQUUsaUJBQWlCO0FBQ3BCLEdBQUMsRUFBRSxpQkFBaUI7QUFDcEIsR0FBQyxFQUFFLFVBQVU7Q0FDZCxDQUFDOzs7QUFFRixJQUFNLFVBQVUsR0FBRyxpQkFBaUIsQ0FBQzs7QUFFOUIsU0FBUyxxQkFBcUIsQ0FBQyxPQUFPLEVBQUUsUUFBUSxFQUFFLFVBQVUsRUFBRTtBQUNuRSxNQUFJLENBQUMsT0FBTyxHQUFHLE9BQU8sSUFBSSxFQUFFLENBQUM7QUFDN0IsTUFBSSxDQUFDLFFBQVEsR0FBRyxRQUFRLElBQUksRUFBRSxDQUFDO0FBQy9CLE1BQUksQ0FBQyxVQUFVLEdBQUcsVUFBVSxJQUFJLEVBQUUsQ0FBQzs7QUFFbkMsa0NBQXVCLElBQUksQ0FBQyxDQUFDO0FBQzdCLHdDQUEwQixJQUFJLENBQUMsQ0FBQztDQUNqQzs7QUFFRCxxQkFBcUIsQ0FBQyxTQUFTLEdBQUc7QUFDaEMsYUFBVyxFQUFFLHFCQUFxQjs7QUFFbEMsUUFBTSxxQkFBUTtBQUNkLEtBQUcsRUFBRSxvQkFBTyxHQUFHOztBQUVmLGdCQUFjLEVBQUUsd0JBQVMsSUFBSSxFQUFFLEVBQUUsRUFBRTtBQUNqQyxRQUFJLGdCQUFTLElBQUksQ0FBQyxJQUFJLENBQUMsS0FBSyxVQUFVLEVBQUU7QUFDdEMsVUFBSSxFQUFFLEVBQUU7QUFDTixjQUFNLDJCQUFjLHlDQUF5QyxDQUFDLENBQUM7T0FDaEU7QUFDRCxvQkFBTyxJQUFJLENBQUMsT0FBTyxFQUFFLElBQUksQ0FBQyxDQUFDO0tBQzVCLE1BQU07QUFDTCxVQUFJLENBQUMsT0FBTyxDQUFDLElBQUksQ0FBQyxHQUFHLEVBQUUsQ0FBQztLQUN6QjtHQUNGO0FBQ0Qsa0JBQWdCLEVBQUUsMEJBQVMsSUFBSSxFQUFFO0FBQy9CLFdBQU8sSUFBSSxDQUFDLE9BQU8sQ0FBQyxJQUFJLENBQUMsQ0FBQztHQUMzQjs7QUFFRCxpQkFBZSxFQUFFLHlCQUFTLElBQUksRUFBRSxPQUFPLEVBQUU7QUFDdkMsUUFBSSxnQkFBUyxJQUFJLENBQUMsSUFBSSxDQUFDLEtBQUssVUFBVSxFQUFFO0FBQ3RDLG9CQUFPLElBQUksQ0FBQyxRQUFRLEVBQUUsSUFBSSxDQUFDLENBQUM7S0FDN0IsTUFBTTtBQUNMLFVBQUksT0FBTyxPQUFPLEtBQUssV0FBVyxFQUFFO0FBQ2xDLGNBQU0seUVBQ3dDLElBQUksb0JBQ2pELENBQUM7T0FDSDtBQUNELFVBQUksQ0FBQyxRQUFRLENBQUMsSUFBSSxDQUFDLEdBQUcsT0FBTyxDQUFDO0tBQy9CO0dBQ0Y7QUFDRCxtQkFBaUIsRUFBRSwyQkFBUyxJQUFJLEVBQUU7QUFDaEMsV0FBTyxJQUFJLENBQUMsUUFBUSxDQUFDLElBQUksQ0FBQyxDQUFDO0dBQzVCOztBQUVELG1CQUFpQixFQUFFLDJCQUFTLElBQUksRUFBRSxFQUFFLEVBQUU7QUFDcEMsUUFBSSxnQkFBUyxJQUFJLENBQUMsSUFBSSxDQUFDLEtBQUssVUFBVSxFQUFFO0FBQ3RDLFVBQUksRUFBRSxFQUFFO0FBQ04sY0FBTSwyQkFBYyw0Q0FBNEMsQ0FBQyxDQUFDO09BQ25FO0FBQ0Qsb0JBQU8sSUFBSSxDQUFDLFVBQVUsRUFBRSxJQUFJLENBQUMsQ0FBQztLQUMvQixNQUFNO0FBQ0wsVUFBSSxDQUFDLFVBQVUsQ0FBQyxJQUFJLENBQUMsR0FBRyxFQUFFLENBQUM7S0FDNUI7R0FDRjtBQUNELHFCQUFtQixFQUFFLDZCQUFTLElBQUksRUFBRTtBQUNsQyxXQUFPLElBQUksQ0FBQyxVQUFVLENBQUMsSUFBSSxDQUFDLENBQUM7R0FDOUI7Ozs7O0FBS0QsNkJBQTJCLEVBQUEsdUNBQUc7QUFDNUIsZ0RBQXVCLENBQUM7R0FDekI7Q0FDRixDQUFDOztBQUVLLElBQUksR0FBRyxHQUFHLG9CQUFPLEdBQUcsQ0FBQzs7O1FBRW5CLFdBQVc7UUFBRSxNQUFNIiwiZmlsZSI6ImJhc2UuanMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBjcmVhdGVGcmFtZSwgZXh0ZW5kLCB0b1N0cmluZyB9IGZyb20gJy4vdXRpbHMnO1xuaW1wb3J0IEV4Y2VwdGlvbiBmcm9tICcuL2V4Y2VwdGlvbic7XG5pbXBvcnQgeyByZWdpc3RlckRlZmF1bHRIZWxwZXJzIH0gZnJvbSAnLi9oZWxwZXJzJztcbmltcG9ydCB7IHJlZ2lzdGVyRGVmYXVsdERlY29yYXRvcnMgfSBmcm9tICcuL2RlY29yYXRvcnMnO1xuaW1wb3J0IGxvZ2dlciBmcm9tICcuL2xvZ2dlcic7XG5pbXBvcnQgeyByZXNldExvZ2dlZFByb3BlcnRpZXMgfSBmcm9tICcuL2ludGVybmFsL3Byb3RvLWFjY2Vzcyc7XG5cbmV4cG9ydCBjb25zdCBWRVJTSU9OID0gJzQuNy43JztcbmV4cG9ydCBjb25zdCBDT01QSUxFUl9SRVZJU0lPTiA9IDg7XG5leHBvcnQgY29uc3QgTEFTVF9DT01QQVRJQkxFX0NPTVBJTEVSX1JFVklTSU9OID0gNztcblxuZXhwb3J0IGNvbnN0IFJFVklTSU9OX0NIQU5HRVMgPSB7XG4gIDE6ICc8PSAxLjAucmMuMicsIC8vIDEuMC5yYy4yIGlzIGFjdHVhbGx5IHJldjIgYnV0IGRvZXNuJ3QgcmVwb3J0IGl0XG4gIDI6ICc9PSAxLjAuMC1yYy4zJyxcbiAgMzogJz09IDEuMC4wLXJjLjQnLFxuICA0OiAnPT0gMS54LngnLFxuICA1OiAnPT0gMi4wLjAtYWxwaGEueCcsXG4gIDY6ICc+PSAyLjAuMC1iZXRhLjEnLFxuICA3OiAnPj0gNC4wLjAgPDQuMy4wJyxcbiAgODogJz49IDQuMy4wJ1xufTtcblxuY29uc3Qgb2JqZWN0VHlwZSA9ICdbb2JqZWN0IE9iamVjdF0nO1xuXG5leHBvcnQgZnVuY3Rpb24gSGFuZGxlYmFyc0Vudmlyb25tZW50KGhlbHBlcnMsIHBhcnRpYWxzLCBkZWNvcmF0b3JzKSB7XG4gIHRoaXMuaGVscGVycyA9IGhlbHBlcnMgfHwge307XG4gIHRoaXMucGFydGlhbHMgPSBwYXJ0aWFscyB8fCB7fTtcbiAgdGhpcy5kZWNvcmF0b3JzID0gZGVjb3JhdG9ycyB8fCB7fTtcblxuICByZWdpc3RlckRlZmF1bHRIZWxwZXJzKHRoaXMpO1xuICByZWdpc3RlckRlZmF1bHREZWNvcmF0b3JzKHRoaXMpO1xufVxuXG5IYW5kbGViYXJzRW52aXJvbm1lbnQucHJvdG90eXBlID0ge1xuICBjb25zdHJ1Y3RvcjogSGFuZGxlYmFyc0Vudmlyb25tZW50LFxuXG4gIGxvZ2dlcjogbG9nZ2VyLFxuICBsb2c6IGxvZ2dlci5sb2csXG5cbiAgcmVnaXN0ZXJIZWxwZXI6IGZ1bmN0aW9uKG5hbWUsIGZuKSB7XG4gICAgaWYgKHRvU3RyaW5nLmNhbGwobmFtZSkgPT09IG9iamVjdFR5cGUpIHtcbiAgICAgIGlmIChmbikge1xuICAgICAgICB0aHJvdyBuZXcgRXhjZXB0aW9uKCdBcmcgbm90IHN1cHBvcnRlZCB3aXRoIG11bHRpcGxlIGhlbHBlcnMnKTtcbiAgICAgIH1cbiAgICAgIGV4dGVuZCh0aGlzLmhlbHBlcnMsIG5hbWUpO1xuICAgIH0gZWxzZSB7XG4gICAgICB0aGlzLmhlbHBlcnNbbmFtZV0gPSBmbjtcbiAgICB9XG4gIH0sXG4gIHVucmVnaXN0ZXJIZWxwZXI6IGZ1bmN0aW9uKG5hbWUpIHtcbiAgICBkZWxldGUgdGhpcy5oZWxwZXJzW25hbWVdO1xuICB9LFxuXG4gIHJlZ2lzdGVyUGFydGlhbDogZnVuY3Rpb24obmFtZSwgcGFydGlhbCkge1xuICAgIGlmICh0b1N0cmluZy5jYWxsKG5hbWUpID09PSBvYmplY3RUeXBlKSB7XG4gICAgICBleHRlbmQodGhpcy5wYXJ0aWFscywgbmFtZSk7XG4gICAgfSBlbHNlIHtcbiAgICAgIGlmICh0eXBlb2YgcGFydGlhbCA9PT0gJ3VuZGVmaW5lZCcpIHtcbiAgICAgICAgdGhyb3cgbmV3IEV4Y2VwdGlvbihcbiAgICAgICAgICBgQXR0ZW1wdGluZyB0byByZWdpc3RlciBhIHBhcnRpYWwgY2FsbGVkIFwiJHtuYW1lfVwiIGFzIHVuZGVmaW5lZGBcbiAgICAgICAgKTtcbiAgICAgIH1cbiAgICAgIHRoaXMucGFydGlhbHNbbmFtZV0gPSBwYXJ0aWFsO1xuICAgIH1cbiAgfSxcbiAgdW5yZWdpc3RlclBhcnRpYWw6IGZ1bmN0aW9uKG5hbWUpIHtcbiAgICBkZWxldGUgdGhpcy5wYXJ0aWFsc1tuYW1lXTtcbiAgfSxcblxuICByZWdpc3RlckRlY29yYXRvcjogZnVuY3Rpb24obmFtZSwgZm4pIHtcbiAgICBpZiAodG9TdHJpbmcuY2FsbChuYW1lKSA9PT0gb2JqZWN0VHlwZSkge1xuICAgICAgaWYgKGZuKSB7XG4gICAgICAgIHRocm93IG5ldyBFeGNlcHRpb24oJ0FyZyBub3Qgc3VwcG9ydGVkIHdpdGggbXVsdGlwbGUgZGVjb3JhdG9ycycpO1xuICAgICAgfVxuICAgICAgZXh0ZW5kKHRoaXMuZGVjb3JhdG9ycywgbmFtZSk7XG4gICAgfSBlbHNlIHtcbiAgICAgIHRoaXMuZGVjb3JhdG9yc1tuYW1lXSA9IGZuO1xuICAgIH1cbiAgfSxcbiAgdW5yZWdpc3RlckRlY29yYXRvcjogZnVuY3Rpb24obmFtZSkge1xuICAgIGRlbGV0ZSB0aGlzLmRlY29yYXRvcnNbbmFtZV07XG4gIH0sXG4gIC8qKlxuICAgKiBSZXNldCB0aGUgbWVtb3J5IG9mIGlsbGVnYWwgcHJvcGVydHkgYWNjZXNzZXMgdGhhdCBoYXZlIGFscmVhZHkgYmVlbiBsb2dnZWQuXG4gICAqIEBkZXByZWNhdGVkIHNob3VsZCBvbmx5IGJlIHVzZWQgaW4gaGFuZGxlYmFycyB0ZXN0LWNhc2VzXG4gICAqL1xuICByZXNldExvZ2dlZFByb3BlcnR5QWNjZXNzZXMoKSB7XG4gICAgcmVzZXRMb2dnZWRQcm9wZXJ0aWVzKCk7XG4gIH1cbn07XG5cbmV4cG9ydCBsZXQgbG9nID0gbG9nZ2VyLmxvZztcblxuZXhwb3J0IHsgY3JlYXRlRnJhbWUsIGxvZ2dlciB9O1xuIl19
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uLy4uL2xpYi9oYW5kbGViYXJzL2Jhc2UuanMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7Ozs7Ozs7cUJBQThDLFNBQVM7O3lCQUNqQyxhQUFhOzs7O3VCQUNJLFdBQVc7OzBCQUNSLGNBQWM7O3NCQUNyQyxVQUFVOzs7O21DQUNTLHlCQUF5Qjs7QUFFeEQsSUFBTSxPQUFPLEdBQUcsT0FBTyxDQUFDOztBQUN4QixJQUFNLGlCQUFpQixHQUFHLENBQUMsQ0FBQzs7QUFDNUIsSUFBTSxpQ0FBaUMsR0FBRyxDQUFDLENBQUM7OztBQUU1QyxJQUFNLGdCQUFnQixHQUFHO0FBQzlCLEdBQUMsRUFBRSxhQUFhO0FBQ2hCLEdBQUMsRUFBRSxlQUFlO0FBQ2xCLEdBQUMsRUFBRSxlQUFlO0FBQ2xCLEdBQUMsRUFBRSxVQUFVO0FBQ2IsR0FBQyxFQUFFLGtCQUFrQjtBQUNyQixHQUFDLEVBQUUsaUJBQWlCO0FBQ3BCLEdBQUMsRUFBRSxpQkFBaUI7QUFDcEIsR0FBQyxFQUFFLFVBQVU7Q0FDZCxDQUFDOzs7QUFFRixJQUFNLFVBQVUsR0FBRyxpQkFBaUIsQ0FBQzs7QUFFOUIsU0FBUyxxQkFBcUIsQ0FBQyxPQUFPLEVBQUUsUUFBUSxFQUFFLFVBQVUsRUFBRTtBQUNuRSxNQUFJLENBQUMsT0FBTyxHQUFHLE9BQU8sSUFBSSxFQUFFLENBQUM7QUFDN0IsTUFBSSxDQUFDLFFBQVEsR0FBRyxRQUFRLElBQUksRUFBRSxDQUFDO0FBQy9CLE1BQUksQ0FBQyxVQUFVLEdBQUcsVUFBVSxJQUFJLEVBQUUsQ0FBQzs7QUFFbkMsa0NBQXVCLElBQUksQ0FBQyxDQUFDO0FBQzdCLHdDQUEwQixJQUFJLENBQUMsQ0FBQztDQUNqQzs7QUFFRCxxQkFBcUIsQ0FBQyxTQUFTLEdBQUc7QUFDaEMsYUFBVyxFQUFFLHFCQUFxQjs7QUFFbEMsUUFBTSxxQkFBUTtBQUNkLEtBQUcsRUFBRSxvQkFBTyxHQUFHOztBQUVmLGdCQUFjLEVBQUUsd0JBQVMsSUFBSSxFQUFFLEVBQUUsRUFBRTtBQUNqQyxRQUFJLGdCQUFTLElBQUksQ0FBQyxJQUFJLENBQUMsS0FBSyxVQUFVLEVBQUU7QUFDdEMsVUFBSSxFQUFFLEVBQUU7QUFDTixjQUFNLDJCQUFjLHlDQUF5QyxDQUFDLENBQUM7T0FDaEU7QUFDRCxvQkFBTyxJQUFJLENBQUMsT0FBTyxFQUFFLElBQUksQ0FBQyxDQUFDO0tBQzVCLE1BQU07QUFDTCxVQUFJLENBQUMsT0FBTyxDQUFDLElBQUksQ0FBQyxHQUFHLEVBQUUsQ0FBQztLQUN6QjtHQUNGO0FBQ0Qsa0JBQWdCLEVBQUUsMEJBQVMsSUFBSSxFQUFFO0FBQy9CLFdBQU8sSUFBSSxDQUFDLE9BQU8sQ0FBQyxJQUFJLENBQUMsQ0FBQztHQUMzQjs7QUFFRCxpQkFBZSxFQUFFLHlCQUFTLElBQUksRUFBRSxPQUFPLEVBQUU7QUFDdkMsUUFBSSxnQkFBUyxJQUFJLENBQUMsSUFBSSxDQUFDLEtBQUssVUFBVSxFQUFFO0FBQ3RDLG9CQUFPLElBQUksQ0FBQyxRQUFRLEVBQUUsSUFBSSxDQUFDLENBQUM7S0FDN0IsTUFBTTtBQUNMLFVBQUksT0FBTyxPQUFPLEtBQUssV0FBVyxFQUFFO0FBQ2xDLGNBQU0seUVBQ3dDLElBQUksb0JBQ2pELENBQUM7T0FDSDtBQUNELFVBQUksQ0FBQyxRQUFRLENBQUMsSUFBSSxDQUFDLEdBQUcsT0FBTyxDQUFDO0tBQy9CO0dBQ0Y7QUFDRCxtQkFBaUIsRUFBRSwyQkFBUyxJQUFJLEVBQUU7QUFDaEMsV0FBTyxJQUFJLENBQUMsUUFBUSxDQUFDLElBQUksQ0FBQyxDQUFDO0dBQzVCOztBQUVELG1CQUFpQixFQUFFLDJCQUFTLElBQUksRUFBRSxFQUFFLEVBQUU7QUFDcEMsUUFBSSxnQkFBUyxJQUFJLENBQUMsSUFBSSxDQUFDLEtBQUssVUFBVSxFQUFFO0FBQ3RDLFVBQUksRUFBRSxFQUFFO0FBQ04sY0FBTSwyQkFBYyw0Q0FBNEMsQ0FBQyxDQUFDO09BQ25FO0FBQ0Qsb0JBQU8sSUFBSSxDQUFDLFVBQVUsRUFBRSxJQUFJLENBQUMsQ0FBQztLQUMvQixNQUFNO0FBQ0wsVUFBSSxDQUFDLFVBQVUsQ0FBQyxJQUFJLENBQUMsR0FBRyxFQUFFLENBQUM7S0FDNUI7R0FDRjtBQUNELHFCQUFtQixFQUFFLDZCQUFTLElBQUksRUFBRTtBQUNsQyxXQUFPLElBQUksQ0FBQyxVQUFVLENBQUMsSUFBSSxDQUFDLENBQUM7R0FDOUI7Ozs7O0FBS0QsNkJBQTJCLEVBQUEsdUNBQUc7QUFDNUIsZ0RBQXVCLENBQUM7R0FDekI7Q0FDRixDQUFDOztBQUVLLElBQUksR0FBRyxHQUFHLG9CQUFPLEdBQUcsQ0FBQzs7O1FBRW5CLFdBQVc7UUFBRSxNQUFNIiwiZmlsZSI6ImJhc2UuanMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBjcmVhdGVGcmFtZSwgZXh0ZW5kLCB0b1N0cmluZyB9IGZyb20gJy4vdXRpbHMnO1xuaW1wb3J0IEV4Y2VwdGlvbiBmcm9tICcuL2V4Y2VwdGlvbic7XG5pbXBvcnQgeyByZWdpc3RlckRlZmF1bHRIZWxwZXJzIH0gZnJvbSAnLi9oZWxwZXJzJztcbmltcG9ydCB7IHJlZ2lzdGVyRGVmYXVsdERlY29yYXRvcnMgfSBmcm9tICcuL2RlY29yYXRvcnMnO1xuaW1wb3J0IGxvZ2dlciBmcm9tICcuL2xvZ2dlcic7XG5pbXBvcnQgeyByZXNldExvZ2dlZFByb3BlcnRpZXMgfSBmcm9tICcuL2ludGVybmFsL3Byb3RvLWFjY2Vzcyc7XG5cbmV4cG9ydCBjb25zdCBWRVJTSU9OID0gJzQuNy44JztcbmV4cG9ydCBjb25zdCBDT01QSUxFUl9SRVZJU0lPTiA9IDg7XG5leHBvcnQgY29uc3QgTEFTVF9DT01QQVRJQkxFX0NPTVBJTEVSX1JFVklTSU9OID0gNztcblxuZXhwb3J0IGNvbnN0IFJFVklTSU9OX0NIQU5HRVMgPSB7XG4gIDE6ICc8PSAxLjAucmMuMicsIC8vIDEuMC5yYy4yIGlzIGFjdHVhbGx5IHJldjIgYnV0IGRvZXNuJ3QgcmVwb3J0IGl0XG4gIDI6ICc9PSAxLjAuMC1yYy4zJyxcbiAgMzogJz09IDEuMC4wLXJjLjQnLFxuICA0OiAnPT0gMS54LngnLFxuICA1OiAnPT0gMi4wLjAtYWxwaGEueCcsXG4gIDY6ICc+PSAyLjAuMC1iZXRhLjEnLFxuICA3OiAnPj0gNC4wLjAgPDQuMy4wJyxcbiAgODogJz49IDQuMy4wJ1xufTtcblxuY29uc3Qgb2JqZWN0VHlwZSA9ICdbb2JqZWN0IE9iamVjdF0nO1xuXG5leHBvcnQgZnVuY3Rpb24gSGFuZGxlYmFyc0Vudmlyb25tZW50KGhlbHBlcnMsIHBhcnRpYWxzLCBkZWNvcmF0b3JzKSB7XG4gIHRoaXMuaGVscGVycyA9IGhlbHBlcnMgfHwge307XG4gIHRoaXMucGFydGlhbHMgPSBwYXJ0aWFscyB8fCB7fTtcbiAgdGhpcy5kZWNvcmF0b3JzID0gZGVjb3JhdG9ycyB8fCB7fTtcblxuICByZWdpc3RlckRlZmF1bHRIZWxwZXJzKHRoaXMpO1xuICByZWdpc3RlckRlZmF1bHREZWNvcmF0b3JzKHRoaXMpO1xufVxuXG5IYW5kbGViYXJzRW52aXJvbm1lbnQucHJvdG90eXBlID0ge1xuICBjb25zdHJ1Y3RvcjogSGFuZGxlYmFyc0Vudmlyb25tZW50LFxuXG4gIGxvZ2dlcjogbG9nZ2VyLFxuICBsb2c6IGxvZ2dlci5sb2csXG5cbiAgcmVnaXN0ZXJIZWxwZXI6IGZ1bmN0aW9uKG5hbWUsIGZuKSB7XG4gICAgaWYgKHRvU3RyaW5nLmNhbGwobmFtZSkgPT09IG9iamVjdFR5cGUpIHtcbiAgICAgIGlmIChmbikge1xuICAgICAgICB0aHJvdyBuZXcgRXhjZXB0aW9uKCdBcmcgbm90IHN1cHBvcnRlZCB3aXRoIG11bHRpcGxlIGhlbHBlcnMnKTtcbiAgICAgIH1cbiAgICAgIGV4dGVuZCh0aGlzLmhlbHBlcnMsIG5hbWUpO1xuICAgIH0gZWxzZSB7XG4gICAgICB0aGlzLmhlbHBlcnNbbmFtZV0gPSBmbjtcbiAgICB9XG4gIH0sXG4gIHVucmVnaXN0ZXJIZWxwZXI6IGZ1bmN0aW9uKG5hbWUpIHtcbiAgICBkZWxldGUgdGhpcy5oZWxwZXJzW25hbWVdO1xuICB9LFxuXG4gIHJlZ2lzdGVyUGFydGlhbDogZnVuY3Rpb24obmFtZSwgcGFydGlhbCkge1xuICAgIGlmICh0b1N0cmluZy5jYWxsKG5hbWUpID09PSBvYmplY3RUeXBlKSB7XG4gICAgICBleHRlbmQodGhpcy5wYXJ0aWFscywgbmFtZSk7XG4gICAgfSBlbHNlIHtcbiAgICAgIGlmICh0eXBlb2YgcGFydGlhbCA9PT0gJ3VuZGVmaW5lZCcpIHtcbiAgICAgICAgdGhyb3cgbmV3IEV4Y2VwdGlvbihcbiAgICAgICAgICBgQXR0ZW1wdGluZyB0byByZWdpc3RlciBhIHBhcnRpYWwgY2FsbGVkIFwiJHtuYW1lfVwiIGFzIHVuZGVmaW5lZGBcbiAgICAgICAgKTtcbiAgICAgIH1cbiAgICAgIHRoaXMucGFydGlhbHNbbmFtZV0gPSBwYXJ0aWFsO1xuICAgIH1cbiAgfSxcbiAgdW5yZWdpc3RlclBhcnRpYWw6IGZ1bmN0aW9uKG5hbWUpIHtcbiAgICBkZWxldGUgdGhpcy5wYXJ0aWFsc1tuYW1lXTtcbiAgfSxcblxuICByZWdpc3RlckRlY29yYXRvcjogZnVuY3Rpb24obmFtZSwgZm4pIHtcbiAgICBpZiAodG9TdHJpbmcuY2FsbChuYW1lKSA9PT0gb2JqZWN0VHlwZSkge1xuICAgICAgaWYgKGZuKSB7XG4gICAgICAgIHRocm93IG5ldyBFeGNlcHRpb24oJ0FyZyBub3Qgc3VwcG9ydGVkIHdpdGggbXVsdGlwbGUgZGVjb3JhdG9ycycpO1xuICAgICAgfVxuICAgICAgZXh0ZW5kKHRoaXMuZGVjb3JhdG9ycywgbmFtZSk7XG4gICAgfSBlbHNlIHtcbiAgICAgIHRoaXMuZGVjb3JhdG9yc1tuYW1lXSA9IGZuO1xuICAgIH1cbiAgfSxcbiAgdW5yZWdpc3RlckRlY29yYXRvcjogZnVuY3Rpb24obmFtZSkge1xuICAgIGRlbGV0ZSB0aGlzLmRlY29yYXRvcnNbbmFtZV07XG4gIH0sXG4gIC8qKlxuICAgKiBSZXNldCB0aGUgbWVtb3J5IG9mIGlsbGVnYWwgcHJvcGVydHkgYWNjZXNzZXMgdGhhdCBoYXZlIGFscmVhZHkgYmVlbiBsb2dnZWQuXG4gICAqIEBkZXByZWNhdGVkIHNob3VsZCBvbmx5IGJlIHVzZWQgaW4gaGFuZGxlYmFycyB0ZXN0LWNhc2VzXG4gICAqL1xuICByZXNldExvZ2dlZFByb3BlcnR5QWNjZXNzZXMoKSB7XG4gICAgcmVzZXRMb2dnZWRQcm9wZXJ0aWVzKCk7XG4gIH1cbn07XG5cbmV4cG9ydCBsZXQgbG9nID0gbG9nZ2VyLmxvZztcblxuZXhwb3J0IHsgY3JlYXRlRnJhbWUsIGxvZ2dlciB9O1xuIl19
 
 
 /***/ }),
@@ -791,7 +789,7 @@ module.exports = exports['default'];
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(global) {
+
 
 exports.__esModule = true;
 // istanbul ignore next
@@ -854,9 +852,9 @@ exports['default'] = function (instance) {
             execIteration(i, i, i === context.length - 1);
           }
         }
-      } else if (global.Symbol && context[global.Symbol.iterator]) {
+      } else if (typeof Symbol === 'function' && context[Symbol.iterator]) {
         var newContext = [];
-        var iterator = context[global.Symbol.iterator]();
+        var iterator = context[Symbol.iterator]();
         for (var it = iterator.next(); !it.done; it = iterator.next()) {
           newContext.push(it.value);
         }
@@ -894,9 +892,8 @@ exports['default'] = function (instance) {
 };
 
 module.exports = exports['default'];
-//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uLy4uLy4uL2xpYi9oYW5kbGViYXJzL2hlbHBlcnMvZWFjaC5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7Ozs7O3FCQU1PLFVBQVU7O3lCQUNLLGNBQWM7Ozs7cUJBRXJCLFVBQVMsUUFBUSxFQUFFO0FBQ2hDLFVBQVEsQ0FBQyxjQUFjLENBQUMsTUFBTSxFQUFFLFVBQVMsT0FBTyxFQUFFLE9BQU8sRUFBRTtBQUN6RCxRQUFJLENBQUMsT0FBTyxFQUFFO0FBQ1osWUFBTSwyQkFBYyw2QkFBNkIsQ0FBQyxDQUFDO0tBQ3BEOztBQUVELFFBQUksRUFBRSxHQUFHLE9BQU8sQ0FBQyxFQUFFO1FBQ2pCLE9BQU8sR0FBRyxPQUFPLENBQUMsT0FBTztRQUN6QixDQUFDLEdBQUcsQ0FBQztRQUNMLEdBQUcsR0FBRyxFQUFFO1FBQ1IsSUFBSSxZQUFBO1FBQ0osV0FBVyxZQUFBLENBQUM7O0FBRWQsUUFBSSxPQUFPLENBQUMsSUFBSSxJQUFJLE9BQU8sQ0FBQyxHQUFHLEVBQUU7QUFDL0IsaUJBQVcsR0FDVCx5QkFBa0IsT0FBTyxDQUFDLElBQUksQ0FBQyxXQUFXLEVBQUUsT0FBTyxDQUFDLEdBQUcsQ0FBQyxDQUFDLENBQUMsQ0FBQyxHQUFHLEdBQUcsQ0FBQztLQUNyRTs7QUFFRCxRQUFJLGtCQUFXLE9BQU8sQ0FBQyxFQUFFO0FBQ3ZCLGFBQU8sR0FBRyxPQUFPLENBQUMsSUFBSSxDQUFDLElBQUksQ0FBQyxDQUFDO0tBQzlCOztBQUVELFFBQUksT0FBTyxDQUFDLElBQUksRUFBRTtBQUNoQixVQUFJLEdBQUcsbUJBQVksT0FBTyxDQUFDLElBQUksQ0FBQyxDQUFDO0tBQ2xDOztBQUVELGFBQVMsYUFBYSxDQUFDLEtBQUssRUFBRSxLQUFLLEVBQUUsSUFBSSxFQUFFO0FBQ3pDLFVBQUksSUFBSSxFQUFFO0FBQ1IsWUFBSSxDQUFDLEdBQUcsR0FBRyxLQUFLLENBQUM7QUFDakIsWUFBSSxDQUFDLEtBQUssR0FBRyxLQUFLLENBQUM7QUFDbkIsWUFBSSxDQUFDLEtBQUssR0FBRyxLQUFLLEtBQUssQ0FBQyxDQUFDO0FBQ3pCLFlBQUksQ0FBQyxJQUFJLEdBQUcsQ0FBQyxDQUFDLElBQUksQ0FBQzs7QUFFbkIsWUFBSSxXQUFXLEVBQUU7QUFDZixjQUFJLENBQUMsV0FBVyxHQUFHLFdBQVcsR0FBRyxLQUFLLENBQUM7U0FDeEM7T0FDRjs7QUFFRCxTQUFHLEdBQ0QsR0FBRyxHQUNILEVBQUUsQ0FBQyxPQUFPLENBQUMsS0FBSyxDQUFDLEVBQUU7QUFDakIsWUFBSSxFQUFFLElBQUk7QUFDVixtQkFBVyxFQUFFLG1CQUNYLENBQUMsT0FBTyxDQUFDLEtBQUssQ0FBQyxFQUFFLEtBQUssQ0FBQyxFQUN2QixDQUFDLFdBQVcsR0FBRyxLQUFLLEVBQUUsSUFBSSxDQUFDLENBQzVCO09BQ0YsQ0FBQyxDQUFDO0tBQ047O0FBRUQsUUFBSSxPQUFPLElBQUksT0FBTyxPQUFPLEtBQUssUUFBUSxFQUFFO0FBQzFDLFVBQUksZUFBUSxPQUFPLENBQUMsRUFBRTtBQUNwQixhQUFLLElBQUksQ0FBQyxHQUFHLE9BQU8sQ0FBQyxNQUFNLEVBQUUsQ0FBQyxHQUFHLENBQUMsRUFBRSxDQUFDLEVBQUUsRUFBRTtBQUN2QyxjQUFJLENBQUMsSUFBSSxPQUFPLEVBQUU7QUFDaEIseUJBQWEsQ0FBQyxDQUFDLEVBQUUsQ0FBQyxFQUFFLENBQUMsS0FBSyxPQUFPLENBQUMsTUFBTSxHQUFHLENBQUMsQ0FBQyxDQUFDO1dBQy9DO1NBQ0Y7T0FDRixNQUFNLElBQUksTUFBTSxDQUFDLE1BQU0sSUFBSSxPQUFPLENBQUMsTUFBTSxDQUFDLE1BQU0sQ0FBQyxRQUFRLENBQUMsRUFBRTtBQUMzRCxZQUFNLFVBQVUsR0FBRyxFQUFFLENBQUM7QUFDdEIsWUFBTSxRQUFRLEdBQUcsT0FBTyxDQUFDLE1BQU0sQ0FBQyxNQUFNLENBQUMsUUFBUSxDQUFDLEVBQUUsQ0FBQztBQUNuRCxhQUFLLElBQUksRUFBRSxHQUFHLFFBQVEsQ0FBQyxJQUFJLEVBQUUsRUFBRSxDQUFDLEVBQUUsQ0FBQyxJQUFJLEVBQUUsRUFBRSxHQUFHLFFBQVEsQ0FBQyxJQUFJLEVBQUUsRUFBRTtBQUM3RCxvQkFBVSxDQUFDLElBQUksQ0FBQyxFQUFFLENBQUMsS0FBSyxDQUFDLENBQUM7U0FDM0I7QUFDRCxlQUFPLEdBQUcsVUFBVSxDQUFDO0FBQ3JCLGFBQUssSUFBSSxDQUFDLEdBQUcsT0FBTyxDQUFDLE1BQU0sRUFBRSxDQUFDLEdBQUcsQ0FBQyxFQUFFLENBQUMsRUFBRSxFQUFFO0FBQ3ZDLHVCQUFhLENBQUMsQ0FBQyxFQUFFLENBQUMsRUFBRSxDQUFDLEtBQUssT0FBTyxDQUFDLE1BQU0sR0FBRyxDQUFDLENBQUMsQ0FBQztTQUMvQztPQUNGLE1BQU07O0FBQ0wsY0FBSSxRQUFRLFlBQUEsQ0FBQzs7QUFFYixnQkFBTSxDQUFDLElBQUksQ0FBQyxPQUFPLENBQUMsQ0FBQyxPQUFPLENBQUMsVUFBQSxHQUFHLEVBQUk7Ozs7QUFJbEMsZ0JBQUksUUFBUSxLQUFLLFNBQVMsRUFBRTtBQUMxQiwyQkFBYSxDQUFDLFFBQVEsRUFBRSxDQUFDLEdBQUcsQ0FBQyxDQUFDLENBQUM7YUFDaEM7QUFDRCxvQkFBUSxHQUFHLEdBQUcsQ0FBQztBQUNmLGFBQUMsRUFBRSxDQUFDO1dBQ0wsQ0FBQyxDQUFDO0FBQ0gsY0FBSSxRQUFRLEtBQUssU0FBUyxFQUFFO0FBQzFCLHlCQUFhLENBQUMsUUFBUSxFQUFFLENBQUMsR0FBRyxDQUFDLEVBQUUsSUFBSSxDQUFDLENBQUM7V0FDdEM7O09BQ0Y7S0FDRjs7QUFFRCxRQUFJLENBQUMsS0FBSyxDQUFDLEVBQUU7QUFDWCxTQUFHLEdBQUcsT0FBTyxDQUFDLElBQUksQ0FBQyxDQUFDO0tBQ3JCOztBQUVELFdBQU8sR0FBRyxDQUFDO0dBQ1osQ0FBQyxDQUFDO0NBQ0oiLCJmaWxlIjoiZWFjaC5qcyIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCB7XG4gIGFwcGVuZENvbnRleHRQYXRoLFxuICBibG9ja1BhcmFtcyxcbiAgY3JlYXRlRnJhbWUsXG4gIGlzQXJyYXksXG4gIGlzRnVuY3Rpb25cbn0gZnJvbSAnLi4vdXRpbHMnO1xuaW1wb3J0IEV4Y2VwdGlvbiBmcm9tICcuLi9leGNlcHRpb24nO1xuXG5leHBvcnQgZGVmYXVsdCBmdW5jdGlvbihpbnN0YW5jZSkge1xuICBpbnN0YW5jZS5yZWdpc3RlckhlbHBlcignZWFjaCcsIGZ1bmN0aW9uKGNvbnRleHQsIG9wdGlvbnMpIHtcbiAgICBpZiAoIW9wdGlvbnMpIHtcbiAgICAgIHRocm93IG5ldyBFeGNlcHRpb24oJ011c3QgcGFzcyBpdGVyYXRvciB0byAjZWFjaCcpO1xuICAgIH1cblxuICAgIGxldCBmbiA9IG9wdGlvbnMuZm4sXG4gICAgICBpbnZlcnNlID0gb3B0aW9ucy5pbnZlcnNlLFxuICAgICAgaSA9IDAsXG4gICAgICByZXQgPSAnJyxcbiAgICAgIGRhdGEsXG4gICAgICBjb250ZXh0UGF0aDtcblxuICAgIGlmIChvcHRpb25zLmRhdGEgJiYgb3B0aW9ucy5pZHMpIHtcbiAgICAgIGNvbnRleHRQYXRoID1cbiAgICAgICAgYXBwZW5kQ29udGV4dFBhdGgob3B0aW9ucy5kYXRhLmNvbnRleHRQYXRoLCBvcHRpb25zLmlkc1swXSkgKyAnLic7XG4gICAgfVxuXG4gICAgaWYgKGlzRnVuY3Rpb24oY29udGV4dCkpIHtcbiAgICAgIGNvbnRleHQgPSBjb250ZXh0LmNhbGwodGhpcyk7XG4gICAgfVxuXG4gICAgaWYgKG9wdGlvbnMuZGF0YSkge1xuICAgICAgZGF0YSA9IGNyZWF0ZUZyYW1lKG9wdGlvbnMuZGF0YSk7XG4gICAgfVxuXG4gICAgZnVuY3Rpb24gZXhlY0l0ZXJhdGlvbihmaWVsZCwgaW5kZXgsIGxhc3QpIHtcbiAgICAgIGlmIChkYXRhKSB7XG4gICAgICAgIGRhdGEua2V5ID0gZmllbGQ7XG4gICAgICAgIGRhdGEuaW5kZXggPSBpbmRleDtcbiAgICAgICAgZGF0YS5maXJzdCA9IGluZGV4ID09PSAwO1xuICAgICAgICBkYXRhLmxhc3QgPSAhIWxhc3Q7XG5cbiAgICAgICAgaWYgKGNvbnRleHRQYXRoKSB7XG4gICAgICAgICAgZGF0YS5jb250ZXh0UGF0aCA9IGNvbnRleHRQYXRoICsgZmllbGQ7XG4gICAgICAgIH1cbiAgICAgIH1cblxuICAgICAgcmV0ID1cbiAgICAgICAgcmV0ICtcbiAgICAgICAgZm4oY29udGV4dFtmaWVsZF0sIHtcbiAgICAgICAgICBkYXRhOiBkYXRhLFxuICAgICAgICAgIGJsb2NrUGFyYW1zOiBibG9ja1BhcmFtcyhcbiAgICAgICAgICAgIFtjb250ZXh0W2ZpZWxkXSwgZmllbGRdLFxuICAgICAgICAgICAgW2NvbnRleHRQYXRoICsgZmllbGQsIG51bGxdXG4gICAgICAgICAgKVxuICAgICAgICB9KTtcbiAgICB9XG5cbiAgICBpZiAoY29udGV4dCAmJiB0eXBlb2YgY29udGV4dCA9PT0gJ29iamVjdCcpIHtcbiAgICAgIGlmIChpc0FycmF5KGNvbnRleHQpKSB7XG4gICAgICAgIGZvciAobGV0IGogPSBjb250ZXh0Lmxlbmd0aDsgaSA8IGo7IGkrKykge1xuICAgICAgICAgIGlmIChpIGluIGNvbnRleHQpIHtcbiAgICAgICAgICAgIGV4ZWNJdGVyYXRpb24oaSwgaSwgaSA9PT0gY29udGV4dC5sZW5ndGggLSAxKTtcbiAgICAgICAgICB9XG4gICAgICAgIH1cbiAgICAgIH0gZWxzZSBpZiAoZ2xvYmFsLlN5bWJvbCAmJiBjb250ZXh0W2dsb2JhbC5TeW1ib2wuaXRlcmF0b3JdKSB7XG4gICAgICAgIGNvbnN0IG5ld0NvbnRleHQgPSBbXTtcbiAgICAgICAgY29uc3QgaXRlcmF0b3IgPSBjb250ZXh0W2dsb2JhbC5TeW1ib2wuaXRlcmF0b3JdKCk7XG4gICAgICAgIGZvciAobGV0IGl0ID0gaXRlcmF0b3IubmV4dCgpOyAhaXQuZG9uZTsgaXQgPSBpdGVyYXRvci5uZXh0KCkpIHtcbiAgICAgICAgICBuZXdDb250ZXh0LnB1c2goaXQudmFsdWUpO1xuICAgICAgICB9XG4gICAgICAgIGNvbnRleHQgPSBuZXdDb250ZXh0O1xuICAgICAgICBmb3IgKGxldCBqID0gY29udGV4dC5sZW5ndGg7IGkgPCBqOyBpKyspIHtcbiAgICAgICAgICBleGVjSXRlcmF0aW9uKGksIGksIGkgPT09IGNvbnRleHQubGVuZ3RoIC0gMSk7XG4gICAgICAgIH1cbiAgICAgIH0gZWxzZSB7XG4gICAgICAgIGxldCBwcmlvcktleTtcblxuICAgICAgICBPYmplY3Qua2V5cyhjb250ZXh0KS5mb3JFYWNoKGtleSA9PiB7XG4gICAgICAgICAgLy8gV2UncmUgcnVubmluZyB0aGUgaXRlcmF0aW9ucyBvbmUgc3RlcCBvdXQgb2Ygc3luYyBzbyB3ZSBjYW4gZGV0ZWN0XG4gICAgICAgICAgLy8gdGhlIGxhc3QgaXRlcmF0aW9uIHdpdGhvdXQgaGF2ZSB0byBzY2FuIHRoZSBvYmplY3QgdHdpY2UgYW5kIGNyZWF0ZVxuICAgICAgICAgIC8vIGFuIGl0ZXJtZWRpYXRlIGtleXMgYXJyYXkuXG4gICAgICAgICAgaWYgKHByaW9yS2V5ICE9PSB1bmRlZmluZWQpIHtcbiAgICAgICAgICAgIGV4ZWNJdGVyYXRpb24ocHJpb3JLZXksIGkgLSAxKTtcbiAgICAgICAgICB9XG4gICAgICAgICAgcHJpb3JLZXkgPSBrZXk7XG4gICAgICAgICAgaSsrO1xuICAgICAgICB9KTtcbiAgICAgICAgaWYgKHByaW9yS2V5ICE9PSB1bmRlZmluZWQpIHtcbiAgICAgICAgICBleGVjSXRlcmF0aW9uKHByaW9yS2V5LCBpIC0gMSwgdHJ1ZSk7XG4gICAgICAgIH1cbiAgICAgIH1cbiAgICB9XG5cbiAgICBpZiAoaSA9PT0gMCkge1xuICAgICAgcmV0ID0gaW52ZXJzZSh0aGlzKTtcbiAgICB9XG5cbiAgICByZXR1cm4gcmV0O1xuICB9KTtcbn1cbiJdfQ==
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uLy4uLy4uL2xpYi9oYW5kbGViYXJzL2hlbHBlcnMvZWFjaC5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7Ozs7O3FCQU1PLFVBQVU7O3lCQUNLLGNBQWM7Ozs7cUJBRXJCLFVBQVMsUUFBUSxFQUFFO0FBQ2hDLFVBQVEsQ0FBQyxjQUFjLENBQUMsTUFBTSxFQUFFLFVBQVMsT0FBTyxFQUFFLE9BQU8sRUFBRTtBQUN6RCxRQUFJLENBQUMsT0FBTyxFQUFFO0FBQ1osWUFBTSwyQkFBYyw2QkFBNkIsQ0FBQyxDQUFDO0tBQ3BEOztBQUVELFFBQUksRUFBRSxHQUFHLE9BQU8sQ0FBQyxFQUFFO1FBQ2pCLE9BQU8sR0FBRyxPQUFPLENBQUMsT0FBTztRQUN6QixDQUFDLEdBQUcsQ0FBQztRQUNMLEdBQUcsR0FBRyxFQUFFO1FBQ1IsSUFBSSxZQUFBO1FBQ0osV0FBVyxZQUFBLENBQUM7O0FBRWQsUUFBSSxPQUFPLENBQUMsSUFBSSxJQUFJLE9BQU8sQ0FBQyxHQUFHLEVBQUU7QUFDL0IsaUJBQVcsR0FDVCx5QkFBa0IsT0FBTyxDQUFDLElBQUksQ0FBQyxXQUFXLEVBQUUsT0FBTyxDQUFDLEdBQUcsQ0FBQyxDQUFDLENBQUMsQ0FBQyxHQUFHLEdBQUcsQ0FBQztLQUNyRTs7QUFFRCxRQUFJLGtCQUFXLE9BQU8sQ0FBQyxFQUFFO0FBQ3ZCLGFBQU8sR0FBRyxPQUFPLENBQUMsSUFBSSxDQUFDLElBQUksQ0FBQyxDQUFDO0tBQzlCOztBQUVELFFBQUksT0FBTyxDQUFDLElBQUksRUFBRTtBQUNoQixVQUFJLEdBQUcsbUJBQVksT0FBTyxDQUFDLElBQUksQ0FBQyxDQUFDO0tBQ2xDOztBQUVELGFBQVMsYUFBYSxDQUFDLEtBQUssRUFBRSxLQUFLLEVBQUUsSUFBSSxFQUFFO0FBQ3pDLFVBQUksSUFBSSxFQUFFO0FBQ1IsWUFBSSxDQUFDLEdBQUcsR0FBRyxLQUFLLENBQUM7QUFDakIsWUFBSSxDQUFDLEtBQUssR0FBRyxLQUFLLENBQUM7QUFDbkIsWUFBSSxDQUFDLEtBQUssR0FBRyxLQUFLLEtBQUssQ0FBQyxDQUFDO0FBQ3pCLFlBQUksQ0FBQyxJQUFJLEdBQUcsQ0FBQyxDQUFDLElBQUksQ0FBQzs7QUFFbkIsWUFBSSxXQUFXLEVBQUU7QUFDZixjQUFJLENBQUMsV0FBVyxHQUFHLFdBQVcsR0FBRyxLQUFLLENBQUM7U0FDeEM7T0FDRjs7QUFFRCxTQUFHLEdBQ0QsR0FBRyxHQUNILEVBQUUsQ0FBQyxPQUFPLENBQUMsS0FBSyxDQUFDLEVBQUU7QUFDakIsWUFBSSxFQUFFLElBQUk7QUFDVixtQkFBVyxFQUFFLG1CQUNYLENBQUMsT0FBTyxDQUFDLEtBQUssQ0FBQyxFQUFFLEtBQUssQ0FBQyxFQUN2QixDQUFDLFdBQVcsR0FBRyxLQUFLLEVBQUUsSUFBSSxDQUFDLENBQzVCO09BQ0YsQ0FBQyxDQUFDO0tBQ047O0FBRUQsUUFBSSxPQUFPLElBQUksT0FBTyxPQUFPLEtBQUssUUFBUSxFQUFFO0FBQzFDLFVBQUksZUFBUSxPQUFPLENBQUMsRUFBRTtBQUNwQixhQUFLLElBQUksQ0FBQyxHQUFHLE9BQU8sQ0FBQyxNQUFNLEVBQUUsQ0FBQyxHQUFHLENBQUMsRUFBRSxDQUFDLEVBQUUsRUFBRTtBQUN2QyxjQUFJLENBQUMsSUFBSSxPQUFPLEVBQUU7QUFDaEIseUJBQWEsQ0FBQyxDQUFDLEVBQUUsQ0FBQyxFQUFFLENBQUMsS0FBSyxPQUFPLENBQUMsTUFBTSxHQUFHLENBQUMsQ0FBQyxDQUFDO1dBQy9DO1NBQ0Y7T0FDRixNQUFNLElBQUksT0FBTyxNQUFNLEtBQUssVUFBVSxJQUFJLE9BQU8sQ0FBQyxNQUFNLENBQUMsUUFBUSxDQUFDLEVBQUU7QUFDbkUsWUFBTSxVQUFVLEdBQUcsRUFBRSxDQUFDO0FBQ3RCLFlBQU0sUUFBUSxHQUFHLE9BQU8sQ0FBQyxNQUFNLENBQUMsUUFBUSxDQUFDLEVBQUUsQ0FBQztBQUM1QyxhQUFLLElBQUksRUFBRSxHQUFHLFFBQVEsQ0FBQyxJQUFJLEVBQUUsRUFBRSxDQUFDLEVBQUUsQ0FBQyxJQUFJLEVBQUUsRUFBRSxHQUFHLFFBQVEsQ0FBQyxJQUFJLEVBQUUsRUFBRTtBQUM3RCxvQkFBVSxDQUFDLElBQUksQ0FBQyxFQUFFLENBQUMsS0FBSyxDQUFDLENBQUM7U0FDM0I7QUFDRCxlQUFPLEdBQUcsVUFBVSxDQUFDO0FBQ3JCLGFBQUssSUFBSSxDQUFDLEdBQUcsT0FBTyxDQUFDLE1BQU0sRUFBRSxDQUFDLEdBQUcsQ0FBQyxFQUFFLENBQUMsRUFBRSxFQUFFO0FBQ3ZDLHVCQUFhLENBQUMsQ0FBQyxFQUFFLENBQUMsRUFBRSxDQUFDLEtBQUssT0FBTyxDQUFDLE1BQU0sR0FBRyxDQUFDLENBQUMsQ0FBQztTQUMvQztPQUNGLE1BQU07O0FBQ0wsY0FBSSxRQUFRLFlBQUEsQ0FBQzs7QUFFYixnQkFBTSxDQUFDLElBQUksQ0FBQyxPQUFPLENBQUMsQ0FBQyxPQUFPLENBQUMsVUFBQSxHQUFHLEVBQUk7Ozs7QUFJbEMsZ0JBQUksUUFBUSxLQUFLLFNBQVMsRUFBRTtBQUMxQiwyQkFBYSxDQUFDLFFBQVEsRUFBRSxDQUFDLEdBQUcsQ0FBQyxDQUFDLENBQUM7YUFDaEM7QUFDRCxvQkFBUSxHQUFHLEdBQUcsQ0FBQztBQUNmLGFBQUMsRUFBRSxDQUFDO1dBQ0wsQ0FBQyxDQUFDO0FBQ0gsY0FBSSxRQUFRLEtBQUssU0FBUyxFQUFFO0FBQzFCLHlCQUFhLENBQUMsUUFBUSxFQUFFLENBQUMsR0FBRyxDQUFDLEVBQUUsSUFBSSxDQUFDLENBQUM7V0FDdEM7O09BQ0Y7S0FDRjs7QUFFRCxRQUFJLENBQUMsS0FBSyxDQUFDLEVBQUU7QUFDWCxTQUFHLEdBQUcsT0FBTyxDQUFDLElBQUksQ0FBQyxDQUFDO0tBQ3JCOztBQUVELFdBQU8sR0FBRyxDQUFDO0dBQ1osQ0FBQyxDQUFDO0NBQ0oiLCJmaWxlIjoiZWFjaC5qcyIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCB7XG4gIGFwcGVuZENvbnRleHRQYXRoLFxuICBibG9ja1BhcmFtcyxcbiAgY3JlYXRlRnJhbWUsXG4gIGlzQXJyYXksXG4gIGlzRnVuY3Rpb25cbn0gZnJvbSAnLi4vdXRpbHMnO1xuaW1wb3J0IEV4Y2VwdGlvbiBmcm9tICcuLi9leGNlcHRpb24nO1xuXG5leHBvcnQgZGVmYXVsdCBmdW5jdGlvbihpbnN0YW5jZSkge1xuICBpbnN0YW5jZS5yZWdpc3RlckhlbHBlcignZWFjaCcsIGZ1bmN0aW9uKGNvbnRleHQsIG9wdGlvbnMpIHtcbiAgICBpZiAoIW9wdGlvbnMpIHtcbiAgICAgIHRocm93IG5ldyBFeGNlcHRpb24oJ011c3QgcGFzcyBpdGVyYXRvciB0byAjZWFjaCcpO1xuICAgIH1cblxuICAgIGxldCBmbiA9IG9wdGlvbnMuZm4sXG4gICAgICBpbnZlcnNlID0gb3B0aW9ucy5pbnZlcnNlLFxuICAgICAgaSA9IDAsXG4gICAgICByZXQgPSAnJyxcbiAgICAgIGRhdGEsXG4gICAgICBjb250ZXh0UGF0aDtcblxuICAgIGlmIChvcHRpb25zLmRhdGEgJiYgb3B0aW9ucy5pZHMpIHtcbiAgICAgIGNvbnRleHRQYXRoID1cbiAgICAgICAgYXBwZW5kQ29udGV4dFBhdGgob3B0aW9ucy5kYXRhLmNvbnRleHRQYXRoLCBvcHRpb25zLmlkc1swXSkgKyAnLic7XG4gICAgfVxuXG4gICAgaWYgKGlzRnVuY3Rpb24oY29udGV4dCkpIHtcbiAgICAgIGNvbnRleHQgPSBjb250ZXh0LmNhbGwodGhpcyk7XG4gICAgfVxuXG4gICAgaWYgKG9wdGlvbnMuZGF0YSkge1xuICAgICAgZGF0YSA9IGNyZWF0ZUZyYW1lKG9wdGlvbnMuZGF0YSk7XG4gICAgfVxuXG4gICAgZnVuY3Rpb24gZXhlY0l0ZXJhdGlvbihmaWVsZCwgaW5kZXgsIGxhc3QpIHtcbiAgICAgIGlmIChkYXRhKSB7XG4gICAgICAgIGRhdGEua2V5ID0gZmllbGQ7XG4gICAgICAgIGRhdGEuaW5kZXggPSBpbmRleDtcbiAgICAgICAgZGF0YS5maXJzdCA9IGluZGV4ID09PSAwO1xuICAgICAgICBkYXRhLmxhc3QgPSAhIWxhc3Q7XG5cbiAgICAgICAgaWYgKGNvbnRleHRQYXRoKSB7XG4gICAgICAgICAgZGF0YS5jb250ZXh0UGF0aCA9IGNvbnRleHRQYXRoICsgZmllbGQ7XG4gICAgICAgIH1cbiAgICAgIH1cblxuICAgICAgcmV0ID1cbiAgICAgICAgcmV0ICtcbiAgICAgICAgZm4oY29udGV4dFtmaWVsZF0sIHtcbiAgICAgICAgICBkYXRhOiBkYXRhLFxuICAgICAgICAgIGJsb2NrUGFyYW1zOiBibG9ja1BhcmFtcyhcbiAgICAgICAgICAgIFtjb250ZXh0W2ZpZWxkXSwgZmllbGRdLFxuICAgICAgICAgICAgW2NvbnRleHRQYXRoICsgZmllbGQsIG51bGxdXG4gICAgICAgICAgKVxuICAgICAgICB9KTtcbiAgICB9XG5cbiAgICBpZiAoY29udGV4dCAmJiB0eXBlb2YgY29udGV4dCA9PT0gJ29iamVjdCcpIHtcbiAgICAgIGlmIChpc0FycmF5KGNvbnRleHQpKSB7XG4gICAgICAgIGZvciAobGV0IGogPSBjb250ZXh0Lmxlbmd0aDsgaSA8IGo7IGkrKykge1xuICAgICAgICAgIGlmIChpIGluIGNvbnRleHQpIHtcbiAgICAgICAgICAgIGV4ZWNJdGVyYXRpb24oaSwgaSwgaSA9PT0gY29udGV4dC5sZW5ndGggLSAxKTtcbiAgICAgICAgICB9XG4gICAgICAgIH1cbiAgICAgIH0gZWxzZSBpZiAodHlwZW9mIFN5bWJvbCA9PT0gJ2Z1bmN0aW9uJyAmJiBjb250ZXh0W1N5bWJvbC5pdGVyYXRvcl0pIHtcbiAgICAgICAgY29uc3QgbmV3Q29udGV4dCA9IFtdO1xuICAgICAgICBjb25zdCBpdGVyYXRvciA9IGNvbnRleHRbU3ltYm9sLml0ZXJhdG9yXSgpO1xuICAgICAgICBmb3IgKGxldCBpdCA9IGl0ZXJhdG9yLm5leHQoKTsgIWl0LmRvbmU7IGl0ID0gaXRlcmF0b3IubmV4dCgpKSB7XG4gICAgICAgICAgbmV3Q29udGV4dC5wdXNoKGl0LnZhbHVlKTtcbiAgICAgICAgfVxuICAgICAgICBjb250ZXh0ID0gbmV3Q29udGV4dDtcbiAgICAgICAgZm9yIChsZXQgaiA9IGNvbnRleHQubGVuZ3RoOyBpIDwgajsgaSsrKSB7XG4gICAgICAgICAgZXhlY0l0ZXJhdGlvbihpLCBpLCBpID09PSBjb250ZXh0Lmxlbmd0aCAtIDEpO1xuICAgICAgICB9XG4gICAgICB9IGVsc2Uge1xuICAgICAgICBsZXQgcHJpb3JLZXk7XG5cbiAgICAgICAgT2JqZWN0LmtleXMoY29udGV4dCkuZm9yRWFjaChrZXkgPT4ge1xuICAgICAgICAgIC8vIFdlJ3JlIHJ1bm5pbmcgdGhlIGl0ZXJhdGlvbnMgb25lIHN0ZXAgb3V0IG9mIHN5bmMgc28gd2UgY2FuIGRldGVjdFxuICAgICAgICAgIC8vIHRoZSBsYXN0IGl0ZXJhdGlvbiB3aXRob3V0IGhhdmUgdG8gc2NhbiB0aGUgb2JqZWN0IHR3aWNlIGFuZCBjcmVhdGVcbiAgICAgICAgICAvLyBhbiBpdGVybWVkaWF0ZSBrZXlzIGFycmF5LlxuICAgICAgICAgIGlmIChwcmlvcktleSAhPT0gdW5kZWZpbmVkKSB7XG4gICAgICAgICAgICBleGVjSXRlcmF0aW9uKHByaW9yS2V5LCBpIC0gMSk7XG4gICAgICAgICAgfVxuICAgICAgICAgIHByaW9yS2V5ID0ga2V5O1xuICAgICAgICAgIGkrKztcbiAgICAgICAgfSk7XG4gICAgICAgIGlmIChwcmlvcktleSAhPT0gdW5kZWZpbmVkKSB7XG4gICAgICAgICAgZXhlY0l0ZXJhdGlvbihwcmlvcktleSwgaSAtIDEsIHRydWUpO1xuICAgICAgICB9XG4gICAgICB9XG4gICAgfVxuXG4gICAgaWYgKGkgPT09IDApIHtcbiAgICAgIHJldCA9IGludmVyc2UodGhpcyk7XG4gICAgfVxuXG4gICAgcmV0dXJuIHJldDtcbiAgfSk7XG59XG4iXX0=
 
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../../../webpack/buildin/global.js */ "./node_modules/webpack/buildin/global.js")))
 
 /***/ }),
 
@@ -1166,13 +1163,13 @@ exports.resultIsAllowed = resultIsAllowed;
 exports.resetLoggedProperties = resetLoggedProperties;
 // istanbul ignore next
 
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj['default'] = obj; return newObj; } }
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
 var _createNewLookupObject = __webpack_require__(/*! ./create-new-lookup-object */ "./node_modules/handlebars/dist/cjs/handlebars/internal/create-new-lookup-object.js");
 
 var _logger = __webpack_require__(/*! ../logger */ "./node_modules/handlebars/dist/cjs/handlebars/logger.js");
 
-var logger = _interopRequireWildcard(_logger);
+var _logger2 = _interopRequireDefault(_logger);
 
 var loggedProperties = Object.create(null);
 
@@ -1221,7 +1218,7 @@ function checkWhiteList(protoAccessControlForType, propertyName) {
 function logUnexpecedPropertyAccessOnce(propertyName) {
   if (loggedProperties[propertyName] !== true) {
     loggedProperties[propertyName] = true;
-    logger.log('error', 'Handlebars: Access has been denied to resolve the property "' + propertyName + '" because it is not an "own property" of its parent.\n' + 'You can add a runtime option to disable the check or this warning:\n' + 'See https://handlebarsjs.com/api-reference/runtime-options.html#options-to-control-prototype-access for details');
+    _logger2['default'].log('error', 'Handlebars: Access has been denied to resolve the property "' + propertyName + '" because it is not an "own property" of its parent.\n' + 'You can add a runtime option to disable the check or this warning:\n' + 'See https://handlebarsjs.com/api-reference/runtime-options.html#options-to-control-prototype-access for details');
   }
 }
 
@@ -1230,7 +1227,7 @@ function resetLoggedProperties() {
     delete loggedProperties[propertyName];
   });
 }
-//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uLy4uLy4uL2xpYi9oYW5kbGViYXJzL2ludGVybmFsL3Byb3RvLWFjY2Vzcy5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7Ozs7Ozs7O3FDQUFzQyw0QkFBNEI7O3NCQUMxQyxXQUFXOztJQUF2QixNQUFNOztBQUVsQixJQUFNLGdCQUFnQixHQUFHLE1BQU0sQ0FBQyxNQUFNLENBQUMsSUFBSSxDQUFDLENBQUM7O0FBRXRDLFNBQVMsd0JBQXdCLENBQUMsY0FBYyxFQUFFO0FBQ3ZELE1BQUksc0JBQXNCLEdBQUcsTUFBTSxDQUFDLE1BQU0sQ0FBQyxJQUFJLENBQUMsQ0FBQztBQUNqRCx3QkFBc0IsQ0FBQyxhQUFhLENBQUMsR0FBRyxLQUFLLENBQUM7QUFDOUMsd0JBQXNCLENBQUMsa0JBQWtCLENBQUMsR0FBRyxLQUFLLENBQUM7QUFDbkQsd0JBQXNCLENBQUMsa0JBQWtCLENBQUMsR0FBRyxLQUFLLENBQUM7QUFDbkQsd0JBQXNCLENBQUMsa0JBQWtCLENBQUMsR0FBRyxLQUFLLENBQUM7O0FBRW5ELE1BQUksd0JBQXdCLEdBQUcsTUFBTSxDQUFDLE1BQU0sQ0FBQyxJQUFJLENBQUMsQ0FBQzs7QUFFbkQsMEJBQXdCLENBQUMsV0FBVyxDQUFDLEdBQUcsS0FBSyxDQUFDOztBQUU5QyxTQUFPO0FBQ0wsY0FBVSxFQUFFO0FBQ1YsZUFBUyxFQUFFLDZDQUNULHdCQUF3QixFQUN4QixjQUFjLENBQUMsc0JBQXNCLENBQ3RDO0FBQ0Qsa0JBQVksRUFBRSxjQUFjLENBQUMsNkJBQTZCO0tBQzNEO0FBQ0QsV0FBTyxFQUFFO0FBQ1AsZUFBUyxFQUFFLDZDQUNULHNCQUFzQixFQUN0QixjQUFjLENBQUMsbUJBQW1CLENBQ25DO0FBQ0Qsa0JBQVksRUFBRSxjQUFjLENBQUMsMEJBQTBCO0tBQ3hEO0dBQ0YsQ0FBQztDQUNIOztBQUVNLFNBQVMsZUFBZSxDQUFDLE1BQU0sRUFBRSxrQkFBa0IsRUFBRSxZQUFZLEVBQUU7QUFDeEUsTUFBSSxPQUFPLE1BQU0sS0FBSyxVQUFVLEVBQUU7QUFDaEMsV0FBTyxjQUFjLENBQUMsa0JBQWtCLENBQUMsT0FBTyxFQUFFLFlBQVksQ0FBQyxDQUFDO0dBQ2pFLE1BQU07QUFDTCxXQUFPLGNBQWMsQ0FBQyxrQkFBa0IsQ0FBQyxVQUFVLEVBQUUsWUFBWSxDQUFDLENBQUM7R0FDcEU7Q0FDRjs7QUFFRCxTQUFTLGNBQWMsQ0FBQyx5QkFBeUIsRUFBRSxZQUFZLEVBQUU7QUFDL0QsTUFBSSx5QkFBeUIsQ0FBQyxTQUFTLENBQUMsWUFBWSxDQUFDLEtBQUssU0FBUyxFQUFFO0FBQ25FLFdBQU8seUJBQXlCLENBQUMsU0FBUyxDQUFDLFlBQVksQ0FBQyxLQUFLLElBQUksQ0FBQztHQUNuRTtBQUNELE1BQUkseUJBQXlCLENBQUMsWUFBWSxLQUFLLFNBQVMsRUFBRTtBQUN4RCxXQUFPLHlCQUF5QixDQUFDLFlBQVksQ0FBQztHQUMvQztBQUNELGdDQUE4QixDQUFDLFlBQVksQ0FBQyxDQUFDO0FBQzdDLFNBQU8sS0FBSyxDQUFDO0NBQ2Q7O0FBRUQsU0FBUyw4QkFBOEIsQ0FBQyxZQUFZLEVBQUU7QUFDcEQsTUFBSSxnQkFBZ0IsQ0FBQyxZQUFZLENBQUMsS0FBSyxJQUFJLEVBQUU7QUFDM0Msb0JBQWdCLENBQUMsWUFBWSxDQUFDLEdBQUcsSUFBSSxDQUFDO0FBQ3RDLFVBQU0sQ0FBQyxHQUFHLENBQ1IsT0FBTyxFQUNQLGlFQUErRCxZQUFZLG9JQUNILG9IQUMyQyxDQUNwSCxDQUFDO0dBQ0g7Q0FDRjs7QUFFTSxTQUFTLHFCQUFxQixHQUFHO0FBQ3RDLFFBQU0sQ0FBQyxJQUFJLENBQUMsZ0JBQWdCLENBQUMsQ0FBQyxPQUFPLENBQUMsVUFBQSxZQUFZLEVBQUk7QUFDcEQsV0FBTyxnQkFBZ0IsQ0FBQyxZQUFZLENBQUMsQ0FBQztHQUN2QyxDQUFDLENBQUM7Q0FDSiIsImZpbGUiOiJwcm90by1hY2Nlc3MuanMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBjcmVhdGVOZXdMb29rdXBPYmplY3QgfSBmcm9tICcuL2NyZWF0ZS1uZXctbG9va3VwLW9iamVjdCc7XG5pbXBvcnQgKiBhcyBsb2dnZXIgZnJvbSAnLi4vbG9nZ2VyJztcblxuY29uc3QgbG9nZ2VkUHJvcGVydGllcyA9IE9iamVjdC5jcmVhdGUobnVsbCk7XG5cbmV4cG9ydCBmdW5jdGlvbiBjcmVhdGVQcm90b0FjY2Vzc0NvbnRyb2wocnVudGltZU9wdGlvbnMpIHtcbiAgbGV0IGRlZmF1bHRNZXRob2RXaGl0ZUxpc3QgPSBPYmplY3QuY3JlYXRlKG51bGwpO1xuICBkZWZhdWx0TWV0aG9kV2hpdGVMaXN0Wydjb25zdHJ1Y3RvciddID0gZmFsc2U7XG4gIGRlZmF1bHRNZXRob2RXaGl0ZUxpc3RbJ19fZGVmaW5lR2V0dGVyX18nXSA9IGZhbHNlO1xuICBkZWZhdWx0TWV0aG9kV2hpdGVMaXN0WydfX2RlZmluZVNldHRlcl9fJ10gPSBmYWxzZTtcbiAgZGVmYXVsdE1ldGhvZFdoaXRlTGlzdFsnX19sb29rdXBHZXR0ZXJfXyddID0gZmFsc2U7XG5cbiAgbGV0IGRlZmF1bHRQcm9wZXJ0eVdoaXRlTGlzdCA9IE9iamVjdC5jcmVhdGUobnVsbCk7XG4gIC8vIGVzbGludC1kaXNhYmxlLW5leHQtbGluZSBuby1wcm90b1xuICBkZWZhdWx0UHJvcGVydHlXaGl0ZUxpc3RbJ19fcHJvdG9fXyddID0gZmFsc2U7XG5cbiAgcmV0dXJuIHtcbiAgICBwcm9wZXJ0aWVzOiB7XG4gICAgICB3aGl0ZWxpc3Q6IGNyZWF0ZU5ld0xvb2t1cE9iamVjdChcbiAgICAgICAgZGVmYXVsdFByb3BlcnR5V2hpdGVMaXN0LFxuICAgICAgICBydW50aW1lT3B0aW9ucy5hbGxvd2VkUHJvdG9Qcm9wZXJ0aWVzXG4gICAgICApLFxuICAgICAgZGVmYXVsdFZhbHVlOiBydW50aW1lT3B0aW9ucy5hbGxvd1Byb3RvUHJvcGVydGllc0J5RGVmYXVsdFxuICAgIH0sXG4gICAgbWV0aG9kczoge1xuICAgICAgd2hpdGVsaXN0OiBjcmVhdGVOZXdMb29rdXBPYmplY3QoXG4gICAgICAgIGRlZmF1bHRNZXRob2RXaGl0ZUxpc3QsXG4gICAgICAgIHJ1bnRpbWVPcHRpb25zLmFsbG93ZWRQcm90b01ldGhvZHNcbiAgICAgICksXG4gICAgICBkZWZhdWx0VmFsdWU6IHJ1bnRpbWVPcHRpb25zLmFsbG93UHJvdG9NZXRob2RzQnlEZWZhdWx0XG4gICAgfVxuICB9O1xufVxuXG5leHBvcnQgZnVuY3Rpb24gcmVzdWx0SXNBbGxvd2VkKHJlc3VsdCwgcHJvdG9BY2Nlc3NDb250cm9sLCBwcm9wZXJ0eU5hbWUpIHtcbiAgaWYgKHR5cGVvZiByZXN1bHQgPT09ICdmdW5jdGlvbicpIHtcbiAgICByZXR1cm4gY2hlY2tXaGl0ZUxpc3QocHJvdG9BY2Nlc3NDb250cm9sLm1ldGhvZHMsIHByb3BlcnR5TmFtZSk7XG4gIH0gZWxzZSB7XG4gICAgcmV0dXJuIGNoZWNrV2hpdGVMaXN0KHByb3RvQWNjZXNzQ29udHJvbC5wcm9wZXJ0aWVzLCBwcm9wZXJ0eU5hbWUpO1xuICB9XG59XG5cbmZ1bmN0aW9uIGNoZWNrV2hpdGVMaXN0KHByb3RvQWNjZXNzQ29udHJvbEZvclR5cGUsIHByb3BlcnR5TmFtZSkge1xuICBpZiAocHJvdG9BY2Nlc3NDb250cm9sRm9yVHlwZS53aGl0ZWxpc3RbcHJvcGVydHlOYW1lXSAhPT0gdW5kZWZpbmVkKSB7XG4gICAgcmV0dXJuIHByb3RvQWNjZXNzQ29udHJvbEZvclR5cGUud2hpdGVsaXN0W3Byb3BlcnR5TmFtZV0gPT09IHRydWU7XG4gIH1cbiAgaWYgKHByb3RvQWNjZXNzQ29udHJvbEZvclR5cGUuZGVmYXVsdFZhbHVlICE9PSB1bmRlZmluZWQpIHtcbiAgICByZXR1cm4gcHJvdG9BY2Nlc3NDb250cm9sRm9yVHlwZS5kZWZhdWx0VmFsdWU7XG4gIH1cbiAgbG9nVW5leHBlY2VkUHJvcGVydHlBY2Nlc3NPbmNlKHByb3BlcnR5TmFtZSk7XG4gIHJldHVybiBmYWxzZTtcbn1cblxuZnVuY3Rpb24gbG9nVW5leHBlY2VkUHJvcGVydHlBY2Nlc3NPbmNlKHByb3BlcnR5TmFtZSkge1xuICBpZiAobG9nZ2VkUHJvcGVydGllc1twcm9wZXJ0eU5hbWVdICE9PSB0cnVlKSB7XG4gICAgbG9nZ2VkUHJvcGVydGllc1twcm9wZXJ0eU5hbWVdID0gdHJ1ZTtcbiAgICBsb2dnZXIubG9nKFxuICAgICAgJ2Vycm9yJyxcbiAgICAgIGBIYW5kbGViYXJzOiBBY2Nlc3MgaGFzIGJlZW4gZGVuaWVkIHRvIHJlc29sdmUgdGhlIHByb3BlcnR5IFwiJHtwcm9wZXJ0eU5hbWV9XCIgYmVjYXVzZSBpdCBpcyBub3QgYW4gXCJvd24gcHJvcGVydHlcIiBvZiBpdHMgcGFyZW50LlxcbmAgK1xuICAgICAgICBgWW91IGNhbiBhZGQgYSBydW50aW1lIG9wdGlvbiB0byBkaXNhYmxlIHRoZSBjaGVjayBvciB0aGlzIHdhcm5pbmc6XFxuYCArXG4gICAgICAgIGBTZWUgaHR0cHM6Ly9oYW5kbGViYXJzanMuY29tL2FwaS1yZWZlcmVuY2UvcnVudGltZS1vcHRpb25zLmh0bWwjb3B0aW9ucy10by1jb250cm9sLXByb3RvdHlwZS1hY2Nlc3MgZm9yIGRldGFpbHNgXG4gICAgKTtcbiAgfVxufVxuXG5leHBvcnQgZnVuY3Rpb24gcmVzZXRMb2dnZWRQcm9wZXJ0aWVzKCkge1xuICBPYmplY3Qua2V5cyhsb2dnZWRQcm9wZXJ0aWVzKS5mb3JFYWNoKHByb3BlcnR5TmFtZSA9PiB7XG4gICAgZGVsZXRlIGxvZ2dlZFByb3BlcnRpZXNbcHJvcGVydHlOYW1lXTtcbiAgfSk7XG59XG4iXX0=
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uLy4uLy4uL2xpYi9oYW5kbGViYXJzL2ludGVybmFsL3Byb3RvLWFjY2Vzcy5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7Ozs7Ozs7O3FDQUFzQyw0QkFBNEI7O3NCQUMvQyxXQUFXOzs7O0FBRTlCLElBQU0sZ0JBQWdCLEdBQUcsTUFBTSxDQUFDLE1BQU0sQ0FBQyxJQUFJLENBQUMsQ0FBQzs7QUFFdEMsU0FBUyx3QkFBd0IsQ0FBQyxjQUFjLEVBQUU7QUFDdkQsTUFBSSxzQkFBc0IsR0FBRyxNQUFNLENBQUMsTUFBTSxDQUFDLElBQUksQ0FBQyxDQUFDO0FBQ2pELHdCQUFzQixDQUFDLGFBQWEsQ0FBQyxHQUFHLEtBQUssQ0FBQztBQUM5Qyx3QkFBc0IsQ0FBQyxrQkFBa0IsQ0FBQyxHQUFHLEtBQUssQ0FBQztBQUNuRCx3QkFBc0IsQ0FBQyxrQkFBa0IsQ0FBQyxHQUFHLEtBQUssQ0FBQztBQUNuRCx3QkFBc0IsQ0FBQyxrQkFBa0IsQ0FBQyxHQUFHLEtBQUssQ0FBQzs7QUFFbkQsTUFBSSx3QkFBd0IsR0FBRyxNQUFNLENBQUMsTUFBTSxDQUFDLElBQUksQ0FBQyxDQUFDOztBQUVuRCwwQkFBd0IsQ0FBQyxXQUFXLENBQUMsR0FBRyxLQUFLLENBQUM7O0FBRTlDLFNBQU87QUFDTCxjQUFVLEVBQUU7QUFDVixlQUFTLEVBQUUsNkNBQ1Qsd0JBQXdCLEVBQ3hCLGNBQWMsQ0FBQyxzQkFBc0IsQ0FDdEM7QUFDRCxrQkFBWSxFQUFFLGNBQWMsQ0FBQyw2QkFBNkI7S0FDM0Q7QUFDRCxXQUFPLEVBQUU7QUFDUCxlQUFTLEVBQUUsNkNBQ1Qsc0JBQXNCLEVBQ3RCLGNBQWMsQ0FBQyxtQkFBbUIsQ0FDbkM7QUFDRCxrQkFBWSxFQUFFLGNBQWMsQ0FBQywwQkFBMEI7S0FDeEQ7R0FDRixDQUFDO0NBQ0g7O0FBRU0sU0FBUyxlQUFlLENBQUMsTUFBTSxFQUFFLGtCQUFrQixFQUFFLFlBQVksRUFBRTtBQUN4RSxNQUFJLE9BQU8sTUFBTSxLQUFLLFVBQVUsRUFBRTtBQUNoQyxXQUFPLGNBQWMsQ0FBQyxrQkFBa0IsQ0FBQyxPQUFPLEVBQUUsWUFBWSxDQUFDLENBQUM7R0FDakUsTUFBTTtBQUNMLFdBQU8sY0FBYyxDQUFDLGtCQUFrQixDQUFDLFVBQVUsRUFBRSxZQUFZLENBQUMsQ0FBQztHQUNwRTtDQUNGOztBQUVELFNBQVMsY0FBYyxDQUFDLHlCQUF5QixFQUFFLFlBQVksRUFBRTtBQUMvRCxNQUFJLHlCQUF5QixDQUFDLFNBQVMsQ0FBQyxZQUFZLENBQUMsS0FBSyxTQUFTLEVBQUU7QUFDbkUsV0FBTyx5QkFBeUIsQ0FBQyxTQUFTLENBQUMsWUFBWSxDQUFDLEtBQUssSUFBSSxDQUFDO0dBQ25FO0FBQ0QsTUFBSSx5QkFBeUIsQ0FBQyxZQUFZLEtBQUssU0FBUyxFQUFFO0FBQ3hELFdBQU8seUJBQXlCLENBQUMsWUFBWSxDQUFDO0dBQy9DO0FBQ0QsZ0NBQThCLENBQUMsWUFBWSxDQUFDLENBQUM7QUFDN0MsU0FBTyxLQUFLLENBQUM7Q0FDZDs7QUFFRCxTQUFTLDhCQUE4QixDQUFDLFlBQVksRUFBRTtBQUNwRCxNQUFJLGdCQUFnQixDQUFDLFlBQVksQ0FBQyxLQUFLLElBQUksRUFBRTtBQUMzQyxvQkFBZ0IsQ0FBQyxZQUFZLENBQUMsR0FBRyxJQUFJLENBQUM7QUFDdEMsd0JBQU8sR0FBRyxDQUNSLE9BQU8sRUFDUCxpRUFBK0QsWUFBWSxvSUFDSCxvSEFDMkMsQ0FDcEgsQ0FBQztHQUNIO0NBQ0Y7O0FBRU0sU0FBUyxxQkFBcUIsR0FBRztBQUN0QyxRQUFNLENBQUMsSUFBSSxDQUFDLGdCQUFnQixDQUFDLENBQUMsT0FBTyxDQUFDLFVBQUEsWUFBWSxFQUFJO0FBQ3BELFdBQU8sZ0JBQWdCLENBQUMsWUFBWSxDQUFDLENBQUM7R0FDdkMsQ0FBQyxDQUFDO0NBQ0oiLCJmaWxlIjoicHJvdG8tYWNjZXNzLmpzIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgY3JlYXRlTmV3TG9va3VwT2JqZWN0IH0gZnJvbSAnLi9jcmVhdGUtbmV3LWxvb2t1cC1vYmplY3QnO1xuaW1wb3J0IGxvZ2dlciBmcm9tICcuLi9sb2dnZXInO1xuXG5jb25zdCBsb2dnZWRQcm9wZXJ0aWVzID0gT2JqZWN0LmNyZWF0ZShudWxsKTtcblxuZXhwb3J0IGZ1bmN0aW9uIGNyZWF0ZVByb3RvQWNjZXNzQ29udHJvbChydW50aW1lT3B0aW9ucykge1xuICBsZXQgZGVmYXVsdE1ldGhvZFdoaXRlTGlzdCA9IE9iamVjdC5jcmVhdGUobnVsbCk7XG4gIGRlZmF1bHRNZXRob2RXaGl0ZUxpc3RbJ2NvbnN0cnVjdG9yJ10gPSBmYWxzZTtcbiAgZGVmYXVsdE1ldGhvZFdoaXRlTGlzdFsnX19kZWZpbmVHZXR0ZXJfXyddID0gZmFsc2U7XG4gIGRlZmF1bHRNZXRob2RXaGl0ZUxpc3RbJ19fZGVmaW5lU2V0dGVyX18nXSA9IGZhbHNlO1xuICBkZWZhdWx0TWV0aG9kV2hpdGVMaXN0WydfX2xvb2t1cEdldHRlcl9fJ10gPSBmYWxzZTtcblxuICBsZXQgZGVmYXVsdFByb3BlcnR5V2hpdGVMaXN0ID0gT2JqZWN0LmNyZWF0ZShudWxsKTtcbiAgLy8gZXNsaW50LWRpc2FibGUtbmV4dC1saW5lIG5vLXByb3RvXG4gIGRlZmF1bHRQcm9wZXJ0eVdoaXRlTGlzdFsnX19wcm90b19fJ10gPSBmYWxzZTtcblxuICByZXR1cm4ge1xuICAgIHByb3BlcnRpZXM6IHtcbiAgICAgIHdoaXRlbGlzdDogY3JlYXRlTmV3TG9va3VwT2JqZWN0KFxuICAgICAgICBkZWZhdWx0UHJvcGVydHlXaGl0ZUxpc3QsXG4gICAgICAgIHJ1bnRpbWVPcHRpb25zLmFsbG93ZWRQcm90b1Byb3BlcnRpZXNcbiAgICAgICksXG4gICAgICBkZWZhdWx0VmFsdWU6IHJ1bnRpbWVPcHRpb25zLmFsbG93UHJvdG9Qcm9wZXJ0aWVzQnlEZWZhdWx0XG4gICAgfSxcbiAgICBtZXRob2RzOiB7XG4gICAgICB3aGl0ZWxpc3Q6IGNyZWF0ZU5ld0xvb2t1cE9iamVjdChcbiAgICAgICAgZGVmYXVsdE1ldGhvZFdoaXRlTGlzdCxcbiAgICAgICAgcnVudGltZU9wdGlvbnMuYWxsb3dlZFByb3RvTWV0aG9kc1xuICAgICAgKSxcbiAgICAgIGRlZmF1bHRWYWx1ZTogcnVudGltZU9wdGlvbnMuYWxsb3dQcm90b01ldGhvZHNCeURlZmF1bHRcbiAgICB9XG4gIH07XG59XG5cbmV4cG9ydCBmdW5jdGlvbiByZXN1bHRJc0FsbG93ZWQocmVzdWx0LCBwcm90b0FjY2Vzc0NvbnRyb2wsIHByb3BlcnR5TmFtZSkge1xuICBpZiAodHlwZW9mIHJlc3VsdCA9PT0gJ2Z1bmN0aW9uJykge1xuICAgIHJldHVybiBjaGVja1doaXRlTGlzdChwcm90b0FjY2Vzc0NvbnRyb2wubWV0aG9kcywgcHJvcGVydHlOYW1lKTtcbiAgfSBlbHNlIHtcbiAgICByZXR1cm4gY2hlY2tXaGl0ZUxpc3QocHJvdG9BY2Nlc3NDb250cm9sLnByb3BlcnRpZXMsIHByb3BlcnR5TmFtZSk7XG4gIH1cbn1cblxuZnVuY3Rpb24gY2hlY2tXaGl0ZUxpc3QocHJvdG9BY2Nlc3NDb250cm9sRm9yVHlwZSwgcHJvcGVydHlOYW1lKSB7XG4gIGlmIChwcm90b0FjY2Vzc0NvbnRyb2xGb3JUeXBlLndoaXRlbGlzdFtwcm9wZXJ0eU5hbWVdICE9PSB1bmRlZmluZWQpIHtcbiAgICByZXR1cm4gcHJvdG9BY2Nlc3NDb250cm9sRm9yVHlwZS53aGl0ZWxpc3RbcHJvcGVydHlOYW1lXSA9PT0gdHJ1ZTtcbiAgfVxuICBpZiAocHJvdG9BY2Nlc3NDb250cm9sRm9yVHlwZS5kZWZhdWx0VmFsdWUgIT09IHVuZGVmaW5lZCkge1xuICAgIHJldHVybiBwcm90b0FjY2Vzc0NvbnRyb2xGb3JUeXBlLmRlZmF1bHRWYWx1ZTtcbiAgfVxuICBsb2dVbmV4cGVjZWRQcm9wZXJ0eUFjY2Vzc09uY2UocHJvcGVydHlOYW1lKTtcbiAgcmV0dXJuIGZhbHNlO1xufVxuXG5mdW5jdGlvbiBsb2dVbmV4cGVjZWRQcm9wZXJ0eUFjY2Vzc09uY2UocHJvcGVydHlOYW1lKSB7XG4gIGlmIChsb2dnZWRQcm9wZXJ0aWVzW3Byb3BlcnR5TmFtZV0gIT09IHRydWUpIHtcbiAgICBsb2dnZWRQcm9wZXJ0aWVzW3Byb3BlcnR5TmFtZV0gPSB0cnVlO1xuICAgIGxvZ2dlci5sb2coXG4gICAgICAnZXJyb3InLFxuICAgICAgYEhhbmRsZWJhcnM6IEFjY2VzcyBoYXMgYmVlbiBkZW5pZWQgdG8gcmVzb2x2ZSB0aGUgcHJvcGVydHkgXCIke3Byb3BlcnR5TmFtZX1cIiBiZWNhdXNlIGl0IGlzIG5vdCBhbiBcIm93biBwcm9wZXJ0eVwiIG9mIGl0cyBwYXJlbnQuXFxuYCArXG4gICAgICAgIGBZb3UgY2FuIGFkZCBhIHJ1bnRpbWUgb3B0aW9uIHRvIGRpc2FibGUgdGhlIGNoZWNrIG9yIHRoaXMgd2FybmluZzpcXG5gICtcbiAgICAgICAgYFNlZSBodHRwczovL2hhbmRsZWJhcnNqcy5jb20vYXBpLXJlZmVyZW5jZS9ydW50aW1lLW9wdGlvbnMuaHRtbCNvcHRpb25zLXRvLWNvbnRyb2wtcHJvdG90eXBlLWFjY2VzcyBmb3IgZGV0YWlsc2BcbiAgICApO1xuICB9XG59XG5cbmV4cG9ydCBmdW5jdGlvbiByZXNldExvZ2dlZFByb3BlcnRpZXMoKSB7XG4gIE9iamVjdC5rZXlzKGxvZ2dlZFByb3BlcnRpZXMpLmZvckVhY2gocHJvcGVydHlOYW1lID0+IHtcbiAgICBkZWxldGUgbG9nZ2VkUHJvcGVydGllc1twcm9wZXJ0eU5hbWVdO1xuICB9KTtcbn1cbiJdfQ==
 
 
 /***/ }),
@@ -1333,27 +1330,37 @@ module.exports = exports['default'];
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(global) {
+/* global globalThis */
+
 
 exports.__esModule = true;
 
 exports['default'] = function (Handlebars) {
   /* istanbul ignore next */
-  var root = typeof global !== 'undefined' ? global : window,
-      $Handlebars = root.Handlebars;
+  // https://mathiasbynens.be/notes/globalthis
+  (function () {
+    if (typeof globalThis === 'object') return;
+    Object.prototype.__defineGetter__('__magic__', function () {
+      return this;
+    });
+    __magic__.globalThis = __magic__; // eslint-disable-line no-undef
+    delete Object.prototype.__magic__;
+  })();
+
+  var $Handlebars = globalThis.Handlebars;
+
   /* istanbul ignore next */
   Handlebars.noConflict = function () {
-    if (root.Handlebars === Handlebars) {
-      root.Handlebars = $Handlebars;
+    if (globalThis.Handlebars === Handlebars) {
+      globalThis.Handlebars = $Handlebars;
     }
     return Handlebars;
   };
 };
 
 module.exports = exports['default'];
-//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uLy4uL2xpYi9oYW5kbGViYXJzL25vLWNvbmZsaWN0LmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7cUJBQWUsVUFBUyxVQUFVLEVBQUU7O0FBRWxDLE1BQUksSUFBSSxHQUFHLE9BQU8sTUFBTSxLQUFLLFdBQVcsR0FBRyxNQUFNLEdBQUcsTUFBTTtNQUN4RCxXQUFXLEdBQUcsSUFBSSxDQUFDLFVBQVUsQ0FBQzs7QUFFaEMsWUFBVSxDQUFDLFVBQVUsR0FBRyxZQUFXO0FBQ2pDLFFBQUksSUFBSSxDQUFDLFVBQVUsS0FBSyxVQUFVLEVBQUU7QUFDbEMsVUFBSSxDQUFDLFVBQVUsR0FBRyxXQUFXLENBQUM7S0FDL0I7QUFDRCxXQUFPLFVBQVUsQ0FBQztHQUNuQixDQUFDO0NBQ0giLCJmaWxlIjoibm8tY29uZmxpY3QuanMiLCJzb3VyY2VzQ29udGVudCI6WyJleHBvcnQgZGVmYXVsdCBmdW5jdGlvbihIYW5kbGViYXJzKSB7XG4gIC8qIGlzdGFuYnVsIGlnbm9yZSBuZXh0ICovXG4gIGxldCByb290ID0gdHlwZW9mIGdsb2JhbCAhPT0gJ3VuZGVmaW5lZCcgPyBnbG9iYWwgOiB3aW5kb3csXG4gICAgJEhhbmRsZWJhcnMgPSByb290LkhhbmRsZWJhcnM7XG4gIC8qIGlzdGFuYnVsIGlnbm9yZSBuZXh0ICovXG4gIEhhbmRsZWJhcnMubm9Db25mbGljdCA9IGZ1bmN0aW9uKCkge1xuICAgIGlmIChyb290LkhhbmRsZWJhcnMgPT09IEhhbmRsZWJhcnMpIHtcbiAgICAgIHJvb3QuSGFuZGxlYmFycyA9ICRIYW5kbGViYXJzO1xuICAgIH1cbiAgICByZXR1cm4gSGFuZGxlYmFycztcbiAgfTtcbn1cbiJdfQ==
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uLy4uL2xpYi9oYW5kbGViYXJzL25vLWNvbmZsaWN0LmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7O3FCQUNlLFVBQVMsVUFBVSxFQUFFOzs7QUFHbEMsR0FBQyxZQUFXO0FBQ1YsUUFBSSxPQUFPLFVBQVUsS0FBSyxRQUFRLEVBQUUsT0FBTztBQUMzQyxVQUFNLENBQUMsU0FBUyxDQUFDLGdCQUFnQixDQUFDLFdBQVcsRUFBRSxZQUFXO0FBQ3hELGFBQU8sSUFBSSxDQUFDO0tBQ2IsQ0FBQyxDQUFDO0FBQ0gsYUFBUyxDQUFDLFVBQVUsR0FBRyxTQUFTLENBQUM7QUFDakMsV0FBTyxNQUFNLENBQUMsU0FBUyxDQUFDLFNBQVMsQ0FBQztHQUNuQyxDQUFBLEVBQUcsQ0FBQzs7QUFFTCxNQUFNLFdBQVcsR0FBRyxVQUFVLENBQUMsVUFBVSxDQUFDOzs7QUFHMUMsWUFBVSxDQUFDLFVBQVUsR0FBRyxZQUFXO0FBQ2pDLFFBQUksVUFBVSxDQUFDLFVBQVUsS0FBSyxVQUFVLEVBQUU7QUFDeEMsZ0JBQVUsQ0FBQyxVQUFVLEdBQUcsV0FBVyxDQUFDO0tBQ3JDO0FBQ0QsV0FBTyxVQUFVLENBQUM7R0FDbkIsQ0FBQztDQUNIIiwiZmlsZSI6Im5vLWNvbmZsaWN0LmpzIiwic291cmNlc0NvbnRlbnQiOlsiLyogZ2xvYmFsIGdsb2JhbFRoaXMgKi9cbmV4cG9ydCBkZWZhdWx0IGZ1bmN0aW9uKEhhbmRsZWJhcnMpIHtcbiAgLyogaXN0YW5idWwgaWdub3JlIG5leHQgKi9cbiAgLy8gaHR0cHM6Ly9tYXRoaWFzYnluZW5zLmJlL25vdGVzL2dsb2JhbHRoaXNcbiAgKGZ1bmN0aW9uKCkge1xuICAgIGlmICh0eXBlb2YgZ2xvYmFsVGhpcyA9PT0gJ29iamVjdCcpIHJldHVybjtcbiAgICBPYmplY3QucHJvdG90eXBlLl9fZGVmaW5lR2V0dGVyX18oJ19fbWFnaWNfXycsIGZ1bmN0aW9uKCkge1xuICAgICAgcmV0dXJuIHRoaXM7XG4gICAgfSk7XG4gICAgX19tYWdpY19fLmdsb2JhbFRoaXMgPSBfX21hZ2ljX187IC8vIGVzbGludC1kaXNhYmxlLWxpbmUgbm8tdW5kZWZcbiAgICBkZWxldGUgT2JqZWN0LnByb3RvdHlwZS5fX21hZ2ljX187XG4gIH0pKCk7XG5cbiAgY29uc3QgJEhhbmRsZWJhcnMgPSBnbG9iYWxUaGlzLkhhbmRsZWJhcnM7XG5cbiAgLyogaXN0YW5idWwgaWdub3JlIG5leHQgKi9cbiAgSGFuZGxlYmFycy5ub0NvbmZsaWN0ID0gZnVuY3Rpb24oKSB7XG4gICAgaWYgKGdsb2JhbFRoaXMuSGFuZGxlYmFycyA9PT0gSGFuZGxlYmFycykge1xuICAgICAgZ2xvYmFsVGhpcy5IYW5kbGViYXJzID0gJEhhbmRsZWJhcnM7XG4gICAgfVxuICAgIHJldHVybiBIYW5kbGViYXJzO1xuICB9O1xufVxuIl19
 
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../../webpack/buildin/global.js */ "./node_modules/webpack/buildin/global.js")))
 
 /***/ }),
 
@@ -1926,17 +1933,14 @@ module.exports = __webpack_require__(/*! ./dist/cjs/handlebars.runtime */ "./nod
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
- * jQuery JavaScript Library v3.6.0
+ * jQuery JavaScript Library v3.7.1
  * https://jquery.com/
- *
- * Includes Sizzle.js
- * https://sizzlejs.com/
  *
  * Copyright OpenJS Foundation and other contributors
  * Released under the MIT license
  * https://jquery.org/license
  *
- * Date: 2021-03-02T17:08Z
+ * Date: 2023-08-28T13:37Z
  */
 ( function( global, factory ) {
 
@@ -1950,7 +1954,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
 		// (such as Node.js), expose a factory as module.exports.
 		// This accentuates the need for the creation of a real `window`.
 		// e.g. var jQuery = require("jquery")(window);
-		// See ticket #14549 for more info.
+		// See ticket trac-14549 for more info.
 		module.exports = global.document ?
 			factory( global, true ) :
 			function( w ) {
@@ -2077,8 +2081,9 @@ function toType( obj ) {
 
 
 
-var
-	version = "3.6.0",
+var version = "3.7.1",
+
+	rhtmlSuffix = /HTML$/i,
 
 	// Define a local copy of jQuery
 	jQuery = function( selector, context ) {
@@ -2324,6 +2329,38 @@ jQuery.extend( {
 		return obj;
 	},
 
+
+	// Retrieve the text value of an array of DOM nodes
+	text: function( elem ) {
+		var node,
+			ret = "",
+			i = 0,
+			nodeType = elem.nodeType;
+
+		if ( !nodeType ) {
+
+			// If no nodeType, this is expected to be an array
+			while ( ( node = elem[ i++ ] ) ) {
+
+				// Do not traverse comment nodes
+				ret += jQuery.text( node );
+			}
+		}
+		if ( nodeType === 1 || nodeType === 11 ) {
+			return elem.textContent;
+		}
+		if ( nodeType === 9 ) {
+			return elem.documentElement.textContent;
+		}
+		if ( nodeType === 3 || nodeType === 4 ) {
+			return elem.nodeValue;
+		}
+
+		// Do not include comment or processing instruction nodes
+
+		return ret;
+	},
+
 	// results is for internal usage only
 	makeArray: function( arr, results ) {
 		var ret = results || [];
@@ -2344,6 +2381,15 @@ jQuery.extend( {
 
 	inArray: function( elem, arr, i ) {
 		return arr == null ? -1 : indexOf.call( arr, elem, i );
+	},
+
+	isXMLDoc: function( elem ) {
+		var namespace = elem && elem.namespaceURI,
+			docElem = elem && ( elem.ownerDocument || elem ).documentElement;
+
+		// Assume HTML when documentElement doesn't yet exist, such as inside
+		// document fragments.
+		return !rhtmlSuffix.test( namespace || docElem && docElem.nodeName || "HTML" );
 	},
 
 	// Support: Android <=4.0 only, PhantomJS 1 only
@@ -2447,43 +2493,98 @@ function isArrayLike( obj ) {
 	return type === "array" || length === 0 ||
 		typeof length === "number" && length > 0 && ( length - 1 ) in obj;
 }
-var Sizzle =
-/*!
- * Sizzle CSS Selector Engine v2.3.6
- * https://sizzlejs.com/
- *
- * Copyright JS Foundation and other contributors
- * Released under the MIT license
- * https://js.foundation/
- *
- * Date: 2021-02-16
- */
-( function( window ) {
+
+
+function nodeName( elem, name ) {
+
+	return elem.nodeName && elem.nodeName.toLowerCase() === name.toLowerCase();
+
+}
+var pop = arr.pop;
+
+
+var sort = arr.sort;
+
+
+var splice = arr.splice;
+
+
+var whitespace = "[\\x20\\t\\r\\n\\f]";
+
+
+var rtrimCSS = new RegExp(
+	"^" + whitespace + "+|((?:^|[^\\\\])(?:\\\\.)*)" + whitespace + "+$",
+	"g"
+);
+
+
+
+
+// Note: an element does not contain itself
+jQuery.contains = function( a, b ) {
+	var bup = b && b.parentNode;
+
+	return a === bup || !!( bup && bup.nodeType === 1 && (
+
+		// Support: IE 9 - 11+
+		// IE doesn't have `contains` on SVG.
+		a.contains ?
+			a.contains( bup ) :
+			a.compareDocumentPosition && a.compareDocumentPosition( bup ) & 16
+	) );
+};
+
+
+
+
+// CSS string/identifier serialization
+// https://drafts.csswg.org/cssom/#common-serializing-idioms
+var rcssescape = /([\0-\x1f\x7f]|^-?\d)|^-$|[^\x80-\uFFFF\w-]/g;
+
+function fcssescape( ch, asCodePoint ) {
+	if ( asCodePoint ) {
+
+		// U+0000 NULL becomes U+FFFD REPLACEMENT CHARACTER
+		if ( ch === "\0" ) {
+			return "\uFFFD";
+		}
+
+		// Control characters and (dependent upon position) numbers get escaped as code points
+		return ch.slice( 0, -1 ) + "\\" + ch.charCodeAt( ch.length - 1 ).toString( 16 ) + " ";
+	}
+
+	// Other potentially-special ASCII characters get backslash-escaped
+	return "\\" + ch;
+}
+
+jQuery.escapeSelector = function( sel ) {
+	return ( sel + "" ).replace( rcssescape, fcssescape );
+};
+
+
+
+
+var preferredDoc = document,
+	pushNative = push;
+
+( function() {
+
 var i,
-	support,
 	Expr,
-	getText,
-	isXML,
-	tokenize,
-	compile,
-	select,
 	outermostContext,
 	sortInput,
 	hasDuplicate,
+	push = pushNative,
 
 	// Local document vars
-	setDocument,
 	document,
-	docElem,
+	documentElement,
 	documentIsHTML,
 	rbuggyQSA,
-	rbuggyMatches,
 	matches,
-	contains,
 
 	// Instance-specific data
-	expando = "sizzle" + 1 * new Date(),
-	preferredDoc = window.document,
+	expando = jQuery.expando,
 	dirruns = 0,
 	done = 0,
 	classCache = createCache(),
@@ -2497,47 +2598,22 @@ var i,
 		return 0;
 	},
 
-	// Instance methods
-	hasOwn = ( {} ).hasOwnProperty,
-	arr = [],
-	pop = arr.pop,
-	pushNative = arr.push,
-	push = arr.push,
-	slice = arr.slice,
-
-	// Use a stripped-down indexOf as it's faster than native
-	// https://jsperf.com/thor-indexof-vs-for/5
-	indexOf = function( list, elem ) {
-		var i = 0,
-			len = list.length;
-		for ( ; i < len; i++ ) {
-			if ( list[ i ] === elem ) {
-				return i;
-			}
-		}
-		return -1;
-	},
-
-	booleans = "checked|selected|async|autofocus|autoplay|controls|defer|disabled|hidden|" +
-		"ismap|loop|multiple|open|readonly|required|scoped",
+	booleans = "checked|selected|async|autofocus|autoplay|controls|defer|disabled|hidden|ismap|" +
+		"loop|multiple|open|readonly|required|scoped",
 
 	// Regular expressions
-
-	// http://www.w3.org/TR/css3-selectors/#whitespace
-	whitespace = "[\\x20\\t\\r\\n\\f]",
 
 	// https://www.w3.org/TR/css-syntax-3/#ident-token-diagram
 	identifier = "(?:\\\\[\\da-fA-F]{1,6}" + whitespace +
 		"?|\\\\[^\\r\\n\\f]|[\\w-]|[^\0-\\x7f])+",
 
-	// Attribute selectors: http://www.w3.org/TR/selectors/#attribute-selectors
+	// Attribute selectors: https://www.w3.org/TR/selectors/#attribute-selectors
 	attributes = "\\[" + whitespace + "*(" + identifier + ")(?:" + whitespace +
 
 		// Operator (capture 2)
 		"*([*^$|!~]?=)" + whitespace +
 
-		// "Attribute values must be CSS identifiers [capture 5]
-		// or strings [capture 3 or capture 4]"
+		// "Attribute values must be CSS identifiers [capture 5] or strings [capture 3 or capture 4]"
 		"*(?:'((?:\\\\.|[^\\\\'])*)'|\"((?:\\\\.|[^\\\\\"])*)\"|(" + identifier + "))|)" +
 		whitespace + "*\\]",
 
@@ -2556,40 +2632,36 @@ var i,
 
 	// Leading and non-escaped trailing whitespace, capturing some non-whitespace characters preceding the latter
 	rwhitespace = new RegExp( whitespace + "+", "g" ),
-	rtrim = new RegExp( "^" + whitespace + "+|((?:^|[^\\\\])(?:\\\\.)*)" +
-		whitespace + "+$", "g" ),
 
 	rcomma = new RegExp( "^" + whitespace + "*," + whitespace + "*" ),
-	rcombinators = new RegExp( "^" + whitespace + "*([>+~]|" + whitespace + ")" + whitespace +
-		"*" ),
+	rleadingCombinator = new RegExp( "^" + whitespace + "*([>+~]|" + whitespace + ")" +
+		whitespace + "*" ),
 	rdescend = new RegExp( whitespace + "|>" ),
 
 	rpseudo = new RegExp( pseudos ),
 	ridentifier = new RegExp( "^" + identifier + "$" ),
 
 	matchExpr = {
-		"ID": new RegExp( "^#(" + identifier + ")" ),
-		"CLASS": new RegExp( "^\\.(" + identifier + ")" ),
-		"TAG": new RegExp( "^(" + identifier + "|[*])" ),
-		"ATTR": new RegExp( "^" + attributes ),
-		"PSEUDO": new RegExp( "^" + pseudos ),
-		"CHILD": new RegExp( "^:(only|first|last|nth|nth-last)-(child|of-type)(?:\\(" +
-			whitespace + "*(even|odd|(([+-]|)(\\d*)n|)" + whitespace + "*(?:([+-]|)" +
-			whitespace + "*(\\d+)|))" + whitespace + "*\\)|)", "i" ),
-		"bool": new RegExp( "^(?:" + booleans + ")$", "i" ),
+		ID: new RegExp( "^#(" + identifier + ")" ),
+		CLASS: new RegExp( "^\\.(" + identifier + ")" ),
+		TAG: new RegExp( "^(" + identifier + "|[*])" ),
+		ATTR: new RegExp( "^" + attributes ),
+		PSEUDO: new RegExp( "^" + pseudos ),
+		CHILD: new RegExp(
+			"^:(only|first|last|nth|nth-last)-(child|of-type)(?:\\(" +
+				whitespace + "*(even|odd|(([+-]|)(\\d*)n|)" + whitespace + "*(?:([+-]|)" +
+				whitespace + "*(\\d+)|))" + whitespace + "*\\)|)", "i" ),
+		bool: new RegExp( "^(?:" + booleans + ")$", "i" ),
 
 		// For use in libraries implementing .is()
 		// We use this for POS matching in `select`
-		"needsContext": new RegExp( "^" + whitespace +
+		needsContext: new RegExp( "^" + whitespace +
 			"*[>+~]|:(even|odd|eq|gt|lt|nth|first|last)(?:\\(" + whitespace +
 			"*((?:-\\d)?\\d*)" + whitespace + "*\\)|)(?=[^-]|$)", "i" )
 	},
 
-	rhtml = /HTML$/i,
 	rinputs = /^(?:input|select|textarea|button)$/i,
 	rheader = /^h\d$/i,
-
-	rnative = /^[^{]+\{\s*\[native \w/,
 
 	// Easily-parseable/retrievable ID or TAG or CLASS selectors
 	rquickExpr = /^(?:#([\w-]+)|(\w+)|\.([\w-]+))$/,
@@ -2597,59 +2669,50 @@ var i,
 	rsibling = /[+~]/,
 
 	// CSS escapes
-	// http://www.w3.org/TR/CSS21/syndata.html#escaped-characters
-	runescape = new RegExp( "\\\\[\\da-fA-F]{1,6}" + whitespace + "?|\\\\([^\\r\\n\\f])", "g" ),
+	// https://www.w3.org/TR/CSS21/syndata.html#escaped-characters
+	runescape = new RegExp( "\\\\[\\da-fA-F]{1,6}" + whitespace +
+		"?|\\\\([^\\r\\n\\f])", "g" ),
 	funescape = function( escape, nonHex ) {
 		var high = "0x" + escape.slice( 1 ) - 0x10000;
 
-		return nonHex ?
+		if ( nonHex ) {
 
 			// Strip the backslash prefix from a non-hex escape sequence
-			nonHex :
-
-			// Replace a hexadecimal escape sequence with the encoded Unicode code point
-			// Support: IE <=11+
-			// For values outside the Basic Multilingual Plane (BMP), manually construct a
-			// surrogate pair
-			high < 0 ?
-				String.fromCharCode( high + 0x10000 ) :
-				String.fromCharCode( high >> 10 | 0xD800, high & 0x3FF | 0xDC00 );
-	},
-
-	// CSS string/identifier serialization
-	// https://drafts.csswg.org/cssom/#common-serializing-idioms
-	rcssescape = /([\0-\x1f\x7f]|^-?\d)|^-$|[^\0-\x1f\x7f-\uFFFF\w-]/g,
-	fcssescape = function( ch, asCodePoint ) {
-		if ( asCodePoint ) {
-
-			// U+0000 NULL becomes U+FFFD REPLACEMENT CHARACTER
-			if ( ch === "\0" ) {
-				return "\uFFFD";
-			}
-
-			// Control characters and (dependent upon position) numbers get escaped as code points
-			return ch.slice( 0, -1 ) + "\\" +
-				ch.charCodeAt( ch.length - 1 ).toString( 16 ) + " ";
+			return nonHex;
 		}
 
-		// Other potentially-special ASCII characters get backslash-escaped
-		return "\\" + ch;
+		// Replace a hexadecimal escape sequence with the encoded Unicode code point
+		// Support: IE <=11+
+		// For values outside the Basic Multilingual Plane (BMP), manually construct a
+		// surrogate pair
+		return high < 0 ?
+			String.fromCharCode( high + 0x10000 ) :
+			String.fromCharCode( high >> 10 | 0xD800, high & 0x3FF | 0xDC00 );
 	},
 
-	// Used for iframes
-	// See setDocument()
+	// Used for iframes; see `setDocument`.
+	// Support: IE 9 - 11+, Edge 12 - 18+
 	// Removing the function wrapper causes a "Permission Denied"
-	// error in IE
+	// error in IE/Edge.
 	unloadHandler = function() {
 		setDocument();
 	},
 
 	inDisabledFieldset = addCombinator(
 		function( elem ) {
-			return elem.disabled === true && elem.nodeName.toLowerCase() === "fieldset";
+			return elem.disabled === true && nodeName( elem, "fieldset" );
 		},
 		{ dir: "parentNode", next: "legend" }
 	);
+
+// Support: IE <=9 only
+// Accessing document.activeElement can throw unexpectedly
+// https://bugs.jquery.com/ticket/13393
+function safeActiveElement() {
+	try {
+		return document.activeElement;
+	} catch ( err ) { }
+}
 
 // Optimize for push.apply( _, NodeList )
 try {
@@ -2658,32 +2721,22 @@ try {
 		preferredDoc.childNodes
 	);
 
-	// Support: Android<4.0
+	// Support: Android <=4.0
 	// Detect silently failing push.apply
 	// eslint-disable-next-line no-unused-expressions
 	arr[ preferredDoc.childNodes.length ].nodeType;
 } catch ( e ) {
-	push = { apply: arr.length ?
-
-		// Leverage slice if possible
-		function( target, els ) {
+	push = {
+		apply: function( target, els ) {
 			pushNative.apply( target, slice.call( els ) );
-		} :
-
-		// Support: IE<9
-		// Otherwise append directly
-		function( target, els ) {
-			var j = target.length,
-				i = 0;
-
-			// Can't trust NodeList.length
-			while ( ( target[ j++ ] = els[ i++ ] ) ) {}
-			target.length = j - 1;
+		},
+		call: function( target ) {
+			pushNative.apply( target, slice.call( arguments, 1 ) );
 		}
 	};
 }
 
-function Sizzle( selector, context, results, seed ) {
+function find( selector, context, results, seed ) {
 	var m, i, elem, nid, match, groups, newSelector,
 		newContext = context && context.ownerDocument,
 
@@ -2717,11 +2770,10 @@ function Sizzle( selector, context, results, seed ) {
 					if ( nodeType === 9 ) {
 						if ( ( elem = context.getElementById( m ) ) ) {
 
-							// Support: IE, Opera, Webkit
-							// TODO: identify versions
+							// Support: IE 9 only
 							// getElementById can match elements by name instead of ID
 							if ( elem.id === m ) {
-								results.push( elem );
+								push.call( results, elem );
 								return results;
 							}
 						} else {
@@ -2731,14 +2783,13 @@ function Sizzle( selector, context, results, seed ) {
 					// Element context
 					} else {
 
-						// Support: IE, Opera, Webkit
-						// TODO: identify versions
+						// Support: IE 9 only
 						// getElementById can match elements by name instead of ID
 						if ( newContext && ( elem = newContext.getElementById( m ) ) &&
-							contains( context, elem ) &&
+							find.contains( context, elem ) &&
 							elem.id === m ) {
 
-							results.push( elem );
+							push.call( results, elem );
 							return results;
 						}
 					}
@@ -2749,22 +2800,15 @@ function Sizzle( selector, context, results, seed ) {
 					return results;
 
 				// Class selector
-				} else if ( ( m = match[ 3 ] ) && support.getElementsByClassName &&
-					context.getElementsByClassName ) {
-
+				} else if ( ( m = match[ 3 ] ) && context.getElementsByClassName ) {
 					push.apply( results, context.getElementsByClassName( m ) );
 					return results;
 				}
 			}
 
 			// Take advantage of querySelectorAll
-			if ( support.qsa &&
-				!nonnativeSelectorCache[ selector + " " ] &&
-				( !rbuggyQSA || !rbuggyQSA.test( selector ) ) &&
-
-				// Support: IE 8 only
-				// Exclude object elements
-				( nodeType !== 1 || context.nodeName.toLowerCase() !== "object" ) ) {
+			if ( !nonnativeSelectorCache[ selector + " " ] &&
+				( !rbuggyQSA || !rbuggyQSA.test( selector ) ) ) {
 
 				newSelector = selector;
 				newContext = context;
@@ -2777,7 +2821,7 @@ function Sizzle( selector, context, results, seed ) {
 				// as such selectors are not recognized by querySelectorAll.
 				// Thanks to Andrew Dupont for this technique.
 				if ( nodeType === 1 &&
-					( rdescend.test( selector ) || rcombinators.test( selector ) ) ) {
+					( rdescend.test( selector ) || rleadingCombinator.test( selector ) ) ) {
 
 					// Expand context for sibling selectors
 					newContext = rsibling.test( selector ) && testContext( context.parentNode ) ||
@@ -2785,11 +2829,15 @@ function Sizzle( selector, context, results, seed ) {
 
 					// We can use :scope instead of the ID hack if the browser
 					// supports it & if we're not changing the context.
-					if ( newContext !== context || !support.scope ) {
+					// Support: IE 11+, Edge 17 - 18+
+					// IE/Edge sometimes throw a "Permission denied" error when
+					// strict-comparing two documents; shallow comparisons work.
+					// eslint-disable-next-line eqeqeq
+					if ( newContext != context || !support.scope ) {
 
 						// Capture the context ID, setting it first if necessary
 						if ( ( nid = context.getAttribute( "id" ) ) ) {
-							nid = nid.replace( rcssescape, fcssescape );
+							nid = jQuery.escapeSelector( nid );
 						} else {
 							context.setAttribute( "id", ( nid = expando ) );
 						}
@@ -2822,7 +2870,7 @@ function Sizzle( selector, context, results, seed ) {
 	}
 
 	// All others
-	return select( selector.replace( rtrim, "$1" ), context, results, seed );
+	return select( selector.replace( rtrimCSS, "$1" ), context, results, seed );
 }
 
 /**
@@ -2836,7 +2884,8 @@ function createCache() {
 
 	function cache( key, value ) {
 
-		// Use (key + " ") to avoid collision with native prototype properties (see Issue #157)
+		// Use (key + " ") to avoid collision with native prototype properties
+		// (see https://github.com/jquery/sizzle/issues/157)
 		if ( keys.push( key + " " ) > Expr.cacheLength ) {
 
 			// Only keep the most recent entries
@@ -2848,7 +2897,7 @@ function createCache() {
 }
 
 /**
- * Mark a function for special use by Sizzle
+ * Mark a function for special use by jQuery selector module
  * @param {Function} fn The function to mark
  */
 function markFunction( fn ) {
@@ -2880,55 +2929,12 @@ function assert( fn ) {
 }
 
 /**
- * Adds the same handler for all of the specified attrs
- * @param {String} attrs Pipe-separated list of attributes
- * @param {Function} handler The method that will be applied
- */
-function addHandle( attrs, handler ) {
-	var arr = attrs.split( "|" ),
-		i = arr.length;
-
-	while ( i-- ) {
-		Expr.attrHandle[ arr[ i ] ] = handler;
-	}
-}
-
-/**
- * Checks document order of two siblings
- * @param {Element} a
- * @param {Element} b
- * @returns {Number} Returns less than 0 if a precedes b, greater than 0 if a follows b
- */
-function siblingCheck( a, b ) {
-	var cur = b && a,
-		diff = cur && a.nodeType === 1 && b.nodeType === 1 &&
-			a.sourceIndex - b.sourceIndex;
-
-	// Use IE sourceIndex if available on both nodes
-	if ( diff ) {
-		return diff;
-	}
-
-	// Check if b follows a
-	if ( cur ) {
-		while ( ( cur = cur.nextSibling ) ) {
-			if ( cur === b ) {
-				return -1;
-			}
-		}
-	}
-
-	return a ? 1 : -1;
-}
-
-/**
  * Returns a function to use in pseudos for input types
  * @param {String} type
  */
 function createInputPseudo( type ) {
 	return function( elem ) {
-		var name = elem.nodeName.toLowerCase();
-		return name === "input" && elem.type === type;
+		return nodeName( elem, "input" ) && elem.type === type;
 	};
 }
 
@@ -2938,8 +2944,8 @@ function createInputPseudo( type ) {
  */
 function createButtonPseudo( type ) {
 	return function( elem ) {
-		var name = elem.nodeName.toLowerCase();
-		return ( name === "input" || name === "button" ) && elem.type === type;
+		return ( nodeName( elem, "input" ) || nodeName( elem, "button" ) ) &&
+			elem.type === type;
 	};
 }
 
@@ -2975,14 +2981,13 @@ function createDisabledPseudo( disabled ) {
 					}
 				}
 
-				// Support: IE 6 - 11
+				// Support: IE 6 - 11+
 				// Use the isDisabled shortcut property to check for disabled fieldset ancestors
 				return elem.isDisabled === disabled ||
 
 					// Where there is no isDisabled, check manually
-					/* jshint -W018 */
 					elem.isDisabled !== !disabled &&
-					inDisabledFieldset( elem ) === disabled;
+						inDisabledFieldset( elem ) === disabled;
 			}
 
 			return elem.disabled === disabled;
@@ -3022,7 +3027,7 @@ function createPositionalPseudo( fn ) {
 }
 
 /**
- * Checks a node for validity as a Sizzle context
+ * Checks a node for validity as a jQuery selector context
  * @param {Element|Object=} context
  * @returns {Element|Object|Boolean} The input node if acceptable, otherwise a falsy value
  */
@@ -3030,31 +3035,13 @@ function testContext( context ) {
 	return context && typeof context.getElementsByTagName !== "undefined" && context;
 }
 
-// Expose support vars for convenience
-support = Sizzle.support = {};
-
-/**
- * Detects XML nodes
- * @param {Element|Object} elem An element or a document
- * @returns {Boolean} True iff elem is a non-HTML XML node
- */
-isXML = Sizzle.isXML = function( elem ) {
-	var namespace = elem && elem.namespaceURI,
-		docElem = elem && ( elem.ownerDocument || elem ).documentElement;
-
-	// Support: IE <=8
-	// Assume HTML when documentElement doesn't yet exist, such as inside loading iframes
-	// https://bugs.jquery.com/ticket/4833
-	return !rhtml.test( namespace || docElem && docElem.nodeName || "HTML" );
-};
-
 /**
  * Sets document-related variables once based on the current document
- * @param {Element|Object} [doc] An element or document object to use to set the document
+ * @param {Element|Object} [node] An element or document object to use to set the document
  * @returns {Object} Returns the current document
  */
-setDocument = Sizzle.setDocument = function( node ) {
-	var hasCompare, subWindow,
+function setDocument( node ) {
+	var subWindow,
 		doc = node ? node.ownerDocument || node : preferredDoc;
 
 	// Return early if doc is invalid or already selected
@@ -3068,87 +3055,90 @@ setDocument = Sizzle.setDocument = function( node ) {
 
 	// Update global variables
 	document = doc;
-	docElem = document.documentElement;
-	documentIsHTML = !isXML( document );
+	documentElement = document.documentElement;
+	documentIsHTML = !jQuery.isXMLDoc( document );
+
+	// Support: iOS 7 only, IE 9 - 11+
+	// Older browsers didn't support unprefixed `matches`.
+	matches = documentElement.matches ||
+		documentElement.webkitMatchesSelector ||
+		documentElement.msMatchesSelector;
 
 	// Support: IE 9 - 11+, Edge 12 - 18+
-	// Accessing iframe documents after unload throws "permission denied" errors (jQuery #13936)
-	// Support: IE 11+, Edge 17 - 18+
-	// IE/Edge sometimes throw a "Permission denied" error when strict-comparing
-	// two documents; shallow comparisons work.
-	// eslint-disable-next-line eqeqeq
-	if ( preferredDoc != document &&
+	// Accessing iframe documents after unload throws "permission denied" errors
+	// (see trac-13936).
+	// Limit the fix to IE & Edge Legacy; despite Edge 15+ implementing `matches`,
+	// all IE 9+ and Edge Legacy versions implement `msMatchesSelector` as well.
+	if ( documentElement.msMatchesSelector &&
+
+		// Support: IE 11+, Edge 17 - 18+
+		// IE/Edge sometimes throw a "Permission denied" error when strict-comparing
+		// two documents; shallow comparisons work.
+		// eslint-disable-next-line eqeqeq
+		preferredDoc != document &&
 		( subWindow = document.defaultView ) && subWindow.top !== subWindow ) {
 
-		// Support: IE 11, Edge
-		if ( subWindow.addEventListener ) {
-			subWindow.addEventListener( "unload", unloadHandler, false );
-
-		// Support: IE 9 - 10 only
-		} else if ( subWindow.attachEvent ) {
-			subWindow.attachEvent( "onunload", unloadHandler );
-		}
+		// Support: IE 9 - 11+, Edge 12 - 18+
+		subWindow.addEventListener( "unload", unloadHandler );
 	}
 
-	// Support: IE 8 - 11+, Edge 12 - 18+, Chrome <=16 - 25 only, Firefox <=3.6 - 31 only,
-	// Safari 4 - 5 only, Opera <=11.6 - 12.x only
-	// IE/Edge & older browsers don't support the :scope pseudo-class.
-	// Support: Safari 6.0 only
-	// Safari 6.0 supports :scope but it's an alias of :root there.
-	support.scope = assert( function( el ) {
-		docElem.appendChild( el ).appendChild( document.createElement( "div" ) );
-		return typeof el.querySelectorAll !== "undefined" &&
-			!el.querySelectorAll( ":scope fieldset div" ).length;
-	} );
-
-	/* Attributes
-	---------------------------------------------------------------------- */
-
-	// Support: IE<8
-	// Verify that getAttribute really returns attributes and not properties
-	// (excepting IE8 booleans)
-	support.attributes = assert( function( el ) {
-		el.className = "i";
-		return !el.getAttribute( "className" );
-	} );
-
-	/* getElement(s)By*
-	---------------------------------------------------------------------- */
-
-	// Check if getElementsByTagName("*") returns only elements
-	support.getElementsByTagName = assert( function( el ) {
-		el.appendChild( document.createComment( "" ) );
-		return !el.getElementsByTagName( "*" ).length;
-	} );
-
-	// Support: IE<9
-	support.getElementsByClassName = rnative.test( document.getElementsByClassName );
-
-	// Support: IE<10
+	// Support: IE <10
 	// Check if getElementById returns elements by name
 	// The broken getElementById methods don't pick up programmatically-set names,
 	// so use a roundabout getElementsByName test
 	support.getById = assert( function( el ) {
-		docElem.appendChild( el ).id = expando;
-		return !document.getElementsByName || !document.getElementsByName( expando ).length;
+		documentElement.appendChild( el ).id = jQuery.expando;
+		return !document.getElementsByName ||
+			!document.getElementsByName( jQuery.expando ).length;
+	} );
+
+	// Support: IE 9 only
+	// Check to see if it's possible to do matchesSelector
+	// on a disconnected node.
+	support.disconnectedMatch = assert( function( el ) {
+		return matches.call( el, "*" );
+	} );
+
+	// Support: IE 9 - 11+, Edge 12 - 18+
+	// IE/Edge don't support the :scope pseudo-class.
+	support.scope = assert( function() {
+		return document.querySelectorAll( ":scope" );
+	} );
+
+	// Support: Chrome 105 - 111 only, Safari 15.4 - 16.3 only
+	// Make sure the `:has()` argument is parsed unforgivingly.
+	// We include `*` in the test to detect buggy implementations that are
+	// _selectively_ forgiving (specifically when the list includes at least
+	// one valid selector).
+	// Note that we treat complete lack of support for `:has()` as if it were
+	// spec-compliant support, which is fine because use of `:has()` in such
+	// environments will fail in the qSA path and fall back to jQuery traversal
+	// anyway.
+	support.cssHas = assert( function() {
+		try {
+			document.querySelector( ":has(*,:jqfake)" );
+			return false;
+		} catch ( e ) {
+			return true;
+		}
 	} );
 
 	// ID filter and find
 	if ( support.getById ) {
-		Expr.filter[ "ID" ] = function( id ) {
+		Expr.filter.ID = function( id ) {
 			var attrId = id.replace( runescape, funescape );
 			return function( elem ) {
 				return elem.getAttribute( "id" ) === attrId;
 			};
 		};
-		Expr.find[ "ID" ] = function( id, context ) {
+		Expr.find.ID = function( id, context ) {
 			if ( typeof context.getElementById !== "undefined" && documentIsHTML ) {
 				var elem = context.getElementById( id );
 				return elem ? [ elem ] : [];
 			}
 		};
 	} else {
-		Expr.filter[ "ID" ] =  function( id ) {
+		Expr.filter.ID =  function( id ) {
 			var attrId = id.replace( runescape, funescape );
 			return function( elem ) {
 				var node = typeof elem.getAttributeNode !== "undefined" &&
@@ -3159,7 +3149,7 @@ setDocument = Sizzle.setDocument = function( node ) {
 
 		// Support: IE 6 - 7 only
 		// getElementById is not reliable as a find shortcut
-		Expr.find[ "ID" ] = function( id, context ) {
+		Expr.find.ID = function( id, context ) {
 			if ( typeof context.getElementById !== "undefined" && documentIsHTML ) {
 				var node, i, elems,
 					elem = context.getElementById( id );
@@ -3189,40 +3179,18 @@ setDocument = Sizzle.setDocument = function( node ) {
 	}
 
 	// Tag
-	Expr.find[ "TAG" ] = support.getElementsByTagName ?
-		function( tag, context ) {
-			if ( typeof context.getElementsByTagName !== "undefined" ) {
-				return context.getElementsByTagName( tag );
+	Expr.find.TAG = function( tag, context ) {
+		if ( typeof context.getElementsByTagName !== "undefined" ) {
+			return context.getElementsByTagName( tag );
 
-			// DocumentFragment nodes don't have gEBTN
-			} else if ( support.qsa ) {
-				return context.querySelectorAll( tag );
-			}
-		} :
-
-		function( tag, context ) {
-			var elem,
-				tmp = [],
-				i = 0,
-
-				// By happy coincidence, a (broken) gEBTN appears on DocumentFragment nodes too
-				results = context.getElementsByTagName( tag );
-
-			// Filter out possible comments
-			if ( tag === "*" ) {
-				while ( ( elem = results[ i++ ] ) ) {
-					if ( elem.nodeType === 1 ) {
-						tmp.push( elem );
-					}
-				}
-
-				return tmp;
-			}
-			return results;
-		};
+		// DocumentFragment nodes don't have gEBTN
+		} else {
+			return context.querySelectorAll( tag );
+		}
+	};
 
 	// Class
-	Expr.find[ "CLASS" ] = support.getElementsByClassName && function( className, context ) {
+	Expr.find.CLASS = function( className, context ) {
 		if ( typeof context.getElementsByClassName !== "undefined" && documentIsHTML ) {
 			return context.getElementsByClassName( className );
 		}
@@ -3233,177 +3201,94 @@ setDocument = Sizzle.setDocument = function( node ) {
 
 	// QSA and matchesSelector support
 
-	// matchesSelector(:active) reports false when true (IE9/Opera 11.5)
-	rbuggyMatches = [];
-
-	// qSa(:focus) reports false when true (Chrome 21)
-	// We allow this because of a bug in IE8/9 that throws an error
-	// whenever `document.activeElement` is accessed on an iframe
-	// So, we allow :focus to pass through QSA all the time to avoid the IE error
-	// See https://bugs.jquery.com/ticket/13378
 	rbuggyQSA = [];
 
-	if ( ( support.qsa = rnative.test( document.querySelectorAll ) ) ) {
+	// Build QSA regex
+	// Regex strategy adopted from Diego Perini
+	assert( function( el ) {
 
-		// Build QSA regex
-		// Regex strategy adopted from Diego Perini
-		assert( function( el ) {
+		var input;
 
-			var input;
+		documentElement.appendChild( el ).innerHTML =
+			"<a id='" + expando + "' href='' disabled='disabled'></a>" +
+			"<select id='" + expando + "-\r\\' disabled='disabled'>" +
+			"<option selected=''></option></select>";
 
-			// Select is set to empty string on purpose
-			// This is to test IE's treatment of not explicitly
-			// setting a boolean content attribute,
-			// since its presence should be enough
-			// https://bugs.jquery.com/ticket/12359
-			docElem.appendChild( el ).innerHTML = "<a id='" + expando + "'></a>" +
-				"<select id='" + expando + "-\r\\' msallowcapture=''>" +
-				"<option selected=''></option></select>";
+		// Support: iOS <=7 - 8 only
+		// Boolean attributes and "value" are not treated correctly in some XML documents
+		if ( !el.querySelectorAll( "[selected]" ).length ) {
+			rbuggyQSA.push( "\\[" + whitespace + "*(?:value|" + booleans + ")" );
+		}
 
-			// Support: IE8, Opera 11-12.16
-			// Nothing should be selected when empty strings follow ^= or $= or *=
-			// The test attribute must be unknown in Opera but "safe" for WinRT
-			// https://msdn.microsoft.com/en-us/library/ie/hh465388.aspx#attribute_section
-			if ( el.querySelectorAll( "[msallowcapture^='']" ).length ) {
-				rbuggyQSA.push( "[*^$]=" + whitespace + "*(?:''|\"\")" );
-			}
+		// Support: iOS <=7 - 8 only
+		if ( !el.querySelectorAll( "[id~=" + expando + "-]" ).length ) {
+			rbuggyQSA.push( "~=" );
+		}
 
-			// Support: IE8
-			// Boolean attributes and "value" are not treated correctly
-			if ( !el.querySelectorAll( "[selected]" ).length ) {
-				rbuggyQSA.push( "\\[" + whitespace + "*(?:value|" + booleans + ")" );
-			}
+		// Support: iOS 8 only
+		// https://bugs.webkit.org/show_bug.cgi?id=136851
+		// In-page `selector#id sibling-combinator selector` fails
+		if ( !el.querySelectorAll( "a#" + expando + "+*" ).length ) {
+			rbuggyQSA.push( ".#.+[+~]" );
+		}
 
-			// Support: Chrome<29, Android<4.4, Safari<7.0+, iOS<7.0+, PhantomJS<1.9.8+
-			if ( !el.querySelectorAll( "[id~=" + expando + "-]" ).length ) {
-				rbuggyQSA.push( "~=" );
-			}
+		// Support: Chrome <=105+, Firefox <=104+, Safari <=15.4+
+		// In some of the document kinds, these selectors wouldn't work natively.
+		// This is probably OK but for backwards compatibility we want to maintain
+		// handling them through jQuery traversal in jQuery 3.x.
+		if ( !el.querySelectorAll( ":checked" ).length ) {
+			rbuggyQSA.push( ":checked" );
+		}
 
-			// Support: IE 11+, Edge 15 - 18+
-			// IE 11/Edge don't find elements on a `[name='']` query in some cases.
-			// Adding a temporary attribute to the document before the selection works
-			// around the issue.
-			// Interestingly, IE 10 & older don't seem to have the issue.
-			input = document.createElement( "input" );
-			input.setAttribute( "name", "" );
-			el.appendChild( input );
-			if ( !el.querySelectorAll( "[name='']" ).length ) {
-				rbuggyQSA.push( "\\[" + whitespace + "*name" + whitespace + "*=" +
-					whitespace + "*(?:''|\"\")" );
-			}
+		// Support: Windows 8 Native Apps
+		// The type and name attributes are restricted during .innerHTML assignment
+		input = document.createElement( "input" );
+		input.setAttribute( "type", "hidden" );
+		el.appendChild( input ).setAttribute( "name", "D" );
 
-			// Webkit/Opera - :checked should return selected option elements
-			// http://www.w3.org/TR/2011/REC-css3-selectors-20110929/#checked
-			// IE8 throws error here and will not see later tests
-			if ( !el.querySelectorAll( ":checked" ).length ) {
-				rbuggyQSA.push( ":checked" );
-			}
+		// Support: IE 9 - 11+
+		// IE's :disabled selector does not pick up the children of disabled fieldsets
+		// Support: Chrome <=105+, Firefox <=104+, Safari <=15.4+
+		// In some of the document kinds, these selectors wouldn't work natively.
+		// This is probably OK but for backwards compatibility we want to maintain
+		// handling them through jQuery traversal in jQuery 3.x.
+		documentElement.appendChild( el ).disabled = true;
+		if ( el.querySelectorAll( ":disabled" ).length !== 2 ) {
+			rbuggyQSA.push( ":enabled", ":disabled" );
+		}
 
-			// Support: Safari 8+, iOS 8+
-			// https://bugs.webkit.org/show_bug.cgi?id=136851
-			// In-page `selector#id sibling-combinator selector` fails
-			if ( !el.querySelectorAll( "a#" + expando + "+*" ).length ) {
-				rbuggyQSA.push( ".#.+[+~]" );
-			}
+		// Support: IE 11+, Edge 15 - 18+
+		// IE 11/Edge don't find elements on a `[name='']` query in some cases.
+		// Adding a temporary attribute to the document before the selection works
+		// around the issue.
+		// Interestingly, IE 10 & older don't seem to have the issue.
+		input = document.createElement( "input" );
+		input.setAttribute( "name", "" );
+		el.appendChild( input );
+		if ( !el.querySelectorAll( "[name='']" ).length ) {
+			rbuggyQSA.push( "\\[" + whitespace + "*name" + whitespace + "*=" +
+				whitespace + "*(?:''|\"\")" );
+		}
+	} );
 
-			// Support: Firefox <=3.6 - 5 only
-			// Old Firefox doesn't throw on a badly-escaped identifier.
-			el.querySelectorAll( "\\\f" );
-			rbuggyQSA.push( "[\\r\\n\\f]" );
-		} );
+	if ( !support.cssHas ) {
 
-		assert( function( el ) {
-			el.innerHTML = "<a href='' disabled='disabled'></a>" +
-				"<select disabled='disabled'><option/></select>";
-
-			// Support: Windows 8 Native Apps
-			// The type and name attributes are restricted during .innerHTML assignment
-			var input = document.createElement( "input" );
-			input.setAttribute( "type", "hidden" );
-			el.appendChild( input ).setAttribute( "name", "D" );
-
-			// Support: IE8
-			// Enforce case-sensitivity of name attribute
-			if ( el.querySelectorAll( "[name=d]" ).length ) {
-				rbuggyQSA.push( "name" + whitespace + "*[*^$|!~]?=" );
-			}
-
-			// FF 3.5 - :enabled/:disabled and hidden elements (hidden elements are still enabled)
-			// IE8 throws error here and will not see later tests
-			if ( el.querySelectorAll( ":enabled" ).length !== 2 ) {
-				rbuggyQSA.push( ":enabled", ":disabled" );
-			}
-
-			// Support: IE9-11+
-			// IE's :disabled selector does not pick up the children of disabled fieldsets
-			docElem.appendChild( el ).disabled = true;
-			if ( el.querySelectorAll( ":disabled" ).length !== 2 ) {
-				rbuggyQSA.push( ":enabled", ":disabled" );
-			}
-
-			// Support: Opera 10 - 11 only
-			// Opera 10-11 does not throw on post-comma invalid pseudos
-			el.querySelectorAll( "*,:x" );
-			rbuggyQSA.push( ",.*:" );
-		} );
-	}
-
-	if ( ( support.matchesSelector = rnative.test( ( matches = docElem.matches ||
-		docElem.webkitMatchesSelector ||
-		docElem.mozMatchesSelector ||
-		docElem.oMatchesSelector ||
-		docElem.msMatchesSelector ) ) ) ) {
-
-		assert( function( el ) {
-
-			// Check to see if it's possible to do matchesSelector
-			// on a disconnected node (IE 9)
-			support.disconnectedMatch = matches.call( el, "*" );
-
-			// This should fail with an exception
-			// Gecko does not error, returns false instead
-			matches.call( el, "[s!='']:x" );
-			rbuggyMatches.push( "!=", pseudos );
-		} );
+		// Support: Chrome 105 - 110+, Safari 15.4 - 16.3+
+		// Our regular `try-catch` mechanism fails to detect natively-unsupported
+		// pseudo-classes inside `:has()` (such as `:has(:contains("Foo"))`)
+		// in browsers that parse the `:has()` argument as a forgiving selector list.
+		// https://drafts.csswg.org/selectors/#relational now requires the argument
+		// to be parsed unforgivingly, but browsers have not yet fully adjusted.
+		rbuggyQSA.push( ":has" );
 	}
 
 	rbuggyQSA = rbuggyQSA.length && new RegExp( rbuggyQSA.join( "|" ) );
-	rbuggyMatches = rbuggyMatches.length && new RegExp( rbuggyMatches.join( "|" ) );
-
-	/* Contains
-	---------------------------------------------------------------------- */
-	hasCompare = rnative.test( docElem.compareDocumentPosition );
-
-	// Element contains another
-	// Purposefully self-exclusive
-	// As in, an element does not contain itself
-	contains = hasCompare || rnative.test( docElem.contains ) ?
-		function( a, b ) {
-			var adown = a.nodeType === 9 ? a.documentElement : a,
-				bup = b && b.parentNode;
-			return a === bup || !!( bup && bup.nodeType === 1 && (
-				adown.contains ?
-					adown.contains( bup ) :
-					a.compareDocumentPosition && a.compareDocumentPosition( bup ) & 16
-			) );
-		} :
-		function( a, b ) {
-			if ( b ) {
-				while ( ( b = b.parentNode ) ) {
-					if ( b === a ) {
-						return true;
-					}
-				}
-			}
-			return false;
-		};
 
 	/* Sorting
 	---------------------------------------------------------------------- */
 
 	// Document order sorting
-	sortOrder = hasCompare ?
-	function( a, b ) {
+	sortOrder = function( a, b ) {
 
 		// Flag for duplicate removal
 		if ( a === b ) {
@@ -3437,8 +3322,8 @@ setDocument = Sizzle.setDocument = function( node ) {
 			// IE/Edge sometimes throw a "Permission denied" error when strict-comparing
 			// two documents; shallow comparisons work.
 			// eslint-disable-next-line eqeqeq
-			if ( a == document || a.ownerDocument == preferredDoc &&
-				contains( preferredDoc, a ) ) {
+			if ( a === document || a.ownerDocument == preferredDoc &&
+				find.contains( preferredDoc, a ) ) {
 				return -1;
 			}
 
@@ -3446,100 +3331,33 @@ setDocument = Sizzle.setDocument = function( node ) {
 			// IE/Edge sometimes throw a "Permission denied" error when strict-comparing
 			// two documents; shallow comparisons work.
 			// eslint-disable-next-line eqeqeq
-			if ( b == document || b.ownerDocument == preferredDoc &&
-				contains( preferredDoc, b ) ) {
+			if ( b === document || b.ownerDocument == preferredDoc &&
+				find.contains( preferredDoc, b ) ) {
 				return 1;
 			}
 
 			// Maintain original order
 			return sortInput ?
-				( indexOf( sortInput, a ) - indexOf( sortInput, b ) ) :
+				( indexOf.call( sortInput, a ) - indexOf.call( sortInput, b ) ) :
 				0;
 		}
 
 		return compare & 4 ? -1 : 1;
-	} :
-	function( a, b ) {
-
-		// Exit early if the nodes are identical
-		if ( a === b ) {
-			hasDuplicate = true;
-			return 0;
-		}
-
-		var cur,
-			i = 0,
-			aup = a.parentNode,
-			bup = b.parentNode,
-			ap = [ a ],
-			bp = [ b ];
-
-		// Parentless nodes are either documents or disconnected
-		if ( !aup || !bup ) {
-
-			// Support: IE 11+, Edge 17 - 18+
-			// IE/Edge sometimes throw a "Permission denied" error when strict-comparing
-			// two documents; shallow comparisons work.
-			/* eslint-disable eqeqeq */
-			return a == document ? -1 :
-				b == document ? 1 :
-				/* eslint-enable eqeqeq */
-				aup ? -1 :
-				bup ? 1 :
-				sortInput ?
-				( indexOf( sortInput, a ) - indexOf( sortInput, b ) ) :
-				0;
-
-		// If the nodes are siblings, we can do a quick check
-		} else if ( aup === bup ) {
-			return siblingCheck( a, b );
-		}
-
-		// Otherwise we need full lists of their ancestors for comparison
-		cur = a;
-		while ( ( cur = cur.parentNode ) ) {
-			ap.unshift( cur );
-		}
-		cur = b;
-		while ( ( cur = cur.parentNode ) ) {
-			bp.unshift( cur );
-		}
-
-		// Walk down the tree looking for a discrepancy
-		while ( ap[ i ] === bp[ i ] ) {
-			i++;
-		}
-
-		return i ?
-
-			// Do a sibling check if the nodes have a common ancestor
-			siblingCheck( ap[ i ], bp[ i ] ) :
-
-			// Otherwise nodes in our document sort first
-			// Support: IE 11+, Edge 17 - 18+
-			// IE/Edge sometimes throw a "Permission denied" error when strict-comparing
-			// two documents; shallow comparisons work.
-			/* eslint-disable eqeqeq */
-			ap[ i ] == preferredDoc ? -1 :
-			bp[ i ] == preferredDoc ? 1 :
-			/* eslint-enable eqeqeq */
-			0;
 	};
 
 	return document;
+}
+
+find.matches = function( expr, elements ) {
+	return find( expr, null, null, elements );
 };
 
-Sizzle.matches = function( expr, elements ) {
-	return Sizzle( expr, null, null, elements );
-};
-
-Sizzle.matchesSelector = function( elem, expr ) {
+find.matchesSelector = function( elem, expr ) {
 	setDocument( elem );
 
-	if ( support.matchesSelector && documentIsHTML &&
+	if ( documentIsHTML &&
 		!nonnativeSelectorCache[ expr + " " ] &&
-		( !rbuggyMatches || !rbuggyMatches.test( expr ) ) &&
-		( !rbuggyQSA     || !rbuggyQSA.test( expr ) ) ) {
+		( !rbuggyQSA || !rbuggyQSA.test( expr ) ) ) {
 
 		try {
 			var ret = matches.call( elem, expr );
@@ -3547,9 +3365,9 @@ Sizzle.matchesSelector = function( elem, expr ) {
 			// IE 9's matchesSelector returns false on disconnected nodes
 			if ( ret || support.disconnectedMatch ||
 
-				// As well, disconnected nodes are said to be in a document
-				// fragment in IE 9
-				elem.document && elem.document.nodeType !== 11 ) {
+					// As well, disconnected nodes are said to be in a document
+					// fragment in IE 9
+					elem.document && elem.document.nodeType !== 11 ) {
 				return ret;
 			}
 		} catch ( e ) {
@@ -3557,10 +3375,10 @@ Sizzle.matchesSelector = function( elem, expr ) {
 		}
 	}
 
-	return Sizzle( expr, document, null, [ elem ] ).length > 0;
+	return find( expr, document, null, [ elem ] ).length > 0;
 };
 
-Sizzle.contains = function( context, elem ) {
+find.contains = function( context, elem ) {
 
 	// Set document vars if needed
 	// Support: IE 11+, Edge 17 - 18+
@@ -3570,10 +3388,11 @@ Sizzle.contains = function( context, elem ) {
 	if ( ( context.ownerDocument || context ) != document ) {
 		setDocument( context );
 	}
-	return contains( context, elem );
+	return jQuery.contains( context, elem );
 };
 
-Sizzle.attr = function( elem, name ) {
+
+find.attr = function( elem, name ) {
 
 	// Set document vars if needed
 	// Support: IE 11+, Edge 17 - 18+
@@ -3586,25 +3405,19 @@ Sizzle.attr = function( elem, name ) {
 
 	var fn = Expr.attrHandle[ name.toLowerCase() ],
 
-		// Don't get fooled by Object.prototype properties (jQuery #13807)
+		// Don't get fooled by Object.prototype properties (see trac-13807)
 		val = fn && hasOwn.call( Expr.attrHandle, name.toLowerCase() ) ?
 			fn( elem, name, !documentIsHTML ) :
 			undefined;
 
-	return val !== undefined ?
-		val :
-		support.attributes || !documentIsHTML ?
-			elem.getAttribute( name ) :
-			( val = elem.getAttributeNode( name ) ) && val.specified ?
-				val.value :
-				null;
+	if ( val !== undefined ) {
+		return val;
+	}
+
+	return elem.getAttribute( name );
 };
 
-Sizzle.escape = function( sel ) {
-	return ( sel + "" ).replace( rcssescape, fcssescape );
-};
-
-Sizzle.error = function( msg ) {
+find.error = function( msg ) {
 	throw new Error( "Syntax error, unrecognized expression: " + msg );
 };
 
@@ -3612,16 +3425,20 @@ Sizzle.error = function( msg ) {
  * Document sorting and removing duplicates
  * @param {ArrayLike} results
  */
-Sizzle.uniqueSort = function( results ) {
+jQuery.uniqueSort = function( results ) {
 	var elem,
 		duplicates = [],
 		j = 0,
 		i = 0;
 
 	// Unless we *know* we can detect duplicates, assume their presence
-	hasDuplicate = !support.detectDuplicates;
-	sortInput = !support.sortStable && results.slice( 0 );
-	results.sort( sortOrder );
+	//
+	// Support: Android <=4.0+
+	// Testing for detecting duplicates is unpredictable so instead assume we can't
+	// depend on duplicate detection in all browsers without a stable sort.
+	hasDuplicate = !support.sortStable;
+	sortInput = !support.sortStable && slice.call( results, 0 );
+	sort.call( results, sortOrder );
 
 	if ( hasDuplicate ) {
 		while ( ( elem = results[ i++ ] ) ) {
@@ -3630,7 +3447,7 @@ Sizzle.uniqueSort = function( results ) {
 			}
 		}
 		while ( j-- ) {
-			results.splice( duplicates[ j ], 1 );
+			splice.call( results, duplicates[ j ], 1 );
 		}
 	}
 
@@ -3641,47 +3458,11 @@ Sizzle.uniqueSort = function( results ) {
 	return results;
 };
 
-/**
- * Utility function for retrieving the text value of an array of DOM nodes
- * @param {Array|Element} elem
- */
-getText = Sizzle.getText = function( elem ) {
-	var node,
-		ret = "",
-		i = 0,
-		nodeType = elem.nodeType;
-
-	if ( !nodeType ) {
-
-		// If no nodeType, this is expected to be an array
-		while ( ( node = elem[ i++ ] ) ) {
-
-			// Do not traverse comment nodes
-			ret += getText( node );
-		}
-	} else if ( nodeType === 1 || nodeType === 9 || nodeType === 11 ) {
-
-		// Use textContent for elements
-		// innerText usage removed for consistency of new lines (jQuery #11153)
-		if ( typeof elem.textContent === "string" ) {
-			return elem.textContent;
-		} else {
-
-			// Traverse its children
-			for ( elem = elem.firstChild; elem; elem = elem.nextSibling ) {
-				ret += getText( elem );
-			}
-		}
-	} else if ( nodeType === 3 || nodeType === 4 ) {
-		return elem.nodeValue;
-	}
-
-	// Do not include comment or processing instruction nodes
-
-	return ret;
+jQuery.fn.uniqueSort = function() {
+	return this.pushStack( jQuery.uniqueSort( slice.apply( this ) ) );
 };
 
-Expr = Sizzle.selectors = {
+Expr = jQuery.expr = {
 
 	// Can be adjusted by the user
 	cacheLength: 50,
@@ -3702,12 +3483,12 @@ Expr = Sizzle.selectors = {
 	},
 
 	preFilter: {
-		"ATTR": function( match ) {
+		ATTR: function( match ) {
 			match[ 1 ] = match[ 1 ].replace( runescape, funescape );
 
 			// Move the given value to match[3] whether quoted or unquoted
-			match[ 3 ] = ( match[ 3 ] || match[ 4 ] ||
-				match[ 5 ] || "" ).replace( runescape, funescape );
+			match[ 3 ] = ( match[ 3 ] || match[ 4 ] || match[ 5 ] || "" )
+				.replace( runescape, funescape );
 
 			if ( match[ 2 ] === "~=" ) {
 				match[ 3 ] = " " + match[ 3 ] + " ";
@@ -3716,7 +3497,7 @@ Expr = Sizzle.selectors = {
 			return match.slice( 0, 4 );
 		},
 
-		"CHILD": function( match ) {
+		CHILD: function( match ) {
 
 			/* matches from matchExpr["CHILD"]
 				1 type (only|nth|...)
@@ -3734,29 +3515,30 @@ Expr = Sizzle.selectors = {
 
 				// nth-* requires argument
 				if ( !match[ 3 ] ) {
-					Sizzle.error( match[ 0 ] );
+					find.error( match[ 0 ] );
 				}
 
 				// numeric x and y parameters for Expr.filter.CHILD
 				// remember that false/true cast respectively to 0/1
 				match[ 4 ] = +( match[ 4 ] ?
 					match[ 5 ] + ( match[ 6 ] || 1 ) :
-					2 * ( match[ 3 ] === "even" || match[ 3 ] === "odd" ) );
+					2 * ( match[ 3 ] === "even" || match[ 3 ] === "odd" )
+				);
 				match[ 5 ] = +( ( match[ 7 ] + match[ 8 ] ) || match[ 3 ] === "odd" );
 
-				// other types prohibit arguments
+			// other types prohibit arguments
 			} else if ( match[ 3 ] ) {
-				Sizzle.error( match[ 0 ] );
+				find.error( match[ 0 ] );
 			}
 
 			return match;
 		},
 
-		"PSEUDO": function( match ) {
+		PSEUDO: function( match ) {
 			var excess,
 				unquoted = !match[ 6 ] && match[ 2 ];
 
-			if ( matchExpr[ "CHILD" ].test( match[ 0 ] ) ) {
+			if ( matchExpr.CHILD.test( match[ 0 ] ) ) {
 				return null;
 			}
 
@@ -3785,36 +3567,36 @@ Expr = Sizzle.selectors = {
 
 	filter: {
 
-		"TAG": function( nodeNameSelector ) {
-			var nodeName = nodeNameSelector.replace( runescape, funescape ).toLowerCase();
+		TAG: function( nodeNameSelector ) {
+			var expectedNodeName = nodeNameSelector.replace( runescape, funescape ).toLowerCase();
 			return nodeNameSelector === "*" ?
 				function() {
 					return true;
 				} :
 				function( elem ) {
-					return elem.nodeName && elem.nodeName.toLowerCase() === nodeName;
+					return nodeName( elem, expectedNodeName );
 				};
 		},
 
-		"CLASS": function( className ) {
+		CLASS: function( className ) {
 			var pattern = classCache[ className + " " ];
 
 			return pattern ||
-				( pattern = new RegExp( "(^|" + whitespace +
-					")" + className + "(" + whitespace + "|$)" ) ) && classCache(
-						className, function( elem ) {
-							return pattern.test(
-								typeof elem.className === "string" && elem.className ||
-								typeof elem.getAttribute !== "undefined" &&
-									elem.getAttribute( "class" ) ||
-								""
-							);
+				( pattern = new RegExp( "(^|" + whitespace + ")" + className +
+					"(" + whitespace + "|$)" ) ) &&
+				classCache( className, function( elem ) {
+					return pattern.test(
+						typeof elem.className === "string" && elem.className ||
+							typeof elem.getAttribute !== "undefined" &&
+								elem.getAttribute( "class" ) ||
+							""
+					);
 				} );
 		},
 
-		"ATTR": function( name, operator, check ) {
+		ATTR: function( name, operator, check ) {
 			return function( elem ) {
-				var result = Sizzle.attr( elem, name );
+				var result = find.attr( elem, name );
 
 				if ( result == null ) {
 					return operator === "!=";
@@ -3825,22 +3607,34 @@ Expr = Sizzle.selectors = {
 
 				result += "";
 
-				/* eslint-disable max-len */
+				if ( operator === "=" ) {
+					return result === check;
+				}
+				if ( operator === "!=" ) {
+					return result !== check;
+				}
+				if ( operator === "^=" ) {
+					return check && result.indexOf( check ) === 0;
+				}
+				if ( operator === "*=" ) {
+					return check && result.indexOf( check ) > -1;
+				}
+				if ( operator === "$=" ) {
+					return check && result.slice( -check.length ) === check;
+				}
+				if ( operator === "~=" ) {
+					return ( " " + result.replace( rwhitespace, " " ) + " " )
+						.indexOf( check ) > -1;
+				}
+				if ( operator === "|=" ) {
+					return result === check || result.slice( 0, check.length + 1 ) === check + "-";
+				}
 
-				return operator === "=" ? result === check :
-					operator === "!=" ? result !== check :
-					operator === "^=" ? check && result.indexOf( check ) === 0 :
-					operator === "*=" ? check && result.indexOf( check ) > -1 :
-					operator === "$=" ? check && result.slice( -check.length ) === check :
-					operator === "~=" ? ( " " + result.replace( rwhitespace, " " ) + " " ).indexOf( check ) > -1 :
-					operator === "|=" ? result === check || result.slice( 0, check.length + 1 ) === check + "-" :
-					false;
-				/* eslint-enable max-len */
-
+				return false;
 			};
 		},
 
-		"CHILD": function( type, what, _argument, first, last ) {
+		CHILD: function( type, what, _argument, first, last ) {
 			var simple = type.slice( 0, 3 ) !== "nth",
 				forward = type.slice( -4 ) !== "last",
 				ofType = what === "of-type";
@@ -3853,7 +3647,7 @@ Expr = Sizzle.selectors = {
 				} :
 
 				function( elem, _context, xml ) {
-					var cache, uniqueCache, outerCache, node, nodeIndex, start,
+					var cache, outerCache, node, nodeIndex, start,
 						dir = simple !== forward ? "nextSibling" : "previousSibling",
 						parent = elem.parentNode,
 						name = ofType && elem.nodeName.toLowerCase(),
@@ -3868,7 +3662,7 @@ Expr = Sizzle.selectors = {
 								node = elem;
 								while ( ( node = node[ dir ] ) ) {
 									if ( ofType ?
-										node.nodeName.toLowerCase() === name :
+										nodeName( node, name ) :
 										node.nodeType === 1 ) {
 
 										return false;
@@ -3887,17 +3681,8 @@ Expr = Sizzle.selectors = {
 						if ( forward && useCache ) {
 
 							// Seek `elem` from a previously-cached index
-
-							// ...in a gzip-friendly way
-							node = parent;
-							outerCache = node[ expando ] || ( node[ expando ] = {} );
-
-							// Support: IE <9 only
-							// Defend against cloned attroperties (jQuery gh-1709)
-							uniqueCache = outerCache[ node.uniqueID ] ||
-								( outerCache[ node.uniqueID ] = {} );
-
-							cache = uniqueCache[ type ] || [];
+							outerCache = parent[ expando ] || ( parent[ expando ] = {} );
+							cache = outerCache[ type ] || [];
 							nodeIndex = cache[ 0 ] === dirruns && cache[ 1 ];
 							diff = nodeIndex && cache[ 2 ];
 							node = nodeIndex && parent.childNodes[ nodeIndex ];
@@ -3909,7 +3694,7 @@ Expr = Sizzle.selectors = {
 
 								// When found, cache indexes on `parent` and break
 								if ( node.nodeType === 1 && ++diff && node === elem ) {
-									uniqueCache[ type ] = [ dirruns, nodeIndex, diff ];
+									outerCache[ type ] = [ dirruns, nodeIndex, diff ];
 									break;
 								}
 							}
@@ -3918,17 +3703,8 @@ Expr = Sizzle.selectors = {
 
 							// Use previously-cached element index if available
 							if ( useCache ) {
-
-								// ...in a gzip-friendly way
-								node = elem;
-								outerCache = node[ expando ] || ( node[ expando ] = {} );
-
-								// Support: IE <9 only
-								// Defend against cloned attroperties (jQuery gh-1709)
-								uniqueCache = outerCache[ node.uniqueID ] ||
-									( outerCache[ node.uniqueID ] = {} );
-
-								cache = uniqueCache[ type ] || [];
+								outerCache = elem[ expando ] || ( elem[ expando ] = {} );
+								cache = outerCache[ type ] || [];
 								nodeIndex = cache[ 0 ] === dirruns && cache[ 1 ];
 								diff = nodeIndex;
 							}
@@ -3942,7 +3718,7 @@ Expr = Sizzle.selectors = {
 									( diff = nodeIndex = 0 ) || start.pop() ) ) {
 
 									if ( ( ofType ?
-										node.nodeName.toLowerCase() === name :
+										nodeName( node, name ) :
 										node.nodeType === 1 ) &&
 										++diff ) {
 
@@ -3950,13 +3726,7 @@ Expr = Sizzle.selectors = {
 										if ( useCache ) {
 											outerCache = node[ expando ] ||
 												( node[ expando ] = {} );
-
-											// Support: IE <9 only
-											// Defend against cloned attroperties (jQuery gh-1709)
-											uniqueCache = outerCache[ node.uniqueID ] ||
-												( outerCache[ node.uniqueID ] = {} );
-
-											uniqueCache[ type ] = [ dirruns, diff ];
+											outerCache[ type ] = [ dirruns, diff ];
 										}
 
 										if ( node === elem ) {
@@ -3974,19 +3744,19 @@ Expr = Sizzle.selectors = {
 				};
 		},
 
-		"PSEUDO": function( pseudo, argument ) {
+		PSEUDO: function( pseudo, argument ) {
 
 			// pseudo-class names are case-insensitive
-			// http://www.w3.org/TR/selectors/#pseudo-classes
+			// https://www.w3.org/TR/selectors/#pseudo-classes
 			// Prioritize by case sensitivity in case custom pseudos are added with uppercase letters
 			// Remember that setFilters inherits from pseudos
 			var args,
 				fn = Expr.pseudos[ pseudo ] || Expr.setFilters[ pseudo.toLowerCase() ] ||
-					Sizzle.error( "unsupported pseudo: " + pseudo );
+					find.error( "unsupported pseudo: " + pseudo );
 
 			// The user may use createPseudo to indicate that
 			// arguments are needed to create the filter function
-			// just as Sizzle does
+			// just as jQuery does
 			if ( fn[ expando ] ) {
 				return fn( argument );
 			}
@@ -4000,7 +3770,7 @@ Expr = Sizzle.selectors = {
 							matched = fn( seed, argument ),
 							i = matched.length;
 						while ( i-- ) {
-							idx = indexOf( seed, matched[ i ] );
+							idx = indexOf.call( seed, matched[ i ] );
 							seed[ idx ] = !( matches[ idx ] = matched[ i ] );
 						}
 					} ) :
@@ -4016,14 +3786,14 @@ Expr = Sizzle.selectors = {
 	pseudos: {
 
 		// Potentially complex pseudos
-		"not": markFunction( function( selector ) {
+		not: markFunction( function( selector ) {
 
 			// Trim the selector passed to compile
 			// to avoid treating leading and trailing
 			// spaces as combinators
 			var input = [],
 				results = [],
-				matcher = compile( selector.replace( rtrim, "$1" ) );
+				matcher = compile( selector.replace( rtrimCSS, "$1" ) );
 
 			return matcher[ expando ] ?
 				markFunction( function( seed, matches, _context, xml ) {
@@ -4042,22 +3812,23 @@ Expr = Sizzle.selectors = {
 					input[ 0 ] = elem;
 					matcher( input, null, xml, results );
 
-					// Don't keep the element (issue #299)
+					// Don't keep the element
+					// (see https://github.com/jquery/sizzle/issues/299)
 					input[ 0 ] = null;
 					return !results.pop();
 				};
 		} ),
 
-		"has": markFunction( function( selector ) {
+		has: markFunction( function( selector ) {
 			return function( elem ) {
-				return Sizzle( selector, elem ).length > 0;
+				return find( selector, elem ).length > 0;
 			};
 		} ),
 
-		"contains": markFunction( function( text ) {
+		contains: markFunction( function( text ) {
 			text = text.replace( runescape, funescape );
 			return function( elem ) {
-				return ( elem.textContent || getText( elem ) ).indexOf( text ) > -1;
+				return ( elem.textContent || jQuery.text( elem ) ).indexOf( text ) > -1;
 			};
 		} ),
 
@@ -4067,12 +3838,12 @@ Expr = Sizzle.selectors = {
 		// or beginning with the identifier C immediately followed by "-".
 		// The matching of C against the element's language value is performed case-insensitively.
 		// The identifier C does not have to be a valid language name."
-		// http://www.w3.org/TR/selectors/#lang-pseudo
-		"lang": markFunction( function( lang ) {
+		// https://www.w3.org/TR/selectors/#lang-pseudo
+		lang: markFunction( function( lang ) {
 
 			// lang value must be a valid identifier
 			if ( !ridentifier.test( lang || "" ) ) {
-				Sizzle.error( "unsupported lang: " + lang );
+				find.error( "unsupported lang: " + lang );
 			}
 			lang = lang.replace( runescape, funescape ).toLowerCase();
 			return function( elem ) {
@@ -4091,38 +3862,39 @@ Expr = Sizzle.selectors = {
 		} ),
 
 		// Miscellaneous
-		"target": function( elem ) {
+		target: function( elem ) {
 			var hash = window.location && window.location.hash;
 			return hash && hash.slice( 1 ) === elem.id;
 		},
 
-		"root": function( elem ) {
-			return elem === docElem;
+		root: function( elem ) {
+			return elem === documentElement;
 		},
 
-		"focus": function( elem ) {
-			return elem === document.activeElement &&
-				( !document.hasFocus || document.hasFocus() ) &&
+		focus: function( elem ) {
+			return elem === safeActiveElement() &&
+				document.hasFocus() &&
 				!!( elem.type || elem.href || ~elem.tabIndex );
 		},
 
 		// Boolean properties
-		"enabled": createDisabledPseudo( false ),
-		"disabled": createDisabledPseudo( true ),
+		enabled: createDisabledPseudo( false ),
+		disabled: createDisabledPseudo( true ),
 
-		"checked": function( elem ) {
+		checked: function( elem ) {
 
 			// In CSS3, :checked should return both checked and selected elements
-			// http://www.w3.org/TR/2011/REC-css3-selectors-20110929/#checked
-			var nodeName = elem.nodeName.toLowerCase();
-			return ( nodeName === "input" && !!elem.checked ) ||
-				( nodeName === "option" && !!elem.selected );
+			// https://www.w3.org/TR/2011/REC-css3-selectors-20110929/#checked
+			return ( nodeName( elem, "input" ) && !!elem.checked ) ||
+				( nodeName( elem, "option" ) && !!elem.selected );
 		},
 
-		"selected": function( elem ) {
+		selected: function( elem ) {
 
-			// Accessing this property makes selected-by-default
-			// options in Safari work properly
+			// Support: IE <=11+
+			// Accessing the selectedIndex property
+			// forces the browser to treat the default option as
+			// selected when in an optgroup.
 			if ( elem.parentNode ) {
 				// eslint-disable-next-line no-unused-expressions
 				elem.parentNode.selectedIndex;
@@ -4132,9 +3904,9 @@ Expr = Sizzle.selectors = {
 		},
 
 		// Contents
-		"empty": function( elem ) {
+		empty: function( elem ) {
 
-			// http://www.w3.org/TR/selectors/#empty-pseudo
+			// https://www.w3.org/TR/selectors/#empty-pseudo
 			// :empty is negated by element (1) or content nodes (text: 3; cdata: 4; entity ref: 5),
 			//   but not by others (comment: 8; processing instruction: 7; etc.)
 			// nodeType < 6 works because attributes (2) do not appear as children
@@ -4146,49 +3918,49 @@ Expr = Sizzle.selectors = {
 			return true;
 		},
 
-		"parent": function( elem ) {
-			return !Expr.pseudos[ "empty" ]( elem );
+		parent: function( elem ) {
+			return !Expr.pseudos.empty( elem );
 		},
 
 		// Element/input types
-		"header": function( elem ) {
+		header: function( elem ) {
 			return rheader.test( elem.nodeName );
 		},
 
-		"input": function( elem ) {
+		input: function( elem ) {
 			return rinputs.test( elem.nodeName );
 		},
 
-		"button": function( elem ) {
-			var name = elem.nodeName.toLowerCase();
-			return name === "input" && elem.type === "button" || name === "button";
+		button: function( elem ) {
+			return nodeName( elem, "input" ) && elem.type === "button" ||
+				nodeName( elem, "button" );
 		},
 
-		"text": function( elem ) {
+		text: function( elem ) {
 			var attr;
-			return elem.nodeName.toLowerCase() === "input" &&
-				elem.type === "text" &&
+			return nodeName( elem, "input" ) && elem.type === "text" &&
 
-				// Support: IE<8
-				// New HTML5 attribute values (e.g., "search") appear with elem.type === "text"
+				// Support: IE <10 only
+				// New HTML5 attribute values (e.g., "search") appear
+				// with elem.type === "text"
 				( ( attr = elem.getAttribute( "type" ) ) == null ||
 					attr.toLowerCase() === "text" );
 		},
 
 		// Position-in-collection
-		"first": createPositionalPseudo( function() {
+		first: createPositionalPseudo( function() {
 			return [ 0 ];
 		} ),
 
-		"last": createPositionalPseudo( function( _matchIndexes, length ) {
+		last: createPositionalPseudo( function( _matchIndexes, length ) {
 			return [ length - 1 ];
 		} ),
 
-		"eq": createPositionalPseudo( function( _matchIndexes, length, argument ) {
+		eq: createPositionalPseudo( function( _matchIndexes, length, argument ) {
 			return [ argument < 0 ? argument + length : argument ];
 		} ),
 
-		"even": createPositionalPseudo( function( matchIndexes, length ) {
+		even: createPositionalPseudo( function( matchIndexes, length ) {
 			var i = 0;
 			for ( ; i < length; i += 2 ) {
 				matchIndexes.push( i );
@@ -4196,7 +3968,7 @@ Expr = Sizzle.selectors = {
 			return matchIndexes;
 		} ),
 
-		"odd": createPositionalPseudo( function( matchIndexes, length ) {
+		odd: createPositionalPseudo( function( matchIndexes, length ) {
 			var i = 1;
 			for ( ; i < length; i += 2 ) {
 				matchIndexes.push( i );
@@ -4204,19 +3976,24 @@ Expr = Sizzle.selectors = {
 			return matchIndexes;
 		} ),
 
-		"lt": createPositionalPseudo( function( matchIndexes, length, argument ) {
-			var i = argument < 0 ?
-				argument + length :
-				argument > length ?
-					length :
-					argument;
+		lt: createPositionalPseudo( function( matchIndexes, length, argument ) {
+			var i;
+
+			if ( argument < 0 ) {
+				i = argument + length;
+			} else if ( argument > length ) {
+				i = length;
+			} else {
+				i = argument;
+			}
+
 			for ( ; --i >= 0; ) {
 				matchIndexes.push( i );
 			}
 			return matchIndexes;
 		} ),
 
-		"gt": createPositionalPseudo( function( matchIndexes, length, argument ) {
+		gt: createPositionalPseudo( function( matchIndexes, length, argument ) {
 			var i = argument < 0 ? argument + length : argument;
 			for ( ; ++i < length; ) {
 				matchIndexes.push( i );
@@ -4226,7 +4003,7 @@ Expr = Sizzle.selectors = {
 	}
 };
 
-Expr.pseudos[ "nth" ] = Expr.pseudos[ "eq" ];
+Expr.pseudos.nth = Expr.pseudos.eq;
 
 // Add button/input type pseudos
 for ( i in { radio: true, checkbox: true, file: true, password: true, image: true } ) {
@@ -4241,7 +4018,7 @@ function setFilters() {}
 setFilters.prototype = Expr.filters = Expr.pseudos;
 Expr.setFilters = new setFilters();
 
-tokenize = Sizzle.tokenize = function( selector, parseOnly ) {
+function tokenize( selector, parseOnly ) {
 	var matched, match, tokens, type,
 		soFar, groups, preFilters,
 		cached = tokenCache[ selector + " " ];
@@ -4269,13 +4046,13 @@ tokenize = Sizzle.tokenize = function( selector, parseOnly ) {
 		matched = false;
 
 		// Combinators
-		if ( ( match = rcombinators.exec( soFar ) ) ) {
+		if ( ( match = rleadingCombinator.exec( soFar ) ) ) {
 			matched = match.shift();
 			tokens.push( {
 				value: matched,
 
 				// Cast descendant combinators to space
-				type: match[ 0 ].replace( rtrim, " " )
+				type: match[ 0 ].replace( rtrimCSS, " " )
 			} );
 			soFar = soFar.slice( matched.length );
 		}
@@ -4302,14 +4079,16 @@ tokenize = Sizzle.tokenize = function( selector, parseOnly ) {
 	// Return the length of the invalid excess
 	// if we're just parsing
 	// Otherwise, throw an error or return tokens
-	return parseOnly ?
-		soFar.length :
-		soFar ?
-			Sizzle.error( selector ) :
+	if ( parseOnly ) {
+		return soFar.length;
+	}
 
-			// Cache the tokens
-			tokenCache( selector, groups ).slice( 0 );
-};
+	return soFar ?
+		find.error( selector ) :
+
+		// Cache the tokens
+		tokenCache( selector, groups ).slice( 0 );
+}
 
 function toSelector( tokens ) {
 	var i = 0,
@@ -4342,7 +4121,7 @@ function addCombinator( matcher, combinator, base ) {
 
 		// Check against all ancestor/preceding elements
 		function( elem, context, xml ) {
-			var oldCache, uniqueCache, outerCache,
+			var oldCache, outerCache,
 				newCache = [ dirruns, doneName ];
 
 			// We can't set arbitrary data on XML nodes, so they don't benefit from combinator caching
@@ -4359,14 +4138,9 @@ function addCombinator( matcher, combinator, base ) {
 					if ( elem.nodeType === 1 || checkNonElements ) {
 						outerCache = elem[ expando ] || ( elem[ expando ] = {} );
 
-						// Support: IE <9 only
-						// Defend against cloned attroperties (jQuery gh-1709)
-						uniqueCache = outerCache[ elem.uniqueID ] ||
-							( outerCache[ elem.uniqueID ] = {} );
-
-						if ( skip && skip === elem.nodeName.toLowerCase() ) {
+						if ( skip && nodeName( elem, skip ) ) {
 							elem = elem[ dir ] || elem;
-						} else if ( ( oldCache = uniqueCache[ key ] ) &&
+						} else if ( ( oldCache = outerCache[ key ] ) &&
 							oldCache[ 0 ] === dirruns && oldCache[ 1 ] === doneName ) {
 
 							// Assign to newCache so results back-propagate to previous elements
@@ -4374,7 +4148,7 @@ function addCombinator( matcher, combinator, base ) {
 						} else {
 
 							// Reuse newcache so results back-propagate to previous elements
-							uniqueCache[ key ] = newCache;
+							outerCache[ key ] = newCache;
 
 							// A match means we're done; a fail means we have to keep checking
 							if ( ( newCache[ 2 ] = matcher( elem, context, xml ) ) ) {
@@ -4406,7 +4180,7 @@ function multipleContexts( selector, contexts, results ) {
 	var i = 0,
 		len = contexts.length;
 	for ( ; i < len; i++ ) {
-		Sizzle( selector, contexts[ i ], results );
+		find( selector, contexts[ i ], results );
 	}
 	return results;
 }
@@ -4440,38 +4214,37 @@ function setMatcher( preFilter, selector, matcher, postFilter, postFinder, postS
 		postFinder = setMatcher( postFinder, postSelector );
 	}
 	return markFunction( function( seed, results, context, xml ) {
-		var temp, i, elem,
+		var temp, i, elem, matcherOut,
 			preMap = [],
 			postMap = [],
 			preexisting = results.length,
 
 			// Get initial elements from seed or context
-			elems = seed || multipleContexts(
-				selector || "*",
-				context.nodeType ? [ context ] : context,
-				[]
-			),
+			elems = seed ||
+				multipleContexts( selector || "*",
+					context.nodeType ? [ context ] : context, [] ),
 
 			// Prefilter to get matcher input, preserving a map for seed-results synchronization
 			matcherIn = preFilter && ( seed || !selector ) ?
 				condense( elems, preMap, preFilter, context, xml ) :
-				elems,
+				elems;
 
-			matcherOut = matcher ?
-
-				// If we have a postFinder, or filtered seed, or non-seed postFilter or preexisting results,
-				postFinder || ( seed ? preFilter : preexisting || postFilter ) ?
-
-					// ...intermediate processing is necessary
-					[] :
-
-					// ...otherwise use results directly
-					results :
-				matcherIn;
-
-		// Find primary matches
 		if ( matcher ) {
+
+			// If we have a postFinder, or filtered seed, or non-seed postFilter
+			// or preexisting results,
+			matcherOut = postFinder || ( seed ? preFilter : preexisting || postFilter ) ?
+
+				// ...intermediate processing is necessary
+				[] :
+
+				// ...otherwise use results directly
+				results;
+
+			// Find primary matches
 			matcher( matcherIn, matcherOut, context, xml );
+		} else {
+			matcherOut = matcherIn;
 		}
 
 		// Apply postFilter
@@ -4509,7 +4282,7 @@ function setMatcher( preFilter, selector, matcher, postFilter, postFinder, postS
 				i = matcherOut.length;
 				while ( i-- ) {
 					if ( ( elem = matcherOut[ i ] ) &&
-						( temp = postFinder ? indexOf( seed, elem ) : preMap[ i ] ) > -1 ) {
+						( temp = postFinder ? indexOf.call( seed, elem ) : preMap[ i ] ) > -1 ) {
 
 						seed[ temp ] = !( results[ temp ] = elem );
 					}
@@ -4544,15 +4317,21 @@ function matcherFromTokens( tokens ) {
 			return elem === checkContext;
 		}, implicitRelative, true ),
 		matchAnyContext = addCombinator( function( elem ) {
-			return indexOf( checkContext, elem ) > -1;
+			return indexOf.call( checkContext, elem ) > -1;
 		}, implicitRelative, true ),
 		matchers = [ function( elem, context, xml ) {
-			var ret = ( !leadingRelative && ( xml || context !== outermostContext ) ) || (
+
+			// Support: IE 11+, Edge 17 - 18+
+			// IE/Edge sometimes throw a "Permission denied" error when strict-comparing
+			// two documents; shallow comparisons work.
+			// eslint-disable-next-line eqeqeq
+			var ret = ( !leadingRelative && ( xml || context != outermostContext ) ) || (
 				( checkContext = context ).nodeType ?
 					matchContext( elem, context, xml ) :
 					matchAnyContext( elem, context, xml ) );
 
-			// Avoid hanging onto element (issue #299)
+			// Avoid hanging onto element
+			// (see https://github.com/jquery/sizzle/issues/299)
 			checkContext = null;
 			return ret;
 		} ];
@@ -4577,11 +4356,10 @@ function matcherFromTokens( tokens ) {
 					i > 1 && elementMatcher( matchers ),
 					i > 1 && toSelector(
 
-					// If the preceding token was a descendant combinator, insert an implicit any-element `*`
-					tokens
-						.slice( 0, i - 1 )
-						.concat( { value: tokens[ i - 2 ].type === " " ? "*" : "" } )
-					).replace( rtrim, "$1" ),
+						// If the preceding token was a descendant combinator, insert an implicit any-element `*`
+						tokens.slice( 0, i - 1 )
+							.concat( { value: tokens[ i - 2 ].type === " " ? "*" : "" } )
+					).replace( rtrimCSS, "$1" ),
 					matcher,
 					i < j && matcherFromTokens( tokens.slice( i, j ) ),
 					j < len && matcherFromTokens( ( tokens = tokens.slice( j ) ) ),
@@ -4607,7 +4385,7 @@ function matcherFromGroupMatchers( elementMatchers, setMatchers ) {
 				contextBackup = outermostContext,
 
 				// We must always have either seed elements or outermost context
-				elems = seed || byElement && Expr.find[ "TAG" ]( "*", outermost ),
+				elems = seed || byElement && Expr.find.TAG( "*", outermost ),
 
 				// Use integer dirruns iff this is the outermost matcher
 				dirrunsUnique = ( dirruns += contextBackup == null ? 1 : Math.random() || 0.1 ),
@@ -4623,8 +4401,9 @@ function matcherFromGroupMatchers( elementMatchers, setMatchers ) {
 			}
 
 			// Add elements passing elementMatchers directly to results
-			// Support: IE<9, Safari
-			// Tolerate NodeList properties (IE: "length"; Safari: <number>) matching elements by id
+			// Support: iOS <=7 - 9 only
+			// Tolerate NodeList properties (IE: "length"; Safari: <number>) matching
+			// elements by id. (see trac-14142)
 			for ( ; i !== len && ( elem = elems[ i ] ) != null; i++ ) {
 				if ( byElement && elem ) {
 					j = 0;
@@ -4639,7 +4418,7 @@ function matcherFromGroupMatchers( elementMatchers, setMatchers ) {
 					}
 					while ( ( matcher = elementMatchers[ j++ ] ) ) {
 						if ( matcher( elem, context || document, xml ) ) {
-							results.push( elem );
+							push.call( results, elem );
 							break;
 						}
 					}
@@ -4702,7 +4481,7 @@ function matcherFromGroupMatchers( elementMatchers, setMatchers ) {
 				if ( outermost && !seed && setMatched.length > 0 &&
 					( matchedCount + setMatchers.length ) > 1 ) {
 
-					Sizzle.uniqueSort( results );
+					jQuery.uniqueSort( results );
 				}
 			}
 
@@ -4720,7 +4499,7 @@ function matcherFromGroupMatchers( elementMatchers, setMatchers ) {
 		superMatcher;
 }
 
-compile = Sizzle.compile = function( selector, match /* Internal Use Only */ ) {
+function compile( selector, match /* Internal Use Only */ ) {
 	var i,
 		setMatchers = [],
 		elementMatchers = [],
@@ -4743,27 +4522,25 @@ compile = Sizzle.compile = function( selector, match /* Internal Use Only */ ) {
 		}
 
 		// Cache the compiled function
-		cached = compilerCache(
-			selector,
-			matcherFromGroupMatchers( elementMatchers, setMatchers )
-		);
+		cached = compilerCache( selector,
+			matcherFromGroupMatchers( elementMatchers, setMatchers ) );
 
 		// Save selector and tokenization
 		cached.selector = selector;
 	}
 	return cached;
-};
+}
 
 /**
- * A low-level selection function that works with Sizzle's compiled
+ * A low-level selection function that works with jQuery's compiled
  *  selector functions
  * @param {String|Function} selector A selector or a pre-compiled
- *  selector function built with Sizzle.compile
+ *  selector function built with jQuery selector compile
  * @param {Element} context
  * @param {Array} [results]
  * @param {Array} [seed] A set of elements to match against
  */
-select = Sizzle.select = function( selector, context, results, seed ) {
+function select( selector, context, results, seed ) {
 	var i, tokens, token, type, find,
 		compiled = typeof selector === "function" && selector,
 		match = !seed && tokenize( ( selector = compiled.selector || selector ) );
@@ -4777,10 +4554,12 @@ select = Sizzle.select = function( selector, context, results, seed ) {
 		// Reduce context if the leading compound selector is an ID
 		tokens = match[ 0 ] = match[ 0 ].slice( 0 );
 		if ( tokens.length > 2 && ( token = tokens[ 0 ] ).type === "ID" &&
-			context.nodeType === 9 && documentIsHTML && Expr.relative[ tokens[ 1 ].type ] ) {
+				context.nodeType === 9 && documentIsHTML && Expr.relative[ tokens[ 1 ].type ] ) {
 
-			context = ( Expr.find[ "ID" ]( token.matches[ 0 ]
-				.replace( runescape, funescape ), context ) || [] )[ 0 ];
+			context = ( Expr.find.ID(
+				token.matches[ 0 ].replace( runescape, funescape ),
+				context
+			) || [] )[ 0 ];
 			if ( !context ) {
 				return results;
 
@@ -4793,7 +4572,7 @@ select = Sizzle.select = function( selector, context, results, seed ) {
 		}
 
 		// Fetch a seed set for right-to-left matching
-		i = matchExpr[ "needsContext" ].test( selector ) ? 0 : tokens.length;
+		i = matchExpr.needsContext.test( selector ) ? 0 : tokens.length;
 		while ( i-- ) {
 			token = tokens[ i ];
 
@@ -4806,8 +4585,8 @@ select = Sizzle.select = function( selector, context, results, seed ) {
 				// Search, expanding context for leading sibling combinators
 				if ( ( seed = find(
 					token.matches[ 0 ].replace( runescape, funescape ),
-					rsibling.test( tokens[ 0 ].type ) && testContext( context.parentNode ) ||
-						context
+					rsibling.test( tokens[ 0 ].type ) &&
+						testContext( context.parentNode ) || context
 				) ) ) {
 
 					// If seed is empty or no tokens remain, we can return early
@@ -4834,21 +4613,18 @@ select = Sizzle.select = function( selector, context, results, seed ) {
 		!context || rsibling.test( selector ) && testContext( context.parentNode ) || context
 	);
 	return results;
-};
+}
 
 // One-time assignments
 
+// Support: Android <=4.0 - 4.1+
 // Sort stability
 support.sortStable = expando.split( "" ).sort( sortOrder ).join( "" ) === expando;
-
-// Support: Chrome 14-35+
-// Always assume duplicates if they aren't passed to the comparison function
-support.detectDuplicates = !!hasDuplicate;
 
 // Initialize against the default document
 setDocument();
 
-// Support: Webkit<537.32 - Safari 6.0.3/Chrome 25 (fixed in Chrome 27)
+// Support: Android <=4.0 - 4.1+
 // Detached nodes confoundingly follow *each other*
 support.sortDetached = assert( function( el ) {
 
@@ -4856,68 +4632,29 @@ support.sortDetached = assert( function( el ) {
 	return el.compareDocumentPosition( document.createElement( "fieldset" ) ) & 1;
 } );
 
-// Support: IE<8
-// Prevent attribute/property "interpolation"
-// https://msdn.microsoft.com/en-us/library/ms536429%28VS.85%29.aspx
-if ( !assert( function( el ) {
-	el.innerHTML = "<a href='#'></a>";
-	return el.firstChild.getAttribute( "href" ) === "#";
-} ) ) {
-	addHandle( "type|href|height|width", function( elem, name, isXML ) {
-		if ( !isXML ) {
-			return elem.getAttribute( name, name.toLowerCase() === "type" ? 1 : 2 );
-		}
-	} );
-}
-
-// Support: IE<9
-// Use defaultValue in place of getAttribute("value")
-if ( !support.attributes || !assert( function( el ) {
-	el.innerHTML = "<input/>";
-	el.firstChild.setAttribute( "value", "" );
-	return el.firstChild.getAttribute( "value" ) === "";
-} ) ) {
-	addHandle( "value", function( elem, _name, isXML ) {
-		if ( !isXML && elem.nodeName.toLowerCase() === "input" ) {
-			return elem.defaultValue;
-		}
-	} );
-}
-
-// Support: IE<9
-// Use getAttributeNode to fetch booleans when getAttribute lies
-if ( !assert( function( el ) {
-	return el.getAttribute( "disabled" ) == null;
-} ) ) {
-	addHandle( booleans, function( elem, name, isXML ) {
-		var val;
-		if ( !isXML ) {
-			return elem[ name ] === true ? name.toLowerCase() :
-				( val = elem.getAttributeNode( name ) ) && val.specified ?
-					val.value :
-					null;
-		}
-	} );
-}
-
-return Sizzle;
-
-} )( window );
-
-
-
-jQuery.find = Sizzle;
-jQuery.expr = Sizzle.selectors;
+jQuery.find = find;
 
 // Deprecated
 jQuery.expr[ ":" ] = jQuery.expr.pseudos;
-jQuery.uniqueSort = jQuery.unique = Sizzle.uniqueSort;
-jQuery.text = Sizzle.getText;
-jQuery.isXMLDoc = Sizzle.isXML;
-jQuery.contains = Sizzle.contains;
-jQuery.escapeSelector = Sizzle.escape;
+jQuery.unique = jQuery.uniqueSort;
 
+// These have always been private, but they used to be documented as part of
+// Sizzle so let's maintain them for now for backwards compatibility purposes.
+find.compile = compile;
+find.select = select;
+find.setDocument = setDocument;
+find.tokenize = tokenize;
 
+find.escape = jQuery.escapeSelector;
+find.getText = jQuery.text;
+find.isXML = jQuery.isXMLDoc;
+find.selectors = jQuery.expr;
+find.support = jQuery.support;
+find.uniqueSort = jQuery.uniqueSort;
+
+	/* eslint-enable */
+
+} )();
 
 
 var dir = function( elem, dir, until ) {
@@ -4951,13 +4688,6 @@ var siblings = function( n, elem ) {
 
 var rneedsContext = jQuery.expr.match.needsContext;
 
-
-
-function nodeName( elem, name ) {
-
-	return elem.nodeName && elem.nodeName.toLowerCase() === name.toLowerCase();
-
-}
 var rsingleTag = ( /^<([a-z][^\/\0>:\x20\t\r\n\f]*)[\x20\t\r\n\f]*\/?>(?:<\/\1>|)$/i );
 
 
@@ -5056,8 +4786,8 @@ jQuery.fn.extend( {
 var rootjQuery,
 
 	// A simple way to check for HTML strings
-	// Prioritize #id over <tag> to avoid XSS via location.hash (#9521)
-	// Strict HTML recognition (#11290: must start with <)
+	// Prioritize #id over <tag> to avoid XSS via location.hash (trac-9521)
+	// Strict HTML recognition (trac-11290: must start with <)
 	// Shortcut simple #id case for speed
 	rquickExpr = /^(?:\s*(<[\w\W]+>)[^>]*|#([\w-]+))$/,
 
@@ -5208,7 +4938,7 @@ jQuery.fn.extend( {
 					if ( cur.nodeType < 11 && ( targets ?
 						targets.index( cur ) > -1 :
 
-						// Don't pass non-elements to Sizzle
+						// Don't pass non-elements to jQuery#find
 						cur.nodeType === 1 &&
 							jQuery.find.matchesSelector( cur, selectors ) ) ) {
 
@@ -5763,7 +5493,7 @@ jQuery.extend( {
 
 											if ( jQuery.Deferred.exceptionHook ) {
 												jQuery.Deferred.exceptionHook( e,
-													process.stackTrace );
+													process.error );
 											}
 
 											// Support: Promises/A+ section 2.3.3.3.4.1
@@ -5791,10 +5521,17 @@ jQuery.extend( {
 								process();
 							} else {
 
-								// Call an optional hook to record the stack, in case of exception
+								// Call an optional hook to record the error, in case of exception
 								// since it's otherwise lost when execution goes async
-								if ( jQuery.Deferred.getStackHook ) {
-									process.stackTrace = jQuery.Deferred.getStackHook();
+								if ( jQuery.Deferred.getErrorHook ) {
+									process.error = jQuery.Deferred.getErrorHook();
+
+								// The deprecated alias of the above. While the name suggests
+								// returning the stack, not an error instance, jQuery just passes
+								// it directly to `console.warn` so both will work; an instance
+								// just better cooperates with source maps.
+								} else if ( jQuery.Deferred.getStackHook ) {
+									process.error = jQuery.Deferred.getStackHook();
 								}
 								window.setTimeout( process );
 							}
@@ -5969,12 +5706,16 @@ jQuery.extend( {
 // warn about them ASAP rather than swallowing them by default.
 var rerrorNames = /^(Eval|Internal|Range|Reference|Syntax|Type|URI)Error$/;
 
-jQuery.Deferred.exceptionHook = function( error, stack ) {
+// If `jQuery.Deferred.getErrorHook` is defined, `asyncError` is an error
+// captured before the async barrier to get the original error cause
+// which may otherwise be hidden.
+jQuery.Deferred.exceptionHook = function( error, asyncError ) {
 
 	// Support: IE 8 - 9 only
 	// Console exists when dev tools are open, which can happen at any time
 	if ( window.console && window.console.warn && error && rerrorNames.test( error.name ) ) {
-		window.console.warn( "jQuery.Deferred exception: " + error.message, error.stack, stack );
+		window.console.warn( "jQuery.Deferred exception: " + error.message,
+			error.stack, asyncError );
 	}
 };
 
@@ -6014,7 +5755,7 @@ jQuery.extend( {
 	isReady: false,
 
 	// A counter to track how many items to wait for before
-	// the ready event fires. See #6781
+	// the ready event fires. See trac-6781
 	readyWait: 1,
 
 	// Handle when the DOM is ready
@@ -6142,7 +5883,7 @@ function fcamelCase( _all, letter ) {
 
 // Convert dashed to camelCase; used by the css and data modules
 // Support: IE <=9 - 11, Edge 12 - 15
-// Microsoft forgot to hump their vendor prefix (#9572)
+// Microsoft forgot to hump their vendor prefix (trac-9572)
 function camelCase( string ) {
 	return string.replace( rmsPrefix, "ms-" ).replace( rdashAlpha, fcamelCase );
 }
@@ -6178,7 +5919,7 @@ Data.prototype = {
 			value = {};
 
 			// We can accept data for non-element nodes in modern browsers,
-			// but we should not, see #8335.
+			// but we should not, see trac-8335.
 			// Always return an empty object.
 			if ( acceptData( owner ) ) {
 
@@ -6417,7 +6158,7 @@ jQuery.fn.extend( {
 					while ( i-- ) {
 
 						// Support: IE 11 only
-						// The attrs elements can be null (#14894)
+						// The attrs elements can be null (trac-14894)
 						if ( attrs[ i ] ) {
 							name = attrs[ i ].name;
 							if ( name.indexOf( "data-" ) === 0 ) {
@@ -6840,9 +6581,9 @@ var rscriptType = ( /^$|^module$|\/(?:java|ecma)script/i );
 		input = document.createElement( "input" );
 
 	// Support: Android 4.0 - 4.3 only
-	// Check state lost if the name is set (#11217)
+	// Check state lost if the name is set (trac-11217)
 	// Support: Windows Web Apps (WWA)
-	// `name` and `type` must use .setAttribute for WWA (#14901)
+	// `name` and `type` must use .setAttribute for WWA (trac-14901)
 	input.setAttribute( "type", "radio" );
 	input.setAttribute( "checked", "checked" );
 	input.setAttribute( "name", "t" );
@@ -6866,7 +6607,7 @@ var rscriptType = ( /^$|^module$|\/(?:java|ecma)script/i );
 } )();
 
 
-// We have to close these tags to support XHTML (#13200)
+// We have to close these tags to support XHTML (trac-13200)
 var wrapMap = {
 
 	// XHTML parsers do not magically insert elements in the
@@ -6892,7 +6633,7 @@ if ( !support.option ) {
 function getAll( context, tag ) {
 
 	// Support: IE <=9 - 11 only
-	// Use typeof to avoid zero-argument method invocation on host objects (#15151)
+	// Use typeof to avoid zero-argument method invocation on host objects (trac-15151)
 	var ret;
 
 	if ( typeof context.getElementsByTagName !== "undefined" ) {
@@ -6975,7 +6716,7 @@ function buildFragment( elems, context, scripts, selection, ignored ) {
 				// Remember the top-level container
 				tmp = fragment.firstChild;
 
-				// Ensure the created nodes are orphaned (#12392)
+				// Ensure the created nodes are orphaned (trac-12392)
 				tmp.textContent = "";
 			}
 		}
@@ -7028,25 +6769,6 @@ function returnTrue() {
 
 function returnFalse() {
 	return false;
-}
-
-// Support: IE <=9 - 11+
-// focus() and blur() are asynchronous, except when they are no-op.
-// So expect focus to be synchronous when the element is already active,
-// and blur to be synchronous when the element is not already active.
-// (focus and blur are always synchronous in other supported browsers,
-// this just defines when we can count on it).
-function expectSync( elem, type ) {
-	return ( elem === safeActiveElement() ) === ( type === "focus" );
-}
-
-// Support: IE <=9 only
-// Accessing document.activeElement can throw unexpectedly
-// https://bugs.jquery.com/ticket/13393
-function safeActiveElement() {
-	try {
-		return document.activeElement;
-	} catch ( err ) { }
 }
 
 function on( elem, types, selector, data, fn, one ) {
@@ -7396,15 +7118,15 @@ jQuery.event = {
 
 			for ( ; cur !== this; cur = cur.parentNode || this ) {
 
-				// Don't check non-elements (#13208)
-				// Don't process clicks on disabled elements (#6911, #8165, #11382, #11764)
+				// Don't check non-elements (trac-13208)
+				// Don't process clicks on disabled elements (trac-6911, trac-8165, trac-11382, trac-11764)
 				if ( cur.nodeType === 1 && !( event.type === "click" && cur.disabled === true ) ) {
 					matchedHandlers = [];
 					matchedSelectors = {};
 					for ( i = 0; i < delegateCount; i++ ) {
 						handleObj = handlers[ i ];
 
-						// Don't conflict with Object.prototype properties (#13203)
+						// Don't conflict with Object.prototype properties (trac-13203)
 						sel = handleObj.selector + " ";
 
 						if ( matchedSelectors[ sel ] === undefined ) {
@@ -7486,7 +7208,7 @@ jQuery.event = {
 					el.click && nodeName( el, "input" ) ) {
 
 					// dataPriv.set( el, "click", ... )
-					leverageNative( el, "click", returnTrue );
+					leverageNative( el, "click", true );
 				}
 
 				// Return false to allow normal processing in the caller
@@ -7537,10 +7259,10 @@ jQuery.event = {
 // synthetic events by interrupting progress until reinvoked in response to
 // *native* events that it fires directly, ensuring that state changes have
 // already occurred before other listeners are invoked.
-function leverageNative( el, type, expectSync ) {
+function leverageNative( el, type, isSetup ) {
 
-	// Missing expectSync indicates a trigger call, which must force setup through jQuery.event.add
-	if ( !expectSync ) {
+	// Missing `isSetup` indicates a trigger call, which must force setup through jQuery.event.add
+	if ( !isSetup ) {
 		if ( dataPriv.get( el, type ) === undefined ) {
 			jQuery.event.add( el, type, returnTrue );
 		}
@@ -7552,15 +7274,13 @@ function leverageNative( el, type, expectSync ) {
 	jQuery.event.add( el, type, {
 		namespace: false,
 		handler: function( event ) {
-			var notAsync, result,
+			var result,
 				saved = dataPriv.get( this, type );
 
 			if ( ( event.isTrigger & 1 ) && this[ type ] ) {
 
 				// Interrupt processing of the outer synthetic .trigger()ed event
-				// Saved data should be false in such cases, but might be a leftover capture object
-				// from an async native handler (gh-4350)
-				if ( !saved.length ) {
+				if ( !saved ) {
 
 					// Store arguments for use when handling the inner native event
 					// There will always be at least one argument (an event object), so this array
@@ -7569,33 +7289,22 @@ function leverageNative( el, type, expectSync ) {
 					dataPriv.set( this, type, saved );
 
 					// Trigger the native event and capture its result
-					// Support: IE <=9 - 11+
-					// focus() and blur() are asynchronous
-					notAsync = expectSync( this, type );
 					this[ type ]();
 					result = dataPriv.get( this, type );
-					if ( saved !== result || notAsync ) {
-						dataPriv.set( this, type, false );
-					} else {
-						result = {};
-					}
+					dataPriv.set( this, type, false );
+
 					if ( saved !== result ) {
 
 						// Cancel the outer synthetic event
 						event.stopImmediatePropagation();
 						event.preventDefault();
 
-						// Support: Chrome 86+
-						// In Chrome, if an element having a focusout handler is blurred by
-						// clicking outside of it, it invokes the handler synchronously. If
-						// that handler calls `.remove()` on the element, the data is cleared,
-						// leaving `result` undefined. We need to guard against this.
-						return result && result.value;
+						return result;
 					}
 
 				// If this is an inner synthetic event for an event with a bubbling surrogate
-				// (focus or blur), assume that the surrogate already propagated from triggering the
-				// native event and prevent that from happening again here.
+				// (focus or blur), assume that the surrogate already propagated from triggering
+				// the native event and prevent that from happening again here.
 				// This technically gets the ordering wrong w.r.t. to `.trigger()` (in which the
 				// bubbling surrogate propagates *after* the non-bubbling base), but that seems
 				// less bad than duplication.
@@ -7605,22 +7314,25 @@ function leverageNative( el, type, expectSync ) {
 
 			// If this is a native event triggered above, everything is now in order
 			// Fire an inner synthetic event with the original arguments
-			} else if ( saved.length ) {
+			} else if ( saved ) {
 
 				// ...and capture the result
-				dataPriv.set( this, type, {
-					value: jQuery.event.trigger(
+				dataPriv.set( this, type, jQuery.event.trigger(
+					saved[ 0 ],
+					saved.slice( 1 ),
+					this
+				) );
 
-						// Support: IE <=9 - 11+
-						// Extend with the prototype to reset the above stopImmediatePropagation()
-						jQuery.extend( saved[ 0 ], jQuery.Event.prototype ),
-						saved.slice( 1 ),
-						this
-					)
-				} );
-
-				// Abort handling of the native event
-				event.stopImmediatePropagation();
+				// Abort handling of the native event by all jQuery handlers while allowing
+				// native handlers on the same element to run. On target, this is achieved
+				// by stopping immediate propagation just on the jQuery event. However,
+				// the native event is re-wrapped by a jQuery one on each level of the
+				// propagation so the only way to stop it for jQuery is to stop it for
+				// everyone via native `stopPropagation()`. This is not a problem for
+				// focus/blur which don't bubble, but it does also stop click on checkboxes
+				// and radios. We accept this limitation.
+				event.stopPropagation();
+				event.isImmediatePropagationStopped = returnTrue;
 			}
 		}
 	} );
@@ -7658,7 +7370,7 @@ jQuery.Event = function( src, props ) {
 
 		// Create target properties
 		// Support: Safari <=6 - 7 only
-		// Target should not be a text node (#504, #13143)
+		// Target should not be a text node (trac-504, trac-13143)
 		this.target = ( src.target && src.target.nodeType === 3 ) ?
 			src.target.parentNode :
 			src.target;
@@ -7759,18 +7471,73 @@ jQuery.each( {
 }, jQuery.event.addProp );
 
 jQuery.each( { focus: "focusin", blur: "focusout" }, function( type, delegateType ) {
+
+	function focusMappedHandler( nativeEvent ) {
+		if ( document.documentMode ) {
+
+			// Support: IE 11+
+			// Attach a single focusin/focusout handler on the document while someone wants
+			// focus/blur. This is because the former are synchronous in IE while the latter
+			// are async. In other browsers, all those handlers are invoked synchronously.
+
+			// `handle` from private data would already wrap the event, but we need
+			// to change the `type` here.
+			var handle = dataPriv.get( this, "handle" ),
+				event = jQuery.event.fix( nativeEvent );
+			event.type = nativeEvent.type === "focusin" ? "focus" : "blur";
+			event.isSimulated = true;
+
+			// First, handle focusin/focusout
+			handle( nativeEvent );
+
+			// ...then, handle focus/blur
+			//
+			// focus/blur don't bubble while focusin/focusout do; simulate the former by only
+			// invoking the handler at the lower level.
+			if ( event.target === event.currentTarget ) {
+
+				// The setup part calls `leverageNative`, which, in turn, calls
+				// `jQuery.event.add`, so event handle will already have been set
+				// by this point.
+				handle( event );
+			}
+		} else {
+
+			// For non-IE browsers, attach a single capturing handler on the document
+			// while someone wants focusin/focusout.
+			jQuery.event.simulate( delegateType, nativeEvent.target,
+				jQuery.event.fix( nativeEvent ) );
+		}
+	}
+
 	jQuery.event.special[ type ] = {
 
 		// Utilize native event if possible so blur/focus sequence is correct
 		setup: function() {
 
+			var attaches;
+
 			// Claim the first handler
 			// dataPriv.set( this, "focus", ... )
 			// dataPriv.set( this, "blur", ... )
-			leverageNative( this, type, expectSync );
+			leverageNative( this, type, true );
 
-			// Return false to allow normal processing in the caller
-			return false;
+			if ( document.documentMode ) {
+
+				// Support: IE 9 - 11+
+				// We use the same native handler for focusin & focus (and focusout & blur)
+				// so we need to coordinate setup & teardown parts between those events.
+				// Use `delegateType` as the key as `type` is already used by `leverageNative`.
+				attaches = dataPriv.get( this, delegateType );
+				if ( !attaches ) {
+					this.addEventListener( delegateType, focusMappedHandler );
+				}
+				dataPriv.set( this, delegateType, ( attaches || 0 ) + 1 );
+			} else {
+
+				// Return false to allow normal processing in the caller
+				return false;
+			}
 		},
 		trigger: function() {
 
@@ -7781,13 +7548,83 @@ jQuery.each( { focus: "focusin", blur: "focusout" }, function( type, delegateTyp
 			return true;
 		},
 
-		// Suppress native focus or blur as it's already being fired
-		// in leverageNative.
-		_default: function() {
-			return true;
+		teardown: function() {
+			var attaches;
+
+			if ( document.documentMode ) {
+				attaches = dataPriv.get( this, delegateType ) - 1;
+				if ( !attaches ) {
+					this.removeEventListener( delegateType, focusMappedHandler );
+					dataPriv.remove( this, delegateType );
+				} else {
+					dataPriv.set( this, delegateType, attaches );
+				}
+			} else {
+
+				// Return false to indicate standard teardown should be applied
+				return false;
+			}
+		},
+
+		// Suppress native focus or blur if we're currently inside
+		// a leveraged native-event stack
+		_default: function( event ) {
+			return dataPriv.get( event.target, type );
 		},
 
 		delegateType: delegateType
+	};
+
+	// Support: Firefox <=44
+	// Firefox doesn't have focus(in | out) events
+	// Related ticket - https://bugzilla.mozilla.org/show_bug.cgi?id=687787
+	//
+	// Support: Chrome <=48 - 49, Safari <=9.0 - 9.1
+	// focus(in | out) events fire after focus & blur events,
+	// which is spec violation - http://www.w3.org/TR/DOM-Level-3-Events/#events-focusevent-event-order
+	// Related ticket - https://bugs.chromium.org/p/chromium/issues/detail?id=449857
+	//
+	// Support: IE 9 - 11+
+	// To preserve relative focusin/focus & focusout/blur event order guaranteed on the 3.x branch,
+	// attach a single handler for both events in IE.
+	jQuery.event.special[ delegateType ] = {
+		setup: function() {
+
+			// Handle: regular nodes (via `this.ownerDocument`), window
+			// (via `this.document`) & document (via `this`).
+			var doc = this.ownerDocument || this.document || this,
+				dataHolder = document.documentMode ? this : doc,
+				attaches = dataPriv.get( dataHolder, delegateType );
+
+			// Support: IE 9 - 11+
+			// We use the same native handler for focusin & focus (and focusout & blur)
+			// so we need to coordinate setup & teardown parts between those events.
+			// Use `delegateType` as the key as `type` is already used by `leverageNative`.
+			if ( !attaches ) {
+				if ( document.documentMode ) {
+					this.addEventListener( delegateType, focusMappedHandler );
+				} else {
+					doc.addEventListener( type, focusMappedHandler, true );
+				}
+			}
+			dataPriv.set( dataHolder, delegateType, ( attaches || 0 ) + 1 );
+		},
+		teardown: function() {
+			var doc = this.ownerDocument || this.document || this,
+				dataHolder = document.documentMode ? this : doc,
+				attaches = dataPriv.get( dataHolder, delegateType ) - 1;
+
+			if ( !attaches ) {
+				if ( document.documentMode ) {
+					this.removeEventListener( delegateType, focusMappedHandler );
+				} else {
+					doc.removeEventListener( type, focusMappedHandler, true );
+				}
+				dataPriv.remove( dataHolder, delegateType );
+			} else {
+				dataPriv.set( dataHolder, delegateType, attaches );
+			}
+		}
 	};
 } );
 
@@ -7883,7 +7720,8 @@ var
 
 	// checked="checked" or checked
 	rchecked = /checked\s*(?:[^=]|=\s*.checked.)/i,
-	rcleanScript = /^\s*<!(?:\[CDATA\[|--)|(?:\]\]|--)>\s*$/g;
+
+	rcleanScript = /^\s*<!\[CDATA\[|\]\]>\s*$/g;
 
 // Prefer a tbody over its parent table for containing new rows
 function manipulationTarget( elem, content ) {
@@ -7997,7 +7835,7 @@ function domManip( collection, args, callback, ignored ) {
 
 			// Use the original fragment for the last item
 			// instead of the first because it can end up
-			// being emptied incorrectly in certain situations (#8070).
+			// being emptied incorrectly in certain situations (trac-8070).
 			for ( ; i < l; i++ ) {
 				node = fragment;
 
@@ -8019,7 +7857,7 @@ function domManip( collection, args, callback, ignored ) {
 			if ( hasScripts ) {
 				doc = scripts[ scripts.length - 1 ].ownerDocument;
 
-				// Reenable scripts
+				// Re-enable scripts
 				jQuery.map( scripts, restoreScript );
 
 				// Evaluate executable scripts on first document insertion
@@ -8038,6 +7876,12 @@ function domManip( collection, args, callback, ignored ) {
 								}, doc );
 							}
 						} else {
+
+							// Unwrap a CDATA section containing script contents. This shouldn't be
+							// needed as in XML documents they're already not visible when
+							// inspecting element contents and in HTML documents they have no
+							// meaning but we're preserving that logic for backwards compatibility.
+							// This will be removed completely in 4.0. See gh-4904.
 							DOMEval( node.textContent.replace( rcleanScript, "" ), node, doc );
 						}
 					}
@@ -8084,7 +7928,8 @@ jQuery.extend( {
 		if ( !support.noCloneChecked && ( elem.nodeType === 1 || elem.nodeType === 11 ) &&
 				!jQuery.isXMLDoc( elem ) ) {
 
-			// We eschew Sizzle here for performance reasons: https://jsperf.com/getall-vs-sizzle/2
+			// We eschew jQuery#find here for performance reasons:
+			// https://jsperf.com/getall-vs-sizzle/2
 			destElements = getAll( clone );
 			srcElements = getAll( elem );
 
@@ -8320,9 +8165,12 @@ jQuery.each( {
 } );
 var rnumnonpx = new RegExp( "^(" + pnum + ")(?!px)[a-z%]+$", "i" );
 
+var rcustomProp = /^--/;
+
+
 var getStyles = function( elem ) {
 
-		// Support: IE <=11 only, Firefox <=30 (#15098, #14150)
+		// Support: IE <=11 only, Firefox <=30 (trac-15098, trac-14150)
 		// IE throws on elements created in popups
 		// FF meanwhile throws on frame elements through "defaultView.getComputedStyle"
 		var view = elem.ownerDocument.defaultView;
@@ -8422,7 +8270,7 @@ var rboxStyle = new RegExp( cssExpand.join( "|" ), "i" );
 	}
 
 	// Support: IE <=9 - 11 only
-	// Style of cloned element affects source element cloned (#8908)
+	// Style of cloned element affects source element cloned (trac-8908)
 	div.style.backgroundClip = "content-box";
 	div.cloneNode( true ).style.backgroundClip = "";
 	support.clearCloneStyle = div.style.backgroundClip === "content-box";
@@ -8466,7 +8314,7 @@ var rboxStyle = new RegExp( cssExpand.join( "|" ), "i" );
 				trChild = document.createElement( "div" );
 
 				table.style.cssText = "position:absolute;left:-11111px;border-collapse:separate";
-				tr.style.cssText = "border:1px solid";
+				tr.style.cssText = "box-sizing:content-box;border:1px solid";
 
 				// Support: Chrome 86+
 				// Height set through cssText does not get applied.
@@ -8478,7 +8326,7 @@ var rboxStyle = new RegExp( cssExpand.join( "|" ), "i" );
 				// In our bodyBackground.html iframe,
 				// display for all div elements is set to "inline",
 				// which causes a problem only in Android 8 Chrome 86.
-				// Ensuring the div is display: block
+				// Ensuring the div is `display: block`
 				// gets around this issue.
 				trChild.style.display = "block";
 
@@ -8502,6 +8350,7 @@ var rboxStyle = new RegExp( cssExpand.join( "|" ), "i" );
 
 function curCSS( elem, name, computed ) {
 	var width, minWidth, maxWidth, ret,
+		isCustomProp = rcustomProp.test( name ),
 
 		// Support: Firefox 51+
 		// Retrieving style before computed somehow
@@ -8512,10 +8361,41 @@ function curCSS( elem, name, computed ) {
 	computed = computed || getStyles( elem );
 
 	// getPropertyValue is needed for:
-	//   .css('filter') (IE 9 only, #12537)
-	//   .css('--customProperty) (#3144)
+	//   .css('filter') (IE 9 only, trac-12537)
+	//   .css('--customProperty) (gh-3144)
 	if ( computed ) {
+
+		// Support: IE <=9 - 11+
+		// IE only supports `"float"` in `getPropertyValue`; in computed styles
+		// it's only available as `"cssFloat"`. We no longer modify properties
+		// sent to `.css()` apart from camelCasing, so we need to check both.
+		// Normally, this would create difference in behavior: if
+		// `getPropertyValue` returns an empty string, the value returned
+		// by `.css()` would be `undefined`. This is usually the case for
+		// disconnected elements. However, in IE even disconnected elements
+		// with no styles return `"none"` for `getPropertyValue( "float" )`
 		ret = computed.getPropertyValue( name ) || computed[ name ];
+
+		if ( isCustomProp && ret ) {
+
+			// Support: Firefox 105+, Chrome <=105+
+			// Spec requires trimming whitespace for custom properties (gh-4926).
+			// Firefox only trims leading whitespace. Chrome just collapses
+			// both leading & trailing whitespace to a single space.
+			//
+			// Fall back to `undefined` if empty string returned.
+			// This collapses a missing definition with property defined
+			// and set to an empty string but there's no standard API
+			// allowing us to differentiate them without a performance penalty
+			// and returning `undefined` aligns with older jQuery.
+			//
+			// rtrimCSS treats U+000D CARRIAGE RETURN and U+000C FORM FEED
+			// as whitespace while CSS does not, but this is not a problem
+			// because CSS preprocessing replaces them with U+000A LINE FEED
+			// (which *is* CSS whitespace)
+			// https://www.w3.org/TR/css-syntax-3/#input-preprocessing
+			ret = ret.replace( rtrimCSS, "$1" ) || undefined;
+		}
 
 		if ( ret === "" && !isAttached( elem ) ) {
 			ret = jQuery.style( elem, name );
@@ -8612,7 +8492,6 @@ var
 	// except "table", "table-cell", or "table-caption"
 	// See here for display values: https://developer.mozilla.org/en-US/docs/CSS/display
 	rdisplayswap = /^(none|table(?!-c[ea]).+)/,
-	rcustomProp = /^--/,
 	cssShow = { position: "absolute", visibility: "hidden", display: "block" },
 	cssNormalTransform = {
 		letterSpacing: "0",
@@ -8634,7 +8513,8 @@ function setPositiveNumber( _elem, value, subtract ) {
 function boxModelAdjustment( elem, dimension, box, isBorderBox, styles, computedVal ) {
 	var i = dimension === "width" ? 1 : 0,
 		extra = 0,
-		delta = 0;
+		delta = 0,
+		marginDelta = 0;
 
 	// Adjustment may not be necessary
 	if ( box === ( isBorderBox ? "border" : "content" ) ) {
@@ -8644,8 +8524,10 @@ function boxModelAdjustment( elem, dimension, box, isBorderBox, styles, computed
 	for ( ; i < 4; i += 2 ) {
 
 		// Both box models exclude margin
+		// Count margin delta separately to only add it after scroll gutter adjustment.
+		// This is needed to make negative margins work with `outerHeight( true )` (gh-3982).
 		if ( box === "margin" ) {
-			delta += jQuery.css( elem, box + cssExpand[ i ], true, styles );
+			marginDelta += jQuery.css( elem, box + cssExpand[ i ], true, styles );
 		}
 
 		// If we get here with a content-box, we're seeking "padding" or "border" or "margin"
@@ -8696,7 +8578,7 @@ function boxModelAdjustment( elem, dimension, box, isBorderBox, styles, computed
 		) ) || 0;
 	}
 
-	return delta;
+	return delta + marginDelta;
 }
 
 function getWidthOrHeight( elem, dimension, extra ) {
@@ -8794,26 +8676,35 @@ jQuery.extend( {
 
 	// Don't automatically add "px" to these possibly-unitless properties
 	cssNumber: {
-		"animationIterationCount": true,
-		"columnCount": true,
-		"fillOpacity": true,
-		"flexGrow": true,
-		"flexShrink": true,
-		"fontWeight": true,
-		"gridArea": true,
-		"gridColumn": true,
-		"gridColumnEnd": true,
-		"gridColumnStart": true,
-		"gridRow": true,
-		"gridRowEnd": true,
-		"gridRowStart": true,
-		"lineHeight": true,
-		"opacity": true,
-		"order": true,
-		"orphans": true,
-		"widows": true,
-		"zIndex": true,
-		"zoom": true
+		animationIterationCount: true,
+		aspectRatio: true,
+		borderImageSlice: true,
+		columnCount: true,
+		flexGrow: true,
+		flexShrink: true,
+		fontWeight: true,
+		gridArea: true,
+		gridColumn: true,
+		gridColumnEnd: true,
+		gridColumnStart: true,
+		gridRow: true,
+		gridRowEnd: true,
+		gridRowStart: true,
+		lineHeight: true,
+		opacity: true,
+		order: true,
+		orphans: true,
+		scale: true,
+		widows: true,
+		zIndex: true,
+		zoom: true,
+
+		// SVG-related
+		fillOpacity: true,
+		floodOpacity: true,
+		stopOpacity: true,
+		strokeMiterlimit: true,
+		strokeOpacity: true
 	},
 
 	// Add in properties whose names you wish to fix before
@@ -8848,15 +8739,15 @@ jQuery.extend( {
 		if ( value !== undefined ) {
 			type = typeof value;
 
-			// Convert "+=" or "-=" to relative numbers (#7345)
+			// Convert "+=" or "-=" to relative numbers (trac-7345)
 			if ( type === "string" && ( ret = rcssNum.exec( value ) ) && ret[ 1 ] ) {
 				value = adjustCSS( elem, name, ret );
 
-				// Fixes bug #9237
+				// Fixes bug trac-9237
 				type = "number";
 			}
 
-			// Make sure that null and NaN values aren't set (#7116)
+			// Make sure that null and NaN values aren't set (trac-7116)
 			if ( value == null || value !== value ) {
 				return;
 			}
@@ -9480,7 +9371,7 @@ function Animation( elem, properties, options ) {
 				remaining = Math.max( 0, animation.startTime + animation.duration - currentTime ),
 
 				// Support: Android 2.3 only
-				// Archaic crash bug won't allow us to use `1 - ( 0.5 || 0 )` (#12497)
+				// Archaic crash bug won't allow us to use `1 - ( 0.5 || 0 )` (trac-12497)
 				temp = remaining / animation.duration || 0,
 				percent = 1 - temp,
 				index = 0,
@@ -9870,7 +9761,6 @@ jQuery.fx.speeds = {
 
 
 // Based off of the plugin by Clint Helfers, with permission.
-// https://web.archive.org/web/20100324014747/http://blindsignals.com/index.php/2009/07/jquery-delay/
 jQuery.fn.delay = function( time, type ) {
 	time = jQuery.fx ? jQuery.fx.speeds[ time ] || time : time;
 	type = type || "fx";
@@ -10095,8 +9985,7 @@ jQuery.extend( {
 				// Support: IE <=9 - 11 only
 				// elem.tabIndex doesn't always return the
 				// correct value when it hasn't been explicitly set
-				// https://web.archive.org/web/20141116233347/http://fluidproject.org/blog/2008/01/09/getting-setting-and-removing-tabindex-values-with-javascript/
-				// Use proper attribute retrieval(#12072)
+				// Use proper attribute retrieval (trac-12072)
 				var tabindex = jQuery.find.attr( elem, "tabindex" );
 
 				if ( tabindex ) {
@@ -10200,8 +10089,7 @@ function classesToArray( value ) {
 
 jQuery.fn.extend( {
 	addClass: function( value ) {
-		var classes, elem, cur, curValue, clazz, j, finalValue,
-			i = 0;
+		var classNames, cur, curValue, className, i, finalValue;
 
 		if ( isFunction( value ) ) {
 			return this.each( function( j ) {
@@ -10209,36 +10097,35 @@ jQuery.fn.extend( {
 			} );
 		}
 
-		classes = classesToArray( value );
+		classNames = classesToArray( value );
 
-		if ( classes.length ) {
-			while ( ( elem = this[ i++ ] ) ) {
-				curValue = getClass( elem );
-				cur = elem.nodeType === 1 && ( " " + stripAndCollapse( curValue ) + " " );
+		if ( classNames.length ) {
+			return this.each( function() {
+				curValue = getClass( this );
+				cur = this.nodeType === 1 && ( " " + stripAndCollapse( curValue ) + " " );
 
 				if ( cur ) {
-					j = 0;
-					while ( ( clazz = classes[ j++ ] ) ) {
-						if ( cur.indexOf( " " + clazz + " " ) < 0 ) {
-							cur += clazz + " ";
+					for ( i = 0; i < classNames.length; i++ ) {
+						className = classNames[ i ];
+						if ( cur.indexOf( " " + className + " " ) < 0 ) {
+							cur += className + " ";
 						}
 					}
 
 					// Only assign if different to avoid unneeded rendering.
 					finalValue = stripAndCollapse( cur );
 					if ( curValue !== finalValue ) {
-						elem.setAttribute( "class", finalValue );
+						this.setAttribute( "class", finalValue );
 					}
 				}
-			}
+			} );
 		}
 
 		return this;
 	},
 
 	removeClass: function( value ) {
-		var classes, elem, cur, curValue, clazz, j, finalValue,
-			i = 0;
+		var classNames, cur, curValue, className, i, finalValue;
 
 		if ( isFunction( value ) ) {
 			return this.each( function( j ) {
@@ -10250,44 +10137,41 @@ jQuery.fn.extend( {
 			return this.attr( "class", "" );
 		}
 
-		classes = classesToArray( value );
+		classNames = classesToArray( value );
 
-		if ( classes.length ) {
-			while ( ( elem = this[ i++ ] ) ) {
-				curValue = getClass( elem );
+		if ( classNames.length ) {
+			return this.each( function() {
+				curValue = getClass( this );
 
 				// This expression is here for better compressibility (see addClass)
-				cur = elem.nodeType === 1 && ( " " + stripAndCollapse( curValue ) + " " );
+				cur = this.nodeType === 1 && ( " " + stripAndCollapse( curValue ) + " " );
 
 				if ( cur ) {
-					j = 0;
-					while ( ( clazz = classes[ j++ ] ) ) {
+					for ( i = 0; i < classNames.length; i++ ) {
+						className = classNames[ i ];
 
 						// Remove *all* instances
-						while ( cur.indexOf( " " + clazz + " " ) > -1 ) {
-							cur = cur.replace( " " + clazz + " ", " " );
+						while ( cur.indexOf( " " + className + " " ) > -1 ) {
+							cur = cur.replace( " " + className + " ", " " );
 						}
 					}
 
 					// Only assign if different to avoid unneeded rendering.
 					finalValue = stripAndCollapse( cur );
 					if ( curValue !== finalValue ) {
-						elem.setAttribute( "class", finalValue );
+						this.setAttribute( "class", finalValue );
 					}
 				}
-			}
+			} );
 		}
 
 		return this;
 	},
 
 	toggleClass: function( value, stateVal ) {
-		var type = typeof value,
+		var classNames, className, i, self,
+			type = typeof value,
 			isValidValue = type === "string" || Array.isArray( value );
-
-		if ( typeof stateVal === "boolean" && isValidValue ) {
-			return stateVal ? this.addClass( value ) : this.removeClass( value );
-		}
 
 		if ( isFunction( value ) ) {
 			return this.each( function( i ) {
@@ -10298,17 +10182,20 @@ jQuery.fn.extend( {
 			} );
 		}
 
-		return this.each( function() {
-			var className, i, self, classNames;
+		if ( typeof stateVal === "boolean" && isValidValue ) {
+			return stateVal ? this.addClass( value ) : this.removeClass( value );
+		}
 
+		classNames = classesToArray( value );
+
+		return this.each( function() {
 			if ( isValidValue ) {
 
 				// Toggle individual class names
-				i = 0;
 				self = jQuery( this );
-				classNames = classesToArray( value );
 
-				while ( ( className = classNames[ i++ ] ) ) {
+				for ( i = 0; i < classNames.length; i++ ) {
+					className = classNames[ i ];
 
 					// Check each className given, space separated list
 					if ( self.hasClass( className ) ) {
@@ -10442,7 +10329,7 @@ jQuery.extend( {
 					val :
 
 					// Support: IE <=10 - 11 only
-					// option.text throws exceptions (#14686, #14858)
+					// option.text throws exceptions (trac-14686, trac-14858)
 					// Strip and collapse whitespace
 					// https://html.spec.whatwg.org/#strip-and-collapse-whitespace
 					stripAndCollapse( jQuery.text( elem ) );
@@ -10469,7 +10356,7 @@ jQuery.extend( {
 					option = options[ i ];
 
 					// Support: IE <=9 only
-					// IE8-9 doesn't update selected after form reset (#2551)
+					// IE8-9 doesn't update selected after form reset (trac-2551)
 					if ( ( option.selected || i === index ) &&
 
 							// Don't return options that are disabled or in a disabled optgroup
@@ -10543,9 +10430,39 @@ jQuery.each( [ "radio", "checkbox" ], function() {
 
 
 // Return jQuery for attributes-only inclusion
+var location = window.location;
+
+var nonce = { guid: Date.now() };
+
+var rquery = ( /\?/ );
 
 
-support.focusin = "onfocusin" in window;
+
+// Cross-browser xml parsing
+jQuery.parseXML = function( data ) {
+	var xml, parserErrorElem;
+	if ( !data || typeof data !== "string" ) {
+		return null;
+	}
+
+	// Support: IE 9 - 11 only
+	// IE throws on parseFromString with invalid input.
+	try {
+		xml = ( new window.DOMParser() ).parseFromString( data, "text/xml" );
+	} catch ( e ) {}
+
+	parserErrorElem = xml && xml.getElementsByTagName( "parsererror" )[ 0 ];
+	if ( !xml || parserErrorElem ) {
+		jQuery.error( "Invalid XML: " + (
+			parserErrorElem ?
+				jQuery.map( parserErrorElem.childNodes, function( el ) {
+					return el.textContent;
+				} ).join( "\n" ) :
+				data
+		) );
+	}
+	return xml;
+};
 
 
 var rfocusMorph = /^(?:focusinfocus|focusoutblur)$/,
@@ -10612,8 +10529,8 @@ jQuery.extend( jQuery.event, {
 			return;
 		}
 
-		// Determine event propagation path in advance, per W3C events spec (#9951)
-		// Bubble up to document, then to window; watch for a global ownerDocument var (#9724)
+		// Determine event propagation path in advance, per W3C events spec (trac-9951)
+		// Bubble up to document, then to window; watch for a global ownerDocument var (trac-9724)
 		if ( !onlyHandlers && !special.noBubble && !isWindow( elem ) ) {
 
 			bubbleType = special.delegateType || type;
@@ -10665,7 +10582,7 @@ jQuery.extend( jQuery.event, {
 				acceptData( elem ) ) {
 
 				// Call a native DOM method on the target with the same name as the event.
-				// Don't do default actions on window, that's where global variables be (#6170)
+				// Don't do default actions on window, that's where global variables be (trac-6170)
 				if ( ontype && isFunction( elem[ type ] ) && !isWindow( elem ) ) {
 
 					// Don't re-trigger an onFOO event when we call its FOO() method
@@ -10731,85 +10648,6 @@ jQuery.fn.extend( {
 		}
 	}
 } );
-
-
-// Support: Firefox <=44
-// Firefox doesn't have focus(in | out) events
-// Related ticket - https://bugzilla.mozilla.org/show_bug.cgi?id=687787
-//
-// Support: Chrome <=48 - 49, Safari <=9.0 - 9.1
-// focus(in | out) events fire after focus & blur events,
-// which is spec violation - http://www.w3.org/TR/DOM-Level-3-Events/#events-focusevent-event-order
-// Related ticket - https://bugs.chromium.org/p/chromium/issues/detail?id=449857
-if ( !support.focusin ) {
-	jQuery.each( { focus: "focusin", blur: "focusout" }, function( orig, fix ) {
-
-		// Attach a single capturing handler on the document while someone wants focusin/focusout
-		var handler = function( event ) {
-			jQuery.event.simulate( fix, event.target, jQuery.event.fix( event ) );
-		};
-
-		jQuery.event.special[ fix ] = {
-			setup: function() {
-
-				// Handle: regular nodes (via `this.ownerDocument`), window
-				// (via `this.document`) & document (via `this`).
-				var doc = this.ownerDocument || this.document || this,
-					attaches = dataPriv.access( doc, fix );
-
-				if ( !attaches ) {
-					doc.addEventListener( orig, handler, true );
-				}
-				dataPriv.access( doc, fix, ( attaches || 0 ) + 1 );
-			},
-			teardown: function() {
-				var doc = this.ownerDocument || this.document || this,
-					attaches = dataPriv.access( doc, fix ) - 1;
-
-				if ( !attaches ) {
-					doc.removeEventListener( orig, handler, true );
-					dataPriv.remove( doc, fix );
-
-				} else {
-					dataPriv.access( doc, fix, attaches );
-				}
-			}
-		};
-	} );
-}
-var location = window.location;
-
-var nonce = { guid: Date.now() };
-
-var rquery = ( /\?/ );
-
-
-
-// Cross-browser xml parsing
-jQuery.parseXML = function( data ) {
-	var xml, parserErrorElem;
-	if ( !data || typeof data !== "string" ) {
-		return null;
-	}
-
-	// Support: IE 9 - 11 only
-	// IE throws on parseFromString with invalid input.
-	try {
-		xml = ( new window.DOMParser() ).parseFromString( data, "text/xml" );
-	} catch ( e ) {}
-
-	parserErrorElem = xml && xml.getElementsByTagName( "parsererror" )[ 0 ];
-	if ( !xml || parserErrorElem ) {
-		jQuery.error( "Invalid XML: " + (
-			parserErrorElem ?
-				jQuery.map( parserErrorElem.childNodes, function( el ) {
-					return el.textContent;
-				} ).join( "\n" ) :
-				data
-		) );
-	}
-	return xml;
-};
 
 
 var
@@ -10939,7 +10777,7 @@ var
 	rantiCache = /([?&])_=[^&]*/,
 	rheaders = /^(.*?):[ \t]*([^\r\n]*)$/mg,
 
-	// #7653, #8125, #8152: local protocol detection
+	// trac-7653, trac-8125, trac-8152: local protocol detection
 	rlocalProtocol = /^(?:about|app|app-storage|.+-extension|file|res|widget):$/,
 	rnoContent = /^(?:GET|HEAD)$/,
 	rprotocol = /^\/\//,
@@ -10962,7 +10800,7 @@ var
 	 */
 	transports = {},
 
-	// Avoid comment-prolog char sequence (#10098); must appease lint and evade compression
+	// Avoid comment-prolog char sequence (trac-10098); must appease lint and evade compression
 	allTypes = "*/".concat( "*" ),
 
 	// Anchor tag for parsing the document origin
@@ -11033,7 +10871,7 @@ function inspectPrefiltersOrTransports( structure, options, originalOptions, jqX
 
 // A special extend for ajax options
 // that takes "flat" options (not to be deep extended)
-// Fixes #9887
+// Fixes trac-9887
 function ajaxExtend( target, src ) {
 	var key, deep,
 		flatOptions = jQuery.ajaxSettings.flatOptions || {};
@@ -11444,12 +11282,12 @@ jQuery.extend( {
 		deferred.promise( jqXHR );
 
 		// Add protocol if not provided (prefilters might expect it)
-		// Handle falsy url in the settings object (#10093: consistency with old signature)
+		// Handle falsy url in the settings object (trac-10093: consistency with old signature)
 		// We also use the url parameter if available
 		s.url = ( ( url || s.url || location.href ) + "" )
 			.replace( rprotocol, location.protocol + "//" );
 
-		// Alias method option to type as per ticket #12004
+		// Alias method option to type as per ticket trac-12004
 		s.type = options.method || options.type || s.method || s.type;
 
 		// Extract dataTypes list
@@ -11492,7 +11330,7 @@ jQuery.extend( {
 		}
 
 		// We can fire global events as of now if asked to
-		// Don't fire events if jQuery.event is undefined in an AMD-usage scenario (#15118)
+		// Don't fire events if jQuery.event is undefined in an AMD-usage scenario (trac-15118)
 		fireGlobals = jQuery.event && s.global;
 
 		// Watch for a new set of requests
@@ -11521,7 +11359,7 @@ jQuery.extend( {
 			if ( s.data && ( s.processData || typeof s.data === "string" ) ) {
 				cacheURL += ( rquery.test( cacheURL ) ? "&" : "?" ) + s.data;
 
-				// #9682: remove data so that it's not used in an eventual retry
+				// trac-9682: remove data so that it's not used in an eventual retry
 				delete s.data;
 			}
 
@@ -11794,7 +11632,7 @@ jQuery._evalUrl = function( url, options, doc ) {
 	return jQuery.ajax( {
 		url: url,
 
-		// Make this explicit, since user can override this through ajaxSetup (#11264)
+		// Make this explicit, since user can override this through ajaxSetup (trac-11264)
 		type: "GET",
 		dataType: "script",
 		cache: true,
@@ -11903,7 +11741,7 @@ var xhrSuccessStatus = {
 		0: 200,
 
 		// Support: IE <=9 only
-		// #1450: sometimes IE returns 1223 when it should be 204
+		// trac-1450: sometimes IE returns 1223 when it should be 204
 		1223: 204
 	},
 	xhrSupported = jQuery.ajaxSettings.xhr();
@@ -11975,7 +11813,7 @@ jQuery.ajaxTransport( function( options ) {
 								} else {
 									complete(
 
-										// File: protocol always yields status 0; see #8605, #14207
+										// File: protocol always yields status 0; see trac-8605, trac-14207
 										xhr.status,
 										xhr.statusText
 									);
@@ -12036,7 +11874,7 @@ jQuery.ajaxTransport( function( options ) {
 					xhr.send( options.hasContent && options.data || null );
 				} catch ( e ) {
 
-					// #14683: Only rethrow if this hasn't been notified as an error yet
+					// trac-14683: Only rethrow if this hasn't been notified as an error yet
 					if ( callback ) {
 						throw e;
 					}
@@ -12656,7 +12494,9 @@ jQuery.fn.extend( {
 	},
 
 	hover: function( fnOver, fnOut ) {
-		return this.mouseenter( fnOver ).mouseleave( fnOut || fnOver );
+		return this
+			.on( "mouseenter", fnOver )
+			.on( "mouseleave", fnOut || fnOver );
 	}
 } );
 
@@ -12680,7 +12520,9 @@ jQuery.each(
 
 // Support: Android <=4.0 only
 // Make sure we trim BOM and NBSP
-var rtrim = /^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g;
+// Require that the "whitespace run" starts from a non-whitespace
+// to avoid O(N^2) behavior when the engine would try matching "\s+$" at each space position.
+var rtrim = /^[\s\uFEFF\xA0]+|([^\s\uFEFF\xA0])[\s\uFEFF\xA0]+$/g;
 
 // Bind a function to a context, optionally partially applying any
 // arguments.
@@ -12747,7 +12589,7 @@ jQuery.isNumeric = function( obj ) {
 jQuery.trim = function( text ) {
 	return text == null ?
 		"" :
-		( text + "" ).replace( rtrim, "" );
+		( text + "" ).replace( rtrim, "$1" );
 };
 
 
@@ -12796,8 +12638,8 @@ jQuery.noConflict = function( deep ) {
 };
 
 // Expose jQuery and $ identifiers, even in AMD
-// (#7102#comment:10, https://github.com/jquery/jquery/pull/557)
-// and CommonJS for browser emulators (#13566)
+// (trac-7102#comment:10, https://github.com/jquery/jquery/pull/557)
+// and CommonJS for browser emulators (trac-13566)
 if ( typeof noGlobal === "undefined" ) {
 	window.jQuery = window.$ = jQuery;
 }
@@ -12849,7 +12691,7 @@ module.exports = function(src) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! !./node_modules/script-loader/addScript.js */ "./node_modules/script-loader/addScript.js")(__webpack_require__(/*! !./node_modules/raw-loader!./node_modules/accessibility-developer-tools/dist/js/axs_testing.js */ "./node_modules/raw-loader/index.js!./node_modules/accessibility-developer-tools/dist/js/axs_testing.js")+"\n\n// SCRIPT-LOADER FOOTER\n//# sourceURL=script:///tmp/totally-build/node_modules/accessibility-developer-tools/dist/js/axs_testing.js")
+__webpack_require__(/*! !./node_modules/script-loader/addScript.js */ "./node_modules/script-loader/addScript.js")(__webpack_require__(/*! !./node_modules/raw-loader!./node_modules/accessibility-developer-tools/dist/js/axs_testing.js */ "./node_modules/raw-loader/index.js!./node_modules/accessibility-developer-tools/dist/js/axs_testing.js")+"\n\n// SCRIPT-LOADER FOOTER\n//# sourceURL=script:///home/skeletonxf/Documents/Web/taas/totally-automated-a11y-scanner/node_modules/accessibility-developer-tools/dist/js/axs_testing.js")
 
 /***/ }),
 
@@ -13082,37 +12924,6 @@ function updateLink(linkElement, obj) {
 
 /***/ }),
 
-/***/ "./node_modules/webpack/buildin/global.js":
-/*!***********************************!*\
-  !*** (webpack)/buildin/global.js ***!
-  \***********************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-var g;
-
-// This works in non-strict mode
-g = (function() {
-	return this;
-})();
-
-try {
-	// This works if eval is allowed (see CSP)
-	g = g || new Function("return this")();
-} catch (e) {
-	// This works if the window reference is available
-	if (typeof window === "object") g = window;
-}
-
-// g can still be undefined, but nothing to do about it...
-// We return undefined, instead of nothing here, so it's
-// easier to handle this case. if(!global) { ...}
-
-module.exports = g;
-
-
-/***/ }),
-
 /***/ "./plugins/a11y-name/about.handlebars":
 /*!********************************************!*\
   !*** ./plugins/a11y-name/about.handlebars ***!
@@ -13164,56 +12975,48 @@ module.exports = (Handlebars["default"] || Handlebars).template({"compiler":[8,"
 /***/ (function(module, exports, __webpack_require__) {
 
 let $ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
-
 let Plugin = __webpack_require__(/*! ../base */ "./plugins/base.js");
-
 let annotate = __webpack_require__(/*! ../shared/annotate */ "./plugins/shared/annotate/index.js")("a11y-name");
-
 let audit = __webpack_require__(/*! ../shared/audit */ "./plugins/shared/audit.js");
-
 let errorTemplate = __webpack_require__(/*! ./error-template.handlebars */ "./plugins/a11y-name/error-template.handlebars");
-
 let aboutTemplate = __webpack_require__(/*! ./about.handlebars */ "./plugins/a11y-name/about.handlebars");
-
 __webpack_require__(/*! ./style.less */ "./plugins/a11y-name/style.less");
-
 class A11yName extends Plugin {
   getName() {
     return "a11y-name";
   }
-
   getTitle() {
     return "Accessible names";
   }
-
   getDescription() {
     return "Checks visible label text is included in programmatic labels";
   }
-
   getAnnotate() {
     return annotate;
   }
-
   run() {
     $("a, input, textarea, select, button").each((i, el) => {
       // elementIsHtmlControl
-      let $el = $(el); // Ignore elements that are part of the tota11y UI
 
+      let $el = $(el);
+
+      // Ignore elements that are part of the tota11y UI
       if ($el.parents(".tota11y").length > 0) {
         return;
-      } // Ignore invisible elements
+      }
 
-
+      // Ignore invisible elements
       if (axs.utils.elementIsTransparent(el) || axs.utils.elementHasZeroArea(el)) {
         return;
-      } // Ignore elements positioned off screen
+      }
 
-
+      // Ignore elements positioned off screen
       {
-        let viewportRect = el.getBoundingClientRect(); // apply the current scrolling to the bounding rectangle
+        let viewportRect = el.getBoundingClientRect();
+
+        // apply the current scrolling to the bounding rectangle
         // so the values are relative to the document rather
         // than the viewport
-
         let rect = {
           top: viewportRect.top + window.scrollY,
           left: viewportRect.left + window.scrollX,
@@ -13222,31 +13025,29 @@ class A11yName extends Plugin {
         };
         let documentWidth = $(document).width();
         let documentHeight = $(document).height();
-
         if ((rect.left < 0 || rect.right > documentWidth) && (rect.top < 0 || rect.bottom > documentHeight)) {
           return;
         }
-      } // Ignore elements that have been hidden by CSS
+      }
 
+      // Ignore elements that have been hidden by CSS
       if ($el.css("overflow") === "hidden" && $el.width() <= 1 && $el.height() <= 1) {
         return;
       }
-
       let alts = {};
       let extractedText = axs.properties.findTextAlternatives(el, alts);
-
       if (extractedText === null) {
         return;
       }
+      const unmodifiedExtractedText = extractedText.split("").join("");
 
-      const unmodifiedExtractedText = extractedText.split("").join(""); // get the texts in the element or children of the element
+      // get the texts in the element or children of the element
+      let visibleText = [];
 
-      let visibleText = []; // add any label text
-
+      // add any label text
       if (el.id) {
         visibleText.push($(`label[for=${el.id}]`).text());
       }
-
       if (["a", "button"].some(t => t === $el.prop("tagName").toLowerCase())) {
         // Need to use #text() on a and button elements
         visibleText.push($el.text());
@@ -13255,38 +13056,34 @@ class A11yName extends Plugin {
         // inputs, textarea and select elements
         visibleText.push($el.val());
       }
+      const unmodfiedVisibleText = visibleText.reduce((a, t) => a + t + " & ", "").slice(0, -3);
 
-      const unmodfiedVisibleText = visibleText.reduce((a, t) => a + t + " & ", "").slice(0, -3); // strip all punctuation and casing from both texts
-
+      // strip all punctuation and casing from both texts
       visibleText = visibleText.map(t => t.replace(/[\s'!#$%&()*+,\-.\/:;<=>?@\[\]^_\`{|}~]/g, "").toLowerCase());
       extractedText = extractedText.replace(/[\s'!#$%&()*+,\-.\/:;<=>?@\[\]^_\`{|}~]/g, "").toLowerCase();
       visibleText = visibleText.filter(t => t !== "");
-
       if (visibleText.length === 0) {
         return;
       }
-
       if (extractedText === "") {
         return;
       }
+      let labelInName = visibleText.some(t => extractedText.includes(t));
 
-      let labelInName = visibleText.some(t => extractedText.includes(t)); // also check for the extracted text including only most of
+      // also check for the extracted text including only most of
       // the visible text to accomodate for prepended and appended
       // 'text' content that is converted to visual forms (ie arrows)
-
       if (!labelInName) {
         for (let text of visibleText) {
           for (let i = 0; i < text.length * 0.25 && !labelInName; i++) {
             let j = i + text.length * 0.75 - 1;
             let partialVisibleText = text.substring(i, j);
-
             if (partialVisibleText.length > 0 && extractedText.includes(partialVisibleText)) {
               labelInName = true;
             }
           }
         }
       }
-
       if (labelInName) {
         annotate.label($el, unmodifiedExtractedText).addClass("tota11y-label-success");
       } else {
@@ -13301,13 +13098,10 @@ class A11yName extends Plugin {
     });
     this.about($(aboutTemplate()));
   }
-
   cleanup() {
     annotate.removeAll();
   }
-
 }
-
 module.exports = A11yName;
 
 /***/ }),
@@ -13356,27 +13150,21 @@ module.exports = (Handlebars["default"] || Handlebars).template({"compiler":[8,"
 /* WEBPACK VAR INJECTION */(function(buildElement) {/**
  * Allows users to see what screen readers would see.
  */
+
 let $ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
-
 let Plugin = __webpack_require__(/*! ../base */ "./plugins/base.js");
-
 let aboutTemplate = __webpack_require__(/*! ./about.handlebars */ "./plugins/a11y-text-wand/about.handlebars");
-
 __webpack_require__(/*! ./style.less */ "./plugins/a11y-text-wand/style.less");
-
 class A11yTextWand extends Plugin {
   getName() {
     return "a11y-text-wand";
   }
-
   getTitle() {
     return "Screen Reader Wand";
   }
-
   getDescription() {
     return "Hover over elements to view them as a screen reader would";
   }
-
   run() {
     // We provide a temporary about to force the info panel to
     // render.
@@ -13388,7 +13176,6 @@ class A11yTextWand extends Plugin {
       let textAlternative = axs.properties.findTextAlternatives(element, {});
       $(".tota11y-outlined").removeClass("tota11y-outlined");
       $(element).addClass("tota11y-outlined");
-
       if (!textAlternative) {
         panel.directRender(buildElement("i", {
           className: "tota11y-nothingness"
@@ -13398,14 +13185,11 @@ class A11yTextWand extends Plugin {
       }
     });
   }
-
   cleanup() {
     $(".tota11y-outlined").removeClass("tota11y-outlined");
     $(document).off("mousemove.wand");
   }
-
 }
-
 module.exports = A11yTextWand;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./utils/element */ "./utils/element.js")))
 
@@ -13483,69 +13267,56 @@ module.exports = (Handlebars["default"] || Handlebars).template({"compiler":[8,"
 /**
  * A plugin to check for valid alternative representations for images
  */
+
 let $ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
-
 let Plugin = __webpack_require__(/*! ../base */ "./plugins/base.js");
-
 let annotate = __webpack_require__(/*! ../shared/annotate */ "./plugins/shared/annotate/index.js")("alt-text");
-
 let audit = __webpack_require__(/*! ../shared/audit */ "./plugins/shared/audit.js");
-
 let imageErrorTemplate = __webpack_require__(/*! ./image-error-template.handlebars */ "./plugins/alt-text/image-error-template.handlebars");
-
 let inputErrorTemplate = __webpack_require__(/*! ./input-image-error-template.handlebars */ "./plugins/alt-text/input-image-error-template.handlebars");
-
 let fallbackTextErrorTemplate = __webpack_require__(/*! ./no-fallback-text-error-template.handlebars */ "./plugins/alt-text/no-fallback-text-error-template.handlebars");
-
 let noCaptionsErrorTemplate = __webpack_require__(/*! ./no-captions-error-template.handlebars */ "./plugins/alt-text/no-captions-error-template.handlebars");
-
 let noAudioDescriptionErrorTemplate = __webpack_require__(/*! ./no-audio-description-error-template.handlebars */ "./plugins/alt-text/no-audio-description-error-template.handlebars");
-
 let aboutTemplate = __webpack_require__(/*! ./about.handlebars */ "./plugins/alt-text/about.handlebars");
-
 class AltTextPlugin extends Plugin {
   getName() {
     return "alt-text";
   }
-
   getTitle() {
     return "Alternative text";
   }
-
   getDescription() {
     return "Annotates elements without text alternatives";
   }
-
   getAnnotate() {
     return annotate;
   }
-
   reportImageError(el) {
     let $el = $(el);
     let src = $el.attr("src") || "..";
     let title = "Image is missing alt text";
     let $error = imageErrorTemplate({
       src: src
-    }); // Place an error label on the element and register it as an
-    // error in the info panel
+    });
 
+    // Place an error label on the element and register it as an
+    // error in the info panel
     let entry = this.error(title, $error, $el);
     annotate.errorLabel($el, "", title, entry);
   }
-
   reportInputError(el) {
     let $el = $(el);
     let src = $el.attr("src") || "..";
     let title = "Input image is missing alt text";
     let $error = inputErrorTemplate({
       src: src
-    }); // Place an error label on the element and register it as an
-    // error in the info panel
+    });
 
+    // Place an error label on the element and register it as an
+    // error in the info panel
     let entry = this.error(title, $error, $el);
     annotate.errorLabel($el, "", title, entry);
   }
-
   reportErrorFactory(_title, template) {
     return (el, elementName) => {
       let $el = $(el);
@@ -13553,73 +13324,60 @@ class AltTextPlugin extends Plugin {
       let title = `${elementCapitalised} ${_title}`;
       let $error = template({
         elementName: elementName
-      }); // Place an error label on the element and register it as an
-      // error in the info panel
+      });
 
+      // Place an error label on the element and register it as an
+      // error in the info panel
       let entry = this.error(title, $error, $el);
       annotate.errorLabel($el, "", title, entry);
     };
   }
-
   reportFallbackTextError(el, elementName) {
     this.reportErrorFactory("is missing text alternatives", fallbackTextErrorTemplate)(el, elementName);
   }
-
   reportNoCaptionsError(el, elementName) {
     this.reportErrorFactory("has no captions", noCaptionsErrorTemplate)(el, elementName);
   }
-
   reportNoAudioDescriptionError(el, elementName) {
     this.reportErrorFactory("has no audio descriptions", noAudioDescriptionErrorTemplate)(el, elementName);
   }
-
   run() {
     // Check elements for captions and/or text alternatives of any kind
     // (ie alt tags for images)
     $('audio, video, img, input[type="image"], object').each((i, el) => {
       let $el = $(el);
-
       if (axs.utils.isElementOrAncestorHidden(el)) {
         // skip hidden elements
         return;
       }
-
       if ($el.attr("role") === "presentation") {
         // ignore presentational elements
         return;
       }
-
       let textAlternatives = {};
-      axs.properties.findTextAlternatives(el, textAlternatives); // Remove false negative when noLabel is the only key in
+      axs.properties.findTextAlternatives(el, textAlternatives);
+      // Remove false negative when noLabel is the only key in
       // text alternatives
-
       delete textAlternatives["noLabel"];
       let noTextAlternatives = Object.keys(textAlternatives).length === 0;
       let elementName = $el.prop("tagName").toLowerCase();
-
       if (elementName === "img") {
         if (noTextAlternatives) {
           this.reportImageError(el);
         }
-
         return;
       }
-
       if (elementName === "input") {
         if (noTextAlternatives) {
           this.reportInputError(el);
         }
-
         return;
       }
-
       let hasCaptions = $el.find('track[kind="captions"]').length > 0;
       let hasAudioDescription = $el.find('track[kind="descriptions"]').length > 0;
-
       if (noTextAlternatives && !hasCaptions && !hasAudioDescription) {
         this.reportFallbackTextError(el, elementName);
       }
-
       if (elementName === "video") {
         // FIXME Detect the most suitable ARIA for indicating
         // the element is a media alternative to text, in which
@@ -13627,13 +13385,13 @@ class AltTextPlugin extends Plugin {
         if (!hasCaptions) {
           this.reportNoCaptionsError(el, elementName);
         }
-
         if (!hasAudioDescription) {
           this.reportNoAudioDescriptionError(el, elementName);
         }
       }
-    }); // Additionally, label presentational elements
+    });
 
+    // Additionally, label presentational elements
     $(`img[role="presentation"],
                 img[alt=""],
                 input[type="image"][alt=""],
@@ -13647,13 +13405,10 @@ class AltTextPlugin extends Plugin {
     });
     this.about($(aboutTemplate()));
   }
-
   cleanup() {
     annotate.removeAll();
   }
-
 }
-
 module.exports = AltTextPlugin;
 
 /***/ }),
@@ -13787,62 +13542,56 @@ module.exports = (Handlebars["default"] || Handlebars).template({"compiler":[8,"
  *     run: code to run when the plugin is activated from the toolbar
  *     cleanup: code to run when the plugin is deactivated from the toolbar
  */
-let infoPanel = __webpack_require__(/*! ./shared/info-panel */ "./plugins/shared/info-panel/index.js");
 
+let infoPanel = __webpack_require__(/*! ./shared/info-panel */ "./plugins/shared/info-panel/index.js");
 const InfoPanel = infoPanel.panel;
 const isBrowser = typeof browser !== 'undefined';
-
 __webpack_require__(/*! ./style.less */ "./plugins/style.less");
-
 class Plugin {
   constructor() {
     this.panel = new InfoPanel(this);
     this.$checkbox = null;
-  } // returns a unique identifier for this plugin with no spaces
+  }
+
+  // returns a unique identifier for this plugin with no spaces
   // or any other invalid CSS identifier characters,
   // ideally the directory name
-
-
   getName() {
     return getTitle().replace(" ", "-").toLowerCase();
   }
-
   getTitle() {
     return "New plugin";
   }
-
   getDescription() {
     return "";
   }
-
   getAnnotate() {
     return null;
   }
+
   /**
    * Methods that communicate directly with the info panel
    * TODO: Consider names like `setSummary` and `addError`
    */
+
   // Populates the info panel's "Summary" tab
-
-
   summary($html) {
     return this.panel.setSummary($html);
-  } // Populates the info panel's "About" tab
+  }
 
-
+  // Populates the info panel's "About" tab
   about($html) {
     return this.panel.setAbout($html);
-  } // Adds an entry to the info panel's "Errors" tab
+  }
 
-
+  // Adds an entry to the info panel's "Errors" tab
   error(title, $description, $el) {
     return this.panel.addError(title, $description, $el);
   }
+
   /**
    * Renders the plugin view.
    */
-
-
   render(clickHandler) {
     this.$checkbox = buildElement("input", {
       className: "tota11y-plugin-checkbox tota11y-sr-only",
@@ -13867,32 +13616,27 @@ class Plugin {
     }, $switch);
     return $el;
   }
+
   /**
    * Activate the plugin from the UI.
    */
-
-
   activate(windowId) {
     if (isBrowser) {
       this.panel.delegate(windowId);
     }
-
     this.run();
     this.panel.render();
   }
+
   /**
    * Deactivate the plugin from the UI.
    */
-
-
   deactivate() {
     this.cleanup();
     this.panel.destroy();
     this.$checkbox.prop("checked", false);
   }
-
 }
-
 module.exports = Plugin;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./utils/element */ "./utils/element.js")))
 
@@ -13994,44 +13738,33 @@ module.exports = (Handlebars["default"] || Handlebars).template({"compiler":[8,"
  * A plugin to label different levels of contrast on the page, and highlight
  * those with poor contrast while suggesting alternatives.
  */
+
 let $ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
-
 let Plugin = __webpack_require__(/*! ../base */ "./plugins/base.js");
-
 let annotate = __webpack_require__(/*! ../shared/annotate */ "./plugins/shared/annotate/index.js")("contrast");
-
 let titleTemplate = __webpack_require__(/*! ./error-title.handlebars */ "./plugins/contrast/error-title.handlebars");
-
 let descriptionTemplate = __webpack_require__(/*! ./error-description.handlebars */ "./plugins/contrast/error-description.handlebars");
-
 let aboutTemplate = __webpack_require__(/*! ./about.handlebars */ "./plugins/contrast/about.handlebars");
-
 __webpack_require__(/*! ./style.less */ "./plugins/contrast/style.less");
-
 class ContrastPlugin extends Plugin {
   constructor() {
-    super(); // List of original colors for elements with insufficient contrast.
+    super();
+    // List of original colors for elements with insufficient contrast.
     // Used to restore original colors in cleanup.
-
     this.preservedColors = [];
   }
-
   getName() {
     return "contrast";
   }
-
   getTitle() {
     return "Contrast";
   }
-
   getDescription() {
     return "Labels elements with insufficient contrast";
   }
-
   getAnnotate() {
     return annotate;
   }
-
   addError({
     style,
     fgColor,
@@ -14051,8 +13784,9 @@ class ContrastPlugin extends Plugin {
       suggestedFgColorHex: suggestedColors.fg,
       suggestedBgColorHex: suggestedColors.bg,
       suggestedColorsRatio: suggestedColors.contrast
-    }; // Add click handler to preview checkbox
+    };
 
+    // Add click handler to preview checkbox
     let $description = $(descriptionTemplate(templateData));
     let originalFgColor = style.color;
     let originalBgColor = style.backgroundColor;
@@ -14069,7 +13803,6 @@ class ContrastPlugin extends Plugin {
     });
     return this.error(titleTemplate(templateData), $description, $(el));
   }
-
   ptSize(style) {
     // Get the resolved value of the font size which lets
     // the browser do the work of converting em, rem, %, ect into px
@@ -14079,7 +13812,6 @@ class ContrastPlugin extends Plugin {
     // https://www.w3.org/WAI/WCAG21/Understanding/contrast-minimum.html
     return parseFloat(style.getPropertyValue("font-size")) / 1.333;
   }
-
   run() {
     // A map of fg/bg color pairs that we have already seen to the error
     // entry currently present in the info panel
@@ -14089,24 +13821,25 @@ class ContrastPlugin extends Plugin {
       if (!axs.properties.hasDirectTextDescendant(el)) {
         return;
       }
+      let $el = $(el);
 
-      let $el = $(el); // Ignore elements that are part of the tota11y UI
-
+      // Ignore elements that are part of the tota11y UI
       if ($el.parents(".tota11y").length > 0) {
         return;
-      } // Ignore invisible elements
+      }
 
-
+      // Ignore invisible elements
       if (axs.utils.elementIsTransparent(el) || axs.utils.elementHasZeroArea(el)) {
         return;
-      } // Ignore elements positioned off screen
+      }
 
-
+      // Ignore elements positioned off screen
       {
-        let viewportRect = el.getBoundingClientRect(); // apply the current scrolling to the bounding rectangle
+        let viewportRect = el.getBoundingClientRect();
+
+        // apply the current scrolling to the bounding rectangle
         // so the values are relative to the document rather
         // than the viewport
-
         let rect = {
           top: viewportRect.top + window.scrollY,
           left: viewportRect.left + window.scrollX,
@@ -14115,37 +13848,38 @@ class ContrastPlugin extends Plugin {
         };
         let documentWidth = $(document).width();
         let documentHeight = $(document).height();
-
         if ((rect.left < 0 || rect.right > documentWidth) && (rect.top < 0 || rect.bottom > documentHeight)) {
           return;
         }
-      } // Ignore elements that have been hidden by CSS
+      }
 
+      // Ignore elements that have been hidden by CSS
       if ($el.css("overflow") === "hidden" && $el.width() <= 1 && $el.height() <= 1) {
         return;
       }
-
       let style = window.getComputedStyle(el);
       let bgColor = axs.utils.getBgColor(style, el);
       let fgColor = axs.utils.getFgColor(style, el, bgColor);
-      let contrastRatio = axs.color.calculateContrastRatio(fgColor, bgColor).toFixed(2); // Calculate required ratio based on size according to WCAG
+      let contrastRatio = axs.color.calculateContrastRatio(fgColor, bgColor).toFixed(2);
+
+      // Calculate required ratio based on size according to WCAG
       // guidelines, bold lowers pt size needed to count as large text
       // https://www.w3.org/WAI/WCAG21/Understanding/contrast-minimum.html
-
       let largeFont = this.ptSize(style) >= 18 || style.fontWeight === "bold" && this.ptSize(style) >= 14;
-      let requiredRatio = largeFont ? 3.0 : 4.5; // Build a key for our `combinations` map and report the color
+      let requiredRatio = largeFont ? 3.0 : 4.5;
+
+      // Build a key for our `combinations` map and report the color
       // if we have not seen it yet
-
       let key = axs.color.colorToString(fgColor) + "/" + axs.color.colorToString(bgColor) + "/" + requiredRatio;
-
       if (contrastRatio >= requiredRatio) {
         // For acceptable contrast values, we don't show ratios if
         // they have been presented already
         if (!combinations[key]) {
-          annotate.label($(el), contrastRatio).addClass("tota11y-label-success"); // Add the key to the combinations map. We don't have an
+          annotate.label($(el), contrastRatio).addClass("tota11y-label-success");
+
+          // Add the key to the combinations map. We don't have an
           // error to associate it with, so we'll just give it the
           // value of `true`.
-
           combinations[key] = true;
         }
       } else {
@@ -14158,22 +13892,23 @@ class ContrastPlugin extends Plugin {
             bgColor,
             contrastRatio,
             requiredRatio
-          }, el); // Save original color so it can be restored on cleanup.
+          }, el);
 
+          // Save original color so it can be restored on cleanup.
           this.preservedColors.push({
             $el: $el,
             fg: style.color,
             bg: style.backgroundColor
           });
           combinations[key] = error;
-        } // We display errors multiple times for emphasis. Each error
+        }
+
+        // We display errors multiple times for emphasis. Each error
         // will point back to the entry in the info panel for that
         // particular color combination.
         //
         // TODO: The error entry in the info panel will only highlight
         // the first element with that color combination
-
-
         annotate.errorLabel($el, `
                     ${contrastRatio}
                     <span class="tota11y-swatches">
@@ -14186,7 +13921,6 @@ class ContrastPlugin extends Plugin {
     });
     this.about($(aboutTemplate()));
   }
-
   cleanup() {
     // Set all elements to original color
     this.preservedColors.forEach(entry => {
@@ -14195,9 +13929,7 @@ class ContrastPlugin extends Plugin {
     });
     annotate.removeAll();
   }
-
 }
-
 module.exports = ContrastPlugin;
 
 /***/ }),
@@ -14246,51 +13978,38 @@ module.exports = (Handlebars["default"] || Handlebars).template({"compiler":[8,"
 /*
  * A plugin to check the document metadata for the presence of important data
  */
+
 let $ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
-
 let Plugin = __webpack_require__(/*! ../base */ "./plugins/base.js");
-
 let summaryTemplate = __webpack_require__(/*! ./summary-template.handlebars */ "./plugins/document/summary-template.handlebars");
-
 let noLangErrorTemplate = __webpack_require__(/*! ./no-lang-error-template.handlebars */ "./plugins/document/no-lang-error-template.handlebars");
-
 let noPageTitleErrorTemplate = __webpack_require__(/*! ./no-page-title-error-template.handlebars */ "./plugins/document/no-page-title-error-template.handlebars");
-
 let aboutTemplate = __webpack_require__(/*! ./about.handlebars */ "./plugins/document/about.handlebars");
-
 class DocumentPlugin extends Plugin {
   getName() {
     return "document";
   }
-
   getTitle() {
     return "Document";
   }
-
   getDescription() {
     return "Checks the document for the presence of important meta data";
   }
-
   run() {
     if (!$("html").attr("lang")) {
       this.error("No language declared", noLangErrorTemplate(), $("html"));
     }
-
     if (!document.title || document.title === "") {
       this.error("No page title", noPageTitleErrorTemplate(), $("head"));
     }
-
     this.summary(summaryTemplate({
       language: $("html").attr("lang"),
       title: document.title
     }));
     this.about($(aboutTemplate()));
   }
-
   cleanup() {}
-
 }
-
 module.exports = DocumentPlugin;
 
 /***/ }),
@@ -14477,39 +14196,28 @@ module.exports = (Handlebars["default"] || Handlebars).template({"1":function(co
 /**
  * A plugin to identify unlabeled inputs
  */
+
 let $ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
-
 let Plugin = __webpack_require__(/*! ../base */ "./plugins/base.js");
-
 let annotate = __webpack_require__(/*! ../shared/annotate */ "./plugins/shared/annotate/index.js")("labels");
-
 let audit = __webpack_require__(/*! ../shared/audit */ "./plugins/shared/audit.js");
-
 let errorTemplate = __webpack_require__(/*! ./error-template.handlebars */ "./plugins/forms/error-template.handlebars");
-
 let altTextErrorTemplate = __webpack_require__(/*! ./alt-text-error-template.handlebars */ "./plugins/forms/alt-text-error-template.handlebars");
-
 let readOnlyClickEventErrorTemplate = __webpack_require__(/*! ./read-only-click-event-error-template.handlebars */ "./plugins/forms/read-only-click-event-error-template.handlebars");
-
 let aboutTemplate = __webpack_require__(/*! ./about.handlebars */ "./plugins/forms/about.handlebars");
-
 class FormsPlugin extends Plugin {
   getName() {
     return "forms";
   }
-
   getTitle() {
     return "Forms";
   }
-
   getDescription() {
     return "Identifies inputs with missing labels";
   }
-
   getAnnotate() {
     return annotate;
   }
-
   errorMessage($el) {
     return errorTemplate({
       placeholder: $el.attr("placeholder"),
@@ -14517,7 +14225,6 @@ class FormsPlugin extends Plugin {
       tagName: $el.prop("tagName").toLowerCase()
     });
   }
-
   altTextErrorMessage($el) {
     return altTextErrorTemplate({
       id: $el.attr("id"),
@@ -14525,7 +14232,6 @@ class FormsPlugin extends Plugin {
       type: $el.attr("type")
     });
   }
-
   run() {
     // audit doesn't return elements that are decorational
     // or hidden
@@ -14533,68 +14239,57 @@ class FormsPlugin extends Plugin {
       result,
       elements
     } = audit("controlsWithoutLabel");
-
     if (result === "FAIL") {
       elements.forEach(element => {
         let $el = $(element);
         let title = "Input is missing a label";
         let tagName = $el.prop("tagName").toLowerCase();
-
         if (tagName === "video") {
           return;
         }
+        let button = tagName === "button" || tagName === "input" && ["button", "submit", "reset"].some(t => t === $el.attr("type"));
 
-        let button = tagName === "button" || tagName === "input" && ["button", "submit", "reset"].some(t => t === $el.attr("type")); // Place an error label on the element and register it as an
+        // Place an error label on the element and register it as an
         // error in the info panel
-
         let entry;
-
         if (button) {
           title = "Button has no text";
           entry = this.error(title, $(this.altTextErrorMessage($el)), $el);
         } else {
           entry = this.error(title, $(this.errorMessage($el)), $el);
         }
-
         annotate.errorLabel($el, "", title, entry);
       });
     }
-
     $("progress, meter").each((i, el) => {
       let $el = $(el);
-
       if ($el.attr("role") === "presentation") {
         // ignore presentational elements
         return;
-      } // filter in the same way as the audit, ignoring elements "which
+      }
+
+      // filter in the same way as the audit, ignoring elements "which
       // have negative tabindex and an ancestor with a widget role,
       // since they can be accessed neither with tab nor with
       // a screen reader"
       // https://github.com/GoogleChrome/accessibility-developer-tools/blob/3d7c96bf34b3146f40aeb2720e0927f221ad8725/src/audits/ControlsWithoutLabel.js#L38
-
-
       if (el.tabindex < 0) {
         return;
       }
-
       for (let parent = axs.dom.parentElement(el); parent != null; parent = axs.dom.parentElement(parent)) {
         if (axs.utils.elementIsAriaWidget(parent)) {
           return;
         }
       }
-
       let text = $el.text().trim();
-
       if (!axs.utils.hasLabel(el)) {
         let title = "Widget is missing a label";
         let entry = this.error(title, $(this.errorMessage($el)), $el);
         annotate.errorLabel($el, "", title, entry);
       }
-
       let textAlternatives = {};
       axs.properties.findTextAlternatives(el, textAlternatives);
       let noTextAlternatives = Object.keys(textAlternatives).length === 0;
-
       if (noTextAlternatives) {
         let title = "Widget has no text";
         let entry = this.error(title, $(this.altTextErrorMessage($el)), $el);
@@ -14605,7 +14300,9 @@ class FormsPlugin extends Plugin {
       let $el = $(el);
       let title = "Read only interactive input";
       let entry = this.error(title, $(readOnlyClickEventErrorTemplate({})), $el);
-      annotate.errorLabel($el, "", title, entry); // TODO
+      annotate.errorLabel($el, "", title, entry);
+
+      // TODO
       // Check if the DevTools are open and if so send a message
       // over the Port that will trigger the devtools getEventListeners()
       // helper on these readonly input elements (via a special marking
@@ -14619,13 +14316,10 @@ class FormsPlugin extends Plugin {
     });
     this.about($(aboutTemplate()));
   }
-
   cleanup() {
     annotate.removeAll();
   }
-
 }
-
 module.exports = FormsPlugin;
 
 /***/ }),
@@ -14670,18 +14364,13 @@ module.exports = (Handlebars["default"] || Handlebars).template({"compiler":[8,"
 /* WEBPACK VAR INJECTION */(function(buildElement) {/**
  * A plugin to identify and validate heading tags (<h1>, <h2>, etc.)
  */
+
 let $ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
-
 let Plugin = __webpack_require__(/*! ../base */ "./plugins/base.js");
-
 let annotate = __webpack_require__(/*! ../shared/annotate */ "./plugins/shared/annotate/index.js")("headings");
-
 let outlineItemTemplate = __webpack_require__(/*! ./outline-item.handlebars */ "./plugins/headings/outline-item.handlebars");
-
 let aboutTemplate = __webpack_require__(/*! ./about.handlebars */ "./plugins/headings/about.handlebars");
-
 __webpack_require__(/*! ./style.less */ "./plugins/headings/style.less");
-
 class HeadingLevel {
   /*
    * Constructs a heading level from a heading element (h1 - h6) or
@@ -14689,7 +14378,6 @@ class HeadingLevel {
    */
   constructor($el) {
     let tagName = $el.prop("tagName").toLowerCase();
-
     if ($el.attr("role") === "heading" && typeof $el.attr("aria-level") !== "undefined") {
       this._level = +$el.attr("aria-level");
       this._tag = `&lt;${tagName} role="heading" aria-level="${this._level}"&gt;`;
@@ -14698,17 +14386,13 @@ class HeadingLevel {
       this._tag = `&lt;${tagName}&gt;`;
     }
   }
-
   tag() {
     return this._tag;
   }
-
   value() {
     return this._level;
   }
-
 }
-
 const ERRORS = {
   FIRST_NOT_H1(level) {
     return {
@@ -14723,7 +14407,6 @@ const ERRORS = {
             `
     };
   },
-
   // This error is currently unused.
   //
   // The HTML5 outlining algorithm[1] enables the use of "sectioning roots"
@@ -14738,32 +14421,28 @@ const ERRORS = {
   MULTIPLE_H1: {
     title: "&lt;h1&gt; used when one is already present"
   },
-
   // This error accepts two arguments to display a relevant error message
   NONCONSECUTIVE_HEADER(prevLevel, currLevel) {
     let levelToTagCode = level => {
       if (level <= 6) {
         return `<code>&lt;h${level}&gt;</code>`;
       }
-
       return `<code>&lt;div role="heading" aria-level="${level}"&gt;>`;
     };
-
     let _tag = level => `<code>${level.tag()}</code>`;
-
     let description = `
             <div>
                 This document contains an ${_tag(currLevel)} tag directly
                 following an ${_tag(prevLevel)}. In order to maintain a consistent
                 outline of the page for assistive technologies, reduce the gap in
                 the heading level by upgrading this tag to an
-                ${levelToTagCode(prevLevel.value() + 1)}`; // Suggest upgrading the tag to the same level as `prevLevel` iff
-    // `prevLevel` is not 1
+                ${levelToTagCode(prevLevel.value() + 1)}`;
 
+    // Suggest upgrading the tag to the same level as `prevLevel` iff
+    // `prevLevel` is not 1
     if (prevLevel.value() !== 1) {
       description += ` or ${levelToTagCode(prevLevel.value())}`;
     }
-
     description += ".</div>";
     return {
       // just convert to hX for title as space is constrained even
@@ -14775,52 +14454,47 @@ const ERRORS = {
       description: description
     };
   }
-
 };
-
 class HeadingsPlugin extends Plugin {
   getName() {
     return "headings";
   }
-
   getTitle() {
     return "Headings";
   }
-
   getDescription() {
     return `
             Highlights headings (&lt;h1&gt;, &lt;h2&gt;, etc) and
             order violations
         `;
   }
-
   getAnnotate() {
     return annotate;
   }
+
   /**
    * Computes an outline of the page and reports any violations.
    */
-
-
   outline($headings) {
     let $items = [];
     let prevLevel = null;
     $headings.each((i, el) => {
       let $el = $(el);
       let level = new HeadingLevel($el);
-      let error; // Check for any violations
+      let error;
+
+      // Check for any violations
       // NOTE: These violations do not overlap, but as we add more, we
       // may want to separate the conditionals here to report multiple
       // errors on the same tag.
-
       if (i === 0 && level.value() !== 1) {
         error = ERRORS.FIRST_NOT_H1(level); // eslint-disable-line new-cap
       } else if (prevLevel !== null && prevLevel.value() && level.value() - prevLevel.value() > 1) {
         error = ERRORS.NONCONSECUTIVE_HEADER(prevLevel, level); // eslint-disable-line new-cap
       }
+      prevLevel = level;
 
-      prevLevel = level; // Render the entry in the outline for the "Summary" tab
-
+      // Render the entry in the outline for the "Summary" tab
       let $item = $(outlineItemTemplate({
         // provide a numerical level which can go arbitarily high
         // and a capped level which we use for styling the element
@@ -14829,52 +14503,50 @@ class HeadingsPlugin extends Plugin {
         _level: level.value() <= 6 ? level.value() : "higher",
         text: $el.text()
       }));
-      $items.push($item); // Highlight the heading element on hover
+      $items.push($item);
 
+      // Highlight the heading element on hover
       annotate.toggleHighlight($el, $item);
-
       if (error) {
         // Register an error to the info panel
-        let infoPanelError = this.error(error.title, $(error.description), $el); // Place an error label on the heading tag
+        let infoPanelError = this.error(error.title, $(error.description), $el);
 
-        annotate.errorLabel($el, // just convert to hX for title as space is constrained even
+        // Place an error label on the heading tag
+        annotate.errorLabel($el,
+        // just convert to hX for title as space is constrained even
         // if actual tag is not h1-h6
-        `h${level.value()}`, error.title, infoPanelError); // Mark the summary item as red
+        `h${level.value()}`, error.title, infoPanelError);
+
+        // Mark the summary item as red
         // Pretty hacky, since we're borrowing label styles for this
         // summary tab
-
         $item.find(".tota11y-heading-outline-level").addClass("tota11y-label-error");
       } else {
         // Label the heading tag
-        annotate.label($el, `h${level.value()}`).addClass("tota11y-label-success"); // Mark the summary item as green
+        annotate.label($el, `h${level.value()}`).addClass("tota11y-label-success");
 
+        // Mark the summary item as green
         $item.find(".tota11y-heading-outline-level").addClass("tota11y-label-success");
       }
     });
     return $items;
   }
-
   run() {
-    let $headings = $(`h1, h2, h3, h4, h5, h6, [role="heading"][aria-level]`); // `this.outline` has the side-effect of also reporting violations
-
+    let $headings = $(`h1, h2, h3, h4, h5, h6, [role="heading"][aria-level]`);
+    // `this.outline` has the side-effect of also reporting violations
     let $items = this.outline($headings);
-
     if ($items.length) {
       let $outline = buildElement("div", {
         className: "tota11y-heading-outline"
       }, $items);
       this.summary($outline);
     }
-
     this.about($(aboutTemplate()));
   }
-
   cleanup() {
     annotate.removeAll();
   }
-
 }
-
 module.exports = HeadingsPlugin;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./utils/element */ "./utils/element.js")))
 
@@ -14939,30 +14611,19 @@ if(false) {}
  *
  * Exposes an array of plugin instances.
  */
+
 let A11yTextWand = __webpack_require__(/*! ./a11y-text-wand */ "./plugins/a11y-text-wand/index.js");
-
 let A11yName = __webpack_require__(/*! ./a11y-name */ "./plugins/a11y-name/index.js");
-
 let AltTextPlugin = __webpack_require__(/*! ./alt-text */ "./plugins/alt-text/index.js");
-
 let ContrastPlugin = __webpack_require__(/*! ./contrast */ "./plugins/contrast/index.js");
-
 let DocumentPlugin = __webpack_require__(/*! ./document */ "./plugins/document/index.js");
-
 let FormsPlugin = __webpack_require__(/*! ./forms */ "./plugins/forms/index.js");
-
 let HeadingsPlugin = __webpack_require__(/*! ./headings */ "./plugins/headings/index.js");
-
 let LandmarksPlugin = __webpack_require__(/*! ./landmarks */ "./plugins/landmarks/index.js");
-
 let LayoutPlugin = __webpack_require__(/*! ./layout */ "./plugins/layout/index.js");
-
 let LinkTextPlugin = __webpack_require__(/*! ./link-text */ "./plugins/link-text/index.js");
-
 let NavigationPlugin = __webpack_require__(/*! ./navigation */ "./plugins/navigation/index.js");
-
 let TablesPlugin = __webpack_require__(/*! ./tables */ "./plugins/tables/index.js");
-
 module.exports = {
   default: [new HeadingsPlugin(), new ContrastPlugin(), new LinkTextPlugin(), new FormsPlugin(), new AltTextPlugin(), new NavigationPlugin(), new LandmarksPlugin(), new TablesPlugin(), new LayoutPlugin(), new A11yName(), new DocumentPlugin()],
   experimental: [new A11yTextWand()]
@@ -14995,31 +14656,24 @@ module.exports = (Handlebars["default"] || Handlebars).template({"compiler":[8,"
 /**
  * A plugin to label all ARIA landmark roles
  */
+
 let $ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
-
 let Plugin = __webpack_require__(/*! ../base */ "./plugins/base.js");
-
 let annotate = __webpack_require__(/*! ../shared/annotate */ "./plugins/shared/annotate/index.js")("landmarks");
-
 let aboutTemplate = __webpack_require__(/*! ./about.handlebars */ "./plugins/landmarks/about.handlebars");
-
 class LandmarksPlugin extends Plugin {
   getName() {
     return "landmarks";
   }
-
   getTitle() {
     return "Landmarks";
   }
-
   getDescription() {
     return "Labels all ARIA landmarks";
   }
-
   getAnnotate() {
     return annotate;
   }
-
   run() {
     let seen = new Set();
     $("[role]:not(.tota11y-toolbar,.tota11y-plugin)").each(function () {
@@ -15040,13 +14694,10 @@ class LandmarksPlugin extends Plugin {
     });
     this.about($(aboutTemplate()));
   }
-
   cleanup() {
     annotate.removeAll();
   }
-
 }
-
 module.exports = LandmarksPlugin;
 
 /***/ }),
@@ -15074,39 +14725,29 @@ module.exports = (Handlebars["default"] || Handlebars).template({"compiler":[8,"
 /***/ (function(module, exports, __webpack_require__) {
 
 let $ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
-
 let Plugin = __webpack_require__(/*! ../base */ "./plugins/base.js");
-
 let annotate = __webpack_require__(/*! ../shared/annotate */ "./plugins/shared/annotate/index.js")("layout");
-
 let layoutTests = __webpack_require__(/*! ./tests */ "./plugins/layout/tests/index.js");
-
 let aboutTemplate = __webpack_require__(/*! ./about.handlebars */ "./plugins/layout/about.handlebars");
-
 class LayoutPlugin extends Plugin {
   constructor() {
     super();
   }
-
   getName() {
     return "layout";
   }
-
   getTitle() {
     return "Layout";
   }
-
   getDescription() {
     return `
             Checks the page layout is robust to user style sheets and other
             modifications
         `;
   }
-
   getAnnotate() {
     return annotate;
   }
-
   run() {
     layoutTests.forEach(test => {
       test.apply();
@@ -15119,7 +14760,6 @@ class LayoutPlugin extends Plugin {
     let $about = $(aboutTemplate());
     layoutTests.forEach(test => {
       let previewClass = test.getPreviewClass();
-
       if (previewClass) {
         $about.find(`.${previewClass}`).click(e => {
           if ($(e.target).prop("checked")) {
@@ -15127,23 +14767,19 @@ class LayoutPlugin extends Plugin {
           } else {
             test.cleanup();
           }
-
           annotate.refreshAll();
         });
       }
     });
     this.about($about);
   }
-
   cleanup() {
     layoutTests.forEach(test => {
       test.cleanup();
     });
     annotate.removeAll();
   }
-
 }
-
 module.exports = LayoutPlugin;
 
 /***/ }),
@@ -15160,34 +14796,28 @@ class LayoutTest {
    *  Applies a layout modification to the page.
    */
   apply() {}
+
   /*
    * Detects any problems the layout modification revealed.
    */
-
-
   detect() {}
+
   /*
    * Restores the page to before applying the layout modification.
    */
-
-
   cleanup() {}
+
   /*
    * Reports any problems detected.
    */
-
-
   report(infoPanel) {}
+
   /*
    * Gets the class used for a preview checkbox to visualise the
    * apply() function to the user.
    */
-
-
   getPreviewClass() {}
-
 }
-
 module.exports = LayoutTest;
 
 /***/ }),
@@ -15247,13 +14877,9 @@ module.exports = (Handlebars["default"] || Handlebars).template({"1":function(co
 /***/ (function(module, exports, __webpack_require__) {
 
 let $ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
-
 let annotate = __webpack_require__(/*! ../../../shared/annotate */ "./plugins/shared/annotate/index.js")("layout");
-
 let LayoutTest = __webpack_require__(/*! ../base */ "./plugins/layout/tests/base.js");
-
 let errorTemplate = __webpack_require__(/*! ./error-template.handlebars */ "./plugins/layout/tests/font-size/error-template.handlebars");
-
 class FontSizeLayoutTest extends LayoutTest {
   constructor() {
     super();
@@ -15261,49 +14887,47 @@ class FontSizeLayoutTest extends LayoutTest {
     this.applied = false;
     this.$checkboxes = [];
   }
-
   apply() {
     this.$checkboxes.forEach(c => c.prop("checked", true));
-
     if (this.applied) {
       return;
     }
-
     this.textElements = [];
     $("*").each((i, el) => {
       // Only check elements with a direct text descendant
       if (!axs.properties.hasDirectTextDescendant(el)) {
         return;
       }
+      let $el = $(el);
 
-      let $el = $(el); // Ignore elements that are part of the tota11y UI
-
+      // Ignore elements that are part of the tota11y UI
       if ($el.parents(".tota11y").length > 0) {
         return;
-      } // Get the resolved font size normalised to pixels using
+      }
+
+      // Get the resolved font size normalised to pixels using
       // getComputedStyle so the browser does CSS unit conversion
       // work for us, and also get the style specified on the
       // element in whatever CSS unit to restore the font size to
-
-
       let style = window.getComputedStyle(el);
-      let pxFontSize = parseFloat(style.getPropertyValue("font-size")); // Save original font size so it can be restored on cleanup.
+      let pxFontSize = parseFloat(style.getPropertyValue("font-size"));
 
+      // Save original font size so it can be restored on cleanup.
       this.textElements.push({
         $el: $el,
         pxFontSize: pxFontSize,
         hasInlineFontSize: !!el.style.fontSize,
         overflow: this.isOverflow($el)
       });
-    }); // Apply font size changes after querying the computed font size
-    // of all elements to ignore these values changing as we resize elements
+    });
 
+    // Apply font size changes after querying the computed font size
+    // of all elements to ignore these values changing as we resize elements
     this.textElements.forEach(entry => {
       entry.$el.css("font-size", `${entry.pxFontSize * 2}px`);
     });
     this.applied = true;
   }
-
   reportError($el, overflows, infoPanel) {
     let $description = $(errorTemplate({
       overflowX: overflows.x,
@@ -15317,17 +14941,14 @@ class FontSizeLayoutTest extends LayoutTest {
       } else {
         this.cleanup();
       }
-
       annotate.refreshAll();
     });
     this.$checkboxes.push($checkbox);
     annotate.errorLabel(entry.$el, "", "Overflows at 200%", entry);
   }
-
   detect() {
     this.textElements.forEach(entry => {
       let overflow = this.isOverflow(entry.$el);
-
       if (!entry.overflow.x && overflow.x || !entry.overflow.y && overflow.y) {
         // resizing has caused overflow that wasn't present before
         entry.error = infoPanel => {
@@ -15336,15 +14957,13 @@ class FontSizeLayoutTest extends LayoutTest {
       }
     });
   }
-
   cleanup() {
     this.$checkboxes.forEach(c => c.prop("checked", false));
-
     if (!this.applied) {
       return;
-    } // Set all elements to original size
+    }
 
-
+    // Set all elements to original size
     this.textElements.forEach(entry => {
       // Remove the inline style we added unless the inline style
       // we added overrided an existing inline style in which case
@@ -15357,7 +14976,6 @@ class FontSizeLayoutTest extends LayoutTest {
     });
     this.applied = false;
   }
-
   report(infoPanel) {
     this.textElements.forEach(entry => {
       if (entry.error) {
@@ -15365,25 +14983,23 @@ class FontSizeLayoutTest extends LayoutTest {
       }
     });
   }
-
   getPreviewClass() {
     return "preview-font-size";
   }
-
   isOverflow($el) {
     let el = $el[0];
-    let style = window.getComputedStyle(el); // Filter overflow detection to only for elements that will
+    let style = window.getComputedStyle(el);
+    // Filter overflow detection to only for elements that will
     // be visually cut off if they overflow, as otherwise most of
     // the overflowing and still visible elements are not actually
     // any problems and create a lot of noise.
-
     let cutsOff = {
       x: style.getPropertyValue("overflow-x") === "hidden",
       y: style.getPropertyValue("overflow-y") === "hidden"
-    }; // Allow a 20% threshold of 'overflow' as otherwise
+    };
+    // Allow a 20% threshold of 'overflow' as otherwise
     // the false positive rate is very high with many elements in visual
     // terms not cut off at all.
-
     let overflow = {
       x: el.scrollWidth > el.offsetWidth * 1.2,
       y: el.scrollHeight > el.offsetHeight * 1.2
@@ -15393,9 +15009,7 @@ class FontSizeLayoutTest extends LayoutTest {
       y: cutsOff.y && overflow.y
     };
   }
-
 }
-
 module.exports = FontSizeLayoutTest;
 
 /***/ }),
@@ -15408,9 +15022,7 @@ module.exports = FontSizeLayoutTest;
 /***/ (function(module, exports, __webpack_require__) {
 
 let FontSizeLayoutTest = __webpack_require__(/*! ./font-size */ "./plugins/layout/tests/font-size/index.js");
-
 let TextSpacingLayoutTest = __webpack_require__(/*! ./text-spacing */ "./plugins/layout/tests/text-spacing/index.js");
-
 module.exports = [new FontSizeLayoutTest(), new TextSpacingLayoutTest()];
 
 /***/ }),
@@ -15470,13 +15082,9 @@ module.exports = (Handlebars["default"] || Handlebars).template({"1":function(co
 /***/ (function(module, exports, __webpack_require__) {
 
 let $ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
-
 let annotate = __webpack_require__(/*! ../../../shared/annotate */ "./plugins/shared/annotate/index.js")("layout");
-
 let LayoutTest = __webpack_require__(/*! ../base */ "./plugins/layout/tests/base.js");
-
 let errorTemplate = __webpack_require__(/*! ./error-template.handlebars */ "./plugins/layout/tests/text-spacing/error-template.handlebars");
-
 class TextSpacingLayoutTest extends LayoutTest {
   constructor() {
     super();
@@ -15484,35 +15092,33 @@ class TextSpacingLayoutTest extends LayoutTest {
     this.applied = false;
     this.$checkboxes = [];
   }
-
   apply() {
     this.$checkboxes.forEach(c => c.prop("checked", true));
-
     if (this.applied) {
       return;
     }
-
     this.textElements = [];
     $("*").each((i, el) => {
       // Only check elements with a direct text descendant
       if (!axs.properties.hasDirectTextDescendant(el)) {
         return;
       }
+      let $el = $(el);
 
-      let $el = $(el); // Ignore elements that are part of the tota11y UI
-
+      // Ignore elements that are part of the tota11y UI
       if ($el.parents(".tota11y").length > 0) {
         return;
-      } // Get the resolved font size normalised to pixels using
+      }
+
+      // Get the resolved font size normalised to pixels using
       // getComputedStyle so the browser does CSS unit conversion
       // work for us, and also get the style specified on the
       // element in whatever CSS unit to restore the font size to
-
-
       let style = window.getComputedStyle(el);
-      let pxFontSize = parseFloat(style.getPropertyValue("font-size")); // Save font sizes and original styles for use in applying
-      // and reverting spacing styles.
+      let pxFontSize = parseFloat(style.getPropertyValue("font-size"));
 
+      // Save font sizes and original styles for use in applying
+      // and reverting spacing styles.
       this.textElements.push({
         $el: $el,
         pxFontSize: pxFontSize,
@@ -15524,17 +15130,18 @@ class TextSpacingLayoutTest extends LayoutTest {
         wordSpacing: style.getPropertyValue("word-spacing"),
         hasInlineWordSpacing: !!el.style.inlineWordSpacing
       });
-    }); // Apply style changes after querying the computed font size
-    // of all elements to ignore these values changing as we modify elements
+    });
 
+    // Apply style changes after querying the computed font size
+    // of all elements to ignore these values changing as we modify elements
     this.textElements.forEach(entry => {
       entry.$el.css("line-height", `${entry.pxFontSize * 1.5}px`);
       entry.$el.css("letter-spacing", `${entry.pxFontSize * 0.12}px`);
-      entry.$el.css("word-spacing", `${entry.pxFontSize * 0.16}px`); // TODO spacing following paragraphs to at least 2 times font size
+      entry.$el.css("word-spacing", `${entry.pxFontSize * 0.16}px`);
+      // TODO spacing following paragraphs to at least 2 times font size
     });
     this.applied = true;
   }
-
   reportError($el, overflows, infoPanel) {
     let $description = $(errorTemplate({
       overflowX: overflows.x,
@@ -15548,17 +15155,14 @@ class TextSpacingLayoutTest extends LayoutTest {
       } else {
         this.cleanup();
       }
-
       annotate.refreshAll();
     });
     this.$checkboxes.push($checkbox);
     annotate.errorLabel(entry.$el, "", "Overflows with increased spacing", entry);
   }
-
   detect() {
     this.textElements.forEach(entry => {
       let overflow = this.isOverflow(entry.$el);
-
       if (!entry.overflow.x && overflow.x || !entry.overflow.y && overflow.y) {
         // adjusting spacing has caused overflow that wasn't present
         // before
@@ -15568,15 +15172,13 @@ class TextSpacingLayoutTest extends LayoutTest {
       }
     });
   }
-
   cleanup() {
     this.$checkboxes.forEach(c => c.prop("checked", false));
-
     if (!this.applied) {
       return;
-    } // Set all elements to original size
+    }
 
-
+    // Set all elements to original size
     this.textElements.forEach(entry => {
       // Remove the inline styles we added unless the inline styles
       // we added overrided existing inline styles in which case
@@ -15586,13 +15188,11 @@ class TextSpacingLayoutTest extends LayoutTest {
       } else {
         entry.$el.css("line-height", "");
       }
-
       if (entry.hasInlineLetterSpacing) {
         entry.$el.css("letter-spacing", entry.letterSpacing);
       } else {
         entry.$el.css("letter-spacing", "");
       }
-
       if (entry.hasInlineWordSpacing) {
         entry.$el.css("word-spacing", entry.wordSpacing);
       } else {
@@ -15601,7 +15201,6 @@ class TextSpacingLayoutTest extends LayoutTest {
     });
     this.applied = false;
   }
-
   report(infoPanel) {
     this.textElements.forEach(entry => {
       if (entry.error) {
@@ -15609,25 +15208,23 @@ class TextSpacingLayoutTest extends LayoutTest {
       }
     });
   }
-
   getPreviewClass() {
     return "preview-text-spacing";
   }
-
   isOverflow($el) {
     let el = $el[0];
-    let style = window.getComputedStyle(el); // Filter overflow detection to only for elements that will
+    let style = window.getComputedStyle(el);
+    // Filter overflow detection to only for elements that will
     // be visually cut off if they overflow, as otherwise most of
     // the overflowing and still visible elements are not actually
     // any problems and create a lot of noise.
-
     let cutsOff = {
       x: style.getPropertyValue("overflow-x") === "hidden",
       y: style.getPropertyValue("overflow-y") === "hidden"
-    }; // Allow a 20% threshold of 'overflow' as otherwise
+    };
+    // Allow a 20% threshold of 'overflow' as otherwise
     // the false positive rate is very high with many elements in visual
     // terms not cut off at all.
-
     let overflow = {
       x: el.scrollWidth > el.offsetWidth * 1.2,
       y: el.scrollHeight > el.offsetHeight * 1.2
@@ -15637,9 +15234,7 @@ class TextSpacingLayoutTest extends LayoutTest {
       y: cutsOff.y && overflow.y
     };
   }
-
 }
-
 module.exports = TextSpacingLayoutTest;
 
 /***/ }),
@@ -15698,21 +15293,17 @@ module.exports = (Handlebars["default"] || Handlebars).template({"1":function(co
  * A plugin to identify unclear link text such as "more" and "click here,"
  * which can make for a bad experience when using a screen reader
  */
+
 let $ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
-
 let Plugin = __webpack_require__(/*! ../base */ "./plugins/base.js");
-
 let annotate = __webpack_require__(/*! ../shared/annotate */ "./plugins/shared/annotate/index.js")("link-text");
-
 let aboutTemplate = __webpack_require__(/*! ./about.handlebars */ "./plugins/link-text/about.handlebars");
-
 let inContextErrorTemplate = __webpack_require__(/*! ./in-context-error-template.handlebars */ "./plugins/link-text/in-context-error-template.handlebars");
-
 let linkOnlyErrorTemplate = __webpack_require__(/*! ./link-only-error-template.handlebars */ "./plugins/link-text/link-only-error-template.handlebars");
-
-let stopWords = ["click", "tap", "go", "here", "learn", "more", "this", "page", "link"]; // Generate a regex to match each of the stopWords
-
+let stopWords = ["click", "tap", "go", "here", "learn", "more", "this", "page", "link"];
+// Generate a regex to match each of the stopWords
 let stopWordsRE = new RegExp(`\\b(${stopWords.join("|")})\\b`, "ig");
+
 /*
  * JavaScript does not yet natively support unicode aware regex
  * everywhere.
@@ -15720,57 +15311,51 @@ let stopWordsRE = new RegExp(`\\b(${stopWords.join("|")})\\b`, "ig");
  * As all we need to do is strip out any punctuation this
  * extremely long string matches all punctuation in a regex.
  */
-
 let punctuation = `\u2000-\u206F\u2E00-\u2E7F\\'!"#$%&()*+,\-.\/:;<=>?@\[\]^_\`{|}~`; // eslint-disable-line quotes
+
 // This does not match numbers in the text.
 // Removing numbers creates false positives if a link text really is
 // about 5,789,911 things or a page number.
-
 let matchNonAlphanumericRE = new RegExp(`[${punctuation} ]`, "g");
-
 class LinkTextPlugin extends Plugin {
   getName() {
     return "link-text";
   }
-
   getTitle() {
     return "Link text";
   }
-
   getDescription() {
     return `
             Identifies links that may be confusing when read by a screen
             reader
         `;
   }
-
   getAnnotate() {
     return annotate;
   }
+
   /**
    * Modified unclear text checking that has been refactored into
    * a single method to be called with arbitrary strings.
    *
    * Original: https://github.com/GoogleChrome/accessibility-developer-tools/blob/9183b21cb0a02f5f04928f5cb7cb339b6bbc9ff8/src/audits/LinkWithUnclearPurpose.js#L55-67
    */
-
-
   isDescriptiveText(textContent) {
     // Handle when the text is undefined or null
     if (typeof textContent === "undefined" || textContent === null) {
       return false;
     }
+    textContent = textContent
+    // Strip punctuation and spaces
+    .replace(matchNonAlphanumericRE, "")
+    // Remove the stopWords
+    .replace(stopWordsRE, "");
 
-    textContent = textContent // Strip punctuation and spaces
-    .replace(matchNonAlphanumericRE, "") // Remove the stopWords
-    .replace(stopWordsRE, ""); // Return whether or not there is any text left
-
+    // Return whether or not there is any text left
     return textContent.trim() !== "";
   }
-
   reportError($el, $description, content, withContext) {
     let context = withContext ? "with context" : "without context";
-
     if (content === null) {
       let entry = this.error(`No link text present ${context}`, $description, $el);
       annotate.errorLabel($el, "", `No link text ${context}`, entry);
@@ -15779,55 +15364,54 @@ class LinkTextPlugin extends Plugin {
       annotate.errorLabel($el, "", `Link text "${content}" is unclear ${context}`, entry);
     }
   }
+
   /**
    * We can call linkWithUnclearPurpose from ADT directly once the following
    * issue has been resolved. There is some extra code here until then.
    * https://github.com/GoogleChrome/accessibility-developer-tools/issues/156
    */
-
-
   run() {
     $("a").each((i, el) => {
-      let $el = $(el); // Ignore the tota11y UI
+      let $el = $(el);
 
+      // Ignore the tota11y UI
       if ($el.parents(".tota11y").length) {
         return;
-      } // Ignore hidden links
+      }
 
-
+      // Ignore hidden links
       if (axs.utils.isElementOrAncestorHidden(el)) {
         return;
-      } // Ignore non links
+      }
 
-
+      // Ignore non links
       if (el.href === "") {
         return;
-      } // Extract the text alternatives for this element: including
+      }
+
+      // Extract the text alternatives for this element: including
       // its text content, aria-label/labelledby, and alt text for
       // images.
       //
       // TODO: Read from `alts` to determine where the text is coming
       // from (for tailored error messages)
-
-
       let alts = {};
-      let extractedTextLinkOnly = axs.properties.findTextAlternatives(el, alts); // "In HTML, information that is programmatically determinable
+      let extractedTextLinkOnly = axs.properties.findTextAlternatives(el, alts);
+
+      // "In HTML, information that is programmatically determinable
       // from a link in English includes text that is in the same
       // paragraph, list, or table cell as the link or in a table header
       // cell that is associated with the table cell that contains the
       // link"
       // https://www.w3.org/WAI/WCAG21/Understanding/link-purpose-in-context.html
-
       let $context = $el.closest("p, li, td, th");
       let extractedTextInContext = extractedTextLinkOnly;
-
       if ($context[0]) {
         let _alts = {};
         extractedTextInContext = axs.properties.findTextAlternatives($context[0], _alts);
       } else {
         // try to get context from a parent div instead
         $context = $el.closest("div");
-
         if ($context[0]) {
           let _alts = {};
           extractedTextInContext = axs.properties.findTextAlternatives($context[0], _alts);
@@ -15836,7 +15420,6 @@ class LinkTextPlugin extends Plugin {
           $context = $el;
         }
       }
-
       if (!this.isDescriptiveText(extractedTextInContext)) {
         let $description = inContextErrorTemplate({
           extractedText: extractedTextLinkOnly,
@@ -15859,13 +15442,10 @@ class LinkTextPlugin extends Plugin {
     });
     this.about($(aboutTemplate()));
   }
-
   cleanup() {
     annotate.removeAll();
   }
-
 }
-
 module.exports = LinkTextPlugin;
 
 /***/ }),
@@ -15957,32 +15537,23 @@ module.exports = (Handlebars["default"] || Handlebars).template({"compiler":[8,"
 /***/ (function(module, exports, __webpack_require__) {
 
 let $ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
-
 let Plugin = __webpack_require__(/*! ../base */ "./plugins/base.js");
-
 let annotate = __webpack_require__(/*! ../shared/annotate */ "./plugins/shared/annotate/index.js")("navigation");
-
 let errorTemplate = __webpack_require__(/*! ./error-template.handlebars */ "./plugins/navigation/error-template.handlebars");
-
 let aboutTemplate = __webpack_require__(/*! ./about.handlebars */ "./plugins/navigation/about.handlebars");
-
 class NavigationPlugin extends Plugin {
   getName() {
     return "navigation";
   }
-
   getTitle() {
     return "Navigation";
   }
-
   getDescription() {
     return "Detects elements on the page that may interfere with navigation";
   }
-
   getAnnotate() {
     return annotate;
   }
-
   reportError($el) {
     let $description = errorTemplate({
       elementName: $el.prop("tagName").toLowerCase()
@@ -15990,13 +15561,13 @@ class NavigationPlugin extends Plugin {
     let entry = this.error("Autoplaying audio", $description, $el);
     annotate.errorLabel($el, "", "Autoplaying audio", entry);
   }
-
   run() {
     $("audio[autoplay], video[autoplay]").filter((i, el) => {
       // Keep only audio and video elements that have audio
       // lasting more than 3 seconds, no controls to mute
       // the audio and are not muted by default
-      return !el.controls && (el.duration <= 3 || el.loop) // FIXME: Firefox disables this JS API by default, locked
+      return !el.controls && (el.duration <= 3 || el.loop)
+      // FIXME: Firefox disables this JS API by default, locked
       // behind about:config setting, so need to use the Web Audio
       // API instead
       // && el.audioTracks.length !== 0
@@ -16006,13 +15577,10 @@ class NavigationPlugin extends Plugin {
     });
     this.about($(aboutTemplate()));
   }
-
   cleanup() {
     annotate.removeAll();
   }
-
 }
-
 module.exports = NavigationPlugin;
 
 /***/ }),
@@ -16065,32 +15633,33 @@ module.exports = (Handlebars["default"] || Handlebars).template({"1":function(co
  * This allows plugins to easily maintain their annotations, rather than
  * keeping track of an extra class name elsewhere.
  */
+
 let $ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
-
 let errorLabelTemplate = __webpack_require__(/*! ./error-label.handlebars */ "./plugins/shared/annotate/error-label.handlebars");
+__webpack_require__(/*! ./style.less */ "./plugins/shared/annotate/style.less");
 
-__webpack_require__(/*! ./style.less */ "./plugins/shared/annotate/style.less"); // For very small (or zero-area) elements, highlights are not very useful.
+// For very small (or zero-area) elements, highlights are not very useful.
 // This constant declares highlights to be at least `MIN_HIGHLIGHT_SIZE` tall
 // and across.
-
-
 const MIN_HIGHLIGHT_SIZE = 25;
-const isBrowser = typeof browser !== 'undefined'; // Polyfill fallback for IE < 10
+const isBrowser = typeof browser !== 'undefined';
 
+// Polyfill fallback for IE < 10
 window.requestAnimationFrame = window.requestAnimationFrame || function (callback) {
   window.setTimeout(callback, 16);
 };
-
 module.exports = namespace => {
   // The class that will be applied to any annotation generated in this
   // namespace
-  const ANNOTATION_CLASS = "tota11y-annotation-" + namespace; // A queue of {$annotation, $parent}'s that is populated by
+  const ANNOTATION_CLASS = "tota11y-annotation-" + namespace;
+
+  // A queue of {$annotation, $parent}'s that is populated by
   // `createAnnotation` and emptied by the `render()` method.
   //
   // Annotations are queued to reduce reflows.
+  let queue = [];
 
-  let queue = []; // Register a new annotation to a given jQuery element
-
+  // Register a new annotation to a given jQuery element
   let createAnnotation = ($el, className) => {
     // Create a position an annotation relative to its offset parent.
     // We also store the element its annotation so we can reposition when
@@ -16098,52 +15667,55 @@ module.exports = namespace => {
     let $annotation = $("<div>").addClass("tota11y") // tota11y base class for styling
     .addClass(ANNOTATION_CLASS).addClass(className).addClass("tota11y-annotation").css($el.position()).data({
       $el
-    }); // TODO: We can invoke a requestAnimationFrame(render) here to limit
+    });
+
+    // TODO: We can invoke a requestAnimationFrame(render) here to limit
     // the amount of times we run that timer
+
     // Append an object to the queue. We'll add the annotation to the DOM
     // later to reduce reflows.
-
     queue.push({
       $annotation: $annotation,
       $parent: $el.offsetParent()
     });
     return $annotation;
-  }; // To maintain a high framerate, we'll only render `RENDER_CHUNK_SIZE`
+  };
+
+  // To maintain a high framerate, we'll only render `RENDER_CHUNK_SIZE`
   // annotations per frame.
   //
   // NOTE: A value of "20" consistently hits 60fps on facebook.com
+  const RENDER_CHUNK_SIZE = 20;
 
-
-  const RENDER_CHUNK_SIZE = 20; // Mount all annotations to the DOM in sequence. This is done by
+  // Mount all annotations to the DOM in sequence. This is done by
   // picking items off the queue, where each item consists of the
   // annotation and the node to which we'll append it.
-
   (function loop() {
     for (let i = 0; queue.length > 0 && i < RENDER_CHUNK_SIZE; i++) {
       let item = queue.shift();
       item.$parent.append(item.$annotation);
     }
-
     window.requestAnimationFrame(loop);
   })();
-
   let reposition = annotationClass => {
-    let $annotations = $("." + annotationClass); // Record the position of each annotation's corresponding element to
-    // batch measurements
+    let $annotations = $("." + annotationClass);
 
+    // Record the position of each annotation's corresponding element to
+    // batch measurements
     let positions = $annotations.map((i, el) => {
       return $(el).data("$el").position();
-    }); // Reposition each annotation (batching invalidations)
+    });
 
+    // Reposition each annotation (batching invalidations)
     $annotations.each((i, el) => {
       $(el).css({
         top: positions[i].top,
         left: positions[i].left
       });
     });
-  }; // Handle resizes by repositioning all annotations in bulk
+  };
 
-
+  // Handle resizes by repositioning all annotations in bulk
   $(window).resize(() => reposition(ANNOTATION_CLASS));
   return {
     // Places a small label in the top left corner of a given jQuery
@@ -16152,7 +15724,6 @@ module.exports = namespace => {
       let $label = createAnnotation($el, "tota11y-label");
       return $label.html(text);
     },
-
     // Places a special label on an element that, when hovered, displays
     // an expanded error message.
     //
@@ -16167,14 +15738,12 @@ module.exports = namespace => {
         detail: expanded,
         hasErrorEntry: !!errorEntry
       }));
-
       if (errorEntry) {
         $innerHtml.find(".tota11y-label-link").click(e => {
           e.preventDefault();
           e.stopPropagation();
           errorEntry.show();
         });
-
         if (isBrowser) {
           $innerHtml.hover(() => {
             errorEntry.highlightOn();
@@ -16182,17 +15751,14 @@ module.exports = namespace => {
             errorEntry.highlightOff();
           });
         }
-
         $innerHtml.hover(() => {
           errorEntry.$trigger.addClass("trigger-highlight");
         }, () => {
           errorEntry.$trigger.removeClass("trigger-highlight");
         });
       }
-
       return this.label($el).addClass("tota11y-label-error").html($innerHtml);
     },
-
     // Highlights a given jQuery element by placing a translucent
     // rectangle directly over it
     highlight($el) {
@@ -16203,7 +15769,6 @@ module.exports = namespace => {
         height: Math.max(MIN_HIGHLIGHT_SIZE, $el.outerHeight(true))
       });
     },
-
     // Toggles a highlight on a given jQuery element `$el` when `$trigger`
     // is hovered (mouseenter/mouseleave) or focused (focus/blur)
     toggleHighlight($el, $trigger) {
@@ -16212,7 +15777,6 @@ module.exports = namespace => {
         if ($highlight) {
           $highlight.remove();
         }
-
         $highlight = this.highlight($el);
       });
       $trigger.on("mouseleave blur", () => {
@@ -16222,26 +15786,21 @@ module.exports = namespace => {
         }
       });
     },
-
     hide() {
       $(`.tota11y.tota11y-label.${ANNOTATION_CLASS}`).hide();
     },
-
     show() {
       $(`.tota11y.tota11y-label.${ANNOTATION_CLASS}`).show();
     },
-
     // Some plugins may alter the page and require us to reposition
     // all annotations from all plugins
     refreshAll() {
       reposition("tota11y-annotation");
     },
-
     removeAll() {
       // Remove all annotations
       $("." + ANNOTATION_CLASS).remove();
     }
-
   };
 };
 
@@ -16276,16 +15835,18 @@ if(false) {}
 /**
  * Abstractions for how we use Accessibility Developer Tools
  */
+
 function allRuleNames() {
   return axs.AuditRules.getRules().map(rule => rule.name);
-} // Creates an audit configuration that whitelists a single rule and limits the
+}
+
+// Creates an audit configuration that whitelists a single rule and limits the
 // amount of tests to run
-
-
 function createWhitelist(ruleName) {
   var config = new axs.AuditConfiguration();
-  config.showUnsupportedRulesWarning = false; // Ignore elements that are part of the toolbar
+  config.showUnsupportedRulesWarning = false;
 
+  // Ignore elements that are part of the toolbar
   config.ignoreSelectors(ruleName, ".tota11y *");
   allRuleNames().forEach(name => {
     if (name !== ruleName) {
@@ -16294,14 +15855,13 @@ function createWhitelist(ruleName) {
   });
   return config;
 }
+
 /*eslint-disable*/
 // Patch collectMatchingElements to match
 // https://github.com/GoogleChrome/accessibility-developer-tools/blob/0062f77258eb4eb8508dad3c92fd2df63c2381fc/src/js/AuditRule.js
 //
 // TODO: Remove once https://github.com/GoogleChrome/accessibility-developer-tools/commit/df400939addf6dbc5f2a9e1d52a6219f356f82d8
 // makes its way to npm
-
-
 function patchCollectMatchingElements() {
   /**
    * Recursively collect elements which match |matcher| into |collection|,
@@ -16312,63 +15872,52 @@ function patchCollectMatchingElements() {
    * @param {ShadowRoot=} opt_shadowRoot The nearest ShadowRoot ancestor, if any.
    */
   axs.AuditRule.collectMatchingElements = function (node, matcher, collection, opt_shadowRoot) {
-    if (node.nodeType === Node.ELEMENT_NODE) var element =
-    /** @type {Element} */
-    node;
-    if (element && matcher.call(null, element)) collection.push(element); // Descend into node:
+    if (node.nodeType === Node.ELEMENT_NODE) var element = /** @type {Element} */node;
+    if (element && matcher.call(null, element)) collection.push(element);
+
+    // Descend into node:
     // If it has a ShadowRoot, ignore all child elements - these will be picked
     // up by the <content> or <shadow> elements. Descend straight into the
     // ShadowRoot.
-
     if (element) {
       // NOTE: grunt qunit DOES NOT support Shadow DOM, so if changing this
       // code, be sure to run the tests in the browser before committing.
       var shadowRoot = element.shadowRoot || element.webkitShadowRoot;
-
       if (shadowRoot) {
         axs.AuditRule.collectMatchingElements(shadowRoot, matcher, collection, shadowRoot);
         return;
       }
-    } // If it is a <content> element, descend into distributed elements - descend
+    }
+
+    // If it is a <content> element, descend into distributed elements - descend
     // into distributed elements - these are elements from outside the shadow
     // root which are rendered inside the shadow DOM.
-
-
     if (element && element.localName == 'content') {
-      var content =
-      /** @type {HTMLContentElement} */
-      element;
+      var content = /** @type {HTMLContentElement} */element;
       var distributedNodes = content.getDistributedNodes();
-
       for (var i = 0; i < distributedNodes.length; i++) {
         axs.AuditRule.collectMatchingElements(distributedNodes[i], matcher, collection, opt_shadowRoot);
       }
-
       return;
-    } // If it is a <shadow> element, descend into the olderShadowRoot of the
+    }
+
+    // If it is a <shadow> element, descend into the olderShadowRoot of the
     // current ShadowRoot.
-
-
     if (element && element.localName == 'shadow') {
-      var shadow =
-      /** @type {HTMLShadowElement} */
-      element;
-
+      var shadow = /** @type {HTMLShadowElement} */element;
       if (!opt_shadowRoot) {
         console.warn('ShadowRoot not provided for', element);
       } else {
         var distributedNodes = shadow.getDistributedNodes();
-
         for (var i = 0; i < distributedNodes.length; i++) {
           axs.AuditRule.collectMatchingElements(distributedNodes[i], matcher, collection, opt_shadowRoot);
         }
       }
-    } // If it is neither the parent of a ShadowRoot, a <content> element, nor
+    }
+
+    // If it is neither the parent of a ShadowRoot, a <content> element, nor
     // a <shadow> element recurse normally.
-
-
     var child = node.firstChild;
-
     while (child != null) {
       axs.AuditRule.collectMatchingElements(child, matcher, collection, opt_shadowRoot);
       child = child.nextSibling;
@@ -16376,16 +15925,14 @@ function patchCollectMatchingElements() {
   };
 }
 /*eslint-enable*/
+
 // Audits for a single rule (by name) and returns the results for only that
 // rule
-
-
 function audit(ruleName) {
   let whitelist = createWhitelist(ruleName);
   patchCollectMatchingElements();
   return axs.Audit.run(whitelist).filter(result => result.rule.name === ruleName)[0];
 }
-
 module.exports = audit;
 
 /***/ }),
@@ -16436,27 +15983,23 @@ module.exports = (Handlebars["default"] || Handlebars).template({"compiler":[8,"
  *   Errors: A list of violations reported by this plugin. The tab marker also
  *           contains the number of errors listed
  */
+
 let $ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
-
 let annotate = __webpack_require__(/*! ../annotate */ "./plugins/shared/annotate/index.js")("info-panel");
-
 const debug = __webpack_require__(/*! ../../../utils/debugging.js */ "./utils/debugging.js");
-
 let errorTemplate = __webpack_require__(/*! ./error.handlebars */ "./plugins/shared/info-panel/error.handlebars");
-
 __webpack_require__(/*! ./style.less */ "./plugins/shared/info-panel/style.less");
-
 const INITIAL_PANEL_MARGIN_PX = 10;
 const COLLAPSED_CLASS_NAME = "tota11y-collapsed";
 const HIDDEN_CLASS_NAME = "tota11y-info-hidden";
 const PORT_NAME = "info-panel";
-const FIRST_ERROR_ID = 0; // Automatically hide this InfoPanel if there is a browser
+const FIRST_ERROR_ID = 0;
+
+// Automatically hide this InfoPanel if there is a browser
 // object (running as a WebExtension) and this is toggled on
 // We will want to toggle this auto hiding off for debugging.
-
 const isBrowser = typeof browser !== 'undefined';
 const WEBEXT_HIDE_IN_PAGE =  true && isBrowser;
-
 class InfoPanel {
   constructor(plugin) {
     this.plugin = plugin;
@@ -16466,14 +16009,12 @@ class InfoPanel {
     this.errors = new Map();
     this.$el = null;
   }
+
   /**
    * Sets the contents of the about section as HTML
    */
-
-
   setAbout($html) {
     this.about = $html;
-
     if (isBrowser && this.port) {
       this.port.postMessage({
         msg: "about",
@@ -16481,14 +16022,12 @@ class InfoPanel {
       });
     }
   }
+
   /**
    * Sets the contents of the summary section as HTML
    */
-
-
   setSummary($html) {
     this.summary = $html;
-
     if (isBrowser && this.port) {
       this.port.postMessage({
         msg: "summary",
@@ -16496,6 +16035,7 @@ class InfoPanel {
       });
     }
   }
+
   /*
    * Directly renders HTML/text to the info panel,
    * replacing the active section.
@@ -16505,15 +16045,12 @@ class InfoPanel {
    * after initially rendering it rather than make
    * it display error information or a summary.
    */
-
-
   directRender($html) {
     if (typeof $html === "string") {
       this.$el.find(".tota11y-info-section.active").text($html);
     } else {
       this.$el.find(".tota11y-info-section.active").html($html);
     }
-
     if (isBrowser && this.port) {
       // We provide no message as this will be sent very frequently
       if (typeof $html === "string") {
@@ -16529,12 +16066,11 @@ class InfoPanel {
       }
     }
   }
+
   /**
    * Adds an error to the errors tab. Also receives a jQuery element to
    * highlight on hover.
    */
-
-
   addError(title, $description, $el) {
     let error = {
       title,
@@ -16544,7 +16080,6 @@ class InfoPanel {
     let id = this.error_ids++;
     error.id = id;
     this.errors.set(id, error);
-
     if (isBrowser && this.port) {
       this.port.postMessage({
         msg: "error",
@@ -16555,10 +16090,8 @@ class InfoPanel {
         id: id
       });
     }
-
     return error;
   }
-
   _addTab(title, html) {
     // Create and append a tab marker
     let $tab = buildElement("li", {
@@ -16569,20 +16102,23 @@ class InfoPanel {
     }, buildElement("span", {
       className: "tota11y-info-tab-anchor-text"
     }, title)));
-    this.$el.find(".tota11y-info-tabs").append($tab); // Create and append the tab content
+    this.$el.find(".tota11y-info-tabs").append($tab);
 
+    // Create and append the tab content
     let $section = $("<div>").addClass("tota11y-info-section").html(html);
-    this.$el.find(".tota11y-info-sections").append($section); // Register an "activate" event for the tab, which switches the
+    this.$el.find(".tota11y-info-sections").append($section);
+
+    // Register an "activate" event for the tab, which switches the
     // tab's associated content to be visible, and changes the
     // appearance of the newly-active tab marker
-
     $tab.on("activate", () => {
       this.$el.find(".tota11y-info-tab.active").removeClass("active");
       this.$el.find(".tota11y-info-section.active").removeClass("active");
       $tab.addClass("active");
       $section.addClass("active");
-    }); // Activate the tab when its anchor is clicked
+    });
 
+    // Activate the tab when its anchor is clicked
     $tab.on("click", e => {
       e.preventDefault();
       e.stopPropagation();
@@ -16590,41 +16126,45 @@ class InfoPanel {
     });
     return $tab;
   }
+
   /**
    * Positions the info panel and sets up event listeners to make the
    * panel draggable
    */
-
-
   initAndPosition() {
-    let panelLeftPx, panelTopPx; // Wire up the dismiss button
+    let panelLeftPx, panelTopPx;
 
+    // Wire up the dismiss button
     this.$el.find(".tota11y-info-dismiss-trigger").click(e => {
       e.preventDefault();
       e.stopPropagation();
       this.$el.addClass(HIDDEN_CLASS_NAME);
-
       if (!isBrowser) {
         // (a11y) Bring the focus back to the plugin's checkbox
         this.plugin.$checkbox.focus();
       }
-    }); // Append the info panel to the body. In reality we'll likely want
+    });
+
+    // Append the info panel to the body. In reality we'll likely want
     // it directly adjacent to the toolbar.
+    $("body").append(this.$el);
 
-    $("body").append(this.$el); // Position info panel on the bottom right of the window
-
+    // Position info panel on the bottom right of the window
     panelLeftPx = window.innerWidth - this.$el.width() - INITIAL_PANEL_MARGIN_PX;
-    panelTopPx = window.innerHeight - this.$el.height() - INITIAL_PANEL_MARGIN_PX; // Wire up draggable surface
+    panelTopPx = window.innerHeight - this.$el.height() - INITIAL_PANEL_MARGIN_PX;
 
+    // Wire up draggable surface
     let $draggable = this.$el.find(".tota11y-info-title");
-    let isDragging = false; // Variables for the starting positions of the mouse and panel
+    let isDragging = false;
 
+    // Variables for the starting positions of the mouse and panel
     let initMouseX, initMouseY;
     let initPanelLeft, initPanelTop;
     $draggable.on("mousedown", e => {
-      e.preventDefault(); // Start dragging, and record initial mouse and panel
-      // positions
+      e.preventDefault();
 
+      // Start dragging, and record initial mouse and panel
+      // positions
       isDragging = true;
       initMouseX = e.pageX;
       initMouseY = e.pageY;
@@ -16638,7 +16178,6 @@ class InfoPanel {
       if (!isDragging) {
         return;
       }
-
       e.preventDefault();
       let deltaX = e.pageX - initMouseX;
       let deltaY = e.pageY - initMouseY;
@@ -16654,20 +16193,18 @@ class InfoPanel {
       top: panelTopPx
     });
   }
-
   render() {
     if (isBrowser && this.port) {
       this.port.postMessage({
         msg: "render",
         render: true
       });
-    } // Destroy the existing info panel to prevent double-renders
+    }
 
-
+    // Destroy the existing info panel to prevent double-renders
     if (this.$el) {
       this.$el.remove();
     }
-
     let hasContent = false;
     this.$el = buildElement("div", {
       className: "tota11y tota11y-info " + this.plugin.getName(),
@@ -16693,20 +16230,19 @@ class InfoPanel {
     }), buildElement("ul", {
       role: "tablist",
       className: "tota11y-info-tabs"
-    }))); // Add the appropriate tabs based on which information the info panel
+    })));
+
+    // Add the appropriate tabs based on which information the info panel
     // was provided, then highlight the most important one.
-
     let $activeTab;
-
     if (this.about) {
       $activeTab = this._addTab("About", this.about);
     }
-
     if (this.summary) {
       $activeTab = this._addTab("Summary", this.summary);
-    } // Wire annotation toggling
+    }
 
-
+    // Wire annotation toggling
     this.$el.find(".toggle-annotation").click(e => {
       // We must use the plugin's annotate instead of
       // the InfoPanel's as only the plugin's annotate
@@ -16718,8 +16254,9 @@ class InfoPanel {
           this.plugin.getAnnotate().hide();
         }
       }
-    }); // Wire click to expand text
+    });
 
+    // Wire click to expand text
     this.$el.find(".tota11y-click-to-expand").click(e => {
       e.preventDefault();
       e.stopPropagation();
@@ -16727,20 +16264,22 @@ class InfoPanel {
       $text.toggleClass("tota11y-expanded");
       $text.attr("aria-expanded", $text.is(".tota11y-expanded"));
     });
-
     if (this.errors.size > 0) {
-      let $errors = $("<ul>").addClass("tota11y-info-errors"); // Store a reference to the "Errors" tab so we can switch to it
-      // later
+      let $errors = $("<ul>").addClass("tota11y-info-errors");
 
+      // Store a reference to the "Errors" tab so we can switch to it
+      // later
       let $errorsTab;
       this.errors.forEach((error, id) => {
-        let $error = $(errorTemplate(error)); // Insert description jQuery object into template.
+        let $error = $(errorTemplate(error));
+
+        // Insert description jQuery object into template.
         // Description is passed as jQuery object
         // so that functionality can be inserted.
-
         $error.find(".tota11y-info-error-description").prepend(error.$description);
-        $errors.append($error); // Wire up the expand/collapse trigger
+        $errors.append($error);
 
+        // Wire up the expand/collapse trigger
         let $trigger = $error.find(".tota11y-info-error-trigger");
         let $desc = $error.find(".tota11y-info-error-description");
         $trigger.click(e => {
@@ -16748,10 +16287,11 @@ class InfoPanel {
           e.stopPropagation();
           $trigger.toggleClass(COLLAPSED_CLASS_NAME);
           $desc.toggleClass(COLLAPSED_CLASS_NAME);
-        }); // Attach a function to the original error object to open
+        });
+
+        // Attach a function to the original error object to open
         // this error so it can be done externally. We'll use this to
         // access error entries in the info panel from labels.
-
         error.show = () => {
           if (isBrowser && this.port) {
             // Send the message to the Sidebar panel
@@ -16763,124 +16303,121 @@ class InfoPanel {
               errorId: id
             });
           }
-
           if (!WEBEXT_HIDE_IN_PAGE) {
             // Make sure info panel is visible
             this.$el.removeClass(HIDDEN_CLASS_NAME);
-          } // Open the error entry
+          }
 
-
+          // Open the error entry
           $trigger.removeClass(COLLAPSED_CLASS_NAME);
-          $desc.removeClass(COLLAPSED_CLASS_NAME); // Switch to the "Errors" tab
+          $desc.removeClass(COLLAPSED_CLASS_NAME);
 
-          $errorsTab.trigger("activate"); // Scroll to the error entry
+          // Switch to the "Errors" tab
+          $errorsTab.trigger("activate");
 
+          // Scroll to the error entry
           let $scrollParent = $trigger.parents(".tota11y-info-section");
           $scrollParent[0].scrollTop = $trigger[0].offsetTop - 10;
-        }; // Attach the `$trigger` as well so can access it externally.
+        };
+
+        // Attach the `$trigger` as well so can access it externally.
         // We use this to highlight the trigger when hovering over
         // inline error labels.
-
-
         error.$trigger = $trigger;
-
         if (isBrowser) {
           // Also attatch functions to trigger a highlight
           // in the sidebar which we can call externally.
           error.highlightOn = () => this.sendHighlightOn(id);
-
-          error.highlightOff = () => this.sendHighlightOff(id); // And attatch the `$desc` so we can access this when
+          error.highlightOff = () => this.sendHighlightOff(id);
+          // And attatch the `$desc` so we can access this when
           // syncing checkboxes over the Port.
-
-
           error.$desc = $desc;
-        } // Wire up the scroll-to-error button
+        }
 
-
+        // Wire up the scroll-to-error button
         let $scroll = $error.find(".tota11y-info-error-scroll");
         $scroll.click(e => {
           e.preventDefault();
-          e.stopPropagation(); // TODO: This attempts to scroll to fixed elements
+          e.stopPropagation();
 
+          // TODO: This attempts to scroll to fixed elements
           $(document).scrollTop(error.$el.offset().top - 80);
-        }); // Expand the first violation
+        });
 
+        // Expand the first violation
         if (id === FIRST_ERROR_ID) {
           $desc.toggleClass(COLLAPSED_CLASS_NAME);
           $trigger.toggleClass(COLLAPSED_CLASS_NAME);
-        } // Highlight the violating element on hover/focus. We do it
+        }
+
+        // Highlight the violating element on hover/focus. We do it
         // for both $trigger and $scroll to allow users to see the
         // highlight when scrolling to the element with the button.
-
-
         annotate.toggleHighlight(error.$el, $trigger);
-        annotate.toggleHighlight(error.$el, $scroll); // Add code from error.$el to the information panel
+        annotate.toggleHighlight(error.$el, $scroll);
 
-        let errorHTML = error.$el[0].outerHTML; // Trim the code block if it is over 300 characters
+        // Add code from error.$el to the information panel
+        let errorHTML = error.$el[0].outerHTML;
 
+        // Trim the code block if it is over 300 characters
         if (errorHTML.length > 300) {
           errorHTML = errorHTML.substring(0, 300) + "...";
         }
-
         let $relevantCode = $error.find(".tota11y-info-error-description-code-container code");
         $relevantCode.text(errorHTML);
       });
-      $errorsTab = $activeTab = this._addTab("Errors", $errors); // Add a small badge next to the tab title
+      $errorsTab = $activeTab = this._addTab("Errors", $errors);
 
+      // Add a small badge next to the tab title
       let $badge = $("<div>").addClass("tota11y-info-error-count").text(this.errors.size);
       $activeTab.find(".tota11y-info-tab-anchor").append($badge);
     }
-
     if ($activeTab) {
-      $activeTab.trigger("activate"); // hasContent is technically coupled to $activeTab, since if there
+      $activeTab.trigger("activate");
+      // hasContent is technically coupled to $activeTab, since if there
       // is no $activeTab then there is no content. This behavior may
       // change in the future.
-
       hasContent = true;
     }
-
     if (hasContent) {
       this.initAndPosition();
     }
-
     if (WEBEXT_HIDE_IN_PAGE) {
       this.$el.addClass(HIDDEN_CLASS_NAME);
     } else {
       // (a11y) Shift focus to the newly-opened info panel
       this.$el.focus();
     }
-
     return this.$el;
   }
-
   destroy() {
     // Reset contents
     this.about = null;
     this.summary = null;
     this.error_ids = FIRST_ERROR_ID;
-    this.errors = new Map(); // Remove the element
+    this.errors = new Map();
 
+    // Remove the element
     if (this.$el) {
       this.$el.remove();
       this.$el = null;
-    } // Remove the annotations
+    }
 
+    // Remove the annotations
+    annotate.removeAll();
 
-    annotate.removeAll(); // Remove inspection marks
-
+    // Remove inspection marks
     $(".tota11y-inspected-element").removeClass("tota11y-inspected-element");
-
     if (isBrowser && this.port) {
       this.port.disconnect();
       this.port = null;
     }
   }
+
   /**
    * Opens a port to communicate to an InfoPanelController
    * over the browser.runtime API.
    */
-
-
   delegate(windowId) {
     if (isBrowser) {
       debug.log(`Opening info panel port ${this.plugin.getName()}`);
@@ -16896,41 +16433,34 @@ class InfoPanel {
       port.onMessage.addListener(json => {
         if (json.msg) {
           debug.log(`InfoPanel received msg: ${json.msg}, ${json}`);
-        } // Now handle plugin specific responses
+        }
 
-
+        // Now handle plugin specific responses
         if (json.plugin !== this.plugin.getName()) {
           return;
         }
-
         if (json.scrollToError) {
           this.scrollToError(json.errorId);
         }
-
         if (json.highlightOn) {
           this.doHighlightOn(json.errorId);
         }
-
         if (json.highlightOff) {
           this.doHighlightOff(json.errorId);
         }
-
         if (json.showAnnotations) {
           if (this.plugin.getAnnotate()) {
             this.plugin.getAnnotate().show();
           }
         }
-
         if (json.hideAnnotations) {
           if (this.plugin.getAnnotate()) {
             this.plugin.getAnnotate().hide();
           }
         }
-
         if (json.checkboxSync) {
           this.doCheckboxSync(json.errorId, json.about, json.checkboxIndex, json.checked);
         }
-
         if (json.inspectElement) {
           this.markElementForInspection(json.errorId);
           this.port.postMessage({
@@ -16939,7 +16469,6 @@ class InfoPanel {
             plugin: this.plugin.getName()
           });
         }
-
         if (json.unmarkInspectedElement) {
           debug.log("Unmarked element for inspection");
           $(".tota11y-inspected-element").removeClass("tota11y-inspected-element");
@@ -16947,29 +16476,26 @@ class InfoPanel {
       });
     }
   }
+
   /*
    * Scrolls the page to an error annotation.
    */
-
-
   scrollToError(errorId) {
     let error = this.errors.get(errorId);
-
     if (error === undefined) {
       return;
-    } // Scroll to the error annoatation on the page smoothly
+    }
 
-
+    // Scroll to the error annoatation on the page smoothly
     $("html, body").animate({
       scrollTop: error.$el.offset().top - 80
     }, 300);
   }
+
   /*
    * Sends the highlight on/off instructions over the Port
    * to allow the sidebar to highlight the trigger.
    */
-
-
   sendHighlightOn(errorId) {
     // We provide no message as this will be sent very frequently
     this.port.postMessage({
@@ -16978,7 +16504,6 @@ class InfoPanel {
       plugin: this.plugin.getName()
     });
   }
-
   sendHighlightOff(errorId) {
     // We provide no message as this will be sent very frequently
     this.port.postMessage({
@@ -16987,41 +16512,35 @@ class InfoPanel {
       plugin: this.plugin.getName()
     });
   }
+
   /*
    * Applies highlighting to the page's annotations
    */
-
-
   doHighlightOn(errorId) {
     let error = this.errors.get(errorId);
-
     if (error === undefined) {
       return;
     }
-
     if (error.$highlight) {
       error.$highlight.remove();
     }
-
     error.$highlight = annotate.highlight(error.$el);
   }
+
   /*
    * Removes highlighting from the page's annotations.
    */
-
-
   doHighlightOff(errorId) {
     let error = this.errors.get(errorId);
-
     if (error === undefined) {
       return;
     }
-
     if (error.$highlight) {
       error.$highlight.remove();
       error.$highlight = null;
     }
   }
+
   /*
    * Syncs the state of a checkbox in the InfoPanel
    * in the content script to the state of the checkbox in
@@ -17030,67 +16549,53 @@ class InfoPanel {
    * We use this to make the contrast and layout preview checkboxes work from
    * the sidebar.
    */
-
-
   doCheckboxSync(errorId, about, checkboxIndex, checked) {
     let $parent;
-
     if (about) {
       $parent = this.about;
     } else {
       let error = this.errors.get(errorId);
-
       if (error === undefined) {
         return;
       }
-
       $parent = error.$desc;
     }
-
     let $checkboxes = $parent.find('input[type="checkbox"]');
     let checkbox = $checkboxes.get(checkboxIndex);
-
     if (checkbox === undefined) {
       return;
     }
-
     let $checkbox = $(checkbox);
-
     if ($checkbox.prop("checked") !== checked) {
       // Sync the checkbox state
       $checkbox.click();
     }
   }
-
   markElementForInspection(errorId) {
     let error = this.errors.get(errorId);
-
     if (error === undefined) {
       return;
     }
-
     $(".tota11y-inspected-element").removeClass("tota11y-inspected-element");
     error.$el.addClass("tota11y-inspected-element");
   }
-
   elToString($el) {
     if (typeof $el === "string") {
       // already a string
       return $el;
-    } // Convert jQuery HTML object to HTML string
-
-
+    }
+    // Convert jQuery HTML object to HTML string
     return $el.map(function () {
       // `this` refers to the DOM element when function()
       // is used but not => syntax
       return this.outerHTML;
-    }) // retrieve the array
-    .get() // convert into a single string
+    })
+    // retrieve the array
+    .get()
+    // convert into a single string
     .join("");
   }
-
 }
-
 module.exports = {
   panel: InfoPanel,
   port: PORT_NAME
@@ -17222,35 +16727,26 @@ module.exports = (Handlebars["default"] || Handlebars).template({"1":function(co
 /**
  * A plugin to identify malformed tables
  */
+
 let $ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
-
 let Plugin = __webpack_require__(/*! ../base */ "./plugins/base.js");
-
 let annotate = __webpack_require__(/*! ../shared/annotate */ "./plugins/shared/annotate/index.js")("tables");
-
 let audit = __webpack_require__(/*! ../shared/audit */ "./plugins/shared/audit.js");
-
 let aboutTemplate = __webpack_require__(/*! ./about.handlebars */ "./plugins/tables/about.handlebars");
-
 let errorTemplate = __webpack_require__(/*! ./error-template.handlebars */ "./plugins/tables/error-template.handlebars");
-
 class TablesPlugin extends Plugin {
   getName() {
     return "tables";
   }
-
   getTitle() {
     return "Tables";
   }
-
   getDescription() {
     return "Identifies tables with markup problems";
   }
-
   getAnnotate() {
     return annotate;
   }
-
   errorMessage($el, presentationError, illegalHeaders, illegalCaption, noHeadings, tooManyHeads, headInData, dataInHead, data) {
     return errorTemplate({
       id: $el.attr("id"),
@@ -17265,12 +16761,9 @@ class TablesPlugin extends Plugin {
       tagName: $el.prop("tagName").toLowerCase()
     });
   }
-
   run() {
     let elements = $("table");
-
     let _this = this;
-
     if (elements.length > 0) {
       elements.each(function (index) {
         let $el = $(this);
@@ -17291,45 +16784,37 @@ class TablesPlugin extends Plugin {
         let headInData = false;
         let problems = 0;
         let title = "Table has problem(s) with its markup";
-
         if (tooManyHeads) {
           title = "Table has too many &lt;thead&gt;s";
           problems += 1;
         }
-
         if (illegalHeaders) {
           title = "Presentational table should not have headers";
           problems += 1;
         }
-
         if (illegalCaption) {
           title = "Presentational table should not have a caption";
           problems += 1;
         }
-
         if (noHeadings) {
           title = "Table is missing headers";
           problems += 1;
-        } // Only scan into table markup for more complex
+        }
+
+        // Only scan into table markup for more complex
         // problems if there are not more simpler ones that
         // this might be confusing to see listed with.
-
-
         if (!noHeadings && !presentationError) {
           let $tableHead = $el.children("thead");
-
           if ($tableHead.length === 0) {
             let $rows;
             let $tableBody = $el.children("tbody");
-
             if ($tableBody.length === 0) {
               $rows = $el.children("tr");
             } else {
               $rows = $tableBody.children("tr");
             }
-
             let $firstRow = $rows.first();
-
             if ($tableBody.length > 0 && $firstRow.children("th").length > 0 && $firstRow.children("td").length === 0) {
               title = "First table body is a table head";
               headInData = true;
@@ -17343,30 +16828,23 @@ class TablesPlugin extends Plugin {
             }
           }
         }
-
         if (problems > 1) {
           title = "Table has problem(s) with its markup";
         }
-
         if (problems > 0) {
           // Place an error label on the element and register it as an
           // error in the info panel
           let entry = _this.error(title, $(_this.errorMessage($el, presentationError, illegalHeaders, illegalCaption, noHeadings, tooManyHeads, headInData, dataInHead, data)), $el);
-
           annotate.errorLabel($el, "", title, entry);
         }
       });
     }
-
     this.about($(aboutTemplate()));
   }
-
   cleanup() {
     annotate.removeAll();
   }
-
 }
-
 module.exports = TablesPlugin;
 
 /***/ }),
@@ -17379,42 +16857,35 @@ module.exports = TablesPlugin;
 /***/ (function(module, exports, __webpack_require__) {
 
 let $ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
-
 let Setting = __webpack_require__(/*! ../base */ "./settings/base.js");
+
 /*
  * The audit-dev-only is automatically synced with
  * the browser.storage.local area as the setting value
  * itself is what we check in the sidebar code.
  */
-
-
 class AuditDevOnly extends Setting {
   getName() {
     return "audit-dev-only";
   }
-
   getDescription() {
     return "Audit localhost:// and file:// tabs only";
   }
-
   applyToSidebar() {
     return true;
   }
-
   applyToPage() {
     return false;
   }
-
-  enable() {// TODO notify the sidebar code to insert tota11y if the
+  enable() {
+    // TODO notify the sidebar code to insert tota11y if the
     // active tab was non localhost or file and we didn't insert
   }
-
-  disable() {// TODO notify the sidebar code to remove tota11y if
+  disable() {
+    // TODO notify the sidebar code to remove tota11y if
     // the active tab is non localhost or file and we already inserted
   }
-
 }
-
 module.exports = AuditDevOnly;
 
 /***/ }),
@@ -17438,27 +16909,23 @@ module.exports = AuditDevOnly;
  *     enable: turns on this setting
  *     disable: turns off this setting
  */
+
 class Setting {
   constructor() {
     this.$checkbox = null;
   }
-
   getName() {
     return getDescription().replace(" ", "-").toLowerCase();
   }
-
   getDescription() {
     return "";
   }
-
   applyToSidebar() {
     return false;
   }
-
   applyToPage() {
     return false;
   }
-
   render(clickHandler) {
     this.$checkbox = buildElement("input", {
       className: "tota11y-setting-checkbox tota11y-sr-only",
@@ -17479,25 +16946,18 @@ class Setting {
     }, $switch);
     return $el;
   }
-
   enable() {}
-
   disable() {}
-
   activate() {
     this.enable();
   }
-
   deactivate() {
     this.disable();
   }
-
   enabledByDefault() {
     return false;
   }
-
 }
-
 module.exports = Setting;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./utils/element */ "./utils/element.js")))
 
@@ -17511,42 +16971,32 @@ module.exports = Setting;
 /***/ (function(module, exports, __webpack_require__) {
 
 let $ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
-
 let Setting = __webpack_require__(/*! ../base */ "./settings/base.js");
+
 /*
  * The focus-opened is automatically synced with
  * the browser.storage.local area as the setting value
  * itself is what we check in the sidebar code.
  */
-
-
 class FocusOpened extends Setting {
   getName() {
     return "focus-opened";
   }
-
   getDescription() {
     return "Shift focus to newly opened plugins";
   }
-
   applyToSidebar() {
     return true;
   }
-
   applyToPage() {
     return false;
   }
-
   enable() {}
-
   disable() {}
-
   enabledByDefault() {
     return true;
   }
-
 }
-
 module.exports = FocusOpened;
 
 /***/ }),
@@ -17563,12 +17013,10 @@ module.exports = FocusOpened;
  *
  * Exposes an array of setting instances.
  */
+
 let TranslucentAnnotations = __webpack_require__(/*! ./translucent-annotations */ "./settings/translucent-annotations/index.js");
-
 let AuditDevOnly = __webpack_require__(/*! ./audit-dev-only */ "./settings/audit-dev-only/index.js");
-
 let FocusOpened = __webpack_require__(/*! ./focus-opened */ "./settings/focus-opened/index.js");
-
 module.exports = [new TranslucentAnnotations(), new AuditDevOnly(), new FocusOpened()];
 
 /***/ }),
@@ -17581,28 +17029,21 @@ module.exports = [new TranslucentAnnotations(), new AuditDevOnly(), new FocusOpe
 /***/ (function(module, exports, __webpack_require__) {
 
 let $ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
-
 let Setting = __webpack_require__(/*! ../base */ "./settings/base.js");
-
 const STYLE_CLASS = "tota11y-setting-translucentAnnotations";
-
 class TranslucentAnnotations extends Setting {
   getName() {
     return "translucent-annotations";
   }
-
   getDescription() {
     return "Translucent annotations";
   }
-
   applyToSidebar() {
     return false;
   }
-
   applyToPage() {
     return true;
   }
-
   enable() {
     this.$style = $(`<style class="${STYLE_CLASS}"
                     type="text/css">
@@ -17615,14 +17056,11 @@ class TranslucentAnnotations extends Setting {
             </style>`);
     this.$style.appendTo($("head"));
   }
-
   disable() {
     $(`.${STYLE_CLASS}`).remove();
     this.$style = null;
   }
-
 }
-
 module.exports = TranslucentAnnotations;
 
 /***/ }),
@@ -17650,15 +17088,10 @@ module.exports = (Handlebars["default"] || Handlebars).template({"compiler":[8,"
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(buildElement) {let $ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
-
 let plugins = __webpack_require__(/*! ./plugins */ "./plugins/index.js");
-
 let settings = __webpack_require__(/*! ./settings */ "./settings/index.js");
-
 let logoTemplate = __webpack_require__(/*! ./templates/logo.handlebars */ "./templates/logo.handlebars");
-
 const debug = __webpack_require__(/*! ./utils/debugging.js */ "./utils/debugging.js");
-
 const PORT_NAME = "toolbar";
 const INIT_PORT = "init";
 let allPlugins = [...plugins.default, ...plugins.experimental];
@@ -17666,6 +17099,7 @@ let namedPlugins = allPlugins.map(p => p.getName());
 let namedSettings = settings.map(p => p.getName());
 const DISABLE_CSS = "tota11y-disabled-toolbar";
 const isBrowser = typeof browser !== 'undefined';
+
 /**
  * In a standalone script the toolbar is responsible for switching
  * active plugins and drawing its UI.
@@ -17674,19 +17108,17 @@ const isBrowser = typeof browser !== 'undefined';
  * responsible for everything but the UI, and the UI is synced to the rest of
  * the WebExtension over a Port to the ToolbarController.
  */
-
 class Toolbar {
   constructor() {
     this.activePlugins = new Set();
     this.activeSettings = new Set();
     this.windowId = -1;
   }
+
   /**
    * Manages the state of the toolbar when a plugin is clicked, and toggles
    * the appropriate plugins on and off.
    */
-
-
   handlePluginClick(plugin) {
     // If the plugin was already selected, toggle it off
     if (this.activePlugins.has(plugin)) {
@@ -17698,17 +17130,15 @@ class Toolbar {
       this.activePlugins.add(plugin);
     }
   }
+
   /*
    * Manages the active setting strings in a similar way to plugins,
    */
-
-
   handleSettingClick(setting) {
     if (!setting.applyToPage()) {
       // skip
       return;
     }
-
     if (this.activeSettings.has(setting)) {
       setting.deactivate();
       this.activeSettings.delete(setting);
@@ -17717,23 +17147,20 @@ class Toolbar {
       this.activeSettings.add(setting);
     }
   }
+
   /**
    * Renders the toolbar and appends it to the specified element.
    */
-
-
   appendTo($el) {
     let $logo = $(logoTemplate());
     let $toolbar;
     let $plugins = buildPlugins.bind(this)(false);
-
     let handleToggleClick = e => {
       e.preventDefault();
       e.stopPropagation();
       $toolbar.toggleClass("tota11y-expanded");
       $toolbar.attr("aria-expanded", $toolbar.is(".tota11y-expanded"));
     };
-
     let $toggle = buildElement("button", {
       "aria-controls": "tota11y-toolbar",
       className: "tota11y-toolbar-toggle",
@@ -17753,10 +17180,10 @@ class Toolbar {
     }, $plugins), $toggle);
     $el.append($toolbar);
     this.$el = $toolbar;
-
     if (isBrowser) {
       // Disable this toolbar as the sidebar will be controlling
       // the active plugins
+
       this.$el.addClass(DISABLE_CSS);
       this.$el.attr("role", "presentation");
       this.$el.removeAttr("aria-expanded");
@@ -17767,12 +17194,11 @@ class Toolbar {
       this.$el.find(".tota11y-toolbar-body").remove();
     }
   }
+
   /**
    * Opens a port to communicate to a ToolbarController
    * over the browser.runtime API.
    */
-
-
   delegate() {
     if (isBrowser) {
       // We need to establish what window we are in so
@@ -17781,9 +17207,7 @@ class Toolbar {
         port.onMessage.addListener(json => {
           if (json.windowId) {
             this.windowId = json.windowId;
-
             this._delegate();
-
             port.disconnect();
           }
         });
@@ -17793,16 +17217,14 @@ class Toolbar {
         });
         browser.runtime.onConnect.removeListener(getWindowId);
       };
-
       browser.runtime.onConnect.addListener(getWindowId);
     }
   }
+
   /*
    * Performs the actual task of delegating to the ToolbarController
    * once we know what our window id is.
    */
-
-
   _delegate() {
     let port = browser.runtime.connect({
       name: `${PORT_NAME}${this.windowId}`
@@ -17813,16 +17235,13 @@ class Toolbar {
     });
     port.onMessage.addListener(json => {
       debug.log(`Toolbar received msg: ${json.msg}, ${json}`);
-
       if (json.pluginClick) {
         // retrieve the plugin instance from the name
         let index = namedPlugins.findIndex(p => p === json.pluginClick);
-
         if (index !== -1) {
           let plugin = allPlugins[index];
           debug.log(`Plugin click sent through port ${plugin.getName()}`);
           let doToggle = this.activePlugins.has(plugin) !== json.active;
-
           if (doToggle) {
             // only toggle if not in sync with controller
             this.handlePluginClick(plugin);
@@ -17831,16 +17250,13 @@ class Toolbar {
           port.postMessage("Unrecognised plugin");
         }
       }
-
       if (json.settingClick) {
         // retrieve the setting instance from the name
         let index = namedSettings.findIndex(s => s === json.settingClick);
-
         if (index !== -1) {
           let setting = settings[index];
           debug.log(`Setting click sent through port ${setting.getName()}`);
           let doToggle = this.activeSettings.has(setting) !== json.active;
-
           if (doToggle) {
             // only toggle if not in sync with controller
             this.handleSettingClick(setting);
@@ -17849,27 +17265,21 @@ class Toolbar {
           port.postMessage("Unrecognised setting");
         }
       }
-
       if (json.sync) {
         debug.log("Syncing active plugins and settings");
         let activePlugins = new Set(json.activePlugins);
-
         for (let plugin of allPlugins) {
           let activate = activePlugins.has(plugin.getName());
           let active = this.activePlugins.has(plugin);
-
           if (activate !== active) {
             // only toggle if not in sync with controller
             this.handlePluginClick(plugin);
           }
         }
-
         let activeSettings = new Set(json.activeSettings);
-
         for (let setting of settings) {
           let activate = activeSettings.has(setting.getName());
           let active = this.activeSettings.has(setting);
-
           if (activate !== active) {
             // only toggle if not in sync with controller
             this.handleSettingClick(setting);
@@ -17882,23 +17292,20 @@ class Toolbar {
       for (let plugin of this.activePlugins) {
         // toggle all plugins off
         this.handlePluginClick(plugin);
-      } // Remove this toobar element
-
-
+      }
+      // Remove this toobar element
       if (this.$el) {
         this.$el.remove();
         this.$el = null;
       }
     });
   }
-
 }
+
 /**
  * Responsible for the other side of the port to communicate to
  * a Toolbar over the browser.runtime API.
  */
-
-
 class ToolbarController {
   constructor() {
     if (isBrowser) {
@@ -17909,12 +17316,10 @@ class ToolbarController {
         if (port.name !== `${PORT_NAME}${this.windowId}`) {
           return;
         }
-
         if (this.port) {
           debug.log("Disconnecting old Port");
           this.port.disconnect();
         }
-
         this.port = port;
         this.port.onMessage.addListener(json => {
           debug.log(`Toolbar controller received msg: ${json.msg}, ${json}`);
@@ -17923,12 +17328,10 @@ class ToolbarController {
       });
     }
   }
-
   syncActive() {
     if (!this.port) {
       return;
     }
-
     this.port.postMessage({
       msg: "Sync active plugins and settings",
       sync: true,
@@ -17937,14 +17340,12 @@ class ToolbarController {
       activeSettings: [...this.activeSettings].filter(s => s.applyToPage()).map(s => s.getName())
     });
   }
-
   handlePluginClick(plugin) {
     if (this.activePlugins.has(plugin)) {
       this.activePlugins.delete(plugin);
     } else {
       this.activePlugins.add(plugin);
     }
-
     if (this.port) {
       this.port.postMessage({
         msg: "Plugin click",
@@ -17955,14 +17356,12 @@ class ToolbarController {
       });
     }
   }
-
   handleSettingClick(setting) {
     if (this.activeSettings.has(setting)) {
       if (setting.applyToSidebar()) {
         setting.deactivate();
-      } // save setting to local storage regardless of type
-
-
+      }
+      // save setting to local storage regardless of type
       browser.storage.local.set({
         [setting.getName()]: false
       });
@@ -17970,20 +17369,17 @@ class ToolbarController {
     } else {
       if (setting.applyToSidebar()) {
         setting.activate();
-      } // save setting to local storage regardless of type
-
-
+      }
+      // save setting to local storage regardless of type
       browser.storage.local.set({
         [setting.getName()]: true
       });
       this.activeSettings.add(setting);
     }
-
     if (!setting.applyToPage()) {
       // don't sync settings that don't do anything on the page
       return;
     }
-
     if (this.port) {
       this.port.postMessage({
         msg: "Setting click",
@@ -17993,15 +17389,13 @@ class ToolbarController {
       });
     }
   }
-
   setWindowId(windowId) {
     this.windowId = windowId;
   }
+
   /**
    * Renders the toolbar and appends it to the specified element.
    */
-
-
   appendTo($el) {
     let $logo = $(logoTemplate());
     let $toolbar;
@@ -18017,17 +17411,16 @@ class ToolbarController {
       target: "_blank"
     }, "Help"), buildElement("div", {
       className: "tota11y-toolbar-body"
-    }, $plugins)); // sync the state of the local storage for settings
-    // to the sidebar UI
+    }, $plugins));
 
+    // sync the state of the local storage for settings
+    // to the sidebar UI
     settings.forEach(setting => {
       browser.storage.local.get(setting.getName()).then(storage => {
         let value = storage[setting.getName()];
-
         if (value) {
           setting.$checkbox.click();
         }
-
         if (typeof value === "undefined") {
           if (setting.enabledByDefault()) {
             // If we should be enabled by default and the setting
@@ -18036,24 +17429,22 @@ class ToolbarController {
               [setting.getName()]: true
             });
             setting.$checkbox.click();
-          } // If the setting is not set on the browser but the plugin
+          }
+          // If the setting is not set on the browser but the plugin
           // is not enabled by default, we don't need to do anything
           // since the checkbox won't be ticked by default either
-
         }
       });
     });
     $el.append($toolbar);
   }
-
 }
+
 /*
  * Plugin DOM element building logic that is common to both the Toolbar
  * and the ToolbarController
  * `this` must be bound to the Toolbar or ToolbarController respectively
  */
-
-
 function buildPlugins(isSidebar) {
   let $defaultPlugins = buildElement("li", null, buildElement("div", {
     className: "tota11y-plugins-separator"
@@ -18064,7 +17455,6 @@ function buildPlugins(isSidebar) {
     });
   })));
   let $experimentalPlugins = null;
-
   if (plugins.experimental.length) {
     $experimentalPlugins = buildElement("li", null, buildElement("div", {
       className: "tota11y-plugins-separator"
@@ -18075,7 +17465,6 @@ function buildPlugins(isSidebar) {
       });
     })));
   }
-
   let $settings = buildElement("li", null, buildElement("div", {
     className: "tota11y-plugins-separator"
   }, "Settings"), buildElement("ul", null, settings.filter(s => isSidebar ? true : s.applyToPage()).map(Setting => {
@@ -18089,7 +17478,6 @@ function buildPlugins(isSidebar) {
   }, $settings, $defaultPlugins, $experimentalPlugins);
   return $plugins;
 }
-
 module.exports = {
   toolbar: Toolbar,
   controller: ToolbarController
@@ -18106,6 +17494,7 @@ module.exports = {
 /***/ (function(module, exports) {
 
 const DEBUGGING = false;
+
 /*
  * A console logging wrapper that can be turned on and off easily.
  *
@@ -18144,45 +17533,53 @@ function buildElement(type, props, ...children) {
   //
   // This allows us to use the jQuery instance provided by our jsdom
   // instance.
-  let $ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js"); // Is our element a TextNode?
+  let $ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
 
-
+  // Is our element a TextNode?
   if (props === undefined) {
     // Type will be the text content, which can simply be returned here
-    return type; // Is our element a Plugin?
+    return type;
+
+    // Is our element a Plugin?
   } else if (type.render) {
     // Render the plugin with the passed-in click handler
-    return type.render(props && props.onClick); // Otherwise, build the element with jQuery
-  } else {
-    let $el = $("<" + type + ">"); // Iterate through props
+    return type.render(props && props.onClick);
 
+    // Otherwise, build the element with jQuery
+  } else {
+    let $el = $("<" + type + ">");
+
+    // Iterate through props
     if (props !== null) {
       for (let propName in props) {
         // onClick gets turned into a jQuery event handler
         // TODO: Handle props like onHover, onFocus, etc.
         if (propName === "onClick") {
           let handler = props[propName];
-          $el.click(handler); // Some passed-in props need to be set with $.attr
+          $el.click(handler);
+
+          // Some passed-in props need to be set with $.attr
           // Currently we do this for role and aria-*
         } else if (/^aria-/.test(propName) || propName === "role") {
           let value = props[propName];
-          $el.attr(propName, value); // All other props can go right to $.prop
+          $el.attr(propName, value);
+
+          // All other props can go right to $.prop
         } else {
           let value = props[propName];
           $el.prop(propName, value);
         }
       }
-    } // Recurse through the children and append each resulting element to
+    }
+
+    // Recurse through the children and append each resulting element to
     // the parent
-
-
     children.forEach(child => {
       $el.append(buildElement(child));
     });
     return $el;
   }
 }
-
 module.exports = buildElement;
 
 /***/ })
