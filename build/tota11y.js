@@ -1,322 +1,1062 @@
 /*!
  * Totally Automated Accessibility Scanner
- * 
+ *
  * Totally v1.1.7
- * 
+ *
  * Forked from tota11y v0.1.6
  * http://khan.github.io/tota11y
- * 
+ *
  * tota11y Copyright (c) 2015 Khan Academy
  * Released under the MIT license
  * http://github.com/Khan/tota11y/blob/master/LICENSE.txt
- * 
+ *
  * Includes Accessibility Developer Tools
  * http://github.com/GoogleChrome/accessibility-developer-tools
- * 
- */
-/******/ (function(modules) { // webpackBootstrap
-/******/ 	// The module cache
-/******/ 	var installedModules = {};
-/******/
-/******/ 	// The require function
-/******/ 	function __webpack_require__(moduleId) {
-/******/
-/******/ 		// Check if module is in cache
-/******/ 		if(installedModules[moduleId]) {
-/******/ 			return installedModules[moduleId].exports;
-/******/ 		}
-/******/ 		// Create a new module (and put it into the cache)
-/******/ 		var module = installedModules[moduleId] = {
-/******/ 			i: moduleId,
-/******/ 			l: false,
-/******/ 			exports: {}
-/******/ 		};
-/******/
-/******/ 		// Execute the module function
-/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
-/******/
-/******/ 		// Flag the module as loaded
-/******/ 		module.l = true;
-/******/
-/******/ 		// Return the exports of the module
-/******/ 		return module.exports;
-/******/ 	}
-/******/
-/******/
-/******/ 	// expose the modules object (__webpack_modules__)
-/******/ 	__webpack_require__.m = modules;
-/******/
-/******/ 	// expose the module cache
-/******/ 	__webpack_require__.c = installedModules;
-/******/
-/******/ 	// define getter function for harmony exports
-/******/ 	__webpack_require__.d = function(exports, name, getter) {
-/******/ 		if(!__webpack_require__.o(exports, name)) {
-/******/ 			Object.defineProperty(exports, name, { enumerable: true, get: getter });
-/******/ 		}
-/******/ 	};
-/******/
-/******/ 	// define __esModule on exports
-/******/ 	__webpack_require__.r = function(exports) {
-/******/ 		if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
-/******/ 			Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
-/******/ 		}
-/******/ 		Object.defineProperty(exports, '__esModule', { value: true });
-/******/ 	};
-/******/
-/******/ 	// create a fake namespace object
-/******/ 	// mode & 1: value is a module id, require it
-/******/ 	// mode & 2: merge all properties of value into the ns
-/******/ 	// mode & 4: return value when already ns object
-/******/ 	// mode & 8|1: behave like require
-/******/ 	__webpack_require__.t = function(value, mode) {
-/******/ 		if(mode & 1) value = __webpack_require__(value);
-/******/ 		if(mode & 8) return value;
-/******/ 		if((mode & 4) && typeof value === 'object' && value && value.__esModule) return value;
-/******/ 		var ns = Object.create(null);
-/******/ 		__webpack_require__.r(ns);
-/******/ 		Object.defineProperty(ns, 'default', { enumerable: true, value: value });
-/******/ 		if(mode & 2 && typeof value != 'string') for(var key in value) __webpack_require__.d(ns, key, function(key) { return value[key]; }.bind(null, key));
-/******/ 		return ns;
-/******/ 	};
-/******/
-/******/ 	// getDefaultExport function for compatibility with non-harmony modules
-/******/ 	__webpack_require__.n = function(module) {
-/******/ 		var getter = module && module.__esModule ?
-/******/ 			function getDefault() { return module['default']; } :
-/******/ 			function getModuleExports() { return module; };
-/******/ 		__webpack_require__.d(getter, 'a', getter);
-/******/ 		return getter;
-/******/ 	};
-/******/
-/******/ 	// Object.prototype.hasOwnProperty.call
-/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
-/******/
-/******/ 	// __webpack_public_path__
-/******/ 	__webpack_require__.p = "";
-/******/
-/******/
-/******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = "./index.js");
-/******/ })
-/************************************************************************/
-/******/ ({
-
-/***/ "./index.js":
-/*!******************!*\
-  !*** ./index.js ***!
-  \******************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-/**
- * The entry point for tota11y.
  *
- * Builds and mounts the toolbar.
  */
+/******/ (() => { // webpackBootstrap
+/******/ 	var __webpack_modules__ = ({
 
-// Require the base tota11y styles right away so they can be overwritten
-__webpack_require__(/*! ./less/tota11y.less */ "./less/tota11y.less");
-let $ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
-let plugins = __webpack_require__(/*! ./plugins */ "./plugins/index.js");
-let toolbar = __webpack_require__(/*! ./toolbar.js */ "./toolbar.js");
-const Toolbar = toolbar.toolbar;
-
-// Chrome Accessibility Developer Tools - required once as a global
-__webpack_require__(/*! script-loader!./node_modules/accessibility-developer-tools/dist/js/axs_testing.js */ "./node_modules/script-loader/index.js!./node_modules/accessibility-developer-tools/dist/js/axs_testing.js");
-$(function () {
-  var bar = new Toolbar();
-  bar.delegate();
-
-  // TODO: Make this customizable
-  bar.appendTo($("body"));
-});
-
-/***/ }),
-
-/***/ "./less/tota11y.less":
+/***/ "./less/tota11y.less"
 /*!***************************!*\
   !*** ./less/tota11y.less ***!
   \***************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
-// style-loader: Adds some css to the DOM by adding a <style> tag
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !../node_modules/style-loader/dist/runtime/styleDomAPI.js */ "./node_modules/style-loader/dist/runtime/styleDomAPI.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../node_modules/style-loader/dist/runtime/insertBySelector.js */ "./node_modules/style-loader/dist/runtime/insertBySelector.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! !../node_modules/style-loader/dist/runtime/setAttributesWithoutAttributes.js */ "./node_modules/style-loader/dist/runtime/setAttributesWithoutAttributes.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! !../node_modules/style-loader/dist/runtime/insertStyleElement.js */ "./node_modules/style-loader/dist/runtime/insertStyleElement.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! !../node_modules/style-loader/dist/runtime/styleTagTransform.js */ "./node_modules/style-loader/dist/runtime/styleTagTransform.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _node_modules_css_loader_dist_cjs_js_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_2_use_2_node_modules_less_loader_dist_cjs_js_tota11y_less__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! !!../node_modules/css-loader/dist/cjs.js!../node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[2].use[2]!../node_modules/less-loader/dist/cjs.js!./tota11y.less */ "./node_modules/css-loader/dist/cjs.js!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[2].use[2]!./node_modules/less-loader/dist/cjs.js!./less/tota11y.less");
 
-// load the styles
-var content = __webpack_require__(/*! !../node_modules/css-loader!../node_modules/postcss-loader/src??postcss!../node_modules/less-loader/dist/cjs.js!./tota11y.less */ "./node_modules/css-loader/index.js!./node_modules/postcss-loader/src/index.js?!./node_modules/less-loader/dist/cjs.js!./less/tota11y.less");
-if(typeof content === 'string') content = [[module.i, content, '']];
-// add the styles to the DOM
-var update = __webpack_require__(/*! ../node_modules/style-loader/addStyles.js */ "./node_modules/style-loader/addStyles.js")(content, {});
-// Hot Module Replacement
-if(false) {}
+      
+      
+      
+      
+      
+      
+      
+      
+      
 
-/***/ }),
+var options = {};
 
-/***/ "./node_modules/css-loader/index.js!./node_modules/postcss-loader/src/index.js?!./node_modules/less-loader/dist/cjs.js!./less/tota11y.less":
-/*!***************************************************************************************************************************************!*\
-  !*** ./node_modules/css-loader!./node_modules/postcss-loader/src??postcss!./node_modules/less-loader/dist/cjs.js!./less/tota11y.less ***!
-  \***************************************************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+options.styleTagTransform = (_node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5___default());
+options.setAttributes = (_node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3___default());
+options.insert = _node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2___default().bind(null, "head");
+options.domAPI = (_node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1___default());
+options.insertStyleElement = (_node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4___default());
 
-exports = module.exports = __webpack_require__(/*! ../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")();
-exports.push([module.i, ".tota11y-dark-color-scheme {\n  background-color: #333 !important;\n  color: #f2f2f2 !important;\n}\n.tota11y-no-select {\n  -webkit-user-select: none !important;\n          user-select: none !important;\n}\n/**\n * Base styles for tota11y to make sure things look consistent under\n * reasonable circumstances.\n */\n.tota11y,\n.tota11y * {\n  border: none !important;\n  background-color: inherit !important;\n  box-sizing: border-box !important;\n  color: #f2f2f2 !important;\n  font-family: Arial !important;\n  font-size: 14px !important;\n  font-style: normal !important;\n  font-weight: 400 !important;\n  line-height: 1.35 !important;\n  margin: 0 !important;\n  padding: 0 !important;\n  text-align: left !important;\n  text-shadow: none !important;\n}\n.tota11y * {\n  height: auto !important;\n  width: auto !important;\n}\n.tota11y strong {\n  font-weight: bold !important;\n}\n.tota11y pre,\n.tota11y code {\n  background-color: #ddd !important;\n  border: none !important;\n  border-radius: 0 !important;\n  color: inherit !important;\n  font-family: monospace !important;\n  font-size: inherit !important;\n  line-height: inherit !important;\n}\n.tota11y pre {\n  padding: 5px 10px !important;\n  margin: 0 0 10px !important;\n  overflow-x: scroll !important;\n}\n.tota11y code {\n  border-radius: 2px !important;\n  display: inline !important;\n  padding: 1px !important;\n}\n.tota11y i,\n.tota11y em {\n  font-style: italic !important;\n}\n.tota11y p {\n  margin: 0 0 10px !important;\n}\n.tota11y a,\n.tota11y a:hover,\n.tota11y a:focus {\n  background-color: inherit !important;\n  color: inherit !important;\n  text-decoration: none !important;\n}\n.tota11y-toolbar {\n  background-color: #333 !important;\n  color: #f2f2f2 !important;\n  position: fixed !important;\n  top: auto !important;\n  right: auto !important;\n  bottom: 0 !important;\n  left: 10px !important;\n  border-top-left-radius: 5px !important;\n  border-top-right-radius: 5px !important;\n  overflow: hidden !important;\n  z-index: 9998 !important;\n}\n.tota11y-toolbar-toggle {\n  background-color: #333 !important;\n  display: block !important;\n  padding: 7px !important;\n  width: 100% !important;\n}\n.tota11y-toolbar-logo {\n  height: 25px !important;\n  margin: 0 auto !important;\n  text-align: center !important;\n  width: 35px !important;\n}\n.tota11y-toolbar-logo svg {\n  height: 25px !important;\n}\n.tota11y-toolbar-body {\n  display: none !important;\n}\n.tota11y-toolbar.tota11y-expanded .tota11y-toolbar-body {\n  display: block !important;\n}\n.tota11y-sr-only {\n  border: 0 !important;\n  clip: rect(0, 0, 0, 0) !important;\n  height: 1px !important;\n  margin: -1px !important;\n  overflow: hidden !important;\n  padding: 0 !important;\n  position: absolute !important;\n  width: 1px !important;\n}\n.tota11y-sidebar {\n  position: static !important;\n}\n.tota11y-sidebar .tota11y-plugin-description,\n.tota11y-sidebar .tota11y-setting-description {\n  width: auto !important;\n}\n.tota11y-sidebar .tota11y-plugin-indicator,\n.tota11y-sidebar .tota11y-setting-indicator {\n  margin: 0 10px !important;\n}\n.tota11y-sidebar .tota11y-plugin-switch,\n.tota11y-sidebar .tota11y-setting-switch {\n  padding: 9px 9px 9px 0 !important;\n}\n.tota11y-sidebar .tota11y-help {\n  position: absolute !important;\n  right: 10px !important;\n  top: 5px !important;\n}\n.tota11y-sidebar .tota11y-info-title:hover {\n  cursor: default !important;\n}\n.tota11y-sidebar.tota11y-toolbar {\n  border-top-left-radius: 0 !important;\n  border-top-right-radius: 0 !important;\n}\n.tota11y-disabled-toolbar {\n  pointer-events: none !important;\n  opacity: 0.5 !important;\n}\n.tota11y.tota11y-info.tota11y-sidebar:nth-child(2n+1) {\n  background-color: #4A5837 !important;\n}\n", ""]);
+var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_2_use_2_node_modules_less_loader_dist_cjs_js_tota11y_less__WEBPACK_IMPORTED_MODULE_6__["default"], options);
 
-/***/ }),
 
-/***/ "./node_modules/css-loader/index.js!./node_modules/postcss-loader/src/index.js?!./node_modules/less-loader/dist/cjs.js!./plugins/a11y-name/style.less":
-/*!**************************************************************************************************************************************************!*\
-  !*** ./node_modules/css-loader!./node_modules/postcss-loader/src??postcss!./node_modules/less-loader/dist/cjs.js!./plugins/a11y-name/style.less ***!
-  \**************************************************************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")();
-exports.push([module.i, "", ""]);
 
-/***/ }),
+       /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_2_use_2_node_modules_less_loader_dist_cjs_js_tota11y_less__WEBPACK_IMPORTED_MODULE_6__["default"] && _node_modules_css_loader_dist_cjs_js_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_2_use_2_node_modules_less_loader_dist_cjs_js_tota11y_less__WEBPACK_IMPORTED_MODULE_6__["default"].locals ? _node_modules_css_loader_dist_cjs_js_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_2_use_2_node_modules_less_loader_dist_cjs_js_tota11y_less__WEBPACK_IMPORTED_MODULE_6__["default"].locals : undefined);
 
-/***/ "./node_modules/css-loader/index.js!./node_modules/postcss-loader/src/index.js?!./node_modules/less-loader/dist/cjs.js!./plugins/a11y-text-wand/style.less":
-/*!*******************************************************************************************************************************************************!*\
-  !*** ./node_modules/css-loader!./node_modules/postcss-loader/src??postcss!./node_modules/less-loader/dist/cjs.js!./plugins/a11y-text-wand/style.less ***!
-  \*******************************************************************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")();
-exports.push([module.i, ".tota11y-dark-color-scheme {\n  background-color: #333 !important;\n  color: #f2f2f2 !important;\n}\n.tota11y-no-select {\n  -webkit-user-select: none !important;\n          user-select: none !important;\n}\n.tota11y-outlined {\n  outline: 2px solid #7882c8 !important;\n}\n.tota11y-nothingness {\n  color: #888 !important;\n}\n/* Only style the screen reader wand info panel section */\n.tota11y-sidebar.a11y-text-wand .tota11y-info-section.active {\n  height: 500px !important;\n  max-height: 50vh !important;\n}\n", ""]);
+/***/ },
 
-/***/ }),
+/***/ "./node_modules/css-loader/dist/cjs.js!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[2].use[2]!./node_modules/less-loader/dist/cjs.js!./less/tota11y.less"
+/*!******************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[2].use[2]!./node_modules/less-loader/dist/cjs.js!./less/tota11y.less ***!
+  \******************************************************************************************************************************************************************************/
+(module, __webpack_exports__, __webpack_require__) {
 
-/***/ "./node_modules/css-loader/index.js!./node_modules/postcss-loader/src/index.js?!./node_modules/less-loader/dist/cjs.js!./plugins/contrast/style.less":
-/*!*************************************************************************************************************************************************!*\
-  !*** ./node_modules/css-loader!./node_modules/postcss-loader/src??postcss!./node_modules/less-loader/dist/cjs.js!./plugins/contrast/style.less ***!
-  \*************************************************************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../node_modules/css-loader/dist/runtime/sourceMaps.js */ "./node_modules/css-loader/dist/runtime/sourceMaps.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__);
+// Imports
 
-exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")();
-exports.push([module.i, ".tota11y-swatches {\n  margin-left: 5px !important;\n  margin-right: 5px !important;\n  position: relative !important;\n  top: 1px !important;\n}\n.tota11y-swatch {\n  border: 1px solid #000 !important;\n  display: inline-block !important;\n  height: 12px !important;\n  width: 12px !important;\n}\n.tota11y-contrast-suggestion {\n  margin: 0 0 15px 15px !important;\n}\n.tota11y-color-hexes {\n  font-family: monospace !important;\n}\n", ""]);
 
-/***/ }),
+var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, `.tota11y-dark-color-scheme {
+  background-color: #333 !important;
+  color: #f2f2f2 !important;
+}
+.tota11y-no-select {
+  -webkit-user-select: none !important;
+          user-select: none !important;
+}
+/**
+ * Base styles for tota11y to make sure things look consistent under
+ * reasonable circumstances.
+ */
+.tota11y,
+.tota11y * {
+  border: none !important;
+  background-color: inherit !important;
+  box-sizing: border-box !important;
+  color: #f2f2f2 !important;
+  font-family: Arial !important;
+  font-size: 14px !important;
+  font-style: normal !important;
+  font-weight: 400 !important;
+  line-height: 1.35 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  text-align: left !important;
+  text-shadow: none !important;
+}
+.tota11y * {
+  height: auto !important;
+  width: auto !important;
+}
+.tota11y strong {
+  font-weight: bold !important;
+}
+.tota11y pre,
+.tota11y code {
+  background-color: #ddd !important;
+  border: none !important;
+  border-radius: 0 !important;
+  color: inherit !important;
+  font-family: monospace !important;
+  font-size: inherit !important;
+  line-height: inherit !important;
+}
+.tota11y pre {
+  padding: 5px 10px !important;
+  margin: 0 0 10px !important;
+  overflow-x: scroll !important;
+}
+.tota11y code {
+  border-radius: 2px !important;
+  display: inline !important;
+  padding: 1px !important;
+}
+.tota11y i,
+.tota11y em {
+  font-style: italic !important;
+}
+.tota11y p {
+  margin: 0 0 10px !important;
+}
+.tota11y a,
+.tota11y a:hover,
+.tota11y a:focus {
+  background-color: inherit !important;
+  color: inherit !important;
+  text-decoration: none !important;
+}
+.tota11y-toolbar {
+  background-color: #333 !important;
+  color: #f2f2f2 !important;
+  position: fixed !important;
+  top: auto !important;
+  right: auto !important;
+  bottom: 0 !important;
+  left: 10px !important;
+  border-top-left-radius: 5px !important;
+  border-top-right-radius: 5px !important;
+  overflow: hidden !important;
+  z-index: 9998 !important;
+}
+.tota11y-toolbar-toggle {
+  background-color: #333 !important;
+  display: block !important;
+  padding: 7px !important;
+  width: 100% !important;
+}
+.tota11y-toolbar-logo {
+  height: 25px !important;
+  margin: 0 auto !important;
+  text-align: center !important;
+  width: 35px !important;
+}
+.tota11y-toolbar-logo svg {
+  height: 25px !important;
+}
+.tota11y-toolbar-body {
+  display: none !important;
+}
+.tota11y-toolbar.tota11y-expanded .tota11y-toolbar-body {
+  display: block !important;
+}
+.tota11y-sr-only {
+  border: 0 !important;
+  clip: rect(0, 0, 0, 0) !important;
+  height: 1px !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  padding: 0 !important;
+  position: absolute !important;
+  width: 1px !important;
+}
+.tota11y-sidebar {
+  position: static !important;
+}
+.tota11y-sidebar .tota11y-plugin-description,
+.tota11y-sidebar .tota11y-setting-description {
+  width: auto !important;
+}
+.tota11y-sidebar .tota11y-plugin-indicator,
+.tota11y-sidebar .tota11y-setting-indicator {
+  margin: 0 10px !important;
+}
+.tota11y-sidebar .tota11y-plugin-switch,
+.tota11y-sidebar .tota11y-setting-switch {
+  padding: 9px 9px 9px 0 !important;
+}
+.tota11y-sidebar .tota11y-help {
+  position: absolute !important;
+  right: 10px !important;
+  top: 5px !important;
+}
+.tota11y-sidebar .tota11y-info-title:hover {
+  cursor: default !important;
+}
+.tota11y-sidebar.tota11y-toolbar {
+  border-top-left-radius: 0 !important;
+  border-top-right-radius: 0 !important;
+}
+.tota11y-disabled-toolbar {
+  pointer-events: none !important;
+  opacity: 0.5 !important;
+}
+.tota11y.tota11y-info.tota11y-sidebar:nth-child(2n+1) {
+  background-color: #4A5837 !important;
+}
+/*# sourceMappingURL=tota11y.css.map */`, "",{"version":3,"sources":["webpack://./variables.less","webpack://./less/tota11y.less","webpack://./base.less","webpack://./tota11y.less"],"names":[],"mappings":"AA8BA;EACI,iCAAA;EACA,yBAAA;AC7BJ;ADgCA;EACI,oCAAA;UAAA,4BAAA;AC9BJ;AACA;;;EAGE;ACDE;;EACI,uBAAA;EACA,oCAAA;EACA,iCAAA;EACA,yBAAA;EACA,6BAAA;EACA,0BAAA;EACA,6BAAA;EACA,2BAAA;EACA,4BAAA;EACA,oBAAA;EACA,qBAAA;EACA,2BAAA;EACA,4BAAA;ADIR;ACCI;EACI,uBAAA;EACA,sBAAA;ADCR;ACvBA;EA0BQ,4BAAA;ADAR;AC1BA;;EA+BQ,iCAAA;EACA,uBAAA;EACA,2BAAA;EACA,yBAAA;EACA,iCAAA;EACA,6BAAA;EACA,+BAAA;ADDR;ACpCA;EAyCQ,4BAAA;EACA,2BAAA;EACA,6BAAA;ADFR;ACzCA;EA+CQ,6BAAA;EACA,0BAAA;EACA,uBAAA;ADHR;AC9CA;;EAsDQ,6BAAA;ADJR;AClDA;EA0DQ,2BAAA;ADLR;ACrDA;;;EA8DQ,oCAAA;EACA,yBAAA;EACA,gCAAA;ADJR;AE5DA;EHwBI,iCAAA;EACA,yBAAA;EASA,0BAAA;EACA,oBAAA;EACA,sBAAA;EACA,oBAAA;EACA,qBAAA;EGlCA,sCAAA;EACA,uCAAA;EACA,2BAAA;EACA,wBAAA;AFkEJ;AEhEI;EACI,iCAAA;EACA,yBAAA;EACA,uBAAA;EACA,sBAAA;AFkER;AE/DI;EACI,uBAAA;EACA,yBAAA;EACA,6BAAA;EACA,sBAAA;AFiER;AE/DQ;EACI,uBAAA;AFiEZ;AE7DI;EACI,wBAAA;AF+DR;AE7DI;EACI,yBAAA;AF+DR;AE3DA;EACI,oBAAA;EACA,iCAAA;EACA,sBAAA;EACA,uBAAA;EACA,2BAAA;EACA,qBAAA;EACA,6BAAA;EACA,qBAAA;AF6DJ;AE1DA;EACI,2BAAA;AF4DJ;AEzDQ;;EACI,sBAAA;AF4DZ;AEzDQ;;EACI,yBAAA;AF4DZ;AEzDQ;;EACI,iCAAA;AF4DZ;AEzEA;EAkBQ,6BAAA;EACA,sBAAA;EACA,mBAAA;AF0DR;AEtDQ;EACI,0BAAA;AFwDZ;AEnDA;EACI,oCAAA;EACA,qCAAA;AFqDJ;AElDA;EACI,+BAAA;EACA,uBAAA;AFoDJ;AEjDA;EACI,oCAAA;AFmDJ;AACA,sCAAsC","sourcesContent":["@fontSize: 14px;\n@fontSizeSmall: 11px;\n@borderRadius: 5px;\n\n@darkGray: #333;\n@gray: #555;\n@lightGray: #999;\n@lighterGray: #ddd;\n@white: #f2f2f2;\n\n@kaGreen: #639b24;\n@mutedGreen: #4A5837;\n\n@highlightColor: rgba(120, 130, 200, 0.4);\n\n@darkBorderColor: @gray;\n@lightBorderColor: @lightGray;\n\n@viewportEdgePadding: 10px;\n\n// z-index variables\n@z-index--highlights: 9999;\n@z-index--UI: 9998;\n@z-index--labels: 9997;\n\n@descriptionWidth: 200px;\n@controlMargin: 15px;\n@indicatorSize: 16px;\n@indicatorFontSize: 13px;\n\n.tota11y-dark-color-scheme {\n    background-color: @darkGray;\n    color: @white;\n}\n\n.tota11y-no-select {\n    user-select: none;\n}\n\n// Position mixin\n.position(@position: static, @top: auto, @right: auto, @bottom: auto, @left: auto) {\n    position: @position;\n    top: @top;\n    right: @right;\n    bottom: @bottom;\n    left: @left;\n}\n",".tota11y-dark-color-scheme {\n  background-color: #333;\n  color: #f2f2f2;\n}\n.tota11y-no-select {\n  user-select: none;\n}\n/**\n * Base styles for tota11y to make sure things look consistent under\n * reasonable circumstances.\n */\n.tota11y,\n.tota11y * {\n  border: none;\n  background-color: inherit;\n  box-sizing: border-box;\n  color: #f2f2f2;\n  font-family: Arial;\n  font-size: 14px;\n  font-style: normal;\n  font-weight: 400;\n  line-height: 1.35;\n  margin: 0;\n  padding: 0;\n  text-align: left;\n  text-shadow: none;\n}\n.tota11y * {\n  height: auto;\n  width: auto;\n}\n.tota11y strong {\n  font-weight: bold;\n}\n.tota11y pre,\n.tota11y code {\n  background-color: #ddd;\n  border: none;\n  border-radius: 0;\n  color: inherit;\n  font-family: monospace;\n  font-size: inherit;\n  line-height: inherit;\n}\n.tota11y pre {\n  padding: 5px 10px;\n  margin: 0 0 10px;\n  overflow-x: scroll;\n}\n.tota11y code {\n  border-radius: 2px;\n  display: inline;\n  padding: 1px;\n}\n.tota11y i,\n.tota11y em {\n  font-style: italic;\n}\n.tota11y p {\n  margin: 0 0 10px;\n}\n.tota11y a,\n.tota11y a:hover,\n.tota11y a:focus {\n  background-color: inherit;\n  color: inherit;\n  text-decoration: none;\n}\n.tota11y-toolbar {\n  background-color: #333;\n  color: #f2f2f2;\n  position: fixed;\n  top: auto;\n  right: auto;\n  bottom: 0;\n  left: 10px;\n  border-top-left-radius: 5px;\n  border-top-right-radius: 5px;\n  overflow: hidden;\n  z-index: 9998;\n}\n.tota11y-toolbar-toggle {\n  background-color: #333;\n  display: block;\n  padding: 7px;\n  width: 100%;\n}\n.tota11y-toolbar-logo {\n  height: 25px;\n  margin: 0 auto;\n  text-align: center;\n  width: 35px;\n}\n.tota11y-toolbar-logo svg {\n  height: 25px;\n}\n.tota11y-toolbar-body {\n  display: none;\n}\n.tota11y-toolbar.tota11y-expanded .tota11y-toolbar-body {\n  display: block;\n}\n.tota11y-sr-only {\n  border: 0;\n  clip: rect(0, 0, 0, 0);\n  height: 1px;\n  margin: -1px;\n  overflow: hidden;\n  padding: 0;\n  position: absolute;\n  width: 1px;\n}\n.tota11y-sidebar {\n  position: static;\n}\n.tota11y-sidebar .tota11y-plugin-description,\n.tota11y-sidebar .tota11y-setting-description {\n  width: auto;\n}\n.tota11y-sidebar .tota11y-plugin-indicator,\n.tota11y-sidebar .tota11y-setting-indicator {\n  margin: 0 10px;\n}\n.tota11y-sidebar .tota11y-plugin-switch,\n.tota11y-sidebar .tota11y-setting-switch {\n  padding: 9px 9px 9px 0;\n}\n.tota11y-sidebar .tota11y-help {\n  position: absolute;\n  right: 10px;\n  top: 5px;\n}\n.tota11y-sidebar .tota11y-info-title:hover {\n  cursor: default;\n}\n.tota11y-sidebar.tota11y-toolbar {\n  border-top-left-radius: 0;\n  border-top-right-radius: 0;\n}\n.tota11y-disabled-toolbar {\n  pointer-events: none;\n  opacity: 0.5;\n}\n.tota11y.tota11y-info.tota11y-sidebar:nth-child(2n+1) {\n  background-color: #4A5837;\n}\n/*# sourceMappingURL=tota11y.css.map */","/**\n * Base styles for tota11y to make sure things look consistent under\n * reasonable circumstances.\n */\n\n@import \"variables.less\";\n\n.tota11y {\n    // A reset of all styles in tota11y elements\n    &, & * {\n        border: none;\n        background-color: inherit;\n        box-sizing: border-box;\n        color: @white;\n        font-family: Arial;\n        font-size: @fontSize;\n        font-style: normal;\n        font-weight: 400;\n        line-height: 1.35;\n        margin: 0;\n        padding: 0;\n        text-align: left;\n        text-shadow: none;\n    }\n\n    // This applies to all styles within .tota11y, meaning it excludes items\n    // like annotations\n    & * {\n        height: auto;\n        width: auto;\n    }\n\n    strong {\n        font-weight: bold;\n    }\n\n    // Some normalized styles for specific elements we use in tota11y\n    pre, code {\n        background-color: @lighterGray;\n        border: none;\n        border-radius: 0;\n        color: inherit;\n        font-family: monospace;\n        font-size: inherit;\n        line-height: inherit;\n    }\n\n    pre {\n        padding: 5px 10px;\n        margin: 0 0 10px;\n        overflow-x: scroll;\n    }\n\n    code {\n        border-radius: 2px;\n        display: inline;\n        padding: 1px;\n    }\n\n    i,\n    em {\n        font-style: italic;\n    }\n\n    p {\n        margin: 0 0 10px;\n    }\n\n    a, a:hover, a:focus {\n        background-color: inherit;\n        color: inherit;\n        text-decoration: none;\n    }\n}\n","@import \"variables.less\";\n@import \"base.less\";\n\n@togglePadding: 7px;\n@toggleCollapsedWidth: 35px;\n@toggleHeight: 25px;\n\n.tota11y-toolbar {\n    .tota11y-dark-color-scheme;\n    .position(fixed, auto, auto, 0, @viewportEdgePadding);\n\n    border-top-left-radius: @borderRadius;\n    border-top-right-radius: @borderRadius;\n    overflow: hidden;\n    z-index: @z-index--UI;\n\n    &-toggle {\n        background-color: @darkGray;\n        display: block;\n        padding: @togglePadding;\n        width: 100%;\n    }\n\n    &-logo {\n        height: @toggleHeight;\n        margin: 0 auto;\n        text-align: center;\n        width: @toggleCollapsedWidth;\n\n        & svg {\n            height: @toggleHeight;\n        }\n    }\n\n    &-body {\n        display: none;\n    }\n    &.tota11y-expanded &-body {\n        display: block;\n    }\n}\n\n.tota11y-sr-only {\n    border: 0;\n    clip: rect(0,0,0,0);\n    height: 1px;\n    margin: -1px;\n    overflow: hidden;\n    padding: 0;\n    position: absolute;\n    width: 1px;\n}\n\n.tota11y-sidebar {\n    position: static;\n\n    .tota11y-plugin, .tota11y-setting {\n        &-description {\n            width: auto;\n        }\n\n        &-indicator {\n            margin: 0 10px;\n        }\n\n        &-switch {\n            padding: 9px 9px 9px 0;\n        }\n    }\n\n    .tota11y-help {\n        position: absolute;\n        right: 10px;\n        top: 5px;\n    }\n\n    .tota11y-info {\n        &-title:hover {\n            cursor: default;\n        }\n    }\n}\n\n.tota11y-sidebar.tota11y-toolbar {\n    border-top-left-radius: 0;\n    border-top-right-radius: 0;\n}\n\n.tota11y-disabled-toolbar {\n    pointer-events: none;\n    opacity: 0.5;\n}\n\n.tota11y.tota11y-info.tota11y-sidebar:nth-child(2n+1) {\n    background-color: @mutedGreen;\n}\n"],"sourceRoot":""}]);
+// Exports
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
-/***/ "./node_modules/css-loader/index.js!./node_modules/postcss-loader/src/index.js?!./node_modules/less-loader/dist/cjs.js!./plugins/headings/style.less":
-/*!*************************************************************************************************************************************************!*\
-  !*** ./node_modules/css-loader!./node_modules/postcss-loader/src??postcss!./node_modules/less-loader/dist/cjs.js!./plugins/headings/style.less ***!
-  \*************************************************************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")();
-exports.push([module.i, ".tota11y-dark-color-scheme {\n  background-color: #333 !important;\n  color: #f2f2f2 !important;\n}\n.tota11y-no-select {\n  -webkit-user-select: none !important;\n          user-select: none !important;\n}\n.tota11y-heading-outline {\n  color: #333 !important;\n}\n.tota11y-heading-outline-entry {\n  margin-bottom: 8px !important;\n}\n.tota11y-heading-outline-entry.heading-level-1 {\n  margin-left: 0 !important;\n}\n.tota11y-heading-outline-entry.heading-level-2 {\n  margin-left: 20px !important;\n}\n.tota11y-heading-outline-entry.heading-level-3 {\n  margin-left: 40px !important;\n}\n.tota11y-heading-outline-entry.heading-level-4 {\n  margin-left: 60px !important;\n}\n.tota11y-heading-outline-entry.heading-level-5 {\n  margin-left: 80px !important;\n}\n.tota11y-heading-outline-entry.heading-level-6 {\n  margin-left: 100px !important;\n}\n.tota11y-heading-outline-entry.heading-level-higher {\n  margin-left: 100px !important;\n}\n.tota11y-heading-outline-level {\n  position: relative !important;\n  top: -2px !important;\n  right: auto !important;\n  bottom: auto !important;\n  left: auto !important;\n  margin-right: 5px !important;\n  padding: 2px 3px !important;\n  pointer-events: none !important;\n}\n", ""]);
+/***/ },
 
-/***/ }),
+/***/ "./node_modules/css-loader/dist/cjs.js!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[2].use[2]!./node_modules/less-loader/dist/cjs.js!./plugins/a11y-name/style.less"
+/*!*****************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[2].use[2]!./node_modules/less-loader/dist/cjs.js!./plugins/a11y-name/style.less ***!
+  \*****************************************************************************************************************************************************************************************/
+(module, __webpack_exports__, __webpack_require__) {
 
-/***/ "./node_modules/css-loader/index.js!./node_modules/postcss-loader/src/index.js?!./node_modules/less-loader/dist/cjs.js!./plugins/shared/annotate/style.less":
-/*!********************************************************************************************************************************************************!*\
-  !*** ./node_modules/css-loader!./node_modules/postcss-loader/src??postcss!./node_modules/less-loader/dist/cjs.js!./plugins/shared/annotate/style.less ***!
-  \********************************************************************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/sourceMaps.js */ "./node_modules/css-loader/dist/runtime/sourceMaps.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__);
+// Imports
 
-exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")();
-exports.push([module.i, ".tota11y-dark-color-scheme {\n  background-color: #333 !important;\n  color: #f2f2f2 !important;\n}\n.tota11y-no-select {\n  -webkit-user-select: none !important;\n          user-select: none !important;\n}\n.tota11y-label {\n  background-color: #ffe800 !important;\n  border: 1px solid rgba(0, 0, 0, 0.1) !important;\n  cursor: default !important;\n  padding: 3px !important;\n  position: absolute !important;\n  z-index: 9997 !important;\n}\n.tota11y-label-error {\n  background-color: #ffaeae !important;\n}\n.tota11y-label-error-icon {\n  display: block !important;\n  float: left !important;\n  margin-right: 3px !important;\n  width: 12px !important;\n}\n.tota11y-label-success {\n  background-color: #b9eda9 !important;\n}\n.tota11y-label-warning {\n  background-color: #ffe800 !important;\n}\n.tota11y-label,\n.tota11y-label-text,\n.tota11y-label-detail,\n.tota11y-label-link,\n.tota11y-label-help {\n  color: #333 !important;\n  font-size: 12px !important;\n}\n.tota11y-label-text {\n  float: left !important;\n}\n.tota11y-label-detail {\n  clear: both !important;\n  display: none !important;\n  max-width: 300px !important;\n}\n.tota11y-label:hover .tota11y-label-detail {\n  display: block !important;\n}\n.tota11y-label-help {\n  float: left !important;\n  margin-left: 5px !important;\n}\n.tota11y-label-link:hover,\n.tota11y-label-link:focus {\n  opacity: 0.6 !important;\n  text-decoration: underline !important;\n}\n.tota11y-highlight {\n  background-color: rgba(120, 130, 200, 0.4) !important;\n  pointer-events: none !important;\n  position: absolute !important;\n  z-index: 9999 !important;\n}\n", ""]);
 
-/***/ }),
+var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, ``, "",{"version":3,"sources":[],"names":[],"mappings":"","sourceRoot":""}]);
+// Exports
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
-/***/ "./node_modules/css-loader/index.js!./node_modules/postcss-loader/src/index.js?!./node_modules/less-loader/dist/cjs.js!./plugins/shared/info-panel/style.less":
-/*!**********************************************************************************************************************************************************!*\
-  !*** ./node_modules/css-loader!./node_modules/postcss-loader/src??postcss!./node_modules/less-loader/dist/cjs.js!./plugins/shared/info-panel/style.less ***!
-  \**********************************************************************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")();
-exports.push([module.i, ".tota11y-dark-color-scheme {\n  background-color: #333 !important;\n  color: #f2f2f2 !important;\n}\n.tota11y-no-select {\n  -webkit-user-select: none !important;\n          user-select: none !important;\n}\n.tota11y-info {\n  background-color: #333 !important;\n  color: #f2f2f2 !important;\n  -webkit-user-select: none !important;\n          user-select: none !important;\n  border-radius: 5px !important;\n  position: fixed !important;\n  z-index: 9998 !important;\n  /*\n     * Avoid scrollbars on code snippets that are expandable as clicking\n     * scrollbars is difficult if the entire block is click to expand/collapse\n     */\n}\n.tota11y-info-controls {\n  float: right !important;\n}\n.tota11y-info-annotation-toggle {\n  float: left !important;\n  margin-right: 10px !important;\n}\n.tota11y-info-hidden {\n  display: none !important;\n}\n.tota11y-info-dismiss-trigger {\n  font-size: 25px !important;\n  line-height: 25px !important;\n  position: relative !important;\n  top: -2px !important;\n}\n.tota11y-info-title,\n.tota11y-info-body {\n  padding: 10px 10px 0 !important;\n}\n.tota11y-info-title:hover {\n  cursor: move !important;\n}\n.tota11y-info-tabs {\n  display: flex !important;\n  margin: 0 !important;\n  padding: 0 0 10px !important;\n}\n.tota11y-info-tab {\n  height: 30px !important;\n  list-style: none !important;\n  position: relative !important;\n  text-align: center !important;\n  width: 100% !important;\n  flex-grow: 1 !important;\n}\n.tota11y-info-tab-anchor {\n  position: absolute !important;\n  top: 0 !important;\n  right: 0 !important;\n  bottom: 0 !important;\n  left: 0 !important;\n  text-align: center !important;\n}\n.tota11y-info-tab-anchor-text {\n  line-height: 30px !important;\n}\n.tota11y-info-tab:hover {\n  background-color: #555 !important;\n}\n.tota11y-info-tab.active,\n.tota11y-info-tab.active:hover {\n  background-color: #f2f2f2 !important;\n}\n.tota11y-info-tab.active .tota11y-info-tab-anchor-text {\n  color: #333 !important;\n}\n.tota11y-info-sections {\n  position: relative !important;\n  height: 270px !important;\n  width: 400px !important;\n}\n.tota11y-info-section {\n  position: absolute !important;\n  top: 0 !important;\n  right: 0 !important;\n  bottom: 0 !important;\n  left: 0 !important;\n  background-color: #f2f2f2 !important;\n  display: none !important;\n  overflow-y: scroll !important;\n  padding: 10px !important;\n}\n.tota11y-info-section,\n.tota11y-info-section * {\n  color: #333 !important;\n}\n.tota11y-info-section.active {\n  display: block !important;\n}\n.tota11y-info-errors {\n  margin: 0 !important;\n  padding: 0 !important;\n}\n.tota11y-info-error {\n  list-style: none !important;\n  margin-bottom: 10px !important;\n}\n.tota11y-info-error-trigger {\n  display: block !important;\n}\n.tota11y-info-error-trigger.trigger-highlight {\n  background-color: rgba(120, 130, 200, 0.4) !important;\n}\n.tota11y-info-error-chevron {\n  display: inline-block !important;\n  font-size: 20px !important;\n  height: 14px !important;\n  line-height: 14px !important;\n  margin-right: 3px !important;\n  transform: rotateZ(90deg) !important;\n  transform-origin: 3px 8px !important;\n  transition: transform ease-in-out 50ms !important;\n}\n.tota11y-info-error-trigger.tota11y-collapsed .tota11y-info-error-chevron {\n  transform: rotateZ(0deg) !important;\n}\n.tota11y-info-error-title {\n  font-weight: bold !important;\n}\n.tota11y-info-error-scroll {\n  float: right !important;\n  margin-top: 3px !important;\n  padding-left: 5px !important;\n}\n.tota11y-info-error-scroll-glyph {\n  border-color: #333 !important;\n}\n.tota11y-info-error-scroll:hover .tota11y-info-error-scroll-glyph {\n  border-color: #999 !important;\n}\n.tota11y-info-error-scroll-lens {\n  border: 1px solid !important;\n  border-radius: 50% !important;\n  height: 8px !important;\n  width: 8px !important;\n}\n.tota11y-info-error-scroll-handle {\n  border-left: 1px solid !important;\n  height: 7px !important;\n  transform: translateX(-2px) translateY(-2px) rotate(45deg) !important;\n  width: 1px !important;\n}\n.tota11y-info-error-description {\n  font-size: 13px !important;\n  padding: 10px 0 0 !important;\n  -webkit-user-select: text !important;\n          user-select: text !important;\n}\n.tota11y-info-error-description-code-container {\n  margin-top: 10px !important;\n}\n.tota11y-info-error-description-code-container code {\n  display: block !important;\n  margin-top: 10px !important;\n  padding: 5px 10px !important;\n  word-wrap: break-word !important;\n}\n.tota11y-info-error-description.tota11y-collapsed {\n  display: none !important;\n}\n.tota11y-info-error-count {\n  background-color: red !important;\n  border-radius: 20px !important;\n  color: white !important;\n  display: inline !important;\n  margin-left: 5px !important;\n  padding: 1px 8px !important;\n}\n.tota11y-info .tota11y-info-about-title {\n  padding-bottom: 10px !important;\n  display: block !important;\n}\n.tota11y-info .tota11y-info-about-title-link {\n  text-decoration: underline !important;\n  font-weight: bold !important;\n}\n.tota11y-info .tota11y-info-resources {\n  font-weight: bold !important;\n}\n.tota11y-info .tota11y-info-resources li {\n  margin-left: 10px !important;\n}\n.tota11y-info a.tota11y-info-link {\n  text-decoration: underline !important;\n}\n.tota11y-info blockquote {\n  font-size: 11px !important;\n}\n.tota11y-info blockquote cite {\n  float: right !important;\n  margin: 11px 0 !important;\n  font-style: italic !important;\n}\n.tota11y-info blockquote:before {\n  content: open-quote !important;\n  font-size: 44px !important;\n  vertical-align: -20px !important;\n  line-height: 1px !important;\n}\n.tota11y-info blockquote:after {\n  content: close-quote !important;\n  font-size: 44px !important;\n  vertical-align: -10px !important;\n  line-height: 1px !important;\n  margin-left: calc(100% - 15px) !important;\n}\n.tota11y-info .tota11y-click-to-expand .tota11y-expandable {\n  max-height: 26px !important;\n  cursor: pointer !important;\n  overflow: hidden !important;\n  white-space: nowrap !important;\n  max-width: 100% !important;\n  text-overflow: ellipsis !important;\n}\n.tota11y-info .tota11y-click-to-expand .tota11y-expandable p {\n  overflow: hidden !important;\n  text-overflow: ellipsis !important;\n}\n.tota11y-info .tota11y-click-to-expand.tota11y-expanded .tota11y-expandable {\n  max-height: none !important;\n  overflow: auto !important;\n  white-space: normal !important;\n  text-overflow: clip !important;\n}\n.tota11y-info .tota11y-click-to-expand.tota11y-expanded .tota11y-expandable p {\n  overflow: auto !important;\n  text-overflow: clip !important;\n}\n.tota11y-info .tota11y-expandable code {\n  white-space: pre-wrap !important;\n}\n.tota11y-sidebar {\n  position: static !important;\n}\n.tota11y-sidebar .tota11y-info-sections {\n  width: auto !important;\n  height: auto !important;\n}\n.tota11y-sidebar .tota11y-info-section {\n  position: static !important;\n  overflow-y: auto !important;\n}\n.tota11y-sidebar .tota11y-info-body {\n  padding: 10px 0px 0 !important;\n}\n.tota11y-sidebar .tota11y-info-title {\n  padding: 10px 10px 0 !important;\n}\n.tota11y-sidebar .tota11y-info-error-inspect-element {\n  border: 3px solid #ddd !important;\n  border-radius: 5px !important;\n  display: block !important;\n  margin-top: 10px !important;\n  padding: 3px 10px !important;\n  font-weight: bold !important;\n  background-color: #f2f2f2 !important;\n  cursor: pointer !important;\n}\n.tota11y-sidebar .tota11y-info-error-inspect-element:disabled {\n  cursor: auto !important;\n  background-color: #ddd !important;\n  border-color: #999 !important;\n}\n", ""]);
+/***/ },
 
-/***/ }),
+/***/ "./node_modules/css-loader/dist/cjs.js!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[2].use[2]!./node_modules/less-loader/dist/cjs.js!./plugins/a11y-text-wand/style.less"
+/*!**********************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[2].use[2]!./node_modules/less-loader/dist/cjs.js!./plugins/a11y-text-wand/style.less ***!
+  \**********************************************************************************************************************************************************************************************/
+(module, __webpack_exports__, __webpack_require__) {
 
-/***/ "./node_modules/css-loader/index.js!./node_modules/postcss-loader/src/index.js?!./node_modules/less-loader/dist/cjs.js!./plugins/style.less":
-/*!****************************************************************************************************************************************!*\
-  !*** ./node_modules/css-loader!./node_modules/postcss-loader/src??postcss!./node_modules/less-loader/dist/cjs.js!./plugins/style.less ***!
-  \****************************************************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/sourceMaps.js */ "./node_modules/css-loader/dist/runtime/sourceMaps.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__);
+// Imports
 
-exports = module.exports = __webpack_require__(/*! ../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")();
-exports.push([module.i, ".tota11y-dark-color-scheme {\n  background-color: #333 !important;\n  color: #f2f2f2 !important;\n}\n.tota11y-no-select {\n  -webkit-user-select: none !important;\n          user-select: none !important;\n}\n.tota11y-plugin,\n.tota11y-setting {\n  -webkit-user-select: none !important;\n          user-select: none !important;\n  border-bottom: 1px solid #555 !important;\n  list-style: none !important;\n}\n.tota11y-plugin-switch,\n.tota11y-setting-switch {\n  align-items: center !important;\n  cursor: pointer !important;\n  display: flex !important;\n  padding: 12px 12px 12px 0 !important;\n  margin: 0 !important;\n}\n.tota11y-plugin-indicator,\n.tota11y-setting-indicator {\n  margin: 0 15px !important;\n}\n.tota11y-plugin-indicator,\n.tota11y-setting-indicator {\n  border-radius: 16px !important;\n  border: 1px solid #999 !important;\n  color: transparent !important;\n  font-size: 13px !important;\n  height: 16px !important;\n  line-height: 16px !important;\n  padding: 0 0 0 1px !important;\n  width: 16px !important;\n  min-width: 16px !important;\n  min-height: 16px !important;\n}\n.tota11y-plugin-checkbox:focus + .tota11y-plugin-indicator,\n.tota11y-plugin-checkbox:focus + .tota11y-setting-indicator,\n.tota11y-setting-checkbox:focus + .tota11y-plugin-indicator,\n.tota11y-setting-checkbox:focus + .tota11y-setting-indicator {\n  border-color: #639b24 !important;\n  background-color: #49721a !important;\n  color: #49721a !important;\n}\n.tota11y-plugin-checkbox:checked + .tota11y-plugin-indicator,\n.tota11y-plugin-checkbox:checked + .tota11y-setting-indicator,\n.tota11y-setting-checkbox:checked + .tota11y-plugin-indicator,\n.tota11y-setting-checkbox:checked + .tota11y-setting-indicator {\n  background-color: #639b24 !important;\n  border-color: #639b24 !important;\n  color: white !important;\n}\n.tota11y-plugin-title,\n.tota11y-setting-title {\n  font-weight: bold !important;\n}\n.tota11y-plugin-description,\n.tota11y-setting-description {\n  font-size: 11px !important;\n  font-style: italic !important;\n  width: 200px !important;\n  margin-right: 3px !important;\n}\n.tota11y-plugin-info-setting,\n.tota11y-setting-info-setting {\n  font-size: 11px !important;\n}\n.tota11y-plugins-separator {\n  font-size: 12px !important;\n  margin: 7px 15px 0 !important;\n  text-transform: uppercase !important;\n}\n", ""]);
 
-/***/ }),
+var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, `.tota11y-dark-color-scheme {
+  background-color: #333 !important;
+  color: #f2f2f2 !important;
+}
+.tota11y-no-select {
+  -webkit-user-select: none !important;
+          user-select: none !important;
+}
+.tota11y-outlined {
+  outline: 2px solid #7882c8 !important;
+}
+.tota11y-nothingness {
+  color: #888 !important;
+}
+/* Only style the screen reader wand info panel section */
+.tota11y-sidebar.a11y-text-wand .tota11y-info-section.active {
+  height: 500px !important;
+  max-height: 50vh !important;
+}
+/*# sourceMappingURL=style.css.map */`, "",{"version":3,"sources":["webpack://./less/variables.less","webpack://./plugins/a11y-text-wand/style.less","webpack://./style.less"],"names":[],"mappings":"AA8BA;EACI,iCAAA;EACA,yBAAA;AC7BJ;ADgCA;EACI,oCAAA;UAAA,4BAAA;AC9BJ;ACJA;EACC,qCAAA;ADMD;ACHA;EACC,sBAAA;ADKD;AACA,yDAAyD;ACCzD;EAEQ,wBAAA;EACA,2BAAA;ADAR;AACA,oCAAoC","sourcesContent":["@fontSize: 14px;\n@fontSizeSmall: 11px;\n@borderRadius: 5px;\n\n@darkGray: #333;\n@gray: #555;\n@lightGray: #999;\n@lighterGray: #ddd;\n@white: #f2f2f2;\n\n@kaGreen: #639b24;\n@mutedGreen: #4A5837;\n\n@highlightColor: rgba(120, 130, 200, 0.4);\n\n@darkBorderColor: @gray;\n@lightBorderColor: @lightGray;\n\n@viewportEdgePadding: 10px;\n\n// z-index variables\n@z-index--highlights: 9999;\n@z-index--UI: 9998;\n@z-index--labels: 9997;\n\n@descriptionWidth: 200px;\n@controlMargin: 15px;\n@indicatorSize: 16px;\n@indicatorFontSize: 13px;\n\n.tota11y-dark-color-scheme {\n    background-color: @darkGray;\n    color: @white;\n}\n\n.tota11y-no-select {\n    user-select: none;\n}\n\n// Position mixin\n.position(@position: static, @top: auto, @right: auto, @bottom: auto, @left: auto) {\n    position: @position;\n    top: @top;\n    right: @right;\n    bottom: @bottom;\n    left: @left;\n}\n",".tota11y-dark-color-scheme {\n  background-color: #333;\n  color: #f2f2f2;\n}\n.tota11y-no-select {\n  user-select: none;\n}\n.tota11y-outlined {\n  outline: 2px solid #7882c8;\n}\n.tota11y-nothingness {\n  color: #888;\n}\n/* Only style the screen reader wand info panel section */\n.tota11y-sidebar.a11y-text-wand .tota11y-info-section.active {\n  height: 500px;\n  max-height: 50vh;\n}\n/*# sourceMappingURL=style.css.map */","@import \"../../less/variables.less\";\n\n.tota11y-outlined {\n\toutline: 2px solid fadein(@highlightColor, 100%);\n}\n\n.tota11y-nothingness {\n\tcolor: #888;\n}\n\n/* Only style the screen reader wand info panel section */\n// HACK this style is specific to the text wand because its\n// #getName() method returns 'a11y-text-wand' and the InfoPanel\n// adds this to the element's classes\n.tota11y-sidebar.a11y-text-wand {\n    .tota11y-info-section.active {\n        height: 500px;\n        max-height: 50vh;\n    }\n}\n"],"sourceRoot":""}]);
+// Exports
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
-/***/ "./node_modules/css-loader/lib/css-base.js":
-/*!*************************************************!*\
-  !*** ./node_modules/css-loader/lib/css-base.js ***!
-  \*************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+
+/***/ },
+
+/***/ "./node_modules/css-loader/dist/cjs.js!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[2].use[2]!./node_modules/less-loader/dist/cjs.js!./plugins/contrast/style.less"
+/*!****************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[2].use[2]!./node_modules/less-loader/dist/cjs.js!./plugins/contrast/style.less ***!
+  \****************************************************************************************************************************************************************************************/
+(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/sourceMaps.js */ "./node_modules/css-loader/dist/runtime/sourceMaps.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__);
+// Imports
+
+
+var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, `.tota11y-swatches {
+  margin-left: 5px !important;
+  margin-right: 5px !important;
+  position: relative !important;
+  top: 1px !important;
+}
+.tota11y-swatch {
+  border: 1px solid #000 !important;
+  display: inline-block !important;
+  height: 12px !important;
+  width: 12px !important;
+}
+.tota11y-contrast-suggestion {
+  margin: 0 0 15px 15px !important;
+}
+.tota11y-color-hexes {
+  font-family: monospace !important;
+}
+/*# sourceMappingURL=style.css.map */`, "",{"version":3,"sources":["webpack://./style.less","webpack://./plugins/contrast/style.less"],"names":[],"mappings":"AAAA;EACI,2BAAA;EACA,4BAAA;EACA,6BAAA;EACA,mBAAA;ACCJ;ADEA;EAEI,iCAAA;EACA,gCAAA;EACA,uBAAA;EACA,sBAAA;ACDJ;ADIA;EACI,gCAAA;ACFJ;ADKA;EACI,iCAAA;ACHJ;AACA,oCAAoC","sourcesContent":[".tota11y-swatches {\n    margin-left: 5px;\n    margin-right: 5px;\n    position: relative;\n    top: 1px;\n}\n\n.tota11y-swatch {\n    @size: 12px;\n    border: 1px solid #000;\n    display: inline-block;\n    height: @size;\n    width: @size;\n}\n\n.tota11y-contrast-suggestion {\n    margin: 0 0 15px 15px;\n}\n\n.tota11y-color-hexes {\n    font-family: monospace;\n}\n",".tota11y-swatches {\n  margin-left: 5px;\n  margin-right: 5px;\n  position: relative;\n  top: 1px;\n}\n.tota11y-swatch {\n  border: 1px solid #000;\n  display: inline-block;\n  height: 12px;\n  width: 12px;\n}\n.tota11y-contrast-suggestion {\n  margin: 0 0 15px 15px;\n}\n.tota11y-color-hexes {\n  font-family: monospace;\n}\n/*# sourceMappingURL=style.css.map */"],"sourceRoot":""}]);
+// Exports
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
+
+
+/***/ },
+
+/***/ "./node_modules/css-loader/dist/cjs.js!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[2].use[2]!./node_modules/less-loader/dist/cjs.js!./plugins/headings/style.less"
+/*!****************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[2].use[2]!./node_modules/less-loader/dist/cjs.js!./plugins/headings/style.less ***!
+  \****************************************************************************************************************************************************************************************/
+(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/sourceMaps.js */ "./node_modules/css-loader/dist/runtime/sourceMaps.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__);
+// Imports
+
+
+var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, `.tota11y-dark-color-scheme {
+  background-color: #333 !important;
+  color: #f2f2f2 !important;
+}
+.tota11y-no-select {
+  -webkit-user-select: none !important;
+          user-select: none !important;
+}
+.tota11y-heading-outline {
+  color: #333 !important;
+}
+.tota11y-heading-outline-entry {
+  margin-bottom: 8px !important;
+}
+.tota11y-heading-outline-entry.heading-level-1 {
+  margin-left: 0 !important;
+}
+.tota11y-heading-outline-entry.heading-level-2 {
+  margin-left: 20px !important;
+}
+.tota11y-heading-outline-entry.heading-level-3 {
+  margin-left: 40px !important;
+}
+.tota11y-heading-outline-entry.heading-level-4 {
+  margin-left: 60px !important;
+}
+.tota11y-heading-outline-entry.heading-level-5 {
+  margin-left: 80px !important;
+}
+.tota11y-heading-outline-entry.heading-level-6 {
+  margin-left: 100px !important;
+}
+.tota11y-heading-outline-entry.heading-level-higher {
+  margin-left: 100px !important;
+}
+.tota11y-heading-outline-level {
+  position: relative !important;
+  top: -2px !important;
+  right: auto !important;
+  bottom: auto !important;
+  left: auto !important;
+  margin-right: 5px !important;
+  padding: 2px 3px !important;
+  pointer-events: none !important;
+}
+/*# sourceMappingURL=style.css.map */`, "",{"version":3,"sources":["webpack://./less/variables.less","webpack://./plugins/headings/style.less","webpack://./style.less"],"names":[],"mappings":"AA8BA;EACI,iCAAA;EACA,yBAAA;AC7BJ;ADgCA;EACI,oCAAA;UAAA,4BAAA;AC9BJ;ACHI;EACI,sBAAA;ADKR;ACFI;EACI,6BAAA;ADIR;ACFQ;EACI,yBAAA;ADIZ;ACFQ;EACI,4BAAA;ADIZ;ACFQ;EACI,4BAAA;ADIZ;ACFQ;EACI,4BAAA;ADIZ;ACFQ;EACI,4BAAA;ADIZ;ACFQ;EACI,6BAAA;ADIZ;ACFQ;EACI,6BAAA;ADIZ;ACAI;EFQA,6BAAA;EACA,oBAAA;EACA,sBAAA;EACA,uBAAA;EACA,qBAAA;EEVI,4BAAA;EACA,2BAAA;EACA,+BAAA;ADMR;AACA,oCAAoC","sourcesContent":["@fontSize: 14px;\n@fontSizeSmall: 11px;\n@borderRadius: 5px;\n\n@darkGray: #333;\n@gray: #555;\n@lightGray: #999;\n@lighterGray: #ddd;\n@white: #f2f2f2;\n\n@kaGreen: #639b24;\n@mutedGreen: #4A5837;\n\n@highlightColor: rgba(120, 130, 200, 0.4);\n\n@darkBorderColor: @gray;\n@lightBorderColor: @lightGray;\n\n@viewportEdgePadding: 10px;\n\n// z-index variables\n@z-index--highlights: 9999;\n@z-index--UI: 9998;\n@z-index--labels: 9997;\n\n@descriptionWidth: 200px;\n@controlMargin: 15px;\n@indicatorSize: 16px;\n@indicatorFontSize: 13px;\n\n.tota11y-dark-color-scheme {\n    background-color: @darkGray;\n    color: @white;\n}\n\n.tota11y-no-select {\n    user-select: none;\n}\n\n// Position mixin\n.position(@position: static, @top: auto, @right: auto, @bottom: auto, @left: auto) {\n    position: @position;\n    top: @top;\n    right: @right;\n    bottom: @bottom;\n    left: @left;\n}\n",".tota11y-dark-color-scheme {\n  background-color: #333;\n  color: #f2f2f2;\n}\n.tota11y-no-select {\n  user-select: none;\n}\n.tota11y-heading-outline {\n  color: #333;\n}\n.tota11y-heading-outline-entry {\n  margin-bottom: 8px;\n}\n.tota11y-heading-outline-entry.heading-level-1 {\n  margin-left: 0;\n}\n.tota11y-heading-outline-entry.heading-level-2 {\n  margin-left: 20px;\n}\n.tota11y-heading-outline-entry.heading-level-3 {\n  margin-left: 40px;\n}\n.tota11y-heading-outline-entry.heading-level-4 {\n  margin-left: 60px;\n}\n.tota11y-heading-outline-entry.heading-level-5 {\n  margin-left: 80px;\n}\n.tota11y-heading-outline-entry.heading-level-6 {\n  margin-left: 100px;\n}\n.tota11y-heading-outline-entry.heading-level-higher {\n  margin-left: 100px;\n}\n.tota11y-heading-outline-level {\n  position: relative;\n  top: -2px;\n  right: auto;\n  bottom: auto;\n  left: auto;\n  margin-right: 5px;\n  padding: 2px 3px;\n  pointer-events: none;\n}\n/*# sourceMappingURL=style.css.map */","@import \"../../less/variables.less\";\n\n.tota11y-heading {\n    &-outline {\n        color: @darkGray;\n    }\n\n    &-outline-entry {\n        margin-bottom: 8px;\n\n        &.heading-level-1 {\n            margin-left: 0;\n        }\n        &.heading-level-2 {\n            margin-left: 20px;\n        }\n        &.heading-level-3 {\n            margin-left: 40px;\n        }\n        &.heading-level-4 {\n            margin-left: 60px;\n        }\n        &.heading-level-5 {\n            margin-left: 80px;\n        }\n        &.heading-level-6 {\n            margin-left: 100px;\n        }\n        &.heading-level-higher {\n            margin-left: 100px;\n        }\n    }\n\n    &-outline-level {\n        .position(relative, -2px, auto, auto, auto);\n        margin-right: 5px;\n        padding: 2px 3px;\n        pointer-events: none;\n    }\n}\n"],"sourceRoot":""}]);
+// Exports
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
+
+
+/***/ },
+
+/***/ "./node_modules/css-loader/dist/cjs.js!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[2].use[2]!./node_modules/less-loader/dist/cjs.js!./plugins/shared/annotate/style.less"
+/*!***********************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[2].use[2]!./node_modules/less-loader/dist/cjs.js!./plugins/shared/annotate/style.less ***!
+  \***********************************************************************************************************************************************************************************************/
+(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/sourceMaps.js */ "./node_modules/css-loader/dist/runtime/sourceMaps.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__);
+// Imports
+
+
+var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, `.tota11y-dark-color-scheme {
+  background-color: #333 !important;
+  color: #f2f2f2 !important;
+}
+.tota11y-no-select {
+  -webkit-user-select: none !important;
+          user-select: none !important;
+}
+.tota11y-label {
+  background-color: #ffe800 !important;
+  border: 1px solid rgba(0, 0, 0, 0.1) !important;
+  cursor: default !important;
+  padding: 3px !important;
+  position: absolute !important;
+  z-index: 9997 !important;
+}
+.tota11y-label-error {
+  background-color: #ffaeae !important;
+}
+.tota11y-label-error-icon {
+  display: block !important;
+  float: left !important;
+  margin-right: 3px !important;
+  width: 12px !important;
+}
+.tota11y-label-success {
+  background-color: #b9eda9 !important;
+}
+.tota11y-label-warning {
+  background-color: #ffe800 !important;
+}
+.tota11y-label,
+.tota11y-label-text,
+.tota11y-label-detail,
+.tota11y-label-link,
+.tota11y-label-help {
+  color: #333 !important;
+  font-size: 12px !important;
+}
+.tota11y-label-text {
+  float: left !important;
+}
+.tota11y-label-detail {
+  clear: both !important;
+  display: none !important;
+  max-width: 300px !important;
+}
+.tota11y-label:hover .tota11y-label-detail {
+  display: block !important;
+}
+.tota11y-label-help {
+  float: left !important;
+  margin-left: 5px !important;
+}
+.tota11y-label-link:hover,
+.tota11y-label-link:focus {
+  opacity: 0.6 !important;
+  text-decoration: underline !important;
+}
+.tota11y-highlight {
+  background-color: rgba(120, 130, 200, 0.4) !important;
+  pointer-events: none !important;
+  position: absolute !important;
+  z-index: 9999 !important;
+}
+/*# sourceMappingURL=style.css.map */`, "",{"version":3,"sources":["webpack://./less/variables.less","webpack://./plugins/shared/annotate/style.less","webpack://./style.less"],"names":[],"mappings":"AA8BA;EACI,iCAAA;EACA,yBAAA;AC7BJ;ADgCA;EACI,oCAAA;UAAA,4BAAA;AC9BJ;ACCA;EACI,oCAAA;EACA,+CAAA;EACA,0BAAA;EACA,uBAAA;EACA,6BAAA;EACA,wBAAA;ADCJ;ACCI;EACI,oCAAA;ADCR;ACCQ;EACI,yBAAA;EACA,sBAAA;EACA,4BAAA;EACA,sBAAA;ADCZ;ACGI;EACI,oCAAA;ADDR;ACII;EACI,oCAAA;ADFR;ACMI;;;;;EACI,sBAAA;EACA,0BAAA;ADAR;ACGI;EACI,sBAAA;ADDR;ACII;EACI,sBAAA;EACA,wBAAA;EACA,2BAAA;ADFR;ACII;EACI,yBAAA;ADFR;ACKI;EACI,sBAAA;EACA,2BAAA;ADHR;ACOQ;;EACI,uBAAA;EACA,qCAAA;ADJZ;ACSA;EACI,qDAAA;EACA,+BAAA;EACA,6BAAA;EACA,wBAAA;ADPJ;AACA,oCAAoC","sourcesContent":["@fontSize: 14px;\n@fontSizeSmall: 11px;\n@borderRadius: 5px;\n\n@darkGray: #333;\n@gray: #555;\n@lightGray: #999;\n@lighterGray: #ddd;\n@white: #f2f2f2;\n\n@kaGreen: #639b24;\n@mutedGreen: #4A5837;\n\n@highlightColor: rgba(120, 130, 200, 0.4);\n\n@darkBorderColor: @gray;\n@lightBorderColor: @lightGray;\n\n@viewportEdgePadding: 10px;\n\n// z-index variables\n@z-index--highlights: 9999;\n@z-index--UI: 9998;\n@z-index--labels: 9997;\n\n@descriptionWidth: 200px;\n@controlMargin: 15px;\n@indicatorSize: 16px;\n@indicatorFontSize: 13px;\n\n.tota11y-dark-color-scheme {\n    background-color: @darkGray;\n    color: @white;\n}\n\n.tota11y-no-select {\n    user-select: none;\n}\n\n// Position mixin\n.position(@position: static, @top: auto, @right: auto, @bottom: auto, @left: auto) {\n    position: @position;\n    top: @top;\n    right: @right;\n    bottom: @bottom;\n    left: @left;\n}\n",".tota11y-dark-color-scheme {\n  background-color: #333;\n  color: #f2f2f2;\n}\n.tota11y-no-select {\n  user-select: none;\n}\n.tota11y-label {\n  background-color: #ffe800;\n  border: 1px solid rgba(0, 0, 0, 0.1);\n  cursor: default;\n  padding: 3px;\n  position: absolute;\n  z-index: 9997;\n}\n.tota11y-label-error {\n  background-color: #ffaeae;\n}\n.tota11y-label-error-icon {\n  display: block;\n  float: left;\n  margin-right: 3px;\n  width: 12px;\n}\n.tota11y-label-success {\n  background-color: #b9eda9;\n}\n.tota11y-label-warning {\n  background-color: #ffe800;\n}\n.tota11y-label,\n.tota11y-label-text,\n.tota11y-label-detail,\n.tota11y-label-link,\n.tota11y-label-help {\n  color: #333;\n  font-size: 12px;\n}\n.tota11y-label-text {\n  float: left;\n}\n.tota11y-label-detail {\n  clear: both;\n  display: none;\n  max-width: 300px;\n}\n.tota11y-label:hover .tota11y-label-detail {\n  display: block;\n}\n.tota11y-label-help {\n  float: left;\n  margin-left: 5px;\n}\n.tota11y-label-link:hover,\n.tota11y-label-link:focus {\n  opacity: 0.6;\n  text-decoration: underline;\n}\n.tota11y-highlight {\n  background-color: rgba(120, 130, 200, 0.4);\n  pointer-events: none;\n  position: absolute;\n  z-index: 9999;\n}\n/*# sourceMappingURL=style.css.map */","@import \"../../../less/variables.less\";\n\n@tagPadding: 3px;\n@tooltipPadding: 10px;\n@fontSize: 12px;\n@expandedDescriptionWidth: 300px;\n\n.tota11y-label {\n    background-color: rgb(255, 232, 0);\n    border: 1px solid rgba(0, 0, 0, 0.1);\n    cursor: default;\n    padding: @tagPadding;\n    position: absolute;\n    z-index: @z-index--labels;\n\n    &-error {\n        background-color: rgb(255, 174, 174);\n\n        &-icon {\n            display: block;\n            float: left;\n            margin-right: 3px;\n            width: @fontSize;\n        }\n    }\n\n    &-success {\n        background-color: #b9eda9;\n    }\n\n    &-warning {\n        background-color: rgb(255, 232, 0);\n    }\n\n    // Label font styles\n    &, &-text, &-detail, &-link, &-help {\n        color: @darkGray;\n        font-size: @fontSize;\n    }\n\n    &-text {\n        float: left;\n    }\n\n    &-detail {\n        clear: both;\n        display: none;\n        max-width: @expandedDescriptionWidth;\n    }\n    &:hover &-detail {\n        display: block;\n    }\n\n    &-help {\n        float: left;\n        margin-left: 5px;\n    }\n\n    &-link {\n        &:hover, &:focus {\n            opacity: 0.6;\n            text-decoration: underline;\n        }\n    }\n}\n\n.tota11y-highlight {\n    background-color: @highlightColor;\n    pointer-events: none;\n    position: absolute;\n    z-index: @z-index--highlights;\n}\n\n// Doesn't work well for error labels that expand when hovered\n// .tota11y-label:hover {\n//     opacity: 0.5;\n// }\n"],"sourceRoot":""}]);
+// Exports
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
+
+
+/***/ },
+
+/***/ "./node_modules/css-loader/dist/cjs.js!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[2].use[2]!./node_modules/less-loader/dist/cjs.js!./plugins/shared/info-panel/style.less"
+/*!*************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[2].use[2]!./node_modules/less-loader/dist/cjs.js!./plugins/shared/info-panel/style.less ***!
+  \*************************************************************************************************************************************************************************************************/
+(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/sourceMaps.js */ "./node_modules/css-loader/dist/runtime/sourceMaps.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__);
+// Imports
+
+
+var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, `.tota11y-dark-color-scheme {
+  background-color: #333 !important;
+  color: #f2f2f2 !important;
+}
+.tota11y-no-select {
+  -webkit-user-select: none !important;
+          user-select: none !important;
+}
+.tota11y-info {
+  background-color: #333 !important;
+  color: #f2f2f2 !important;
+  -webkit-user-select: none !important;
+          user-select: none !important;
+  border-radius: 5px !important;
+  position: fixed !important;
+  z-index: 9998 !important;
+  /*
+     * Avoid scrollbars on code snippets that are expandable as clicking
+     * scrollbars is difficult if the entire block is click to expand/collapse
+     */
+}
+.tota11y-info-controls {
+  float: right !important;
+}
+.tota11y-info-annotation-toggle {
+  float: left !important;
+  margin-right: 10px !important;
+}
+.tota11y-info-hidden {
+  display: none !important;
+}
+.tota11y-info-dismiss-trigger {
+  font-size: 25px !important;
+  line-height: 25px !important;
+  position: relative !important;
+  top: -2px !important;
+}
+.tota11y-info-title,
+.tota11y-info-body {
+  padding: 10px 10px 0 !important;
+}
+.tota11y-info-title:hover {
+  cursor: move !important;
+}
+.tota11y-info-tabs {
+  display: flex !important;
+  margin: 0 !important;
+  padding: 0 0 10px !important;
+}
+.tota11y-info-tab {
+  height: 30px !important;
+  list-style: none !important;
+  position: relative !important;
+  text-align: center !important;
+  width: 100% !important;
+  flex-grow: 1 !important;
+}
+.tota11y-info-tab-anchor {
+  position: absolute !important;
+  top: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  left: 0 !important;
+  text-align: center !important;
+}
+.tota11y-info-tab-anchor-text {
+  line-height: 30px !important;
+}
+.tota11y-info-tab:hover {
+  background-color: #555 !important;
+}
+.tota11y-info-tab.active,
+.tota11y-info-tab.active:hover {
+  background-color: #f2f2f2 !important;
+}
+.tota11y-info-tab.active .tota11y-info-tab-anchor-text {
+  color: #333 !important;
+}
+.tota11y-info-sections {
+  position: relative !important;
+  height: 270px !important;
+  width: 400px !important;
+}
+.tota11y-info-section {
+  position: absolute !important;
+  top: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  left: 0 !important;
+  background-color: #f2f2f2 !important;
+  display: none !important;
+  overflow-y: scroll !important;
+  padding: 10px !important;
+}
+.tota11y-info-section,
+.tota11y-info-section * {
+  color: #333 !important;
+}
+.tota11y-info-section.active {
+  display: block !important;
+}
+.tota11y-info-errors {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+.tota11y-info-error {
+  list-style: none !important;
+  margin-bottom: 10px !important;
+}
+.tota11y-info-error-trigger {
+  display: block !important;
+}
+.tota11y-info-error-trigger.trigger-highlight {
+  background-color: rgba(120, 130, 200, 0.4) !important;
+}
+.tota11y-info-error-chevron {
+  display: inline-block !important;
+  font-size: 20px !important;
+  height: 14px !important;
+  line-height: 14px !important;
+  margin-right: 3px !important;
+  transform: rotateZ(90deg) !important;
+  transform-origin: 3px 8px !important;
+  transition: transform ease-in-out 50ms !important;
+}
+.tota11y-info-error-trigger.tota11y-collapsed .tota11y-info-error-chevron {
+  transform: rotateZ(0deg) !important;
+}
+.tota11y-info-error-title {
+  font-weight: bold !important;
+}
+.tota11y-info-error-scroll {
+  float: right !important;
+  margin-top: 3px !important;
+  padding-left: 5px !important;
+}
+.tota11y-info-error-scroll-glyph {
+  border-color: #333 !important;
+}
+.tota11y-info-error-scroll:hover .tota11y-info-error-scroll-glyph {
+  border-color: #999 !important;
+}
+.tota11y-info-error-scroll-lens {
+  border: 1px solid !important;
+  border-radius: 50% !important;
+  height: 8px !important;
+  width: 8px !important;
+}
+.tota11y-info-error-scroll-handle {
+  border-left: 1px solid !important;
+  height: 7px !important;
+  transform: translateX(-2px) translateY(-2px) rotate(45deg) !important;
+  width: 1px !important;
+}
+.tota11y-info-error-description {
+  font-size: 13px !important;
+  padding: 10px 0 0 !important;
+  -webkit-user-select: text !important;
+          user-select: text !important;
+}
+.tota11y-info-error-description-code-container {
+  margin-top: 10px !important;
+}
+.tota11y-info-error-description-code-container code {
+  display: block !important;
+  margin-top: 10px !important;
+  padding: 5px 10px !important;
+  word-wrap: break-word !important;
+}
+.tota11y-info-error-description.tota11y-collapsed {
+  display: none !important;
+}
+.tota11y-info-error-count {
+  background-color: red !important;
+  border-radius: 20px !important;
+  color: white !important;
+  display: inline !important;
+  margin-left: 5px !important;
+  padding: 1px 8px !important;
+}
+.tota11y-info .tota11y-info-about-title {
+  padding-bottom: 10px !important;
+  display: block !important;
+}
+.tota11y-info .tota11y-info-about-title-link {
+  text-decoration: underline !important;
+  font-weight: bold !important;
+}
+.tota11y-info .tota11y-info-resources {
+  font-weight: bold !important;
+}
+.tota11y-info .tota11y-info-resources li {
+  margin-left: 10px !important;
+}
+.tota11y-info a.tota11y-info-link {
+  text-decoration: underline !important;
+}
+.tota11y-info blockquote {
+  font-size: 11px !important;
+}
+.tota11y-info blockquote cite {
+  float: right !important;
+  margin: 11px 0 !important;
+  font-style: italic !important;
+}
+.tota11y-info blockquote:before {
+  content: open-quote !important;
+  font-size: 44px !important;
+  vertical-align: -20px !important;
+  line-height: 1px !important;
+}
+.tota11y-info blockquote:after {
+  content: close-quote !important;
+  font-size: 44px !important;
+  vertical-align: -10px !important;
+  line-height: 1px !important;
+  margin-left: calc(100% - 15px) !important;
+}
+.tota11y-info .tota11y-click-to-expand .tota11y-expandable {
+  max-height: 26px !important;
+  cursor: pointer !important;
+  overflow: hidden !important;
+  white-space: nowrap !important;
+  max-width: 100% !important;
+  text-overflow: ellipsis !important;
+}
+.tota11y-info .tota11y-click-to-expand .tota11y-expandable p {
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
+.tota11y-info .tota11y-click-to-expand.tota11y-expanded .tota11y-expandable {
+  max-height: none !important;
+  overflow: auto !important;
+  white-space: normal !important;
+  text-overflow: clip !important;
+}
+.tota11y-info .tota11y-click-to-expand.tota11y-expanded .tota11y-expandable p {
+  overflow: auto !important;
+  text-overflow: clip !important;
+}
+.tota11y-info .tota11y-expandable code {
+  white-space: pre-wrap !important;
+}
+.tota11y-sidebar {
+  position: static !important;
+}
+.tota11y-sidebar .tota11y-info-sections {
+  width: auto !important;
+  height: auto !important;
+}
+.tota11y-sidebar .tota11y-info-section {
+  position: static !important;
+  overflow-y: auto !important;
+}
+.tota11y-sidebar .tota11y-info-body {
+  padding: 10px 0px 0 !important;
+}
+.tota11y-sidebar .tota11y-info-title {
+  padding: 10px 10px 0 !important;
+}
+.tota11y-sidebar .tota11y-info-error-inspect-element {
+  border: 3px solid #ddd !important;
+  border-radius: 5px !important;
+  display: block !important;
+  margin-top: 10px !important;
+  padding: 3px 10px !important;
+  font-weight: bold !important;
+  background-color: #f2f2f2 !important;
+  cursor: pointer !important;
+}
+.tota11y-sidebar .tota11y-info-error-inspect-element:disabled {
+  cursor: auto !important;
+  background-color: #ddd !important;
+  border-color: #999 !important;
+}
+/*# sourceMappingURL=style.css.map */`, "",{"version":3,"sources":["webpack://./less/variables.less","webpack://./plugins/shared/info-panel/style.less","webpack://./style.less"],"names":[],"mappings":"AA8BA;EACI,iCAAA;EACA,yBAAA;AC7BJ;ADgCA;EACI,oCAAA;UAAA,4BAAA;AC9BJ;ACUA;EFeI,iCAAA;EACA,yBAAA;EAIA,oCAAA;UAAA,4BAAA;EEhBA,6BAAA;EACA,0BAAA;EACA,wBAAA;EDRF;;;MAGI;AACN;ACMI;EACI,uBAAA;ADJR;ACOI;EACI,sBAAA;EACA,6BAAA;ADLR;ACQI;EACI,wBAAA;ADNR;ACSI;EACI,0BAAA;EACA,4BAAA;EAGA,6BAAA;EACA,oBAAA;ADTR;ACYI;;EACI,+BAAA;ADTR;ACYI;EACI,uBAAA;ADVR;ACaI;EACI,wBAAA;EACA,oBAAA;EACA,4BAAA;ADXR;ACcI;EACI,uBAAA;EACA,2BAAA;EACA,6BAAA;EACA,6BAAA;EACA,sBAAA;EACA,uBAAA;ADZR;ACcQ;EF3BJ,6BAAA;EACA,iBAAA;EACA,mBAAA;EACA,oBAAA;EACA,kBAAA;EEyBQ,6BAAA;ADRZ;ACUY;EACI,4BAAA;ADRhB;ACYQ;EACI,iCAAA;ADVZ;ACaQ;;EAEI,oCAAA;ADXZ;ACcQ;EACI,sBAAA;ADZZ;ACgBI;EACI,6BAAA;EACA,wBAAA;EACA,uBAAA;ADdR;ACiBI;EFxDA,6BAAA;EACA,iBAAA;EACA,mBAAA;EACA,oBAAA;EACA,kBAAA;EE2DI,oCAAA;EACA,wBAAA;EACA,6BAAA;EACA,wBAAA;ADhBR;ACSQ;;EACI,sBAAA;ADNZ;ACcQ;EACI,yBAAA;ADZZ;ACgBI;EACI,oBAAA;EACA,qBAAA;ADdR;ACiBI;EACI,2BAAA;EACA,8BAAA;ADfR;ACiBQ;EACI,yBAAA;ADfZ;ACiBY;EACI,qDAAA;ADfhB;ACmBQ;EAGI,gCAAA;EACA,0BAAA;EACA,uBAAA;EACA,4BAAA;EACA,4BAAA;EACA,oCAAA;EAEA,oCAAA;EACA,iDAAA;ADpBZ;ACsBQ;EACI,mCAAA;ADpBZ;ACuBQ;EACI,4BAAA;ADrBZ;ACwBQ;EACI,uBAAA;EACA,0BAAA;EACA,4BAAA;ADtBZ;ACyBY;EACI,6BAAA;ADvBhB;ACyBY;EACI,6BAAA;ADvBhB;AC0BY;EAEI,4BAAA;EACA,6BAAA;EACA,sBAAA;EACA,qBAAA;ADzBhB;AC4BY;EACI,iCAAA;EACA,sBAAA;EAEA,qEAAA;EACA,qBAAA;AD3BhB;AC+BQ;EACI,0BAAA;EACA,4BAAA;EACA,oCAAA;UAAA,4BAAA;AD7BZ;AC+BY;EACI,2BAAA;AD7BhB;AC4BY;EAIQ,yBAAA;EACA,2BAAA;EACA,4BAAA;EACA,gCAAA;AD7BpB;ACgCY;EACI,wBAAA;AD9BhB;ACoCI;EACI,gCAAA;EACA,8BAAA;EACA,uBAAA;EACA,0BAAA;EACA,2BAAA;EACA,2BAAA;ADlCR;AChKA;EAsMQ,+BAAA;EACA,yBAAA;ADnCR;ACpKA;EA2MQ,qCAAA;EACA,4BAAA;ADpCR;ACxKA;EAgNQ,4BAAA;ADrCR;AC3KA;EAmNY,4BAAA;ADrCZ;AC9KA;EAwNQ,qCAAA;ADvCR;ACjLA;EA4NQ,0BAAA;ADxCR;ACpLA;EA8NY,uBAAA;EACA,yBAAA;EACA,6BAAA;ADvCZ;ACzLA;EAqOQ,8BAAA;EACA,0BAAA;EACA,gCAAA;EACA,2BAAA;ADzCR;AC/LA;EA4OQ,+BAAA;EACA,0BAAA;EACA,gCAAA;EACA,2BAAA;EACA,yCAAA;AD1CR;ACtMA;EAoPQ,2BAAA;EACA,0BAAA;EACA,2BAAA;EACA,8BAAA;EACA,0BAAA;EACA,kCAAA;AD3CR;AC9MA;EA4PY,2BAAA;EACA,kCAAA;AD3CZ;AClNA;EAkQQ,2BAAA;EACA,yBAAA;EACA,8BAAA;EACA,8BAAA;AD7CR;ACxNA;EAwQY,yBAAA;EACA,8BAAA;AD7CZ;AC5NA;EAkRQ,gCAAA;ADnDR;ACuDA;EACI,2BAAA;ADrDJ;ACoDA;EAGQ,sBAAA;EACA,uBAAA;ADpDR;ACgDA;EAOQ,2BAAA;EACA,2BAAA;ADpDR;AC4CA;EAYQ,8BAAA;ADrDR;ACyCA;EAgBQ,+BAAA;ADtDR;ACsCA;EAoBQ,iCAAA;EACA,6BAAA;EACA,yBAAA;EACA,2BAAA;EACA,4BAAA;EACA,4BAAA;EACA,oCAAA;EACA,0BAAA;ADvDR;AC4BA;EA+BQ,uBAAA;EACA,iCAAA;EACA,6BAAA;ADxDR;AACA,oCAAoC","sourcesContent":["@fontSize: 14px;\n@fontSizeSmall: 11px;\n@borderRadius: 5px;\n\n@darkGray: #333;\n@gray: #555;\n@lightGray: #999;\n@lighterGray: #ddd;\n@white: #f2f2f2;\n\n@kaGreen: #639b24;\n@mutedGreen: #4A5837;\n\n@highlightColor: rgba(120, 130, 200, 0.4);\n\n@darkBorderColor: @gray;\n@lightBorderColor: @lightGray;\n\n@viewportEdgePadding: 10px;\n\n// z-index variables\n@z-index--highlights: 9999;\n@z-index--UI: 9998;\n@z-index--labels: 9997;\n\n@descriptionWidth: 200px;\n@controlMargin: 15px;\n@indicatorSize: 16px;\n@indicatorFontSize: 13px;\n\n.tota11y-dark-color-scheme {\n    background-color: @darkGray;\n    color: @white;\n}\n\n.tota11y-no-select {\n    user-select: none;\n}\n\n// Position mixin\n.position(@position: static, @top: auto, @right: auto, @bottom: auto, @left: auto) {\n    position: @position;\n    top: @top;\n    right: @right;\n    bottom: @bottom;\n    left: @left;\n}\n",".tota11y-dark-color-scheme {\n  background-color: #333;\n  color: #f2f2f2;\n}\n.tota11y-no-select {\n  user-select: none;\n}\n.tota11y-info {\n  background-color: #333;\n  color: #f2f2f2;\n  user-select: none;\n  border-radius: 5px;\n  position: fixed;\n  z-index: 9998;\n  /*\n     * Avoid scrollbars on code snippets that are expandable as clicking\n     * scrollbars is difficult if the entire block is click to expand/collapse\n     */\n}\n.tota11y-info-controls {\n  float: right;\n}\n.tota11y-info-annotation-toggle {\n  float: left;\n  margin-right: 10px;\n}\n.tota11y-info-hidden {\n  display: none;\n}\n.tota11y-info-dismiss-trigger {\n  font-size: 25px;\n  line-height: 25px;\n  position: relative;\n  top: -2px;\n}\n.tota11y-info-title,\n.tota11y-info-body {\n  padding: 10px 10px 0;\n}\n.tota11y-info-title:hover {\n  cursor: move;\n}\n.tota11y-info-tabs {\n  display: flex;\n  margin: 0;\n  padding: 0 0 10px;\n}\n.tota11y-info-tab {\n  height: 30px;\n  list-style: none;\n  position: relative;\n  text-align: center;\n  width: 100%;\n  flex-grow: 1;\n}\n.tota11y-info-tab-anchor {\n  position: absolute;\n  top: 0;\n  right: 0;\n  bottom: 0;\n  left: 0;\n  text-align: center;\n}\n.tota11y-info-tab-anchor-text {\n  line-height: 30px;\n}\n.tota11y-info-tab:hover {\n  background-color: #555;\n}\n.tota11y-info-tab.active,\n.tota11y-info-tab.active:hover {\n  background-color: #f2f2f2;\n}\n.tota11y-info-tab.active .tota11y-info-tab-anchor-text {\n  color: #333;\n}\n.tota11y-info-sections {\n  position: relative;\n  height: 270px;\n  width: 400px;\n}\n.tota11y-info-section {\n  position: absolute;\n  top: 0;\n  right: 0;\n  bottom: 0;\n  left: 0;\n  background-color: #f2f2f2;\n  display: none;\n  overflow-y: scroll;\n  padding: 10px;\n}\n.tota11y-info-section,\n.tota11y-info-section * {\n  color: #333;\n}\n.tota11y-info-section.active {\n  display: block;\n}\n.tota11y-info-errors {\n  margin: 0;\n  padding: 0;\n}\n.tota11y-info-error {\n  list-style: none;\n  margin-bottom: 10px;\n}\n.tota11y-info-error-trigger {\n  display: block;\n}\n.tota11y-info-error-trigger.trigger-highlight {\n  background-color: rgba(120, 130, 200, 0.4);\n}\n.tota11y-info-error-chevron {\n  display: inline-block;\n  font-size: 20px;\n  height: 14px;\n  line-height: 14px;\n  margin-right: 3px;\n  transform: rotateZ(90deg);\n  transform-origin: 3px 8px;\n  transition: transform ease-in-out 50ms;\n}\n.tota11y-info-error-trigger.tota11y-collapsed .tota11y-info-error-chevron {\n  transform: rotateZ(0deg);\n}\n.tota11y-info-error-title {\n  font-weight: bold;\n}\n.tota11y-info-error-scroll {\n  float: right;\n  margin-top: 3px;\n  padding-left: 5px;\n}\n.tota11y-info-error-scroll-glyph {\n  border-color: #333;\n}\n.tota11y-info-error-scroll:hover .tota11y-info-error-scroll-glyph {\n  border-color: #999;\n}\n.tota11y-info-error-scroll-lens {\n  border: 1px solid;\n  border-radius: 50%;\n  height: 8px;\n  width: 8px;\n}\n.tota11y-info-error-scroll-handle {\n  border-left: 1px solid;\n  height: 7px;\n  transform: translateX(-2px) translateY(-2px) rotate(45deg);\n  width: 1px;\n}\n.tota11y-info-error-description {\n  font-size: 13px;\n  padding: 10px 0 0;\n  user-select: text;\n}\n.tota11y-info-error-description-code-container {\n  margin-top: 10px;\n}\n.tota11y-info-error-description-code-container code {\n  display: block;\n  margin-top: 10px;\n  padding: 5px 10px;\n  word-wrap: break-word;\n}\n.tota11y-info-error-description.tota11y-collapsed {\n  display: none;\n}\n.tota11y-info-error-count {\n  background-color: red;\n  border-radius: 20px;\n  color: white;\n  display: inline;\n  margin-left: 5px;\n  padding: 1px 8px;\n}\n.tota11y-info .tota11y-info-about-title {\n  padding-bottom: 10px;\n  display: block;\n}\n.tota11y-info .tota11y-info-about-title-link {\n  text-decoration: underline;\n  font-weight: bold;\n}\n.tota11y-info .tota11y-info-resources {\n  font-weight: bold;\n}\n.tota11y-info .tota11y-info-resources li {\n  margin-left: 10px;\n}\n.tota11y-info a.tota11y-info-link {\n  text-decoration: underline;\n}\n.tota11y-info blockquote {\n  font-size: 11px;\n}\n.tota11y-info blockquote cite {\n  float: right;\n  margin: 11px 0;\n  font-style: italic;\n}\n.tota11y-info blockquote:before {\n  content: open-quote;\n  font-size: 44px;\n  vertical-align: -20px;\n  line-height: 1px;\n}\n.tota11y-info blockquote:after {\n  content: close-quote;\n  font-size: 44px;\n  vertical-align: -10px;\n  line-height: 1px;\n  margin-left: calc(100% - 15px);\n}\n.tota11y-info .tota11y-click-to-expand .tota11y-expandable {\n  max-height: 26px;\n  cursor: pointer;\n  overflow: hidden;\n  white-space: nowrap;\n  max-width: 100%;\n  text-overflow: ellipsis;\n}\n.tota11y-info .tota11y-click-to-expand .tota11y-expandable p {\n  overflow: hidden;\n  text-overflow: ellipsis;\n}\n.tota11y-info .tota11y-click-to-expand.tota11y-expanded .tota11y-expandable {\n  max-height: none;\n  overflow: auto;\n  white-space: normal;\n  text-overflow: clip;\n}\n.tota11y-info .tota11y-click-to-expand.tota11y-expanded .tota11y-expandable p {\n  overflow: auto;\n  text-overflow: clip;\n}\n.tota11y-info .tota11y-expandable code {\n  white-space: pre-wrap;\n}\n.tota11y-sidebar {\n  position: static;\n}\n.tota11y-sidebar .tota11y-info-sections {\n  width: auto;\n  height: auto;\n}\n.tota11y-sidebar .tota11y-info-section {\n  position: static;\n  overflow-y: auto;\n}\n.tota11y-sidebar .tota11y-info-body {\n  padding: 10px 0px 0;\n}\n.tota11y-sidebar .tota11y-info-title {\n  padding: 10px 10px 0;\n}\n.tota11y-sidebar .tota11y-info-error-inspect-element {\n  border: 3px solid #ddd;\n  border-radius: 5px;\n  display: block;\n  margin-top: 10px;\n  padding: 3px 10px;\n  font-weight: bold;\n  background-color: #f2f2f2;\n  cursor: pointer;\n}\n.tota11y-sidebar .tota11y-info-error-inspect-element:disabled {\n  cursor: auto;\n  background-color: #ddd;\n  border-color: #999;\n}\n/*# sourceMappingURL=style.css.map */","@import \"../../../less/variables.less\";\n\n@panelBodyWidth: 400px;\n@panelBodyHeight: 270px;\n\n@tabHoverColor: #555;\n@tabActiveColor: @white;\n\n@tabHeight: 30px;\n@panelPadding: 10px;\n\n@dismissFontSize: 25px;\n@chevornFontSize: 20px;\n@descriptionFontSize: 13px;\n@quoteFontSize: 11px;\n\n.tota11y-info {\n    .tota11y-dark-color-scheme;\n    .tota11y-no-select;\n\n    border-radius: @borderRadius;\n    position: fixed;\n    z-index: @z-index--UI;\n\n    &-controls {\n        float: right;\n    }\n\n    &-annotation-toggle {\n        float: left;\n        margin-right: 10px;\n    }\n\n    &-hidden {\n        display: none;\n    }\n\n    &-dismiss-trigger {\n        font-size: @dismissFontSize;\n        line-height: @dismissFontSize;\n\n        // TODO: Rework styles using line-heights\n        position: relative;\n        top: -2px;\n    }\n\n    &-title, &-body {\n        padding: @panelPadding @panelPadding 0;\n    }\n\n    &-title:hover {\n        cursor: move;\n    }\n\n    &-tabs {\n        display: flex;\n        margin: 0;\n        padding: 0 0 @panelPadding;\n    }\n\n    &-tab {\n        height: @tabHeight;\n        list-style: none;\n        position: relative;\n        text-align: center;\n        width: 100%;\n        flex-grow: 1;\n\n        &-anchor {\n            .position(absolute, 0, 0, 0, 0);\n            text-align: center;\n\n            &-text {\n                line-height: @tabHeight;\n            }\n        }\n\n        &:hover {\n            background-color: @tabHoverColor;\n        }\n\n        &.active, &.active:hover {\n            // Active tabs do not have a hover state\n            background-color: @tabActiveColor;\n        }\n\n        &.active &-anchor-text {\n            color: @darkGray;\n        }\n    }\n\n    &-sections {\n        position: relative;\n        height: @panelBodyHeight;\n        width: @panelBodyWidth;\n    }\n\n    &-section {\n        .position(absolute, 0, 0, 0, 0);\n\n        &, * {\n            color: @darkGray;\n        }\n\n        background-color: @white;\n        display: none;\n        overflow-y: scroll;\n        padding: @panelPadding;\n\n        &.active {\n            display: block;\n        }\n    }\n\n    &-errors {\n        margin: 0;\n        padding: 0;\n    }\n\n    &-error {\n        list-style: none;\n        margin-bottom: 10px;\n\n        &-trigger {\n            display: block;\n\n            &.trigger-highlight {\n                background-color: @highlightColor;\n            }\n        }\n\n        &-chevron {\n            @height: 14px;\n\n            display: inline-block;\n            font-size: @chevornFontSize;\n            height: @height;\n            line-height: @height;\n            margin-right: 3px;\n            transform: rotateZ(90deg);\n            // Magic numbers to make the chevron rotate cleanly\n            transform-origin: 3px 8px;\n            transition: transform ease-in-out 50ms;\n        }\n        &-trigger.tota11y-collapsed &-chevron {\n            transform: rotateZ(0deg);\n        }\n\n        &-title {\n            font-weight: bold;\n        }\n\n        &-scroll {\n            float: right;\n            margin-top: 3px;\n            padding-left: 5px;\n\n            // Styling for both the lens and handle\n            &-glyph {\n                border-color: @darkGray;\n            }\n            &:hover &-glyph {\n                border-color: @lightGray;\n            }\n\n            &-lens {\n                @radius: 8px;\n                border: 1px solid;\n                border-radius: 50%;\n                height: @radius;\n                width: @radius;\n            }\n\n            &-handle {\n                border-left: 1px solid;\n                height: 7px;\n                // A transform to rotate it and line it up with the lens\n                transform: translateX(-2px) translateY(-2px) rotate(45deg);\n                width: 1px;\n            }\n        }\n\n        &-description {\n            font-size: @descriptionFontSize;\n            padding: 10px 0 0;\n            user-select: text;\n\n            &-code-container {\n                margin-top: @panelPadding;\n\n                code {\n                    display: block;\n                    margin-top: 10px;\n                    padding: 5px @panelPadding;\n                    word-wrap: break-word;\n                }\n            }\n            &.tota11y-collapsed {\n                display: none\n            }\n        }\n\n    }\n\n    &-error-count {\n        background-color: red;\n        border-radius: 20px;\n        color: white;\n        display: inline;\n        margin-left: 5px;\n        padding: 1px 8px;\n    }\n\n    .tota11y-info-about-title {\n        padding-bottom: 10px;\n        display: block;\n    }\n\n    .tota11y-info-about-title-link {\n        text-decoration: underline;\n        font-weight: bold;\n    }\n\n    .tota11y-info-resources {\n        font-weight: bold;\n\n        li {\n            margin-left: 10px;\n        }\n    }\n\n    a.tota11y-info-link {\n        text-decoration: underline;\n    }\n\n    blockquote {\n        font-size: @quoteFontSize;\n        cite {\n            float: right;\n            margin: @quoteFontSize 0;\n            font-style: italic;\n        }\n    }\n\n    blockquote:before {\n        content: open-quote;\n        font-size: @quoteFontSize * 4;\n        vertical-align: -20px;\n        line-height: 1px;\n    }\n\n    blockquote:after {\n        content: close-quote;\n        font-size: @quoteFontSize * 4;\n        vertical-align: -10px;\n        line-height: 1px;\n        margin-left: calc(100% - 15px);\n    }\n\n    .tota11y-click-to-expand .tota11y-expandable {\n        max-height: @descriptionFontSize * 2;\n        cursor: pointer;\n        overflow: hidden;\n        white-space: nowrap;\n        max-width: 100%;\n        text-overflow: ellipsis;\n\n        p {\n            overflow: hidden;\n            text-overflow: ellipsis;\n        }\n    }\n\n    .tota11y-click-to-expand.tota11y-expanded .tota11y-expandable {\n        max-height: none;\n        overflow: auto;\n        white-space: normal;\n        text-overflow: clip;\n\n        p {\n            overflow: auto;\n            text-overflow: clip;\n        }\n    }\n\n    /*\n     * Avoid scrollbars on code snippets that are expandable as clicking\n     * scrollbars is difficult if the entire block is click to expand/collapse\n     */\n    .tota11y-expandable code {\n        white-space: pre-wrap;\n    }\n}\n\n.tota11y-sidebar {\n    position: static;\n    .tota11y-info-sections {\n        width: auto;\n        height: auto;\n    }\n    .tota11y-info-section {\n        position: static;\n        overflow-y: auto;\n    }\n\n    .tota11y-info-body {\n        padding: 10px 0px 0;\n    }\n\n    .tota11y-info-title {\n        padding: 10px 10px 0;\n    }\n\n    .tota11y-info-error-inspect-element {\n        border: 3px solid @lighterGray;\n        border-radius: @borderRadius;\n        display: block;\n        margin-top: 10px;\n        padding: 3px 10px;\n        font-weight: bold;\n        background-color: @white;\n        cursor: pointer;\n    }\n\n    .tota11y-info-error-inspect-element:disabled {\n        cursor: auto;\n        background-color: @lighterGray;\n        border-color: @lightGray;\n    }\n}\n"],"sourceRoot":""}]);
+// Exports
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
+
+
+/***/ },
+
+/***/ "./node_modules/css-loader/dist/cjs.js!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[2].use[2]!./node_modules/less-loader/dist/cjs.js!./plugins/style.less"
+/*!*******************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[2].use[2]!./node_modules/less-loader/dist/cjs.js!./plugins/style.less ***!
+  \*******************************************************************************************************************************************************************************/
+(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../node_modules/css-loader/dist/runtime/sourceMaps.js */ "./node_modules/css-loader/dist/runtime/sourceMaps.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__);
+// Imports
+
+
+var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, `.tota11y-dark-color-scheme {
+  background-color: #333 !important;
+  color: #f2f2f2 !important;
+}
+.tota11y-no-select {
+  -webkit-user-select: none !important;
+          user-select: none !important;
+}
+.tota11y-plugin,
+.tota11y-setting {
+  -webkit-user-select: none !important;
+          user-select: none !important;
+  border-bottom: 1px solid #555 !important;
+  list-style: none !important;
+}
+.tota11y-plugin-switch,
+.tota11y-setting-switch {
+  align-items: center !important;
+  cursor: pointer !important;
+  display: flex !important;
+  padding: 12px 12px 12px 0 !important;
+  margin: 0 !important;
+}
+.tota11y-plugin-indicator,
+.tota11y-setting-indicator {
+  margin: 0 15px !important;
+}
+.tota11y-plugin-indicator,
+.tota11y-setting-indicator {
+  border-radius: 16px !important;
+  border: 1px solid #999 !important;
+  color: transparent !important;
+  font-size: 13px !important;
+  height: 16px !important;
+  line-height: 16px !important;
+  padding: 0 0 0 1px !important;
+  width: 16px !important;
+  min-width: 16px !important;
+  min-height: 16px !important;
+}
+.tota11y-plugin-checkbox:focus + .tota11y-plugin-indicator,
+.tota11y-plugin-checkbox:focus + .tota11y-setting-indicator,
+.tota11y-setting-checkbox:focus + .tota11y-plugin-indicator,
+.tota11y-setting-checkbox:focus + .tota11y-setting-indicator {
+  border-color: #639b24 !important;
+  background-color: #49721a !important;
+  color: #49721a !important;
+}
+.tota11y-plugin-checkbox:checked + .tota11y-plugin-indicator,
+.tota11y-plugin-checkbox:checked + .tota11y-setting-indicator,
+.tota11y-setting-checkbox:checked + .tota11y-plugin-indicator,
+.tota11y-setting-checkbox:checked + .tota11y-setting-indicator {
+  background-color: #639b24 !important;
+  border-color: #639b24 !important;
+  color: white !important;
+}
+.tota11y-plugin-title,
+.tota11y-setting-title {
+  font-weight: bold !important;
+}
+.tota11y-plugin-description,
+.tota11y-setting-description {
+  font-size: 11px !important;
+  font-style: italic !important;
+  width: 200px !important;
+  margin-right: 3px !important;
+}
+.tota11y-plugin-info-setting,
+.tota11y-setting-info-setting {
+  font-size: 11px !important;
+}
+.tota11y-plugins-separator {
+  font-size: 12px !important;
+  margin: 7px 15px 0 !important;
+  text-transform: uppercase !important;
+}
+/*# sourceMappingURL=style.css.map */`, "",{"version":3,"sources":["webpack://./less/variables.less","webpack://./plugins/style.less","webpack://./style.less"],"names":[],"mappings":"AA8BA;EACI,iCAAA;EACA,yBAAA;AC7BJ;ADgCA;EACI,oCAAA;UAAA,4BAAA;AC9BJ;ACFA;;EFgCI,oCAAA;UAAA,4BAAA;EE9BA,wCAAA;EACA,2BAAA;ADKJ;ACHI;;EACI,8BAAA;EACA,0BAAA;EACA,wBAAA;EACA,oCAAA;EACA,oBAAA;ADMR;ACHI;;EACI,yBAAA;ADMR;ACHI;;EACI,8BAAA;EACA,iCAAA;EACA,6BAAA;EACA,0BAAA;EACA,uBAAA;EACA,4BAAA;EACA,6BAAA;EACA,sBAAA;EACA,0BAAA;EACA,2BAAA;ADMR;ACFI;;;;EAGI,gCAAA;EACA,oCAAA;EACA,yBAAA;ADKR;ACDI;;;;EACI,oCAAA;EACA,gCAAA;EACA,uBAAA;ADMR;ACHI;;EACI,4BAAA;ADMR;ACHI;;EACI,0BAAA;EACA,6BAAA;EACA,uBAAA;EACA,4BAAA;ADMR;ACHI;;EACI,0BAAA;ADMR;ACDI;EACI,0BAAA;EACA,6BAAA;EACA,oCAAA;ADGR;AACA,oCAAoC","sourcesContent":["@fontSize: 14px;\n@fontSizeSmall: 11px;\n@borderRadius: 5px;\n\n@darkGray: #333;\n@gray: #555;\n@lightGray: #999;\n@lighterGray: #ddd;\n@white: #f2f2f2;\n\n@kaGreen: #639b24;\n@mutedGreen: #4A5837;\n\n@highlightColor: rgba(120, 130, 200, 0.4);\n\n@darkBorderColor: @gray;\n@lightBorderColor: @lightGray;\n\n@viewportEdgePadding: 10px;\n\n// z-index variables\n@z-index--highlights: 9999;\n@z-index--UI: 9998;\n@z-index--labels: 9997;\n\n@descriptionWidth: 200px;\n@controlMargin: 15px;\n@indicatorSize: 16px;\n@indicatorFontSize: 13px;\n\n.tota11y-dark-color-scheme {\n    background-color: @darkGray;\n    color: @white;\n}\n\n.tota11y-no-select {\n    user-select: none;\n}\n\n// Position mixin\n.position(@position: static, @top: auto, @right: auto, @bottom: auto, @left: auto) {\n    position: @position;\n    top: @top;\n    right: @right;\n    bottom: @bottom;\n    left: @left;\n}\n",".tota11y-dark-color-scheme {\n  background-color: #333;\n  color: #f2f2f2;\n}\n.tota11y-no-select {\n  user-select: none;\n}\n.tota11y-plugin,\n.tota11y-setting {\n  user-select: none;\n  border-bottom: 1px solid #555;\n  list-style: none;\n}\n.tota11y-plugin-switch,\n.tota11y-setting-switch {\n  align-items: center;\n  cursor: pointer;\n  display: flex;\n  padding: 12px 12px 12px 0;\n  margin: 0;\n}\n.tota11y-plugin-indicator,\n.tota11y-setting-indicator {\n  margin: 0 15px;\n}\n.tota11y-plugin-indicator,\n.tota11y-setting-indicator {\n  border-radius: 16px;\n  border: 1px solid #999;\n  color: transparent;\n  font-size: 13px;\n  height: 16px;\n  line-height: 16px;\n  padding: 0 0 0 1px;\n  width: 16px;\n  min-width: 16px;\n  min-height: 16px;\n}\n.tota11y-plugin-checkbox:focus + .tota11y-plugin-indicator,\n.tota11y-plugin-checkbox:focus + .tota11y-setting-indicator,\n.tota11y-setting-checkbox:focus + .tota11y-plugin-indicator,\n.tota11y-setting-checkbox:focus + .tota11y-setting-indicator {\n  border-color: #639b24;\n  background-color: #49721a;\n  color: #49721a;\n}\n.tota11y-plugin-checkbox:checked + .tota11y-plugin-indicator,\n.tota11y-plugin-checkbox:checked + .tota11y-setting-indicator,\n.tota11y-setting-checkbox:checked + .tota11y-plugin-indicator,\n.tota11y-setting-checkbox:checked + .tota11y-setting-indicator {\n  background-color: #639b24;\n  border-color: #639b24;\n  color: white;\n}\n.tota11y-plugin-title,\n.tota11y-setting-title {\n  font-weight: bold;\n}\n.tota11y-plugin-description,\n.tota11y-setting-description {\n  font-size: 11px;\n  font-style: italic;\n  width: 200px;\n  margin-right: 3px;\n}\n.tota11y-plugin-info-setting,\n.tota11y-setting-info-setting {\n  font-size: 11px;\n}\n.tota11y-plugins-separator {\n  font-size: 12px;\n  margin: 7px 15px 0;\n  text-transform: uppercase;\n}\n/*# sourceMappingURL=style.css.map */","@import \"../less/variables.less\";\n\n@pluginPadding: 12px;\n\n.tota11y-plugin, .tota11y-setting {\n    .tota11y-no-select;\n    border-bottom: 1px solid @darkBorderColor;\n    list-style: none;\n\n    &-switch {\n        align-items: center;\n        cursor: pointer;\n        display: flex;\n        padding: @pluginPadding @pluginPadding @pluginPadding 0;\n        margin: 0;\n    }\n\n    &-indicator {\n        margin: 0 @controlMargin;\n    }\n\n    &-indicator {\n        border-radius: @indicatorSize;\n        border: 1px solid @lightBorderColor;\n        color: transparent;\n        font-size: @indicatorFontSize;\n        height: @indicatorSize;\n        line-height: @indicatorSize;\n        padding: 0 0 0 1px;\n        width: @indicatorSize;\n        min-width: @indicatorSize;\n        min-height: @indicatorSize;\n    }\n\n    // Focus styles for the fake checkboxes\n    &-checkbox:focus + &-indicator {\n        @focusColor: darken(@kaGreen, 10%);\n\n        border-color: @kaGreen;\n        background-color: @focusColor;\n        color: @focusColor;\n    }\n\n    // Checked styles for the fake checkboxes\n    &-checkbox:checked + &-indicator {\n        background-color: @kaGreen;\n        border-color: @kaGreen;\n        color: white;\n    }\n\n    &-title {\n        font-weight: bold;\n    }\n\n    &-description {\n        font-size: @fontSizeSmall;\n        font-style: italic;\n        width: @descriptionWidth;\n        margin-right: 3px;\n    }\n\n    &-info-setting {\n        font-size: @fontSizeSmall;\n    }\n}\n\n.tota11y-plugins {\n    &-separator {\n        font-size: 12px;\n        margin: 7px @controlMargin 0;\n        text-transform: uppercase;\n    }\n}\n"],"sourceRoot":""}]);
+// Exports
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
+
+
+/***/ },
+
+/***/ "./node_modules/css-loader/dist/runtime/api.js"
+/*!*****************************************************!*\
+  !*** ./node_modules/css-loader/dist/runtime/api.js ***!
+  \*****************************************************/
+(module) {
+
+"use strict";
+
 
 /*
-	MIT License http://www.opensource.org/licenses/mit-license.php
-	Author Tobias Koppers @sokra
+  MIT License http://www.opensource.org/licenses/mit-license.php
+  Author Tobias Koppers @sokra
 */
-// css base code, injected by the css-loader
-// 
-module.exports = function() {
-	var list = [];
+module.exports = function (cssWithMappingToString) {
+  var list = [];
 
-	// return the list of modules as css string
-	list.toString = function toString() {
-		var result = [];
-		for(var i = 0; i < this.length; i++) {
-			var item = this[i];
-			if(item[2]) {
-				result.push("@media " + item[2] + "{" + item[1] + "}");
-			} else {
-				result.push(item[1]);
-			}
-		}
-		return result.join("");
-	};
+  // return the list of modules as css string
+  list.toString = function toString() {
+    return this.map(function (item) {
+      var content = "";
+      var needLayer = typeof item[5] !== "undefined";
+      if (item[4]) {
+        content += "@supports (".concat(item[4], ") {");
+      }
+      if (item[2]) {
+        content += "@media ".concat(item[2], " {");
+      }
+      if (needLayer) {
+        content += "@layer".concat(item[5].length > 0 ? " ".concat(item[5]) : "", " {");
+      }
+      content += cssWithMappingToString(item);
+      if (needLayer) {
+        content += "}";
+      }
+      if (item[2]) {
+        content += "}";
+      }
+      if (item[4]) {
+        content += "}";
+      }
+      return content;
+    }).join("");
+  };
 
-	// import a list of modules into the list
-	list.i = function(modules, mediaQuery) {
-		if(typeof modules === "string")
-			modules = [[null, modules, ""]];
-		var alreadyImportedModules = {};
-		for(var i = 0; i < this.length; i++) {
-			var id = this[i][0];
-			if(typeof id === "number")
-				alreadyImportedModules[id] = true;
-		}
-		for(var i = 0; i < modules.length; i++) {
-			var item = modules[i];
-			// skip already imported module
-			// this implementation is not 100% perfect for weird media query combinations
-			//  when a module is imported multiple times with different media queries.
-			//  I hope this will never occur (Hey this way we have smaller bundles)
-			if(typeof item[0] !== "number" || !alreadyImportedModules[item[0]]) {
-				if(mediaQuery && !item[2]) {
-					item[2] = mediaQuery;
-				} else if(mediaQuery) {
-					item[2] = "(" + item[2] + ") and (" + mediaQuery + ")";
-				}
-				list.push(item);
-			}
-		}
-	};
-	return list;
+  // import a list of modules into the list
+  list.i = function i(modules, media, dedupe, supports, layer) {
+    if (typeof modules === "string") {
+      modules = [[null, modules, undefined]];
+    }
+    var alreadyImportedModules = {};
+    if (dedupe) {
+      for (var k = 0; k < this.length; k++) {
+        var id = this[k][0];
+        if (id != null) {
+          alreadyImportedModules[id] = true;
+        }
+      }
+    }
+    for (var _k = 0; _k < modules.length; _k++) {
+      var item = [].concat(modules[_k]);
+      if (dedupe && alreadyImportedModules[item[0]]) {
+        continue;
+      }
+      if (typeof layer !== "undefined") {
+        if (typeof item[5] === "undefined") {
+          item[5] = layer;
+        } else {
+          item[1] = "@layer".concat(item[5].length > 0 ? " ".concat(item[5]) : "", " {").concat(item[1], "}");
+          item[5] = layer;
+        }
+      }
+      if (media) {
+        if (!item[2]) {
+          item[2] = media;
+        } else {
+          item[1] = "@media ".concat(item[2], " {").concat(item[1], "}");
+          item[2] = media;
+        }
+      }
+      if (supports) {
+        if (!item[4]) {
+          item[4] = "".concat(supports);
+        } else {
+          item[1] = "@supports (".concat(item[4], ") {").concat(item[1], "}");
+          item[4] = supports;
+        }
+      }
+      list.push(item);
+    }
+  };
+  return list;
 };
 
+/***/ },
 
-/***/ }),
+/***/ "./node_modules/css-loader/dist/runtime/sourceMaps.js"
+/*!************************************************************!*\
+  !*** ./node_modules/css-loader/dist/runtime/sourceMaps.js ***!
+  \************************************************************/
+(module) {
 
-/***/ "./node_modules/handlebars/dist/cjs/handlebars.runtime.js":
+"use strict";
+
+
+module.exports = function (item) {
+  var content = item[1];
+  var cssMapping = item[3];
+  if (!cssMapping) {
+    return content;
+  }
+  if (typeof btoa === "function") {
+    var base64 = btoa(unescape(encodeURIComponent(JSON.stringify(cssMapping))));
+    var data = "sourceMappingURL=data:application/json;charset=utf-8;base64,".concat(base64);
+    var sourceMapping = "/*# ".concat(data, " */");
+    return [content].concat([sourceMapping]).join("\n");
+  }
+  return [content].join("\n");
+};
+
+/***/ },
+
+/***/ "./node_modules/handlebars/dist/cjs/handlebars.runtime.js"
 /*!****************************************************************!*\
   !*** ./node_modules/handlebars/dist/cjs/handlebars.runtime.js ***!
   \****************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+(module, exports, __webpack_require__) {
 
 "use strict";
 
@@ -382,19 +1122,18 @@ _handlebarsNoConflict2['default'](inst);
 
 inst['default'] = inst;
 
-exports['default'] = inst;
+exports["default"] = inst;
 module.exports = exports['default'];
 //# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uL2xpYi9oYW5kbGViYXJzLnJ1bnRpbWUuanMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7Ozs7Ozs7Ozs7OEJBQXNCLG1CQUFtQjs7SUFBN0IsSUFBSTs7Ozs7b0NBSU8sMEJBQTBCOzs7O21DQUMzQix3QkFBd0I7Ozs7K0JBQ3ZCLG9CQUFvQjs7SUFBL0IsS0FBSzs7aUNBQ1Esc0JBQXNCOztJQUFuQyxPQUFPOztvQ0FFSSwwQkFBMEI7Ozs7O0FBR2pELFNBQVMsTUFBTSxHQUFHO0FBQ2hCLE1BQUksRUFBRSxHQUFHLElBQUksSUFBSSxDQUFDLHFCQUFxQixFQUFFLENBQUM7O0FBRTFDLE9BQUssQ0FBQyxNQUFNLENBQUMsRUFBRSxFQUFFLElBQUksQ0FBQyxDQUFDO0FBQ3ZCLElBQUUsQ0FBQyxVQUFVLG9DQUFhLENBQUM7QUFDM0IsSUFBRSxDQUFDLFNBQVMsbUNBQVksQ0FBQztBQUN6QixJQUFFLENBQUMsS0FBSyxHQUFHLEtBQUssQ0FBQztBQUNqQixJQUFFLENBQUMsZ0JBQWdCLEdBQUcsS0FBSyxDQUFDLGdCQUFnQixDQUFDOztBQUU3QyxJQUFFLENBQUMsRUFBRSxHQUFHLE9BQU8sQ0FBQztBQUNoQixJQUFFLENBQUMsUUFBUSxHQUFHLFVBQVMsSUFBSSxFQUFFO0FBQzNCLFdBQU8sT0FBTyxDQUFDLFFBQVEsQ0FBQyxJQUFJLEVBQUUsRUFBRSxDQUFDLENBQUM7R0FDbkMsQ0FBQzs7QUFFRixTQUFPLEVBQUUsQ0FBQztDQUNYOztBQUVELElBQUksSUFBSSxHQUFHLE1BQU0sRUFBRSxDQUFDO0FBQ3BCLElBQUksQ0FBQyxNQUFNLEdBQUcsTUFBTSxDQUFDOztBQUVyQixrQ0FBVyxJQUFJLENBQUMsQ0FBQzs7QUFFakIsSUFBSSxDQUFDLFNBQVMsQ0FBQyxHQUFHLElBQUksQ0FBQzs7cUJBRVIsSUFBSSIsImZpbGUiOiJoYW5kbGViYXJzLnJ1bnRpbWUuanMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgKiBhcyBiYXNlIGZyb20gJy4vaGFuZGxlYmFycy9iYXNlJztcblxuLy8gRWFjaCBvZiB0aGVzZSBhdWdtZW50IHRoZSBIYW5kbGViYXJzIG9iamVjdC4gTm8gbmVlZCB0byBzZXR1cCBoZXJlLlxuLy8gKFRoaXMgaXMgZG9uZSB0byBlYXNpbHkgc2hhcmUgY29kZSBiZXR3ZWVuIGNvbW1vbmpzIGFuZCBicm93c2UgZW52cylcbmltcG9ydCBTYWZlU3RyaW5nIGZyb20gJy4vaGFuZGxlYmFycy9zYWZlLXN0cmluZyc7XG5pbXBvcnQgRXhjZXB0aW9uIGZyb20gJy4vaGFuZGxlYmFycy9leGNlcHRpb24nO1xuaW1wb3J0ICogYXMgVXRpbHMgZnJvbSAnLi9oYW5kbGViYXJzL3V0aWxzJztcbmltcG9ydCAqIGFzIHJ1bnRpbWUgZnJvbSAnLi9oYW5kbGViYXJzL3J1bnRpbWUnO1xuXG5pbXBvcnQgbm9Db25mbGljdCBmcm9tICcuL2hhbmRsZWJhcnMvbm8tY29uZmxpY3QnO1xuXG4vLyBGb3IgY29tcGF0aWJpbGl0eSBhbmQgdXNhZ2Ugb3V0c2lkZSBvZiBtb2R1bGUgc3lzdGVtcywgbWFrZSB0aGUgSGFuZGxlYmFycyBvYmplY3QgYSBuYW1lc3BhY2VcbmZ1bmN0aW9uIGNyZWF0ZSgpIHtcbiAgbGV0IGhiID0gbmV3IGJhc2UuSGFuZGxlYmFyc0Vudmlyb25tZW50KCk7XG5cbiAgVXRpbHMuZXh0ZW5kKGhiLCBiYXNlKTtcbiAgaGIuU2FmZVN0cmluZyA9IFNhZmVTdHJpbmc7XG4gIGhiLkV4Y2VwdGlvbiA9IEV4Y2VwdGlvbjtcbiAgaGIuVXRpbHMgPSBVdGlscztcbiAgaGIuZXNjYXBlRXhwcmVzc2lvbiA9IFV0aWxzLmVzY2FwZUV4cHJlc3Npb247XG5cbiAgaGIuVk0gPSBydW50aW1lO1xuICBoYi50ZW1wbGF0ZSA9IGZ1bmN0aW9uKHNwZWMpIHtcbiAgICByZXR1cm4gcnVudGltZS50ZW1wbGF0ZShzcGVjLCBoYik7XG4gIH07XG5cbiAgcmV0dXJuIGhiO1xufVxuXG5sZXQgaW5zdCA9IGNyZWF0ZSgpO1xuaW5zdC5jcmVhdGUgPSBjcmVhdGU7XG5cbm5vQ29uZmxpY3QoaW5zdCk7XG5cbmluc3RbJ2RlZmF1bHQnXSA9IGluc3Q7XG5cbmV4cG9ydCBkZWZhdWx0IGluc3Q7XG4iXX0=
 
 
-/***/ }),
+/***/ },
 
-/***/ "./node_modules/handlebars/dist/cjs/handlebars/base.js":
+/***/ "./node_modules/handlebars/dist/cjs/handlebars/base.js"
 /*!*************************************************************!*\
   !*** ./node_modules/handlebars/dist/cjs/handlebars/base.js ***!
   \*************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+(__unused_webpack_module, exports, __webpack_require__) {
 
 "use strict";
 
@@ -515,14 +1254,13 @@ exports.logger = _logger2['default'];
 //# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uLy4uL2xpYi9oYW5kbGViYXJzL2Jhc2UuanMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7Ozs7Ozs7cUJBQThDLFNBQVM7O3lCQUNqQyxhQUFhOzs7O3VCQUNJLFdBQVc7OzBCQUNSLGNBQWM7O3NCQUNyQyxVQUFVOzs7O21DQUNTLHlCQUF5Qjs7QUFFeEQsSUFBTSxPQUFPLEdBQUcsT0FBTyxDQUFDOztBQUN4QixJQUFNLGlCQUFpQixHQUFHLENBQUMsQ0FBQzs7QUFDNUIsSUFBTSxpQ0FBaUMsR0FBRyxDQUFDLENBQUM7OztBQUU1QyxJQUFNLGdCQUFnQixHQUFHO0FBQzlCLEdBQUMsRUFBRSxhQUFhO0FBQ2hCLEdBQUMsRUFBRSxlQUFlO0FBQ2xCLEdBQUMsRUFBRSxlQUFlO0FBQ2xCLEdBQUMsRUFBRSxVQUFVO0FBQ2IsR0FBQyxFQUFFLGtCQUFrQjtBQUNyQixHQUFDLEVBQUUsaUJBQWlCO0FBQ3BCLEdBQUMsRUFBRSxpQkFBaUI7QUFDcEIsR0FBQyxFQUFFLFVBQVU7Q0FDZCxDQUFDOzs7QUFFRixJQUFNLFVBQVUsR0FBRyxpQkFBaUIsQ0FBQzs7QUFFOUIsU0FBUyxxQkFBcUIsQ0FBQyxPQUFPLEVBQUUsUUFBUSxFQUFFLFVBQVUsRUFBRTtBQUNuRSxNQUFJLENBQUMsT0FBTyxHQUFHLE9BQU8sSUFBSSxFQUFFLENBQUM7QUFDN0IsTUFBSSxDQUFDLFFBQVEsR0FBRyxRQUFRLElBQUksRUFBRSxDQUFDO0FBQy9CLE1BQUksQ0FBQyxVQUFVLEdBQUcsVUFBVSxJQUFJLEVBQUUsQ0FBQzs7QUFFbkMsa0NBQXVCLElBQUksQ0FBQyxDQUFDO0FBQzdCLHdDQUEwQixJQUFJLENBQUMsQ0FBQztDQUNqQzs7QUFFRCxxQkFBcUIsQ0FBQyxTQUFTLEdBQUc7QUFDaEMsYUFBVyxFQUFFLHFCQUFxQjs7QUFFbEMsUUFBTSxxQkFBUTtBQUNkLEtBQUcsRUFBRSxvQkFBTyxHQUFHOztBQUVmLGdCQUFjLEVBQUUsd0JBQVMsSUFBSSxFQUFFLEVBQUUsRUFBRTtBQUNqQyxRQUFJLGdCQUFTLElBQUksQ0FBQyxJQUFJLENBQUMsS0FBSyxVQUFVLEVBQUU7QUFDdEMsVUFBSSxFQUFFLEVBQUU7QUFDTixjQUFNLDJCQUFjLHlDQUF5QyxDQUFDLENBQUM7T0FDaEU7QUFDRCxvQkFBTyxJQUFJLENBQUMsT0FBTyxFQUFFLElBQUksQ0FBQyxDQUFDO0tBQzVCLE1BQU07QUFDTCxVQUFJLENBQUMsT0FBTyxDQUFDLElBQUksQ0FBQyxHQUFHLEVBQUUsQ0FBQztLQUN6QjtHQUNGO0FBQ0Qsa0JBQWdCLEVBQUUsMEJBQVMsSUFBSSxFQUFFO0FBQy9CLFdBQU8sSUFBSSxDQUFDLE9BQU8sQ0FBQyxJQUFJLENBQUMsQ0FBQztHQUMzQjs7QUFFRCxpQkFBZSxFQUFFLHlCQUFTLElBQUksRUFBRSxPQUFPLEVBQUU7QUFDdkMsUUFBSSxnQkFBUyxJQUFJLENBQUMsSUFBSSxDQUFDLEtBQUssVUFBVSxFQUFFO0FBQ3RDLG9CQUFPLElBQUksQ0FBQyxRQUFRLEVBQUUsSUFBSSxDQUFDLENBQUM7S0FDN0IsTUFBTTtBQUNMLFVBQUksT0FBTyxPQUFPLEtBQUssV0FBVyxFQUFFO0FBQ2xDLGNBQU0seUVBQ3dDLElBQUksb0JBQ2pELENBQUM7T0FDSDtBQUNELFVBQUksQ0FBQyxRQUFRLENBQUMsSUFBSSxDQUFDLEdBQUcsT0FBTyxDQUFDO0tBQy9CO0dBQ0Y7QUFDRCxtQkFBaUIsRUFBRSwyQkFBUyxJQUFJLEVBQUU7QUFDaEMsV0FBTyxJQUFJLENBQUMsUUFBUSxDQUFDLElBQUksQ0FBQyxDQUFDO0dBQzVCOztBQUVELG1CQUFpQixFQUFFLDJCQUFTLElBQUksRUFBRSxFQUFFLEVBQUU7QUFDcEMsUUFBSSxnQkFBUyxJQUFJLENBQUMsSUFBSSxDQUFDLEtBQUssVUFBVSxFQUFFO0FBQ3RDLFVBQUksRUFBRSxFQUFFO0FBQ04sY0FBTSwyQkFBYyw0Q0FBNEMsQ0FBQyxDQUFDO09BQ25FO0FBQ0Qsb0JBQU8sSUFBSSxDQUFDLFVBQVUsRUFBRSxJQUFJLENBQUMsQ0FBQztLQUMvQixNQUFNO0FBQ0wsVUFBSSxDQUFDLFVBQVUsQ0FBQyxJQUFJLENBQUMsR0FBRyxFQUFFLENBQUM7S0FDNUI7R0FDRjtBQUNELHFCQUFtQixFQUFFLDZCQUFTLElBQUksRUFBRTtBQUNsQyxXQUFPLElBQUksQ0FBQyxVQUFVLENBQUMsSUFBSSxDQUFDLENBQUM7R0FDOUI7Ozs7O0FBS0QsNkJBQTJCLEVBQUEsdUNBQUc7QUFDNUIsZ0RBQXVCLENBQUM7R0FDekI7Q0FDRixDQUFDOztBQUVLLElBQUksR0FBRyxHQUFHLG9CQUFPLEdBQUcsQ0FBQzs7O1FBRW5CLFdBQVc7UUFBRSxNQUFNIiwiZmlsZSI6ImJhc2UuanMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBjcmVhdGVGcmFtZSwgZXh0ZW5kLCB0b1N0cmluZyB9IGZyb20gJy4vdXRpbHMnO1xuaW1wb3J0IEV4Y2VwdGlvbiBmcm9tICcuL2V4Y2VwdGlvbic7XG5pbXBvcnQgeyByZWdpc3RlckRlZmF1bHRIZWxwZXJzIH0gZnJvbSAnLi9oZWxwZXJzJztcbmltcG9ydCB7IHJlZ2lzdGVyRGVmYXVsdERlY29yYXRvcnMgfSBmcm9tICcuL2RlY29yYXRvcnMnO1xuaW1wb3J0IGxvZ2dlciBmcm9tICcuL2xvZ2dlcic7XG5pbXBvcnQgeyByZXNldExvZ2dlZFByb3BlcnRpZXMgfSBmcm9tICcuL2ludGVybmFsL3Byb3RvLWFjY2Vzcyc7XG5cbmV4cG9ydCBjb25zdCBWRVJTSU9OID0gJzQuNy44JztcbmV4cG9ydCBjb25zdCBDT01QSUxFUl9SRVZJU0lPTiA9IDg7XG5leHBvcnQgY29uc3QgTEFTVF9DT01QQVRJQkxFX0NPTVBJTEVSX1JFVklTSU9OID0gNztcblxuZXhwb3J0IGNvbnN0IFJFVklTSU9OX0NIQU5HRVMgPSB7XG4gIDE6ICc8PSAxLjAucmMuMicsIC8vIDEuMC5yYy4yIGlzIGFjdHVhbGx5IHJldjIgYnV0IGRvZXNuJ3QgcmVwb3J0IGl0XG4gIDI6ICc9PSAxLjAuMC1yYy4zJyxcbiAgMzogJz09IDEuMC4wLXJjLjQnLFxuICA0OiAnPT0gMS54LngnLFxuICA1OiAnPT0gMi4wLjAtYWxwaGEueCcsXG4gIDY6ICc+PSAyLjAuMC1iZXRhLjEnLFxuICA3OiAnPj0gNC4wLjAgPDQuMy4wJyxcbiAgODogJz49IDQuMy4wJ1xufTtcblxuY29uc3Qgb2JqZWN0VHlwZSA9ICdbb2JqZWN0IE9iamVjdF0nO1xuXG5leHBvcnQgZnVuY3Rpb24gSGFuZGxlYmFyc0Vudmlyb25tZW50KGhlbHBlcnMsIHBhcnRpYWxzLCBkZWNvcmF0b3JzKSB7XG4gIHRoaXMuaGVscGVycyA9IGhlbHBlcnMgfHwge307XG4gIHRoaXMucGFydGlhbHMgPSBwYXJ0aWFscyB8fCB7fTtcbiAgdGhpcy5kZWNvcmF0b3JzID0gZGVjb3JhdG9ycyB8fCB7fTtcblxuICByZWdpc3RlckRlZmF1bHRIZWxwZXJzKHRoaXMpO1xuICByZWdpc3RlckRlZmF1bHREZWNvcmF0b3JzKHRoaXMpO1xufVxuXG5IYW5kbGViYXJzRW52aXJvbm1lbnQucHJvdG90eXBlID0ge1xuICBjb25zdHJ1Y3RvcjogSGFuZGxlYmFyc0Vudmlyb25tZW50LFxuXG4gIGxvZ2dlcjogbG9nZ2VyLFxuICBsb2c6IGxvZ2dlci5sb2csXG5cbiAgcmVnaXN0ZXJIZWxwZXI6IGZ1bmN0aW9uKG5hbWUsIGZuKSB7XG4gICAgaWYgKHRvU3RyaW5nLmNhbGwobmFtZSkgPT09IG9iamVjdFR5cGUpIHtcbiAgICAgIGlmIChmbikge1xuICAgICAgICB0aHJvdyBuZXcgRXhjZXB0aW9uKCdBcmcgbm90IHN1cHBvcnRlZCB3aXRoIG11bHRpcGxlIGhlbHBlcnMnKTtcbiAgICAgIH1cbiAgICAgIGV4dGVuZCh0aGlzLmhlbHBlcnMsIG5hbWUpO1xuICAgIH0gZWxzZSB7XG4gICAgICB0aGlzLmhlbHBlcnNbbmFtZV0gPSBmbjtcbiAgICB9XG4gIH0sXG4gIHVucmVnaXN0ZXJIZWxwZXI6IGZ1bmN0aW9uKG5hbWUpIHtcbiAgICBkZWxldGUgdGhpcy5oZWxwZXJzW25hbWVdO1xuICB9LFxuXG4gIHJlZ2lzdGVyUGFydGlhbDogZnVuY3Rpb24obmFtZSwgcGFydGlhbCkge1xuICAgIGlmICh0b1N0cmluZy5jYWxsKG5hbWUpID09PSBvYmplY3RUeXBlKSB7XG4gICAgICBleHRlbmQodGhpcy5wYXJ0aWFscywgbmFtZSk7XG4gICAgfSBlbHNlIHtcbiAgICAgIGlmICh0eXBlb2YgcGFydGlhbCA9PT0gJ3VuZGVmaW5lZCcpIHtcbiAgICAgICAgdGhyb3cgbmV3IEV4Y2VwdGlvbihcbiAgICAgICAgICBgQXR0ZW1wdGluZyB0byByZWdpc3RlciBhIHBhcnRpYWwgY2FsbGVkIFwiJHtuYW1lfVwiIGFzIHVuZGVmaW5lZGBcbiAgICAgICAgKTtcbiAgICAgIH1cbiAgICAgIHRoaXMucGFydGlhbHNbbmFtZV0gPSBwYXJ0aWFsO1xuICAgIH1cbiAgfSxcbiAgdW5yZWdpc3RlclBhcnRpYWw6IGZ1bmN0aW9uKG5hbWUpIHtcbiAgICBkZWxldGUgdGhpcy5wYXJ0aWFsc1tuYW1lXTtcbiAgfSxcblxuICByZWdpc3RlckRlY29yYXRvcjogZnVuY3Rpb24obmFtZSwgZm4pIHtcbiAgICBpZiAodG9TdHJpbmcuY2FsbChuYW1lKSA9PT0gb2JqZWN0VHlwZSkge1xuICAgICAgaWYgKGZuKSB7XG4gICAgICAgIHRocm93IG5ldyBFeGNlcHRpb24oJ0FyZyBub3Qgc3VwcG9ydGVkIHdpdGggbXVsdGlwbGUgZGVjb3JhdG9ycycpO1xuICAgICAgfVxuICAgICAgZXh0ZW5kKHRoaXMuZGVjb3JhdG9ycywgbmFtZSk7XG4gICAgfSBlbHNlIHtcbiAgICAgIHRoaXMuZGVjb3JhdG9yc1tuYW1lXSA9IGZuO1xuICAgIH1cbiAgfSxcbiAgdW5yZWdpc3RlckRlY29yYXRvcjogZnVuY3Rpb24obmFtZSkge1xuICAgIGRlbGV0ZSB0aGlzLmRlY29yYXRvcnNbbmFtZV07XG4gIH0sXG4gIC8qKlxuICAgKiBSZXNldCB0aGUgbWVtb3J5IG9mIGlsbGVnYWwgcHJvcGVydHkgYWNjZXNzZXMgdGhhdCBoYXZlIGFscmVhZHkgYmVlbiBsb2dnZWQuXG4gICAqIEBkZXByZWNhdGVkIHNob3VsZCBvbmx5IGJlIHVzZWQgaW4gaGFuZGxlYmFycyB0ZXN0LWNhc2VzXG4gICAqL1xuICByZXNldExvZ2dlZFByb3BlcnR5QWNjZXNzZXMoKSB7XG4gICAgcmVzZXRMb2dnZWRQcm9wZXJ0aWVzKCk7XG4gIH1cbn07XG5cbmV4cG9ydCBsZXQgbG9nID0gbG9nZ2VyLmxvZztcblxuZXhwb3J0IHsgY3JlYXRlRnJhbWUsIGxvZ2dlciB9O1xuIl19
 
 
-/***/ }),
+/***/ },
 
-/***/ "./node_modules/handlebars/dist/cjs/handlebars/decorators.js":
+/***/ "./node_modules/handlebars/dist/cjs/handlebars/decorators.js"
 /*!*******************************************************************!*\
   !*** ./node_modules/handlebars/dist/cjs/handlebars/decorators.js ***!
   \*******************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+(__unused_webpack_module, exports, __webpack_require__) {
 
 "use strict";
 
@@ -543,14 +1281,13 @@ function registerDefaultDecorators(instance) {
 //# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uLy4uL2xpYi9oYW5kbGViYXJzL2RlY29yYXRvcnMuanMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7Ozs7Ozs7Z0NBQTJCLHFCQUFxQjs7OztBQUV6QyxTQUFTLHlCQUF5QixDQUFDLFFBQVEsRUFBRTtBQUNsRCxnQ0FBZSxRQUFRLENBQUMsQ0FBQztDQUMxQiIsImZpbGUiOiJkZWNvcmF0b3JzLmpzIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHJlZ2lzdGVySW5saW5lIGZyb20gJy4vZGVjb3JhdG9ycy9pbmxpbmUnO1xuXG5leHBvcnQgZnVuY3Rpb24gcmVnaXN0ZXJEZWZhdWx0RGVjb3JhdG9ycyhpbnN0YW5jZSkge1xuICByZWdpc3RlcklubGluZShpbnN0YW5jZSk7XG59XG4iXX0=
 
 
-/***/ }),
+/***/ },
 
-/***/ "./node_modules/handlebars/dist/cjs/handlebars/decorators/inline.js":
+/***/ "./node_modules/handlebars/dist/cjs/handlebars/decorators/inline.js"
 /*!**************************************************************************!*\
   !*** ./node_modules/handlebars/dist/cjs/handlebars/decorators/inline.js ***!
   \**************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+(module, exports, __webpack_require__) {
 
 "use strict";
 
@@ -559,7 +1296,7 @@ exports.__esModule = true;
 
 var _utils = __webpack_require__(/*! ../utils */ "./node_modules/handlebars/dist/cjs/handlebars/utils.js");
 
-exports['default'] = function (instance) {
+exports["default"] = function (instance) {
   instance.registerDecorator('inline', function (fn, props, container, options) {
     var ret = fn;
     if (!props.partials) {
@@ -584,14 +1321,13 @@ module.exports = exports['default'];
 //# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uLy4uLy4uL2xpYi9oYW5kbGViYXJzL2RlY29yYXRvcnMvaW5saW5lLmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7cUJBQXVCLFVBQVU7O3FCQUVsQixVQUFTLFFBQVEsRUFBRTtBQUNoQyxVQUFRLENBQUMsaUJBQWlCLENBQUMsUUFBUSxFQUFFLFVBQVMsRUFBRSxFQUFFLEtBQUssRUFBRSxTQUFTLEVBQUUsT0FBTyxFQUFFO0FBQzNFLFFBQUksR0FBRyxHQUFHLEVBQUUsQ0FBQztBQUNiLFFBQUksQ0FBQyxLQUFLLENBQUMsUUFBUSxFQUFFO0FBQ25CLFdBQUssQ0FBQyxRQUFRLEdBQUcsRUFBRSxDQUFDO0FBQ3BCLFNBQUcsR0FBRyxVQUFTLE9BQU8sRUFBRSxPQUFPLEVBQUU7O0FBRS9CLFlBQUksUUFBUSxHQUFHLFNBQVMsQ0FBQyxRQUFRLENBQUM7QUFDbEMsaUJBQVMsQ0FBQyxRQUFRLEdBQUcsY0FBTyxFQUFFLEVBQUUsUUFBUSxFQUFFLEtBQUssQ0FBQyxRQUFRLENBQUMsQ0FBQztBQUMxRCxZQUFJLEdBQUcsR0FBRyxFQUFFLENBQUMsT0FBTyxFQUFFLE9BQU8sQ0FBQyxDQUFDO0FBQy9CLGlCQUFTLENBQUMsUUFBUSxHQUFHLFFBQVEsQ0FBQztBQUM5QixlQUFPLEdBQUcsQ0FBQztPQUNaLENBQUM7S0FDSDs7QUFFRCxTQUFLLENBQUMsUUFBUSxDQUFDLE9BQU8sQ0FBQyxJQUFJLENBQUMsQ0FBQyxDQUFDLENBQUMsR0FBRyxPQUFPLENBQUMsRUFBRSxDQUFDOztBQUU3QyxXQUFPLEdBQUcsQ0FBQztHQUNaLENBQUMsQ0FBQztDQUNKIiwiZmlsZSI6ImlubGluZS5qcyIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCB7IGV4dGVuZCB9IGZyb20gJy4uL3V0aWxzJztcblxuZXhwb3J0IGRlZmF1bHQgZnVuY3Rpb24oaW5zdGFuY2UpIHtcbiAgaW5zdGFuY2UucmVnaXN0ZXJEZWNvcmF0b3IoJ2lubGluZScsIGZ1bmN0aW9uKGZuLCBwcm9wcywgY29udGFpbmVyLCBvcHRpb25zKSB7XG4gICAgbGV0IHJldCA9IGZuO1xuICAgIGlmICghcHJvcHMucGFydGlhbHMpIHtcbiAgICAgIHByb3BzLnBhcnRpYWxzID0ge307XG4gICAgICByZXQgPSBmdW5jdGlvbihjb250ZXh0LCBvcHRpb25zKSB7XG4gICAgICAgIC8vIENyZWF0ZSBhIG5ldyBwYXJ0aWFscyBzdGFjayBmcmFtZSBwcmlvciB0byBleGVjLlxuICAgICAgICBsZXQgb3JpZ2luYWwgPSBjb250YWluZXIucGFydGlhbHM7XG4gICAgICAgIGNvbnRhaW5lci5wYXJ0aWFscyA9IGV4dGVuZCh7fSwgb3JpZ2luYWwsIHByb3BzLnBhcnRpYWxzKTtcbiAgICAgICAgbGV0IHJldCA9IGZuKGNvbnRleHQsIG9wdGlvbnMpO1xuICAgICAgICBjb250YWluZXIucGFydGlhbHMgPSBvcmlnaW5hbDtcbiAgICAgICAgcmV0dXJuIHJldDtcbiAgICAgIH07XG4gICAgfVxuXG4gICAgcHJvcHMucGFydGlhbHNbb3B0aW9ucy5hcmdzWzBdXSA9IG9wdGlvbnMuZm47XG5cbiAgICByZXR1cm4gcmV0O1xuICB9KTtcbn1cbiJdfQ==
 
 
-/***/ }),
+/***/ },
 
-/***/ "./node_modules/handlebars/dist/cjs/handlebars/exception.js":
+/***/ "./node_modules/handlebars/dist/cjs/handlebars/exception.js"
 /*!******************************************************************!*\
   !*** ./node_modules/handlebars/dist/cjs/handlebars/exception.js ***!
   \******************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+(module, exports) {
 
 "use strict";
 
@@ -655,19 +1391,18 @@ function Exception(message, node) {
 
 Exception.prototype = new Error();
 
-exports['default'] = Exception;
+exports["default"] = Exception;
 module.exports = exports['default'];
 //# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uLy4uL2xpYi9oYW5kbGViYXJzL2V4Y2VwdGlvbi5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7QUFBQSxJQUFNLFVBQVUsR0FBRyxDQUNqQixhQUFhLEVBQ2IsVUFBVSxFQUNWLFlBQVksRUFDWixlQUFlLEVBQ2YsU0FBUyxFQUNULE1BQU0sRUFDTixRQUFRLEVBQ1IsT0FBTyxDQUNSLENBQUM7O0FBRUYsU0FBUyxTQUFTLENBQUMsT0FBTyxFQUFFLElBQUksRUFBRTtBQUNoQyxNQUFJLEdBQUcsR0FBRyxJQUFJLElBQUksSUFBSSxDQUFDLEdBQUc7TUFDeEIsSUFBSSxZQUFBO01BQ0osYUFBYSxZQUFBO01BQ2IsTUFBTSxZQUFBO01BQ04sU0FBUyxZQUFBLENBQUM7O0FBRVosTUFBSSxHQUFHLEVBQUU7QUFDUCxRQUFJLEdBQUcsR0FBRyxDQUFDLEtBQUssQ0FBQyxJQUFJLENBQUM7QUFDdEIsaUJBQWEsR0FBRyxHQUFHLENBQUMsR0FBRyxDQUFDLElBQUksQ0FBQztBQUM3QixVQUFNLEdBQUcsR0FBRyxDQUFDLEtBQUssQ0FBQyxNQUFNLENBQUM7QUFDMUIsYUFBUyxHQUFHLEdBQUcsQ0FBQyxHQUFHLENBQUMsTUFBTSxDQUFDOztBQUUzQixXQUFPLElBQUksS0FBSyxHQUFHLElBQUksR0FBRyxHQUFHLEdBQUcsTUFBTSxDQUFDO0dBQ3hDOztBQUVELE1BQUksR0FBRyxHQUFHLEtBQUssQ0FBQyxTQUFTLENBQUMsV0FBVyxDQUFDLElBQUksQ0FBQyxJQUFJLEVBQUUsT0FBTyxDQUFDLENBQUM7OztBQUcxRCxPQUFLLElBQUksR0FBRyxHQUFHLENBQUMsRUFBRSxHQUFHLEdBQUcsVUFBVSxDQUFDLE1BQU0sRUFBRSxHQUFHLEVBQUUsRUFBRTtBQUNoRCxRQUFJLENBQUMsVUFBVSxDQUFDLEdBQUcsQ0FBQyxDQUFDLEdBQUcsR0FBRyxDQUFDLFVBQVUsQ0FBQyxHQUFHLENBQUMsQ0FBQyxDQUFDO0dBQzlDOzs7QUFHRCxNQUFJLEtBQUssQ0FBQyxpQkFBaUIsRUFBRTtBQUMzQixTQUFLLENBQUMsaUJBQWlCLENBQUMsSUFBSSxFQUFFLFNBQVMsQ0FBQyxDQUFDO0dBQzFDOztBQUVELE1BQUk7QUFDRixRQUFJLEdBQUcsRUFBRTtBQUNQLFVBQUksQ0FBQyxVQUFVLEdBQUcsSUFBSSxDQUFDO0FBQ3ZCLFVBQUksQ0FBQyxhQUFhLEdBQUcsYUFBYSxDQUFDOzs7O0FBSW5DLFVBQUksTUFBTSxDQUFDLGNBQWMsRUFBRTtBQUN6QixjQUFNLENBQUMsY0FBYyxDQUFDLElBQUksRUFBRSxRQUFRLEVBQUU7QUFDcEMsZUFBSyxFQUFFLE1BQU07QUFDYixvQkFBVSxFQUFFLElBQUk7U0FDakIsQ0FBQyxDQUFDO0FBQ0gsY0FBTSxDQUFDLGNBQWMsQ0FBQyxJQUFJLEVBQUUsV0FBVyxFQUFFO0FBQ3ZDLGVBQUssRUFBRSxTQUFTO0FBQ2hCLG9CQUFVLEVBQUUsSUFBSTtTQUNqQixDQUFDLENBQUM7T0FDSixNQUFNO0FBQ0wsWUFBSSxDQUFDLE1BQU0sR0FBRyxNQUFNLENBQUM7QUFDckIsWUFBSSxDQUFDLFNBQVMsR0FBRyxTQUFTLENBQUM7T0FDNUI7S0FDRjtHQUNGLENBQUMsT0FBTyxHQUFHLEVBQUU7O0dBRWI7Q0FDRjs7QUFFRCxTQUFTLENBQUMsU0FBUyxHQUFHLElBQUksS0FBSyxFQUFFLENBQUM7O3FCQUVuQixTQUFTIiwiZmlsZSI6ImV4Y2VwdGlvbi5qcyIsInNvdXJjZXNDb250ZW50IjpbImNvbnN0IGVycm9yUHJvcHMgPSBbXG4gICdkZXNjcmlwdGlvbicsXG4gICdmaWxlTmFtZScsXG4gICdsaW5lTnVtYmVyJyxcbiAgJ2VuZExpbmVOdW1iZXInLFxuICAnbWVzc2FnZScsXG4gICduYW1lJyxcbiAgJ251bWJlcicsXG4gICdzdGFjaydcbl07XG5cbmZ1bmN0aW9uIEV4Y2VwdGlvbihtZXNzYWdlLCBub2RlKSB7XG4gIGxldCBsb2MgPSBub2RlICYmIG5vZGUubG9jLFxuICAgIGxpbmUsXG4gICAgZW5kTGluZU51bWJlcixcbiAgICBjb2x1bW4sXG4gICAgZW5kQ29sdW1uO1xuXG4gIGlmIChsb2MpIHtcbiAgICBsaW5lID0gbG9jLnN0YXJ0LmxpbmU7XG4gICAgZW5kTGluZU51bWJlciA9IGxvYy5lbmQubGluZTtcbiAgICBjb2x1bW4gPSBsb2Muc3RhcnQuY29sdW1uO1xuICAgIGVuZENvbHVtbiA9IGxvYy5lbmQuY29sdW1uO1xuXG4gICAgbWVzc2FnZSArPSAnIC0gJyArIGxpbmUgKyAnOicgKyBjb2x1bW47XG4gIH1cblxuICBsZXQgdG1wID0gRXJyb3IucHJvdG90eXBlLmNvbnN0cnVjdG9yLmNhbGwodGhpcywgbWVzc2FnZSk7XG5cbiAgLy8gVW5mb3J0dW5hdGVseSBlcnJvcnMgYXJlIG5vdCBlbnVtZXJhYmxlIGluIENocm9tZSAoYXQgbGVhc3QpLCBzbyBgZm9yIHByb3AgaW4gdG1wYCBkb2Vzbid0IHdvcmsuXG4gIGZvciAobGV0IGlkeCA9IDA7IGlkeCA8IGVycm9yUHJvcHMubGVuZ3RoOyBpZHgrKykge1xuICAgIHRoaXNbZXJyb3JQcm9wc1tpZHhdXSA9IHRtcFtlcnJvclByb3BzW2lkeF1dO1xuICB9XG5cbiAgLyogaXN0YW5idWwgaWdub3JlIGVsc2UgKi9cbiAgaWYgKEVycm9yLmNhcHR1cmVTdGFja1RyYWNlKSB7XG4gICAgRXJyb3IuY2FwdHVyZVN0YWNrVHJhY2UodGhpcywgRXhjZXB0aW9uKTtcbiAgfVxuXG4gIHRyeSB7XG4gICAgaWYgKGxvYykge1xuICAgICAgdGhpcy5saW5lTnVtYmVyID0gbGluZTtcbiAgICAgIHRoaXMuZW5kTGluZU51bWJlciA9IGVuZExpbmVOdW1iZXI7XG5cbiAgICAgIC8vIFdvcmsgYXJvdW5kIGlzc3VlIHVuZGVyIHNhZmFyaSB3aGVyZSB3ZSBjYW4ndCBkaXJlY3RseSBzZXQgdGhlIGNvbHVtbiB2YWx1ZVxuICAgICAgLyogaXN0YW5idWwgaWdub3JlIG5leHQgKi9cbiAgICAgIGlmIChPYmplY3QuZGVmaW5lUHJvcGVydHkpIHtcbiAgICAgICAgT2JqZWN0LmRlZmluZVByb3BlcnR5KHRoaXMsICdjb2x1bW4nLCB7XG4gICAgICAgICAgdmFsdWU6IGNvbHVtbixcbiAgICAgICAgICBlbnVtZXJhYmxlOiB0cnVlXG4gICAgICAgIH0pO1xuICAgICAgICBPYmplY3QuZGVmaW5lUHJvcGVydHkodGhpcywgJ2VuZENvbHVtbicsIHtcbiAgICAgICAgICB2YWx1ZTogZW5kQ29sdW1uLFxuICAgICAgICAgIGVudW1lcmFibGU6IHRydWVcbiAgICAgICAgfSk7XG4gICAgICB9IGVsc2Uge1xuICAgICAgICB0aGlzLmNvbHVtbiA9IGNvbHVtbjtcbiAgICAgICAgdGhpcy5lbmRDb2x1bW4gPSBlbmRDb2x1bW47XG4gICAgICB9XG4gICAgfVxuICB9IGNhdGNoIChub3ApIHtcbiAgICAvKiBJZ25vcmUgaWYgdGhlIGJyb3dzZXIgaXMgdmVyeSBwYXJ0aWN1bGFyICovXG4gIH1cbn1cblxuRXhjZXB0aW9uLnByb3RvdHlwZSA9IG5ldyBFcnJvcigpO1xuXG5leHBvcnQgZGVmYXVsdCBFeGNlcHRpb247XG4iXX0=
 
 
-/***/ }),
+/***/ },
 
-/***/ "./node_modules/handlebars/dist/cjs/handlebars/helpers.js":
+/***/ "./node_modules/handlebars/dist/cjs/handlebars/helpers.js"
 /*!****************************************************************!*\
   !*** ./node_modules/handlebars/dist/cjs/handlebars/helpers.js ***!
   \****************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+(__unused_webpack_module, exports, __webpack_require__) {
 
 "use strict";
 
@@ -728,14 +1463,13 @@ function moveHelperToHooks(instance, helperName, keepHelper) {
 //# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uLy4uL2xpYi9oYW5kbGViYXJzL2hlbHBlcnMuanMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7Ozs7Ozs7O3lDQUF1QyxnQ0FBZ0M7Ozs7MkJBQzlDLGdCQUFnQjs7OztvQ0FDUCwwQkFBMEI7Ozs7eUJBQ3JDLGNBQWM7Ozs7MEJBQ2IsZUFBZTs7Ozs2QkFDWixrQkFBa0I7Ozs7MkJBQ3BCLGdCQUFnQjs7OztBQUVsQyxTQUFTLHNCQUFzQixDQUFDLFFBQVEsRUFBRTtBQUMvQyx5Q0FBMkIsUUFBUSxDQUFDLENBQUM7QUFDckMsMkJBQWEsUUFBUSxDQUFDLENBQUM7QUFDdkIsb0NBQXNCLFFBQVEsQ0FBQyxDQUFDO0FBQ2hDLHlCQUFXLFFBQVEsQ0FBQyxDQUFDO0FBQ3JCLDBCQUFZLFFBQVEsQ0FBQyxDQUFDO0FBQ3RCLDZCQUFlLFFBQVEsQ0FBQyxDQUFDO0FBQ3pCLDJCQUFhLFFBQVEsQ0FBQyxDQUFDO0NBQ3hCOztBQUVNLFNBQVMsaUJBQWlCLENBQUMsUUFBUSxFQUFFLFVBQVUsRUFBRSxVQUFVLEVBQUU7QUFDbEUsTUFBSSxRQUFRLENBQUMsT0FBTyxDQUFDLFVBQVUsQ0FBQyxFQUFFO0FBQ2hDLFlBQVEsQ0FBQyxLQUFLLENBQUMsVUFBVSxDQUFDLEdBQUcsUUFBUSxDQUFDLE9BQU8sQ0FBQyxVQUFVLENBQUMsQ0FBQztBQUMxRCxRQUFJLENBQUMsVUFBVSxFQUFFO0FBQ2YsYUFBTyxRQUFRLENBQUMsT0FBTyxDQUFDLFVBQVUsQ0FBQyxDQUFDO0tBQ3JDO0dBQ0Y7Q0FDRiIsImZpbGUiOiJoZWxwZXJzLmpzIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHJlZ2lzdGVyQmxvY2tIZWxwZXJNaXNzaW5nIGZyb20gJy4vaGVscGVycy9ibG9jay1oZWxwZXItbWlzc2luZyc7XG5pbXBvcnQgcmVnaXN0ZXJFYWNoIGZyb20gJy4vaGVscGVycy9lYWNoJztcbmltcG9ydCByZWdpc3RlckhlbHBlck1pc3NpbmcgZnJvbSAnLi9oZWxwZXJzL2hlbHBlci1taXNzaW5nJztcbmltcG9ydCByZWdpc3RlcklmIGZyb20gJy4vaGVscGVycy9pZic7XG5pbXBvcnQgcmVnaXN0ZXJMb2cgZnJvbSAnLi9oZWxwZXJzL2xvZyc7XG5pbXBvcnQgcmVnaXN0ZXJMb29rdXAgZnJvbSAnLi9oZWxwZXJzL2xvb2t1cCc7XG5pbXBvcnQgcmVnaXN0ZXJXaXRoIGZyb20gJy4vaGVscGVycy93aXRoJztcblxuZXhwb3J0IGZ1bmN0aW9uIHJlZ2lzdGVyRGVmYXVsdEhlbHBlcnMoaW5zdGFuY2UpIHtcbiAgcmVnaXN0ZXJCbG9ja0hlbHBlck1pc3NpbmcoaW5zdGFuY2UpO1xuICByZWdpc3RlckVhY2goaW5zdGFuY2UpO1xuICByZWdpc3RlckhlbHBlck1pc3NpbmcoaW5zdGFuY2UpO1xuICByZWdpc3RlcklmKGluc3RhbmNlKTtcbiAgcmVnaXN0ZXJMb2coaW5zdGFuY2UpO1xuICByZWdpc3Rlckxvb2t1cChpbnN0YW5jZSk7XG4gIHJlZ2lzdGVyV2l0aChpbnN0YW5jZSk7XG59XG5cbmV4cG9ydCBmdW5jdGlvbiBtb3ZlSGVscGVyVG9Ib29rcyhpbnN0YW5jZSwgaGVscGVyTmFtZSwga2VlcEhlbHBlcikge1xuICBpZiAoaW5zdGFuY2UuaGVscGVyc1toZWxwZXJOYW1lXSkge1xuICAgIGluc3RhbmNlLmhvb2tzW2hlbHBlck5hbWVdID0gaW5zdGFuY2UuaGVscGVyc1toZWxwZXJOYW1lXTtcbiAgICBpZiAoIWtlZXBIZWxwZXIpIHtcbiAgICAgIGRlbGV0ZSBpbnN0YW5jZS5oZWxwZXJzW2hlbHBlck5hbWVdO1xuICAgIH1cbiAgfVxufVxuIl19
 
 
-/***/ }),
+/***/ },
 
-/***/ "./node_modules/handlebars/dist/cjs/handlebars/helpers/block-helper-missing.js":
+/***/ "./node_modules/handlebars/dist/cjs/handlebars/helpers/block-helper-missing.js"
 /*!*************************************************************************************!*\
   !*** ./node_modules/handlebars/dist/cjs/handlebars/helpers/block-helper-missing.js ***!
   \*************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+(module, exports, __webpack_require__) {
 
 "use strict";
 
@@ -744,7 +1478,7 @@ exports.__esModule = true;
 
 var _utils = __webpack_require__(/*! ../utils */ "./node_modules/handlebars/dist/cjs/handlebars/utils.js");
 
-exports['default'] = function (instance) {
+exports["default"] = function (instance) {
   instance.registerHelper('blockHelperMissing', function (context, options) {
     var inverse = options.inverse,
         fn = options.fn;
@@ -779,14 +1513,13 @@ module.exports = exports['default'];
 //# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uLy4uLy4uL2xpYi9oYW5kbGViYXJzL2hlbHBlcnMvYmxvY2staGVscGVyLW1pc3NpbmcuanMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7OztxQkFBd0QsVUFBVTs7cUJBRW5ELFVBQVMsUUFBUSxFQUFFO0FBQ2hDLFVBQVEsQ0FBQyxjQUFjLENBQUMsb0JBQW9CLEVBQUUsVUFBUyxPQUFPLEVBQUUsT0FBTyxFQUFFO0FBQ3ZFLFFBQUksT0FBTyxHQUFHLE9BQU8sQ0FBQyxPQUFPO1FBQzNCLEVBQUUsR0FBRyxPQUFPLENBQUMsRUFBRSxDQUFDOztBQUVsQixRQUFJLE9BQU8sS0FBSyxJQUFJLEVBQUU7QUFDcEIsYUFBTyxFQUFFLENBQUMsSUFBSSxDQUFDLENBQUM7S0FDakIsTUFBTSxJQUFJLE9BQU8sS0FBSyxLQUFLLElBQUksT0FBTyxJQUFJLElBQUksRUFBRTtBQUMvQyxhQUFPLE9BQU8sQ0FBQyxJQUFJLENBQUMsQ0FBQztLQUN0QixNQUFNLElBQUksZUFBUSxPQUFPLENBQUMsRUFBRTtBQUMzQixVQUFJLE9BQU8sQ0FBQyxNQUFNLEdBQUcsQ0FBQyxFQUFFO0FBQ3RCLFlBQUksT0FBTyxDQUFDLEdBQUcsRUFBRTtBQUNmLGlCQUFPLENBQUMsR0FBRyxHQUFHLENBQUMsT0FBTyxDQUFDLElBQUksQ0FBQyxDQUFDO1NBQzlCOztBQUVELGVBQU8sUUFBUSxDQUFDLE9BQU8sQ0FBQyxJQUFJLENBQUMsT0FBTyxFQUFFLE9BQU8sQ0FBQyxDQUFDO09BQ2hELE1BQU07QUFDTCxlQUFPLE9BQU8sQ0FBQyxJQUFJLENBQUMsQ0FBQztPQUN0QjtLQUNGLE1BQU07QUFDTCxVQUFJLE9BQU8sQ0FBQyxJQUFJLElBQUksT0FBTyxDQUFDLEdBQUcsRUFBRTtBQUMvQixZQUFJLElBQUksR0FBRyxtQkFBWSxPQUFPLENBQUMsSUFBSSxDQUFDLENBQUM7QUFDckMsWUFBSSxDQUFDLFdBQVcsR0FBRyx5QkFDakIsT0FBTyxDQUFDLElBQUksQ0FBQyxXQUFXLEVBQ3hCLE9BQU8sQ0FBQyxJQUFJLENBQ2IsQ0FBQztBQUNGLGVBQU8sR0FBRyxFQUFFLElBQUksRUFBRSxJQUFJLEVBQUUsQ0FBQztPQUMxQjs7QUFFRCxhQUFPLEVBQUUsQ0FBQyxPQUFPLEVBQUUsT0FBTyxDQUFDLENBQUM7S0FDN0I7R0FDRixDQUFDLENBQUM7Q0FDSiIsImZpbGUiOiJibG9jay1oZWxwZXItbWlzc2luZy5qcyIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCB7IGFwcGVuZENvbnRleHRQYXRoLCBjcmVhdGVGcmFtZSwgaXNBcnJheSB9IGZyb20gJy4uL3V0aWxzJztcblxuZXhwb3J0IGRlZmF1bHQgZnVuY3Rpb24oaW5zdGFuY2UpIHtcbiAgaW5zdGFuY2UucmVnaXN0ZXJIZWxwZXIoJ2Jsb2NrSGVscGVyTWlzc2luZycsIGZ1bmN0aW9uKGNvbnRleHQsIG9wdGlvbnMpIHtcbiAgICBsZXQgaW52ZXJzZSA9IG9wdGlvbnMuaW52ZXJzZSxcbiAgICAgIGZuID0gb3B0aW9ucy5mbjtcblxuICAgIGlmIChjb250ZXh0ID09PSB0cnVlKSB7XG4gICAgICByZXR1cm4gZm4odGhpcyk7XG4gICAgfSBlbHNlIGlmIChjb250ZXh0ID09PSBmYWxzZSB8fCBjb250ZXh0ID09IG51bGwpIHtcbiAgICAgIHJldHVybiBpbnZlcnNlKHRoaXMpO1xuICAgIH0gZWxzZSBpZiAoaXNBcnJheShjb250ZXh0KSkge1xuICAgICAgaWYgKGNvbnRleHQubGVuZ3RoID4gMCkge1xuICAgICAgICBpZiAob3B0aW9ucy5pZHMpIHtcbiAgICAgICAgICBvcHRpb25zLmlkcyA9IFtvcHRpb25zLm5hbWVdO1xuICAgICAgICB9XG5cbiAgICAgICAgcmV0dXJuIGluc3RhbmNlLmhlbHBlcnMuZWFjaChjb250ZXh0LCBvcHRpb25zKTtcbiAgICAgIH0gZWxzZSB7XG4gICAgICAgIHJldHVybiBpbnZlcnNlKHRoaXMpO1xuICAgICAgfVxuICAgIH0gZWxzZSB7XG4gICAgICBpZiAob3B0aW9ucy5kYXRhICYmIG9wdGlvbnMuaWRzKSB7XG4gICAgICAgIGxldCBkYXRhID0gY3JlYXRlRnJhbWUob3B0aW9ucy5kYXRhKTtcbiAgICAgICAgZGF0YS5jb250ZXh0UGF0aCA9IGFwcGVuZENvbnRleHRQYXRoKFxuICAgICAgICAgIG9wdGlvbnMuZGF0YS5jb250ZXh0UGF0aCxcbiAgICAgICAgICBvcHRpb25zLm5hbWVcbiAgICAgICAgKTtcbiAgICAgICAgb3B0aW9ucyA9IHsgZGF0YTogZGF0YSB9O1xuICAgICAgfVxuXG4gICAgICByZXR1cm4gZm4oY29udGV4dCwgb3B0aW9ucyk7XG4gICAgfVxuICB9KTtcbn1cbiJdfQ==
 
 
-/***/ }),
+/***/ },
 
-/***/ "./node_modules/handlebars/dist/cjs/handlebars/helpers/each.js":
+/***/ "./node_modules/handlebars/dist/cjs/handlebars/helpers/each.js"
 /*!*********************************************************************!*\
   !*** ./node_modules/handlebars/dist/cjs/handlebars/helpers/each.js ***!
   \*********************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+(module, exports, __webpack_require__) {
 
 "use strict";
 
@@ -802,7 +1535,7 @@ var _exception = __webpack_require__(/*! ../exception */ "./node_modules/handleb
 
 var _exception2 = _interopRequireDefault(_exception);
 
-exports['default'] = function (instance) {
+exports["default"] = function (instance) {
   instance.registerHelper('each', function (context, options) {
     if (!options) {
       throw new _exception2['default']('Must pass iterator to #each');
@@ -895,14 +1628,13 @@ module.exports = exports['default'];
 //# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uLy4uLy4uL2xpYi9oYW5kbGViYXJzL2hlbHBlcnMvZWFjaC5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7Ozs7O3FCQU1PLFVBQVU7O3lCQUNLLGNBQWM7Ozs7cUJBRXJCLFVBQVMsUUFBUSxFQUFFO0FBQ2hDLFVBQVEsQ0FBQyxjQUFjLENBQUMsTUFBTSxFQUFFLFVBQVMsT0FBTyxFQUFFLE9BQU8sRUFBRTtBQUN6RCxRQUFJLENBQUMsT0FBTyxFQUFFO0FBQ1osWUFBTSwyQkFBYyw2QkFBNkIsQ0FBQyxDQUFDO0tBQ3BEOztBQUVELFFBQUksRUFBRSxHQUFHLE9BQU8sQ0FBQyxFQUFFO1FBQ2pCLE9BQU8sR0FBRyxPQUFPLENBQUMsT0FBTztRQUN6QixDQUFDLEdBQUcsQ0FBQztRQUNMLEdBQUcsR0FBRyxFQUFFO1FBQ1IsSUFBSSxZQUFBO1FBQ0osV0FBVyxZQUFBLENBQUM7O0FBRWQsUUFBSSxPQUFPLENBQUMsSUFBSSxJQUFJLE9BQU8sQ0FBQyxHQUFHLEVBQUU7QUFDL0IsaUJBQVcsR0FDVCx5QkFBa0IsT0FBTyxDQUFDLElBQUksQ0FBQyxXQUFXLEVBQUUsT0FBTyxDQUFDLEdBQUcsQ0FBQyxDQUFDLENBQUMsQ0FBQyxHQUFHLEdBQUcsQ0FBQztLQUNyRTs7QUFFRCxRQUFJLGtCQUFXLE9BQU8sQ0FBQyxFQUFFO0FBQ3ZCLGFBQU8sR0FBRyxPQUFPLENBQUMsSUFBSSxDQUFDLElBQUksQ0FBQyxDQUFDO0tBQzlCOztBQUVELFFBQUksT0FBTyxDQUFDLElBQUksRUFBRTtBQUNoQixVQUFJLEdBQUcsbUJBQVksT0FBTyxDQUFDLElBQUksQ0FBQyxDQUFDO0tBQ2xDOztBQUVELGFBQVMsYUFBYSxDQUFDLEtBQUssRUFBRSxLQUFLLEVBQUUsSUFBSSxFQUFFO0FBQ3pDLFVBQUksSUFBSSxFQUFFO0FBQ1IsWUFBSSxDQUFDLEdBQUcsR0FBRyxLQUFLLENBQUM7QUFDakIsWUFBSSxDQUFDLEtBQUssR0FBRyxLQUFLLENBQUM7QUFDbkIsWUFBSSxDQUFDLEtBQUssR0FBRyxLQUFLLEtBQUssQ0FBQyxDQUFDO0FBQ3pCLFlBQUksQ0FBQyxJQUFJLEdBQUcsQ0FBQyxDQUFDLElBQUksQ0FBQzs7QUFFbkIsWUFBSSxXQUFXLEVBQUU7QUFDZixjQUFJLENBQUMsV0FBVyxHQUFHLFdBQVcsR0FBRyxLQUFLLENBQUM7U0FDeEM7T0FDRjs7QUFFRCxTQUFHLEdBQ0QsR0FBRyxHQUNILEVBQUUsQ0FBQyxPQUFPLENBQUMsS0FBSyxDQUFDLEVBQUU7QUFDakIsWUFBSSxFQUFFLElBQUk7QUFDVixtQkFBVyxFQUFFLG1CQUNYLENBQUMsT0FBTyxDQUFDLEtBQUssQ0FBQyxFQUFFLEtBQUssQ0FBQyxFQUN2QixDQUFDLFdBQVcsR0FBRyxLQUFLLEVBQUUsSUFBSSxDQUFDLENBQzVCO09BQ0YsQ0FBQyxDQUFDO0tBQ047O0FBRUQsUUFBSSxPQUFPLElBQUksT0FBTyxPQUFPLEtBQUssUUFBUSxFQUFFO0FBQzFDLFVBQUksZUFBUSxPQUFPLENBQUMsRUFBRTtBQUNwQixhQUFLLElBQUksQ0FBQyxHQUFHLE9BQU8sQ0FBQyxNQUFNLEVBQUUsQ0FBQyxHQUFHLENBQUMsRUFBRSxDQUFDLEVBQUUsRUFBRTtBQUN2QyxjQUFJLENBQUMsSUFBSSxPQUFPLEVBQUU7QUFDaEIseUJBQWEsQ0FBQyxDQUFDLEVBQUUsQ0FBQyxFQUFFLENBQUMsS0FBSyxPQUFPLENBQUMsTUFBTSxHQUFHLENBQUMsQ0FBQyxDQUFDO1dBQy9DO1NBQ0Y7T0FDRixNQUFNLElBQUksT0FBTyxNQUFNLEtBQUssVUFBVSxJQUFJLE9BQU8sQ0FBQyxNQUFNLENBQUMsUUFBUSxDQUFDLEVBQUU7QUFDbkUsWUFBTSxVQUFVLEdBQUcsRUFBRSxDQUFDO0FBQ3RCLFlBQU0sUUFBUSxHQUFHLE9BQU8sQ0FBQyxNQUFNLENBQUMsUUFBUSxDQUFDLEVBQUUsQ0FBQztBQUM1QyxhQUFLLElBQUksRUFBRSxHQUFHLFFBQVEsQ0FBQyxJQUFJLEVBQUUsRUFBRSxDQUFDLEVBQUUsQ0FBQyxJQUFJLEVBQUUsRUFBRSxHQUFHLFFBQVEsQ0FBQyxJQUFJLEVBQUUsRUFBRTtBQUM3RCxvQkFBVSxDQUFDLElBQUksQ0FBQyxFQUFFLENBQUMsS0FBSyxDQUFDLENBQUM7U0FDM0I7QUFDRCxlQUFPLEdBQUcsVUFBVSxDQUFDO0FBQ3JCLGFBQUssSUFBSSxDQUFDLEdBQUcsT0FBTyxDQUFDLE1BQU0sRUFBRSxDQUFDLEdBQUcsQ0FBQyxFQUFFLENBQUMsRUFBRSxFQUFFO0FBQ3ZDLHVCQUFhLENBQUMsQ0FBQyxFQUFFLENBQUMsRUFBRSxDQUFDLEtBQUssT0FBTyxDQUFDLE1BQU0sR0FBRyxDQUFDLENBQUMsQ0FBQztTQUMvQztPQUNGLE1BQU07O0FBQ0wsY0FBSSxRQUFRLFlBQUEsQ0FBQzs7QUFFYixnQkFBTSxDQUFDLElBQUksQ0FBQyxPQUFPLENBQUMsQ0FBQyxPQUFPLENBQUMsVUFBQSxHQUFHLEVBQUk7Ozs7QUFJbEMsZ0JBQUksUUFBUSxLQUFLLFNBQVMsRUFBRTtBQUMxQiwyQkFBYSxDQUFDLFFBQVEsRUFBRSxDQUFDLEdBQUcsQ0FBQyxDQUFDLENBQUM7YUFDaEM7QUFDRCxvQkFBUSxHQUFHLEdBQUcsQ0FBQztBQUNmLGFBQUMsRUFBRSxDQUFDO1dBQ0wsQ0FBQyxDQUFDO0FBQ0gsY0FBSSxRQUFRLEtBQUssU0FBUyxFQUFFO0FBQzFCLHlCQUFhLENBQUMsUUFBUSxFQUFFLENBQUMsR0FBRyxDQUFDLEVBQUUsSUFBSSxDQUFDLENBQUM7V0FDdEM7O09BQ0Y7S0FDRjs7QUFFRCxRQUFJLENBQUMsS0FBSyxDQUFDLEVBQUU7QUFDWCxTQUFHLEdBQUcsT0FBTyxDQUFDLElBQUksQ0FBQyxDQUFDO0tBQ3JCOztBQUVELFdBQU8sR0FBRyxDQUFDO0dBQ1osQ0FBQyxDQUFDO0NBQ0oiLCJmaWxlIjoiZWFjaC5qcyIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCB7XG4gIGFwcGVuZENvbnRleHRQYXRoLFxuICBibG9ja1BhcmFtcyxcbiAgY3JlYXRlRnJhbWUsXG4gIGlzQXJyYXksXG4gIGlzRnVuY3Rpb25cbn0gZnJvbSAnLi4vdXRpbHMnO1xuaW1wb3J0IEV4Y2VwdGlvbiBmcm9tICcuLi9leGNlcHRpb24nO1xuXG5leHBvcnQgZGVmYXVsdCBmdW5jdGlvbihpbnN0YW5jZSkge1xuICBpbnN0YW5jZS5yZWdpc3RlckhlbHBlcignZWFjaCcsIGZ1bmN0aW9uKGNvbnRleHQsIG9wdGlvbnMpIHtcbiAgICBpZiAoIW9wdGlvbnMpIHtcbiAgICAgIHRocm93IG5ldyBFeGNlcHRpb24oJ011c3QgcGFzcyBpdGVyYXRvciB0byAjZWFjaCcpO1xuICAgIH1cblxuICAgIGxldCBmbiA9IG9wdGlvbnMuZm4sXG4gICAgICBpbnZlcnNlID0gb3B0aW9ucy5pbnZlcnNlLFxuICAgICAgaSA9IDAsXG4gICAgICByZXQgPSAnJyxcbiAgICAgIGRhdGEsXG4gICAgICBjb250ZXh0UGF0aDtcblxuICAgIGlmIChvcHRpb25zLmRhdGEgJiYgb3B0aW9ucy5pZHMpIHtcbiAgICAgIGNvbnRleHRQYXRoID1cbiAgICAgICAgYXBwZW5kQ29udGV4dFBhdGgob3B0aW9ucy5kYXRhLmNvbnRleHRQYXRoLCBvcHRpb25zLmlkc1swXSkgKyAnLic7XG4gICAgfVxuXG4gICAgaWYgKGlzRnVuY3Rpb24oY29udGV4dCkpIHtcbiAgICAgIGNvbnRleHQgPSBjb250ZXh0LmNhbGwodGhpcyk7XG4gICAgfVxuXG4gICAgaWYgKG9wdGlvbnMuZGF0YSkge1xuICAgICAgZGF0YSA9IGNyZWF0ZUZyYW1lKG9wdGlvbnMuZGF0YSk7XG4gICAgfVxuXG4gICAgZnVuY3Rpb24gZXhlY0l0ZXJhdGlvbihmaWVsZCwgaW5kZXgsIGxhc3QpIHtcbiAgICAgIGlmIChkYXRhKSB7XG4gICAgICAgIGRhdGEua2V5ID0gZmllbGQ7XG4gICAgICAgIGRhdGEuaW5kZXggPSBpbmRleDtcbiAgICAgICAgZGF0YS5maXJzdCA9IGluZGV4ID09PSAwO1xuICAgICAgICBkYXRhLmxhc3QgPSAhIWxhc3Q7XG5cbiAgICAgICAgaWYgKGNvbnRleHRQYXRoKSB7XG4gICAgICAgICAgZGF0YS5jb250ZXh0UGF0aCA9IGNvbnRleHRQYXRoICsgZmllbGQ7XG4gICAgICAgIH1cbiAgICAgIH1cblxuICAgICAgcmV0ID1cbiAgICAgICAgcmV0ICtcbiAgICAgICAgZm4oY29udGV4dFtmaWVsZF0sIHtcbiAgICAgICAgICBkYXRhOiBkYXRhLFxuICAgICAgICAgIGJsb2NrUGFyYW1zOiBibG9ja1BhcmFtcyhcbiAgICAgICAgICAgIFtjb250ZXh0W2ZpZWxkXSwgZmllbGRdLFxuICAgICAgICAgICAgW2NvbnRleHRQYXRoICsgZmllbGQsIG51bGxdXG4gICAgICAgICAgKVxuICAgICAgICB9KTtcbiAgICB9XG5cbiAgICBpZiAoY29udGV4dCAmJiB0eXBlb2YgY29udGV4dCA9PT0gJ29iamVjdCcpIHtcbiAgICAgIGlmIChpc0FycmF5KGNvbnRleHQpKSB7XG4gICAgICAgIGZvciAobGV0IGogPSBjb250ZXh0Lmxlbmd0aDsgaSA8IGo7IGkrKykge1xuICAgICAgICAgIGlmIChpIGluIGNvbnRleHQpIHtcbiAgICAgICAgICAgIGV4ZWNJdGVyYXRpb24oaSwgaSwgaSA9PT0gY29udGV4dC5sZW5ndGggLSAxKTtcbiAgICAgICAgICB9XG4gICAgICAgIH1cbiAgICAgIH0gZWxzZSBpZiAodHlwZW9mIFN5bWJvbCA9PT0gJ2Z1bmN0aW9uJyAmJiBjb250ZXh0W1N5bWJvbC5pdGVyYXRvcl0pIHtcbiAgICAgICAgY29uc3QgbmV3Q29udGV4dCA9IFtdO1xuICAgICAgICBjb25zdCBpdGVyYXRvciA9IGNvbnRleHRbU3ltYm9sLml0ZXJhdG9yXSgpO1xuICAgICAgICBmb3IgKGxldCBpdCA9IGl0ZXJhdG9yLm5leHQoKTsgIWl0LmRvbmU7IGl0ID0gaXRlcmF0b3IubmV4dCgpKSB7XG4gICAgICAgICAgbmV3Q29udGV4dC5wdXNoKGl0LnZhbHVlKTtcbiAgICAgICAgfVxuICAgICAgICBjb250ZXh0ID0gbmV3Q29udGV4dDtcbiAgICAgICAgZm9yIChsZXQgaiA9IGNvbnRleHQubGVuZ3RoOyBpIDwgajsgaSsrKSB7XG4gICAgICAgICAgZXhlY0l0ZXJhdGlvbihpLCBpLCBpID09PSBjb250ZXh0Lmxlbmd0aCAtIDEpO1xuICAgICAgICB9XG4gICAgICB9IGVsc2Uge1xuICAgICAgICBsZXQgcHJpb3JLZXk7XG5cbiAgICAgICAgT2JqZWN0LmtleXMoY29udGV4dCkuZm9yRWFjaChrZXkgPT4ge1xuICAgICAgICAgIC8vIFdlJ3JlIHJ1bm5pbmcgdGhlIGl0ZXJhdGlvbnMgb25lIHN0ZXAgb3V0IG9mIHN5bmMgc28gd2UgY2FuIGRldGVjdFxuICAgICAgICAgIC8vIHRoZSBsYXN0IGl0ZXJhdGlvbiB3aXRob3V0IGhhdmUgdG8gc2NhbiB0aGUgb2JqZWN0IHR3aWNlIGFuZCBjcmVhdGVcbiAgICAgICAgICAvLyBhbiBpdGVybWVkaWF0ZSBrZXlzIGFycmF5LlxuICAgICAgICAgIGlmIChwcmlvcktleSAhPT0gdW5kZWZpbmVkKSB7XG4gICAgICAgICAgICBleGVjSXRlcmF0aW9uKHByaW9yS2V5LCBpIC0gMSk7XG4gICAgICAgICAgfVxuICAgICAgICAgIHByaW9yS2V5ID0ga2V5O1xuICAgICAgICAgIGkrKztcbiAgICAgICAgfSk7XG4gICAgICAgIGlmIChwcmlvcktleSAhPT0gdW5kZWZpbmVkKSB7XG4gICAgICAgICAgZXhlY0l0ZXJhdGlvbihwcmlvcktleSwgaSAtIDEsIHRydWUpO1xuICAgICAgICB9XG4gICAgICB9XG4gICAgfVxuXG4gICAgaWYgKGkgPT09IDApIHtcbiAgICAgIHJldCA9IGludmVyc2UodGhpcyk7XG4gICAgfVxuXG4gICAgcmV0dXJuIHJldDtcbiAgfSk7XG59XG4iXX0=
 
 
-/***/ }),
+/***/ },
 
-/***/ "./node_modules/handlebars/dist/cjs/handlebars/helpers/helper-missing.js":
+/***/ "./node_modules/handlebars/dist/cjs/handlebars/helpers/helper-missing.js"
 /*!*******************************************************************************!*\
   !*** ./node_modules/handlebars/dist/cjs/handlebars/helpers/helper-missing.js ***!
   \*******************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+(module, exports, __webpack_require__) {
 
 "use strict";
 
@@ -916,7 +1648,7 @@ var _exception = __webpack_require__(/*! ../exception */ "./node_modules/handleb
 
 var _exception2 = _interopRequireDefault(_exception);
 
-exports['default'] = function (instance) {
+exports["default"] = function (instance) {
   instance.registerHelper('helperMissing', function () /* [args, ]options */{
     if (arguments.length === 1) {
       // A missing field in a {{foo}} construct.
@@ -932,14 +1664,13 @@ module.exports = exports['default'];
 //# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uLy4uLy4uL2xpYi9oYW5kbGViYXJzL2hlbHBlcnMvaGVscGVyLW1pc3NpbmcuanMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7Ozs7Ozt5QkFBc0IsY0FBYzs7OztxQkFFckIsVUFBUyxRQUFRLEVBQUU7QUFDaEMsVUFBUSxDQUFDLGNBQWMsQ0FBQyxlQUFlLEVBQUUsaUNBQWdDO0FBQ3ZFLFFBQUksU0FBUyxDQUFDLE1BQU0sS0FBSyxDQUFDLEVBQUU7O0FBRTFCLGFBQU8sU0FBUyxDQUFDO0tBQ2xCLE1BQU07O0FBRUwsWUFBTSwyQkFDSixtQkFBbUIsR0FBRyxTQUFTLENBQUMsU0FBUyxDQUFDLE1BQU0sR0FBRyxDQUFDLENBQUMsQ0FBQyxJQUFJLEdBQUcsR0FBRyxDQUNqRSxDQUFDO0tBQ0g7R0FDRixDQUFDLENBQUM7Q0FDSiIsImZpbGUiOiJoZWxwZXItbWlzc2luZy5qcyIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCBFeGNlcHRpb24gZnJvbSAnLi4vZXhjZXB0aW9uJztcblxuZXhwb3J0IGRlZmF1bHQgZnVuY3Rpb24oaW5zdGFuY2UpIHtcbiAgaW5zdGFuY2UucmVnaXN0ZXJIZWxwZXIoJ2hlbHBlck1pc3NpbmcnLCBmdW5jdGlvbigvKiBbYXJncywgXW9wdGlvbnMgKi8pIHtcbiAgICBpZiAoYXJndW1lbnRzLmxlbmd0aCA9PT0gMSkge1xuICAgICAgLy8gQSBtaXNzaW5nIGZpZWxkIGluIGEge3tmb299fSBjb25zdHJ1Y3QuXG4gICAgICByZXR1cm4gdW5kZWZpbmVkO1xuICAgIH0gZWxzZSB7XG4gICAgICAvLyBTb21lb25lIGlzIGFjdHVhbGx5IHRyeWluZyB0byBjYWxsIHNvbWV0aGluZywgYmxvdyB1cC5cbiAgICAgIHRocm93IG5ldyBFeGNlcHRpb24oXG4gICAgICAgICdNaXNzaW5nIGhlbHBlcjogXCInICsgYXJndW1lbnRzW2FyZ3VtZW50cy5sZW5ndGggLSAxXS5uYW1lICsgJ1wiJ1xuICAgICAgKTtcbiAgICB9XG4gIH0pO1xufVxuIl19
 
 
-/***/ }),
+/***/ },
 
-/***/ "./node_modules/handlebars/dist/cjs/handlebars/helpers/if.js":
+/***/ "./node_modules/handlebars/dist/cjs/handlebars/helpers/if.js"
 /*!*******************************************************************!*\
   !*** ./node_modules/handlebars/dist/cjs/handlebars/helpers/if.js ***!
   \*******************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+(module, exports, __webpack_require__) {
 
 "use strict";
 
@@ -955,7 +1686,7 @@ var _exception = __webpack_require__(/*! ../exception */ "./node_modules/handleb
 
 var _exception2 = _interopRequireDefault(_exception);
 
-exports['default'] = function (instance) {
+exports["default"] = function (instance) {
   instance.registerHelper('if', function (conditional, options) {
     if (arguments.length != 2) {
       throw new _exception2['default']('#if requires exactly one argument');
@@ -990,21 +1721,20 @@ module.exports = exports['default'];
 //# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uLy4uLy4uL2xpYi9oYW5kbGViYXJzL2hlbHBlcnMvaWYuanMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7Ozs7OztxQkFBb0MsVUFBVTs7eUJBQ3hCLGNBQWM7Ozs7cUJBRXJCLFVBQVMsUUFBUSxFQUFFO0FBQ2hDLFVBQVEsQ0FBQyxjQUFjLENBQUMsSUFBSSxFQUFFLFVBQVMsV0FBVyxFQUFFLE9BQU8sRUFBRTtBQUMzRCxRQUFJLFNBQVMsQ0FBQyxNQUFNLElBQUksQ0FBQyxFQUFFO0FBQ3pCLFlBQU0sMkJBQWMsbUNBQW1DLENBQUMsQ0FBQztLQUMxRDtBQUNELFFBQUksa0JBQVcsV0FBVyxDQUFDLEVBQUU7QUFDM0IsaUJBQVcsR0FBRyxXQUFXLENBQUMsSUFBSSxDQUFDLElBQUksQ0FBQyxDQUFDO0tBQ3RDOzs7OztBQUtELFFBQUksQUFBQyxDQUFDLE9BQU8sQ0FBQyxJQUFJLENBQUMsV0FBVyxJQUFJLENBQUMsV0FBVyxJQUFLLGVBQVEsV0FBVyxDQUFDLEVBQUU7QUFDdkUsYUFBTyxPQUFPLENBQUMsT0FBTyxDQUFDLElBQUksQ0FBQyxDQUFDO0tBQzlCLE1BQU07QUFDTCxhQUFPLE9BQU8sQ0FBQyxFQUFFLENBQUMsSUFBSSxDQUFDLENBQUM7S0FDekI7R0FDRixDQUFDLENBQUM7O0FBRUgsVUFBUSxDQUFDLGNBQWMsQ0FBQyxRQUFRLEVBQUUsVUFBUyxXQUFXLEVBQUUsT0FBTyxFQUFFO0FBQy9ELFFBQUksU0FBUyxDQUFDLE1BQU0sSUFBSSxDQUFDLEVBQUU7QUFDekIsWUFBTSwyQkFBYyx1Q0FBdUMsQ0FBQyxDQUFDO0tBQzlEO0FBQ0QsV0FBTyxRQUFRLENBQUMsT0FBTyxDQUFDLElBQUksQ0FBQyxDQUFDLElBQUksQ0FBQyxJQUFJLEVBQUUsV0FBVyxFQUFFO0FBQ3BELFFBQUUsRUFBRSxPQUFPLENBQUMsT0FBTztBQUNuQixhQUFPLEVBQUUsT0FBTyxDQUFDLEVBQUU7QUFDbkIsVUFBSSxFQUFFLE9BQU8sQ0FBQyxJQUFJO0tBQ25CLENBQUMsQ0FBQztHQUNKLENBQUMsQ0FBQztDQUNKIiwiZmlsZSI6ImlmLmpzIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgaXNFbXB0eSwgaXNGdW5jdGlvbiB9IGZyb20gJy4uL3V0aWxzJztcbmltcG9ydCBFeGNlcHRpb24gZnJvbSAnLi4vZXhjZXB0aW9uJztcblxuZXhwb3J0IGRlZmF1bHQgZnVuY3Rpb24oaW5zdGFuY2UpIHtcbiAgaW5zdGFuY2UucmVnaXN0ZXJIZWxwZXIoJ2lmJywgZnVuY3Rpb24oY29uZGl0aW9uYWwsIG9wdGlvbnMpIHtcbiAgICBpZiAoYXJndW1lbnRzLmxlbmd0aCAhPSAyKSB7XG4gICAgICB0aHJvdyBuZXcgRXhjZXB0aW9uKCcjaWYgcmVxdWlyZXMgZXhhY3RseSBvbmUgYXJndW1lbnQnKTtcbiAgICB9XG4gICAgaWYgKGlzRnVuY3Rpb24oY29uZGl0aW9uYWwpKSB7XG4gICAgICBjb25kaXRpb25hbCA9IGNvbmRpdGlvbmFsLmNhbGwodGhpcyk7XG4gICAgfVxuXG4gICAgLy8gRGVmYXVsdCBiZWhhdmlvciBpcyB0byByZW5kZXIgdGhlIHBvc2l0aXZlIHBhdGggaWYgdGhlIHZhbHVlIGlzIHRydXRoeSBhbmQgbm90IGVtcHR5LlxuICAgIC8vIFRoZSBgaW5jbHVkZVplcm9gIG9wdGlvbiBtYXkgYmUgc2V0IHRvIHRyZWF0IHRoZSBjb25kdGlvbmFsIGFzIHB1cmVseSBub3QgZW1wdHkgYmFzZWQgb24gdGhlXG4gICAgLy8gYmVoYXZpb3Igb2YgaXNFbXB0eS4gRWZmZWN0aXZlbHkgdGhpcyBkZXRlcm1pbmVzIGlmIDAgaXMgaGFuZGxlZCBieSB0aGUgcG9zaXRpdmUgcGF0aCBvciBuZWdhdGl2ZS5cbiAgICBpZiAoKCFvcHRpb25zLmhhc2guaW5jbHVkZVplcm8gJiYgIWNvbmRpdGlvbmFsKSB8fCBpc0VtcHR5KGNvbmRpdGlvbmFsKSkge1xuICAgICAgcmV0dXJuIG9wdGlvbnMuaW52ZXJzZSh0aGlzKTtcbiAgICB9IGVsc2Uge1xuICAgICAgcmV0dXJuIG9wdGlvbnMuZm4odGhpcyk7XG4gICAgfVxuICB9KTtcblxuICBpbnN0YW5jZS5yZWdpc3RlckhlbHBlcigndW5sZXNzJywgZnVuY3Rpb24oY29uZGl0aW9uYWwsIG9wdGlvbnMpIHtcbiAgICBpZiAoYXJndW1lbnRzLmxlbmd0aCAhPSAyKSB7XG4gICAgICB0aHJvdyBuZXcgRXhjZXB0aW9uKCcjdW5sZXNzIHJlcXVpcmVzIGV4YWN0bHkgb25lIGFyZ3VtZW50Jyk7XG4gICAgfVxuICAgIHJldHVybiBpbnN0YW5jZS5oZWxwZXJzWydpZiddLmNhbGwodGhpcywgY29uZGl0aW9uYWwsIHtcbiAgICAgIGZuOiBvcHRpb25zLmludmVyc2UsXG4gICAgICBpbnZlcnNlOiBvcHRpb25zLmZuLFxuICAgICAgaGFzaDogb3B0aW9ucy5oYXNoXG4gICAgfSk7XG4gIH0pO1xufVxuIl19
 
 
-/***/ }),
+/***/ },
 
-/***/ "./node_modules/handlebars/dist/cjs/handlebars/helpers/log.js":
+/***/ "./node_modules/handlebars/dist/cjs/handlebars/helpers/log.js"
 /*!********************************************************************!*\
   !*** ./node_modules/handlebars/dist/cjs/handlebars/helpers/log.js ***!
   \********************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+(module, exports) {
 
 "use strict";
 
 
 exports.__esModule = true;
 
-exports['default'] = function (instance) {
+exports["default"] = function (instance) {
   instance.registerHelper('log', function () /* message, options */{
     var args = [undefined],
         options = arguments[arguments.length - 1];
@@ -1028,21 +1758,20 @@ module.exports = exports['default'];
 //# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uLy4uLy4uL2xpYi9oYW5kbGViYXJzL2hlbHBlcnMvbG9nLmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7cUJBQWUsVUFBUyxRQUFRLEVBQUU7QUFDaEMsVUFBUSxDQUFDLGNBQWMsQ0FBQyxLQUFLLEVBQUUsa0NBQWlDO0FBQzlELFFBQUksSUFBSSxHQUFHLENBQUMsU0FBUyxDQUFDO1FBQ3BCLE9BQU8sR0FBRyxTQUFTLENBQUMsU0FBUyxDQUFDLE1BQU0sR0FBRyxDQUFDLENBQUMsQ0FBQztBQUM1QyxTQUFLLElBQUksQ0FBQyxHQUFHLENBQUMsRUFBRSxDQUFDLEdBQUcsU0FBUyxDQUFDLE1BQU0sR0FBRyxDQUFDLEVBQUUsQ0FBQyxFQUFFLEVBQUU7QUFDN0MsVUFBSSxDQUFDLElBQUksQ0FBQyxTQUFTLENBQUMsQ0FBQyxDQUFDLENBQUMsQ0FBQztLQUN6Qjs7QUFFRCxRQUFJLEtBQUssR0FBRyxDQUFDLENBQUM7QUFDZCxRQUFJLE9BQU8sQ0FBQyxJQUFJLENBQUMsS0FBSyxJQUFJLElBQUksRUFBRTtBQUM5QixXQUFLLEdBQUcsT0FBTyxDQUFDLElBQUksQ0FBQyxLQUFLLENBQUM7S0FDNUIsTUFBTSxJQUFJLE9BQU8sQ0FBQyxJQUFJLElBQUksT0FBTyxDQUFDLElBQUksQ0FBQyxLQUFLLElBQUksSUFBSSxFQUFFO0FBQ3JELFdBQUssR0FBRyxPQUFPLENBQUMsSUFBSSxDQUFDLEtBQUssQ0FBQztLQUM1QjtBQUNELFFBQUksQ0FBQyxDQUFDLENBQUMsR0FBRyxLQUFLLENBQUM7O0FBRWhCLFlBQVEsQ0FBQyxHQUFHLE1BQUEsQ0FBWixRQUFRLEVBQVEsSUFBSSxDQUFDLENBQUM7R0FDdkIsQ0FBQyxDQUFDO0NBQ0oiLCJmaWxlIjoibG9nLmpzIiwic291cmNlc0NvbnRlbnQiOlsiZXhwb3J0IGRlZmF1bHQgZnVuY3Rpb24oaW5zdGFuY2UpIHtcbiAgaW5zdGFuY2UucmVnaXN0ZXJIZWxwZXIoJ2xvZycsIGZ1bmN0aW9uKC8qIG1lc3NhZ2UsIG9wdGlvbnMgKi8pIHtcbiAgICBsZXQgYXJncyA9IFt1bmRlZmluZWRdLFxuICAgICAgb3B0aW9ucyA9IGFyZ3VtZW50c1thcmd1bWVudHMubGVuZ3RoIC0gMV07XG4gICAgZm9yIChsZXQgaSA9IDA7IGkgPCBhcmd1bWVudHMubGVuZ3RoIC0gMTsgaSsrKSB7XG4gICAgICBhcmdzLnB1c2goYXJndW1lbnRzW2ldKTtcbiAgICB9XG5cbiAgICBsZXQgbGV2ZWwgPSAxO1xuICAgIGlmIChvcHRpb25zLmhhc2gubGV2ZWwgIT0gbnVsbCkge1xuICAgICAgbGV2ZWwgPSBvcHRpb25zLmhhc2gubGV2ZWw7XG4gICAgfSBlbHNlIGlmIChvcHRpb25zLmRhdGEgJiYgb3B0aW9ucy5kYXRhLmxldmVsICE9IG51bGwpIHtcbiAgICAgIGxldmVsID0gb3B0aW9ucy5kYXRhLmxldmVsO1xuICAgIH1cbiAgICBhcmdzWzBdID0gbGV2ZWw7XG5cbiAgICBpbnN0YW5jZS5sb2coLi4uYXJncyk7XG4gIH0pO1xufVxuIl19
 
 
-/***/ }),
+/***/ },
 
-/***/ "./node_modules/handlebars/dist/cjs/handlebars/helpers/lookup.js":
+/***/ "./node_modules/handlebars/dist/cjs/handlebars/helpers/lookup.js"
 /*!***********************************************************************!*\
   !*** ./node_modules/handlebars/dist/cjs/handlebars/helpers/lookup.js ***!
   \***********************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+(module, exports) {
 
 "use strict";
 
 
 exports.__esModule = true;
 
-exports['default'] = function (instance) {
+exports["default"] = function (instance) {
   instance.registerHelper('lookup', function (obj, field, options) {
     if (!obj) {
       // Note for 5.0: Change to "obj == null" in 5.0
@@ -1056,14 +1785,13 @@ module.exports = exports['default'];
 //# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uLy4uLy4uL2xpYi9oYW5kbGViYXJzL2hlbHBlcnMvbG9va3VwLmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7cUJBQWUsVUFBUyxRQUFRLEVBQUU7QUFDaEMsVUFBUSxDQUFDLGNBQWMsQ0FBQyxRQUFRLEVBQUUsVUFBUyxHQUFHLEVBQUUsS0FBSyxFQUFFLE9BQU8sRUFBRTtBQUM5RCxRQUFJLENBQUMsR0FBRyxFQUFFOztBQUVSLGFBQU8sR0FBRyxDQUFDO0tBQ1o7QUFDRCxXQUFPLE9BQU8sQ0FBQyxjQUFjLENBQUMsR0FBRyxFQUFFLEtBQUssQ0FBQyxDQUFDO0dBQzNDLENBQUMsQ0FBQztDQUNKIiwiZmlsZSI6Imxvb2t1cC5qcyIsInNvdXJjZXNDb250ZW50IjpbImV4cG9ydCBkZWZhdWx0IGZ1bmN0aW9uKGluc3RhbmNlKSB7XG4gIGluc3RhbmNlLnJlZ2lzdGVySGVscGVyKCdsb29rdXAnLCBmdW5jdGlvbihvYmosIGZpZWxkLCBvcHRpb25zKSB7XG4gICAgaWYgKCFvYmopIHtcbiAgICAgIC8vIE5vdGUgZm9yIDUuMDogQ2hhbmdlIHRvIFwib2JqID09IG51bGxcIiBpbiA1LjBcbiAgICAgIHJldHVybiBvYmo7XG4gICAgfVxuICAgIHJldHVybiBvcHRpb25zLmxvb2t1cFByb3BlcnR5KG9iaiwgZmllbGQpO1xuICB9KTtcbn1cbiJdfQ==
 
 
-/***/ }),
+/***/ },
 
-/***/ "./node_modules/handlebars/dist/cjs/handlebars/helpers/with.js":
+/***/ "./node_modules/handlebars/dist/cjs/handlebars/helpers/with.js"
 /*!*********************************************************************!*\
   !*** ./node_modules/handlebars/dist/cjs/handlebars/helpers/with.js ***!
   \*********************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+(module, exports, __webpack_require__) {
 
 "use strict";
 
@@ -1079,7 +1807,7 @@ var _exception = __webpack_require__(/*! ../exception */ "./node_modules/handleb
 
 var _exception2 = _interopRequireDefault(_exception);
 
-exports['default'] = function (instance) {
+exports["default"] = function (instance) {
   instance.registerHelper('with', function (context, options) {
     if (arguments.length != 2) {
       throw new _exception2['default']('#with requires exactly one argument');
@@ -1111,14 +1839,13 @@ module.exports = exports['default'];
 //# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uLy4uLy4uL2xpYi9oYW5kbGViYXJzL2hlbHBlcnMvd2l0aC5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7Ozs7O3FCQU1PLFVBQVU7O3lCQUNLLGNBQWM7Ozs7cUJBRXJCLFVBQVMsUUFBUSxFQUFFO0FBQ2hDLFVBQVEsQ0FBQyxjQUFjLENBQUMsTUFBTSxFQUFFLFVBQVMsT0FBTyxFQUFFLE9BQU8sRUFBRTtBQUN6RCxRQUFJLFNBQVMsQ0FBQyxNQUFNLElBQUksQ0FBQyxFQUFFO0FBQ3pCLFlBQU0sMkJBQWMscUNBQXFDLENBQUMsQ0FBQztLQUM1RDtBQUNELFFBQUksa0JBQVcsT0FBTyxDQUFDLEVBQUU7QUFDdkIsYUFBTyxHQUFHLE9BQU8sQ0FBQyxJQUFJLENBQUMsSUFBSSxDQUFDLENBQUM7S0FDOUI7O0FBRUQsUUFBSSxFQUFFLEdBQUcsT0FBTyxDQUFDLEVBQUUsQ0FBQzs7QUFFcEIsUUFBSSxDQUFDLGVBQVEsT0FBTyxDQUFDLEVBQUU7QUFDckIsVUFBSSxJQUFJLEdBQUcsT0FBTyxDQUFDLElBQUksQ0FBQztBQUN4QixVQUFJLE9BQU8sQ0FBQyxJQUFJLElBQUksT0FBTyxDQUFDLEdBQUcsRUFBRTtBQUMvQixZQUFJLEdBQUcsbUJBQVksT0FBTyxDQUFDLElBQUksQ0FBQyxDQUFDO0FBQ2pDLFlBQUksQ0FBQyxXQUFXLEdBQUcseUJBQ2pCLE9BQU8sQ0FBQyxJQUFJLENBQUMsV0FBVyxFQUN4QixPQUFPLENBQUMsR0FBRyxDQUFDLENBQUMsQ0FBQyxDQUNmLENBQUM7T0FDSDs7QUFFRCxhQUFPLEVBQUUsQ0FBQyxPQUFPLEVBQUU7QUFDakIsWUFBSSxFQUFFLElBQUk7QUFDVixtQkFBVyxFQUFFLG1CQUFZLENBQUMsT0FBTyxDQUFDLEVBQUUsQ0FBQyxJQUFJLElBQUksSUFBSSxDQUFDLFdBQVcsQ0FBQyxDQUFDO09BQ2hFLENBQUMsQ0FBQztLQUNKLE1BQU07QUFDTCxhQUFPLE9BQU8sQ0FBQyxPQUFPLENBQUMsSUFBSSxDQUFDLENBQUM7S0FDOUI7R0FDRixDQUFDLENBQUM7Q0FDSiIsImZpbGUiOiJ3aXRoLmpzIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHtcbiAgYXBwZW5kQ29udGV4dFBhdGgsXG4gIGJsb2NrUGFyYW1zLFxuICBjcmVhdGVGcmFtZSxcbiAgaXNFbXB0eSxcbiAgaXNGdW5jdGlvblxufSBmcm9tICcuLi91dGlscyc7XG5pbXBvcnQgRXhjZXB0aW9uIGZyb20gJy4uL2V4Y2VwdGlvbic7XG5cbmV4cG9ydCBkZWZhdWx0IGZ1bmN0aW9uKGluc3RhbmNlKSB7XG4gIGluc3RhbmNlLnJlZ2lzdGVySGVscGVyKCd3aXRoJywgZnVuY3Rpb24oY29udGV4dCwgb3B0aW9ucykge1xuICAgIGlmIChhcmd1bWVudHMubGVuZ3RoICE9IDIpIHtcbiAgICAgIHRocm93IG5ldyBFeGNlcHRpb24oJyN3aXRoIHJlcXVpcmVzIGV4YWN0bHkgb25lIGFyZ3VtZW50Jyk7XG4gICAgfVxuICAgIGlmIChpc0Z1bmN0aW9uKGNvbnRleHQpKSB7XG4gICAgICBjb250ZXh0ID0gY29udGV4dC5jYWxsKHRoaXMpO1xuICAgIH1cblxuICAgIGxldCBmbiA9IG9wdGlvbnMuZm47XG5cbiAgICBpZiAoIWlzRW1wdHkoY29udGV4dCkpIHtcbiAgICAgIGxldCBkYXRhID0gb3B0aW9ucy5kYXRhO1xuICAgICAgaWYgKG9wdGlvbnMuZGF0YSAmJiBvcHRpb25zLmlkcykge1xuICAgICAgICBkYXRhID0gY3JlYXRlRnJhbWUob3B0aW9ucy5kYXRhKTtcbiAgICAgICAgZGF0YS5jb250ZXh0UGF0aCA9IGFwcGVuZENvbnRleHRQYXRoKFxuICAgICAgICAgIG9wdGlvbnMuZGF0YS5jb250ZXh0UGF0aCxcbiAgICAgICAgICBvcHRpb25zLmlkc1swXVxuICAgICAgICApO1xuICAgICAgfVxuXG4gICAgICByZXR1cm4gZm4oY29udGV4dCwge1xuICAgICAgICBkYXRhOiBkYXRhLFxuICAgICAgICBibG9ja1BhcmFtczogYmxvY2tQYXJhbXMoW2NvbnRleHRdLCBbZGF0YSAmJiBkYXRhLmNvbnRleHRQYXRoXSlcbiAgICAgIH0pO1xuICAgIH0gZWxzZSB7XG4gICAgICByZXR1cm4gb3B0aW9ucy5pbnZlcnNlKHRoaXMpO1xuICAgIH1cbiAgfSk7XG59XG4iXX0=
 
 
-/***/ }),
+/***/ },
 
-/***/ "./node_modules/handlebars/dist/cjs/handlebars/internal/create-new-lookup-object.js":
+/***/ "./node_modules/handlebars/dist/cjs/handlebars/internal/create-new-lookup-object.js"
 /*!******************************************************************************************!*\
   !*** ./node_modules/handlebars/dist/cjs/handlebars/internal/create-new-lookup-object.js ***!
   \******************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+(__unused_webpack_module, exports, __webpack_require__) {
 
 "use strict";
 
@@ -1145,14 +1872,13 @@ function createNewLookupObject() {
 //# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uLy4uLy4uL2xpYi9oYW5kbGViYXJzL2ludGVybmFsL2NyZWF0ZS1uZXctbG9va3VwLW9iamVjdC5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7OztxQkFBdUIsVUFBVTs7Ozs7Ozs7O0FBUTFCLFNBQVMscUJBQXFCLEdBQWE7b0NBQVQsT0FBTztBQUFQLFdBQU87OztBQUM5QyxTQUFPLGdDQUFPLE1BQU0sQ0FBQyxNQUFNLENBQUMsSUFBSSxDQUFDLFNBQUssT0FBTyxFQUFDLENBQUM7Q0FDaEQiLCJmaWxlIjoiY3JlYXRlLW5ldy1sb29rdXAtb2JqZWN0LmpzIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgZXh0ZW5kIH0gZnJvbSAnLi4vdXRpbHMnO1xuXG4vKipcbiAqIENyZWF0ZSBhIG5ldyBvYmplY3Qgd2l0aCBcIm51bGxcIi1wcm90b3R5cGUgdG8gYXZvaWQgdHJ1dGh5IHJlc3VsdHMgb24gcHJvdG90eXBlIHByb3BlcnRpZXMuXG4gKiBUaGUgcmVzdWx0aW5nIG9iamVjdCBjYW4gYmUgdXNlZCB3aXRoIFwib2JqZWN0W3Byb3BlcnR5XVwiIHRvIGNoZWNrIGlmIGEgcHJvcGVydHkgZXhpc3RzXG4gKiBAcGFyYW0gey4uLm9iamVjdH0gc291cmNlcyBhIHZhcmFyZ3MgcGFyYW1ldGVyIG9mIHNvdXJjZSBvYmplY3RzIHRoYXQgd2lsbCBiZSBtZXJnZWRcbiAqIEByZXR1cm5zIHtvYmplY3R9XG4gKi9cbmV4cG9ydCBmdW5jdGlvbiBjcmVhdGVOZXdMb29rdXBPYmplY3QoLi4uc291cmNlcykge1xuICByZXR1cm4gZXh0ZW5kKE9iamVjdC5jcmVhdGUobnVsbCksIC4uLnNvdXJjZXMpO1xufVxuIl19
 
 
-/***/ }),
+/***/ },
 
-/***/ "./node_modules/handlebars/dist/cjs/handlebars/internal/proto-access.js":
+/***/ "./node_modules/handlebars/dist/cjs/handlebars/internal/proto-access.js"
 /*!******************************************************************************!*\
   !*** ./node_modules/handlebars/dist/cjs/handlebars/internal/proto-access.js ***!
   \******************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+(__unused_webpack_module, exports, __webpack_require__) {
 
 "use strict";
 
@@ -1230,14 +1956,13 @@ function resetLoggedProperties() {
 //# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uLy4uLy4uL2xpYi9oYW5kbGViYXJzL2ludGVybmFsL3Byb3RvLWFjY2Vzcy5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7Ozs7Ozs7O3FDQUFzQyw0QkFBNEI7O3NCQUMvQyxXQUFXOzs7O0FBRTlCLElBQU0sZ0JBQWdCLEdBQUcsTUFBTSxDQUFDLE1BQU0sQ0FBQyxJQUFJLENBQUMsQ0FBQzs7QUFFdEMsU0FBUyx3QkFBd0IsQ0FBQyxjQUFjLEVBQUU7QUFDdkQsTUFBSSxzQkFBc0IsR0FBRyxNQUFNLENBQUMsTUFBTSxDQUFDLElBQUksQ0FBQyxDQUFDO0FBQ2pELHdCQUFzQixDQUFDLGFBQWEsQ0FBQyxHQUFHLEtBQUssQ0FBQztBQUM5Qyx3QkFBc0IsQ0FBQyxrQkFBa0IsQ0FBQyxHQUFHLEtBQUssQ0FBQztBQUNuRCx3QkFBc0IsQ0FBQyxrQkFBa0IsQ0FBQyxHQUFHLEtBQUssQ0FBQztBQUNuRCx3QkFBc0IsQ0FBQyxrQkFBa0IsQ0FBQyxHQUFHLEtBQUssQ0FBQzs7QUFFbkQsTUFBSSx3QkFBd0IsR0FBRyxNQUFNLENBQUMsTUFBTSxDQUFDLElBQUksQ0FBQyxDQUFDOztBQUVuRCwwQkFBd0IsQ0FBQyxXQUFXLENBQUMsR0FBRyxLQUFLLENBQUM7O0FBRTlDLFNBQU87QUFDTCxjQUFVLEVBQUU7QUFDVixlQUFTLEVBQUUsNkNBQ1Qsd0JBQXdCLEVBQ3hCLGNBQWMsQ0FBQyxzQkFBc0IsQ0FDdEM7QUFDRCxrQkFBWSxFQUFFLGNBQWMsQ0FBQyw2QkFBNkI7S0FDM0Q7QUFDRCxXQUFPLEVBQUU7QUFDUCxlQUFTLEVBQUUsNkNBQ1Qsc0JBQXNCLEVBQ3RCLGNBQWMsQ0FBQyxtQkFBbUIsQ0FDbkM7QUFDRCxrQkFBWSxFQUFFLGNBQWMsQ0FBQywwQkFBMEI7S0FDeEQ7R0FDRixDQUFDO0NBQ0g7O0FBRU0sU0FBUyxlQUFlLENBQUMsTUFBTSxFQUFFLGtCQUFrQixFQUFFLFlBQVksRUFBRTtBQUN4RSxNQUFJLE9BQU8sTUFBTSxLQUFLLFVBQVUsRUFBRTtBQUNoQyxXQUFPLGNBQWMsQ0FBQyxrQkFBa0IsQ0FBQyxPQUFPLEVBQUUsWUFBWSxDQUFDLENBQUM7R0FDakUsTUFBTTtBQUNMLFdBQU8sY0FBYyxDQUFDLGtCQUFrQixDQUFDLFVBQVUsRUFBRSxZQUFZLENBQUMsQ0FBQztHQUNwRTtDQUNGOztBQUVELFNBQVMsY0FBYyxDQUFDLHlCQUF5QixFQUFFLFlBQVksRUFBRTtBQUMvRCxNQUFJLHlCQUF5QixDQUFDLFNBQVMsQ0FBQyxZQUFZLENBQUMsS0FBSyxTQUFTLEVBQUU7QUFDbkUsV0FBTyx5QkFBeUIsQ0FBQyxTQUFTLENBQUMsWUFBWSxDQUFDLEtBQUssSUFBSSxDQUFDO0dBQ25FO0FBQ0QsTUFBSSx5QkFBeUIsQ0FBQyxZQUFZLEtBQUssU0FBUyxFQUFFO0FBQ3hELFdBQU8seUJBQXlCLENBQUMsWUFBWSxDQUFDO0dBQy9DO0FBQ0QsZ0NBQThCLENBQUMsWUFBWSxDQUFDLENBQUM7QUFDN0MsU0FBTyxLQUFLLENBQUM7Q0FDZDs7QUFFRCxTQUFTLDhCQUE4QixDQUFDLFlBQVksRUFBRTtBQUNwRCxNQUFJLGdCQUFnQixDQUFDLFlBQVksQ0FBQyxLQUFLLElBQUksRUFBRTtBQUMzQyxvQkFBZ0IsQ0FBQyxZQUFZLENBQUMsR0FBRyxJQUFJLENBQUM7QUFDdEMsd0JBQU8sR0FBRyxDQUNSLE9BQU8sRUFDUCxpRUFBK0QsWUFBWSxvSUFDSCxvSEFDMkMsQ0FDcEgsQ0FBQztHQUNIO0NBQ0Y7O0FBRU0sU0FBUyxxQkFBcUIsR0FBRztBQUN0QyxRQUFNLENBQUMsSUFBSSxDQUFDLGdCQUFnQixDQUFDLENBQUMsT0FBTyxDQUFDLFVBQUEsWUFBWSxFQUFJO0FBQ3BELFdBQU8sZ0JBQWdCLENBQUMsWUFBWSxDQUFDLENBQUM7R0FDdkMsQ0FBQyxDQUFDO0NBQ0oiLCJmaWxlIjoicHJvdG8tYWNjZXNzLmpzIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgY3JlYXRlTmV3TG9va3VwT2JqZWN0IH0gZnJvbSAnLi9jcmVhdGUtbmV3LWxvb2t1cC1vYmplY3QnO1xuaW1wb3J0IGxvZ2dlciBmcm9tICcuLi9sb2dnZXInO1xuXG5jb25zdCBsb2dnZWRQcm9wZXJ0aWVzID0gT2JqZWN0LmNyZWF0ZShudWxsKTtcblxuZXhwb3J0IGZ1bmN0aW9uIGNyZWF0ZVByb3RvQWNjZXNzQ29udHJvbChydW50aW1lT3B0aW9ucykge1xuICBsZXQgZGVmYXVsdE1ldGhvZFdoaXRlTGlzdCA9IE9iamVjdC5jcmVhdGUobnVsbCk7XG4gIGRlZmF1bHRNZXRob2RXaGl0ZUxpc3RbJ2NvbnN0cnVjdG9yJ10gPSBmYWxzZTtcbiAgZGVmYXVsdE1ldGhvZFdoaXRlTGlzdFsnX19kZWZpbmVHZXR0ZXJfXyddID0gZmFsc2U7XG4gIGRlZmF1bHRNZXRob2RXaGl0ZUxpc3RbJ19fZGVmaW5lU2V0dGVyX18nXSA9IGZhbHNlO1xuICBkZWZhdWx0TWV0aG9kV2hpdGVMaXN0WydfX2xvb2t1cEdldHRlcl9fJ10gPSBmYWxzZTtcblxuICBsZXQgZGVmYXVsdFByb3BlcnR5V2hpdGVMaXN0ID0gT2JqZWN0LmNyZWF0ZShudWxsKTtcbiAgLy8gZXNsaW50LWRpc2FibGUtbmV4dC1saW5lIG5vLXByb3RvXG4gIGRlZmF1bHRQcm9wZXJ0eVdoaXRlTGlzdFsnX19wcm90b19fJ10gPSBmYWxzZTtcblxuICByZXR1cm4ge1xuICAgIHByb3BlcnRpZXM6IHtcbiAgICAgIHdoaXRlbGlzdDogY3JlYXRlTmV3TG9va3VwT2JqZWN0KFxuICAgICAgICBkZWZhdWx0UHJvcGVydHlXaGl0ZUxpc3QsXG4gICAgICAgIHJ1bnRpbWVPcHRpb25zLmFsbG93ZWRQcm90b1Byb3BlcnRpZXNcbiAgICAgICksXG4gICAgICBkZWZhdWx0VmFsdWU6IHJ1bnRpbWVPcHRpb25zLmFsbG93UHJvdG9Qcm9wZXJ0aWVzQnlEZWZhdWx0XG4gICAgfSxcbiAgICBtZXRob2RzOiB7XG4gICAgICB3aGl0ZWxpc3Q6IGNyZWF0ZU5ld0xvb2t1cE9iamVjdChcbiAgICAgICAgZGVmYXVsdE1ldGhvZFdoaXRlTGlzdCxcbiAgICAgICAgcnVudGltZU9wdGlvbnMuYWxsb3dlZFByb3RvTWV0aG9kc1xuICAgICAgKSxcbiAgICAgIGRlZmF1bHRWYWx1ZTogcnVudGltZU9wdGlvbnMuYWxsb3dQcm90b01ldGhvZHNCeURlZmF1bHRcbiAgICB9XG4gIH07XG59XG5cbmV4cG9ydCBmdW5jdGlvbiByZXN1bHRJc0FsbG93ZWQocmVzdWx0LCBwcm90b0FjY2Vzc0NvbnRyb2wsIHByb3BlcnR5TmFtZSkge1xuICBpZiAodHlwZW9mIHJlc3VsdCA9PT0gJ2Z1bmN0aW9uJykge1xuICAgIHJldHVybiBjaGVja1doaXRlTGlzdChwcm90b0FjY2Vzc0NvbnRyb2wubWV0aG9kcywgcHJvcGVydHlOYW1lKTtcbiAgfSBlbHNlIHtcbiAgICByZXR1cm4gY2hlY2tXaGl0ZUxpc3QocHJvdG9BY2Nlc3NDb250cm9sLnByb3BlcnRpZXMsIHByb3BlcnR5TmFtZSk7XG4gIH1cbn1cblxuZnVuY3Rpb24gY2hlY2tXaGl0ZUxpc3QocHJvdG9BY2Nlc3NDb250cm9sRm9yVHlwZSwgcHJvcGVydHlOYW1lKSB7XG4gIGlmIChwcm90b0FjY2Vzc0NvbnRyb2xGb3JUeXBlLndoaXRlbGlzdFtwcm9wZXJ0eU5hbWVdICE9PSB1bmRlZmluZWQpIHtcbiAgICByZXR1cm4gcHJvdG9BY2Nlc3NDb250cm9sRm9yVHlwZS53aGl0ZWxpc3RbcHJvcGVydHlOYW1lXSA9PT0gdHJ1ZTtcbiAgfVxuICBpZiAocHJvdG9BY2Nlc3NDb250cm9sRm9yVHlwZS5kZWZhdWx0VmFsdWUgIT09IHVuZGVmaW5lZCkge1xuICAgIHJldHVybiBwcm90b0FjY2Vzc0NvbnRyb2xGb3JUeXBlLmRlZmF1bHRWYWx1ZTtcbiAgfVxuICBsb2dVbmV4cGVjZWRQcm9wZXJ0eUFjY2Vzc09uY2UocHJvcGVydHlOYW1lKTtcbiAgcmV0dXJuIGZhbHNlO1xufVxuXG5mdW5jdGlvbiBsb2dVbmV4cGVjZWRQcm9wZXJ0eUFjY2Vzc09uY2UocHJvcGVydHlOYW1lKSB7XG4gIGlmIChsb2dnZWRQcm9wZXJ0aWVzW3Byb3BlcnR5TmFtZV0gIT09IHRydWUpIHtcbiAgICBsb2dnZWRQcm9wZXJ0aWVzW3Byb3BlcnR5TmFtZV0gPSB0cnVlO1xuICAgIGxvZ2dlci5sb2coXG4gICAgICAnZXJyb3InLFxuICAgICAgYEhhbmRsZWJhcnM6IEFjY2VzcyBoYXMgYmVlbiBkZW5pZWQgdG8gcmVzb2x2ZSB0aGUgcHJvcGVydHkgXCIke3Byb3BlcnR5TmFtZX1cIiBiZWNhdXNlIGl0IGlzIG5vdCBhbiBcIm93biBwcm9wZXJ0eVwiIG9mIGl0cyBwYXJlbnQuXFxuYCArXG4gICAgICAgIGBZb3UgY2FuIGFkZCBhIHJ1bnRpbWUgb3B0aW9uIHRvIGRpc2FibGUgdGhlIGNoZWNrIG9yIHRoaXMgd2FybmluZzpcXG5gICtcbiAgICAgICAgYFNlZSBodHRwczovL2hhbmRsZWJhcnNqcy5jb20vYXBpLXJlZmVyZW5jZS9ydW50aW1lLW9wdGlvbnMuaHRtbCNvcHRpb25zLXRvLWNvbnRyb2wtcHJvdG90eXBlLWFjY2VzcyBmb3IgZGV0YWlsc2BcbiAgICApO1xuICB9XG59XG5cbmV4cG9ydCBmdW5jdGlvbiByZXNldExvZ2dlZFByb3BlcnRpZXMoKSB7XG4gIE9iamVjdC5rZXlzKGxvZ2dlZFByb3BlcnRpZXMpLmZvckVhY2gocHJvcGVydHlOYW1lID0+IHtcbiAgICBkZWxldGUgbG9nZ2VkUHJvcGVydGllc1twcm9wZXJ0eU5hbWVdO1xuICB9KTtcbn1cbiJdfQ==
 
 
-/***/ }),
+/***/ },
 
-/***/ "./node_modules/handlebars/dist/cjs/handlebars/internal/wrapHelper.js":
+/***/ "./node_modules/handlebars/dist/cjs/handlebars/internal/wrapHelper.js"
 /*!****************************************************************************!*\
   !*** ./node_modules/handlebars/dist/cjs/handlebars/internal/wrapHelper.js ***!
   \****************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+(__unused_webpack_module, exports) {
 
 "use strict";
 
@@ -1261,14 +1986,13 @@ function wrapHelper(helper, transformOptionsFn) {
 //# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uLy4uLy4uL2xpYi9oYW5kbGViYXJzL2ludGVybmFsL3dyYXBIZWxwZXIuanMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7Ozs7QUFBTyxTQUFTLFVBQVUsQ0FBQyxNQUFNLEVBQUUsa0JBQWtCLEVBQUU7QUFDckQsTUFBSSxPQUFPLE1BQU0sS0FBSyxVQUFVLEVBQUU7OztBQUdoQyxXQUFPLE1BQU0sQ0FBQztHQUNmO0FBQ0QsTUFBSSxPQUFPLEdBQUcsU0FBVixPQUFPLDBCQUFxQztBQUM5QyxRQUFNLE9BQU8sR0FBRyxTQUFTLENBQUMsU0FBUyxDQUFDLE1BQU0sR0FBRyxDQUFDLENBQUMsQ0FBQztBQUNoRCxhQUFTLENBQUMsU0FBUyxDQUFDLE1BQU0sR0FBRyxDQUFDLENBQUMsR0FBRyxrQkFBa0IsQ0FBQyxPQUFPLENBQUMsQ0FBQztBQUM5RCxXQUFPLE1BQU0sQ0FBQyxLQUFLLENBQUMsSUFBSSxFQUFFLFNBQVMsQ0FBQyxDQUFDO0dBQ3RDLENBQUM7QUFDRixTQUFPLE9BQU8sQ0FBQztDQUNoQiIsImZpbGUiOiJ3cmFwSGVscGVyLmpzIiwic291cmNlc0NvbnRlbnQiOlsiZXhwb3J0IGZ1bmN0aW9uIHdyYXBIZWxwZXIoaGVscGVyLCB0cmFuc2Zvcm1PcHRpb25zRm4pIHtcbiAgaWYgKHR5cGVvZiBoZWxwZXIgIT09ICdmdW5jdGlvbicpIHtcbiAgICAvLyBUaGlzIHNob3VsZCBub3QgaGFwcGVuLCBidXQgYXBwYXJlbnRseSBpdCBkb2VzIGluIGh0dHBzOi8vZ2l0aHViLmNvbS93eWNhdHMvaGFuZGxlYmFycy5qcy9pc3N1ZXMvMTYzOVxuICAgIC8vIFdlIHRyeSB0byBtYWtlIHRoZSB3cmFwcGVyIGxlYXN0LWludmFzaXZlIGJ5IG5vdCB3cmFwcGluZyBpdCwgaWYgdGhlIGhlbHBlciBpcyBub3QgYSBmdW5jdGlvbi5cbiAgICByZXR1cm4gaGVscGVyO1xuICB9XG4gIGxldCB3cmFwcGVyID0gZnVuY3Rpb24oLyogZHluYW1pYyBhcmd1bWVudHMgKi8pIHtcbiAgICBjb25zdCBvcHRpb25zID0gYXJndW1lbnRzW2FyZ3VtZW50cy5sZW5ndGggLSAxXTtcbiAgICBhcmd1bWVudHNbYXJndW1lbnRzLmxlbmd0aCAtIDFdID0gdHJhbnNmb3JtT3B0aW9uc0ZuKG9wdGlvbnMpO1xuICAgIHJldHVybiBoZWxwZXIuYXBwbHkodGhpcywgYXJndW1lbnRzKTtcbiAgfTtcbiAgcmV0dXJuIHdyYXBwZXI7XG59XG4iXX0=
 
 
-/***/ }),
+/***/ },
 
-/***/ "./node_modules/handlebars/dist/cjs/handlebars/logger.js":
+/***/ "./node_modules/handlebars/dist/cjs/handlebars/logger.js"
 /*!***************************************************************!*\
   !*** ./node_modules/handlebars/dist/cjs/handlebars/logger.js ***!
   \***************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+(module, exports, __webpack_require__) {
 
 "use strict";
 
@@ -1315,19 +2039,18 @@ var logger = {
   }
 };
 
-exports['default'] = logger;
+exports["default"] = logger;
 module.exports = exports['default'];
 //# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uLy4uL2xpYi9oYW5kbGViYXJzL2xvZ2dlci5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7O3FCQUF3QixTQUFTOztBQUVqQyxJQUFJLE1BQU0sR0FBRztBQUNYLFdBQVMsRUFBRSxDQUFDLE9BQU8sRUFBRSxNQUFNLEVBQUUsTUFBTSxFQUFFLE9BQU8sQ0FBQztBQUM3QyxPQUFLLEVBQUUsTUFBTTs7O0FBR2IsYUFBVyxFQUFFLHFCQUFTLEtBQUssRUFBRTtBQUMzQixRQUFJLE9BQU8sS0FBSyxLQUFLLFFBQVEsRUFBRTtBQUM3QixVQUFJLFFBQVEsR0FBRyxlQUFRLE1BQU0sQ0FBQyxTQUFTLEVBQUUsS0FBSyxDQUFDLFdBQVcsRUFBRSxDQUFDLENBQUM7QUFDOUQsVUFBSSxRQUFRLElBQUksQ0FBQyxFQUFFO0FBQ2pCLGFBQUssR0FBRyxRQUFRLENBQUM7T0FDbEIsTUFBTTtBQUNMLGFBQUssR0FBRyxRQUFRLENBQUMsS0FBSyxFQUFFLEVBQUUsQ0FBQyxDQUFDO09BQzdCO0tBQ0Y7O0FBRUQsV0FBTyxLQUFLLENBQUM7R0FDZDs7O0FBR0QsS0FBRyxFQUFFLGFBQVMsS0FBSyxFQUFjO0FBQy9CLFNBQUssR0FBRyxNQUFNLENBQUMsV0FBVyxDQUFDLEtBQUssQ0FBQyxDQUFDOztBQUVsQyxRQUNFLE9BQU8sT0FBTyxLQUFLLFdBQVcsSUFDOUIsTUFBTSxDQUFDLFdBQVcsQ0FBQyxNQUFNLENBQUMsS0FBSyxDQUFDLElBQUksS0FBSyxFQUN6QztBQUNBLFVBQUksTUFBTSxHQUFHLE1BQU0sQ0FBQyxTQUFTLENBQUMsS0FBSyxDQUFDLENBQUM7O0FBRXJDLFVBQUksQ0FBQyxPQUFPLENBQUMsTUFBTSxDQUFDLEVBQUU7QUFDcEIsY0FBTSxHQUFHLEtBQUssQ0FBQztPQUNoQjs7d0NBWG1CLE9BQU87QUFBUCxlQUFPOzs7QUFZM0IsYUFBTyxDQUFDLE1BQU0sT0FBQyxDQUFmLE9BQU8sRUFBWSxPQUFPLENBQUMsQ0FBQztLQUM3QjtHQUNGO0NBQ0YsQ0FBQzs7cUJBRWEsTUFBTSIsImZpbGUiOiJsb2dnZXIuanMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBpbmRleE9mIH0gZnJvbSAnLi91dGlscyc7XG5cbmxldCBsb2dnZXIgPSB7XG4gIG1ldGhvZE1hcDogWydkZWJ1ZycsICdpbmZvJywgJ3dhcm4nLCAnZXJyb3InXSxcbiAgbGV2ZWw6ICdpbmZvJyxcblxuICAvLyBNYXBzIGEgZ2l2ZW4gbGV2ZWwgdmFsdWUgdG8gdGhlIGBtZXRob2RNYXBgIGluZGV4ZXMgYWJvdmUuXG4gIGxvb2t1cExldmVsOiBmdW5jdGlvbihsZXZlbCkge1xuICAgIGlmICh0eXBlb2YgbGV2ZWwgPT09ICdzdHJpbmcnKSB7XG4gICAgICBsZXQgbGV2ZWxNYXAgPSBpbmRleE9mKGxvZ2dlci5tZXRob2RNYXAsIGxldmVsLnRvTG93ZXJDYXNlKCkpO1xuICAgICAgaWYgKGxldmVsTWFwID49IDApIHtcbiAgICAgICAgbGV2ZWwgPSBsZXZlbE1hcDtcbiAgICAgIH0gZWxzZSB7XG4gICAgICAgIGxldmVsID0gcGFyc2VJbnQobGV2ZWwsIDEwKTtcbiAgICAgIH1cbiAgICB9XG5cbiAgICByZXR1cm4gbGV2ZWw7XG4gIH0sXG5cbiAgLy8gQ2FuIGJlIG92ZXJyaWRkZW4gaW4gdGhlIGhvc3QgZW52aXJvbm1lbnRcbiAgbG9nOiBmdW5jdGlvbihsZXZlbCwgLi4ubWVzc2FnZSkge1xuICAgIGxldmVsID0gbG9nZ2VyLmxvb2t1cExldmVsKGxldmVsKTtcblxuICAgIGlmIChcbiAgICAgIHR5cGVvZiBjb25zb2xlICE9PSAndW5kZWZpbmVkJyAmJlxuICAgICAgbG9nZ2VyLmxvb2t1cExldmVsKGxvZ2dlci5sZXZlbCkgPD0gbGV2ZWxcbiAgICApIHtcbiAgICAgIGxldCBtZXRob2QgPSBsb2dnZXIubWV0aG9kTWFwW2xldmVsXTtcbiAgICAgIC8vIGVzbGludC1kaXNhYmxlLW5leHQtbGluZSBuby1jb25zb2xlXG4gICAgICBpZiAoIWNvbnNvbGVbbWV0aG9kXSkge1xuICAgICAgICBtZXRob2QgPSAnbG9nJztcbiAgICAgIH1cbiAgICAgIGNvbnNvbGVbbWV0aG9kXSguLi5tZXNzYWdlKTsgLy8gZXNsaW50LWRpc2FibGUtbGluZSBuby1jb25zb2xlXG4gICAgfVxuICB9XG59O1xuXG5leHBvcnQgZGVmYXVsdCBsb2dnZXI7XG4iXX0=
 
 
-/***/ }),
+/***/ },
 
-/***/ "./node_modules/handlebars/dist/cjs/handlebars/no-conflict.js":
+/***/ "./node_modules/handlebars/dist/cjs/handlebars/no-conflict.js"
 /*!********************************************************************!*\
   !*** ./node_modules/handlebars/dist/cjs/handlebars/no-conflict.js ***!
   \********************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+(module, exports) {
 
 "use strict";
 /* global globalThis */
@@ -1335,7 +2058,7 @@ module.exports = exports['default'];
 
 exports.__esModule = true;
 
-exports['default'] = function (Handlebars) {
+exports["default"] = function (Handlebars) {
   /* istanbul ignore next */
   // https://mathiasbynens.be/notes/globalthis
   (function () {
@@ -1362,14 +2085,13 @@ module.exports = exports['default'];
 //# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uLy4uL2xpYi9oYW5kbGViYXJzL25vLWNvbmZsaWN0LmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7O3FCQUNlLFVBQVMsVUFBVSxFQUFFOzs7QUFHbEMsR0FBQyxZQUFXO0FBQ1YsUUFBSSxPQUFPLFVBQVUsS0FBSyxRQUFRLEVBQUUsT0FBTztBQUMzQyxVQUFNLENBQUMsU0FBUyxDQUFDLGdCQUFnQixDQUFDLFdBQVcsRUFBRSxZQUFXO0FBQ3hELGFBQU8sSUFBSSxDQUFDO0tBQ2IsQ0FBQyxDQUFDO0FBQ0gsYUFBUyxDQUFDLFVBQVUsR0FBRyxTQUFTLENBQUM7QUFDakMsV0FBTyxNQUFNLENBQUMsU0FBUyxDQUFDLFNBQVMsQ0FBQztHQUNuQyxDQUFBLEVBQUcsQ0FBQzs7QUFFTCxNQUFNLFdBQVcsR0FBRyxVQUFVLENBQUMsVUFBVSxDQUFDOzs7QUFHMUMsWUFBVSxDQUFDLFVBQVUsR0FBRyxZQUFXO0FBQ2pDLFFBQUksVUFBVSxDQUFDLFVBQVUsS0FBSyxVQUFVLEVBQUU7QUFDeEMsZ0JBQVUsQ0FBQyxVQUFVLEdBQUcsV0FBVyxDQUFDO0tBQ3JDO0FBQ0QsV0FBTyxVQUFVLENBQUM7R0FDbkIsQ0FBQztDQUNIIiwiZmlsZSI6Im5vLWNvbmZsaWN0LmpzIiwic291cmNlc0NvbnRlbnQiOlsiLyogZ2xvYmFsIGdsb2JhbFRoaXMgKi9cbmV4cG9ydCBkZWZhdWx0IGZ1bmN0aW9uKEhhbmRsZWJhcnMpIHtcbiAgLyogaXN0YW5idWwgaWdub3JlIG5leHQgKi9cbiAgLy8gaHR0cHM6Ly9tYXRoaWFzYnluZW5zLmJlL25vdGVzL2dsb2JhbHRoaXNcbiAgKGZ1bmN0aW9uKCkge1xuICAgIGlmICh0eXBlb2YgZ2xvYmFsVGhpcyA9PT0gJ29iamVjdCcpIHJldHVybjtcbiAgICBPYmplY3QucHJvdG90eXBlLl9fZGVmaW5lR2V0dGVyX18oJ19fbWFnaWNfXycsIGZ1bmN0aW9uKCkge1xuICAgICAgcmV0dXJuIHRoaXM7XG4gICAgfSk7XG4gICAgX19tYWdpY19fLmdsb2JhbFRoaXMgPSBfX21hZ2ljX187IC8vIGVzbGludC1kaXNhYmxlLWxpbmUgbm8tdW5kZWZcbiAgICBkZWxldGUgT2JqZWN0LnByb3RvdHlwZS5fX21hZ2ljX187XG4gIH0pKCk7XG5cbiAgY29uc3QgJEhhbmRsZWJhcnMgPSBnbG9iYWxUaGlzLkhhbmRsZWJhcnM7XG5cbiAgLyogaXN0YW5idWwgaWdub3JlIG5leHQgKi9cbiAgSGFuZGxlYmFycy5ub0NvbmZsaWN0ID0gZnVuY3Rpb24oKSB7XG4gICAgaWYgKGdsb2JhbFRoaXMuSGFuZGxlYmFycyA9PT0gSGFuZGxlYmFycykge1xuICAgICAgZ2xvYmFsVGhpcy5IYW5kbGViYXJzID0gJEhhbmRsZWJhcnM7XG4gICAgfVxuICAgIHJldHVybiBIYW5kbGViYXJzO1xuICB9O1xufVxuIl19
 
 
-/***/ }),
+/***/ },
 
-/***/ "./node_modules/handlebars/dist/cjs/handlebars/runtime.js":
+/***/ "./node_modules/handlebars/dist/cjs/handlebars/runtime.js"
 /*!****************************************************************!*\
   !*** ./node_modules/handlebars/dist/cjs/handlebars/runtime.js ***!
   \****************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+(__unused_webpack_module, exports, __webpack_require__) {
 
 "use strict";
 
@@ -1746,14 +2468,13 @@ function passLookupPropertyOption(helper, container) {
 //# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uLy4uL2xpYi9oYW5kbGViYXJzL3J1bnRpbWUuanMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7Ozs7Ozs7Ozs7Ozs7Ozs7cUJBQXVCLFNBQVM7O0lBQXBCLEtBQUs7O3lCQUNLLGFBQWE7Ozs7b0JBTTVCLFFBQVE7O3VCQUNtQixXQUFXOztrQ0FDbEIsdUJBQXVCOzttQ0FJM0MseUJBQXlCOztBQUV6QixTQUFTLGFBQWEsQ0FBQyxZQUFZLEVBQUU7QUFDMUMsTUFBTSxnQkFBZ0IsR0FBRyxBQUFDLFlBQVksSUFBSSxZQUFZLENBQUMsQ0FBQyxDQUFDLElBQUssQ0FBQztNQUM3RCxlQUFlLDBCQUFvQixDQUFDOztBQUV0QyxNQUNFLGdCQUFnQiwyQ0FBcUMsSUFDckQsZ0JBQWdCLDJCQUFxQixFQUNyQztBQUNBLFdBQU87R0FDUjs7QUFFRCxNQUFJLGdCQUFnQiwwQ0FBb0MsRUFBRTtBQUN4RCxRQUFNLGVBQWUsR0FBRyx1QkFBaUIsZUFBZSxDQUFDO1FBQ3ZELGdCQUFnQixHQUFHLHVCQUFpQixnQkFBZ0IsQ0FBQyxDQUFDO0FBQ3hELFVBQU0sMkJBQ0oseUZBQXlGLEdBQ3ZGLHFEQUFxRCxHQUNyRCxlQUFlLEdBQ2YsbURBQW1ELEdBQ25ELGdCQUFnQixHQUNoQixJQUFJLENBQ1AsQ0FBQztHQUNILE1BQU07O0FBRUwsVUFBTSwyQkFDSix3RkFBd0YsR0FDdEYsaURBQWlELEdBQ2pELFlBQVksQ0FBQyxDQUFDLENBQUMsR0FDZixJQUFJLENBQ1AsQ0FBQztHQUNIO0NBQ0Y7O0FBRU0sU0FBUyxRQUFRLENBQUMsWUFBWSxFQUFFLEdBQUcsRUFBRTs7QUFFMUMsTUFBSSxDQUFDLEdBQUcsRUFBRTtBQUNSLFVBQU0sMkJBQWMsbUNBQW1DLENBQUMsQ0FBQztHQUMxRDtBQUNELE1BQUksQ0FBQyxZQUFZLElBQUksQ0FBQyxZQUFZLENBQUMsSUFBSSxFQUFFO0FBQ3ZDLFVBQU0sMkJBQWMsMkJBQTJCLEdBQUcsT0FBTyxZQUFZLENBQUMsQ0FBQztHQUN4RTs7QUFFRCxjQUFZLENBQUMsSUFBSSxDQUFDLFNBQVMsR0FBRyxZQUFZLENBQUMsTUFBTSxDQUFDOzs7O0FBSWxELEtBQUcsQ0FBQyxFQUFFLENBQUMsYUFBYSxDQUFDLFlBQVksQ0FBQyxRQUFRLENBQUMsQ0FBQzs7O0FBRzVDLE1BQU0sb0NBQW9DLEdBQ3hDLFlBQVksQ0FBQyxRQUFRLElBQUksWUFBWSxDQUFDLFFBQVEsQ0FBQyxDQUFDLENBQUMsS0FBSyxDQUFDLENBQUM7O0FBRTFELFdBQVMsb0JBQW9CLENBQUMsT0FBTyxFQUFFLE9BQU8sRUFBRSxPQUFPLEVBQUU7QUFDdkQsUUFBSSxPQUFPLENBQUMsSUFBSSxFQUFFO0FBQ2hCLGFBQU8sR0FBRyxLQUFLLENBQUMsTUFBTSxDQUFDLEVBQUUsRUFBRSxPQUFPLEVBQUUsT0FBTyxDQUFDLElBQUksQ0FBQyxDQUFDO0FBQ2xELFVBQUksT0FBTyxDQUFDLEdBQUcsRUFBRTtBQUNmLGVBQU8sQ0FBQyxHQUFHLENBQUMsQ0FBQyxDQUFDLEdBQUcsSUFBSSxDQUFDO09BQ3ZCO0tBQ0Y7QUFDRCxXQUFPLEdBQUcsR0FBRyxDQUFDLEVBQUUsQ0FBQyxjQUFjLENBQUMsSUFBSSxDQUFDLElBQUksRUFBRSxPQUFPLEVBQUUsT0FBTyxFQUFFLE9BQU8sQ0FBQyxDQUFDOztBQUV0RSxRQUFJLGVBQWUsR0FBRyxLQUFLLENBQUMsTUFBTSxDQUFDLEVBQUUsRUFBRSxPQUFPLEVBQUU7QUFDOUMsV0FBSyxFQUFFLElBQUksQ0FBQyxLQUFLO0FBQ2pCLHdCQUFrQixFQUFFLElBQUksQ0FBQyxrQkFBa0I7S0FDNUMsQ0FBQyxDQUFDOztBQUVILFFBQUksTUFBTSxHQUFHLEdBQUcsQ0FBQyxFQUFFLENBQUMsYUFBYSxDQUFDLElBQUksQ0FDcEMsSUFBSSxFQUNKLE9BQU8sRUFDUCxPQUFPLEVBQ1AsZUFBZSxDQUNoQixDQUFDOztBQUVGLFFBQUksTUFBTSxJQUFJLElBQUksSUFBSSxHQUFHLENBQUMsT0FBTyxFQUFFO0FBQ2pDLGFBQU8sQ0FBQyxRQUFRLENBQUMsT0FBTyxDQUFDLElBQUksQ0FBQyxHQUFHLEdBQUcsQ0FBQyxPQUFPLENBQzFDLE9BQU8sRUFDUCxZQUFZLENBQUMsZUFBZSxFQUM1QixHQUFHLENBQ0osQ0FBQztBQUNGLFlBQU0sR0FBRyxPQUFPLENBQUMsUUFBUSxDQUFDLE9BQU8sQ0FBQyxJQUFJLENBQUMsQ0FBQyxPQUFPLEVBQUUsZUFBZSxDQUFDLENBQUM7S0FDbkU7QUFDRCxRQUFJLE1BQU0sSUFBSSxJQUFJLEVBQUU7QUFDbEIsVUFBSSxPQUFPLENBQUMsTUFBTSxFQUFFO0FBQ2xCLFlBQUksS0FBSyxHQUFHLE1BQU0sQ0FBQyxLQUFLLENBQUMsSUFBSSxDQUFDLENBQUM7QUFDL0IsYUFBSyxJQUFJLENBQUMsR0FBRyxDQUFDLEVBQUUsQ0FBQyxHQUFHLEtBQUssQ0FBQyxNQUFNLEVBQUUsQ0FBQyxHQUFHLENBQUMsRUFBRSxDQUFDLEVBQUUsRUFBRTtBQUM1QyxjQUFJLENBQUMsS0FBSyxDQUFDLENBQUMsQ0FBQyxJQUFJLENBQUMsR0FBRyxDQUFDLEtBQUssQ0FBQyxFQUFFO0FBQzVCLGtCQUFNO1dBQ1A7O0FBRUQsZUFBSyxDQUFDLENBQUMsQ0FBQyxHQUFHLE9BQU8sQ0FBQyxNQUFNLEdBQUcsS0FBSyxDQUFDLENBQUMsQ0FBQyxDQUFDO1NBQ3RDO0FBQ0QsY0FBTSxHQUFHLEtBQUssQ0FBQyxJQUFJLENBQUMsSUFBSSxDQUFDLENBQUM7T0FDM0I7QUFDRCxhQUFPLE1BQU0sQ0FBQztLQUNmLE1BQU07QUFDTCxZQUFNLDJCQUNKLGNBQWMsR0FDWixPQUFPLENBQUMsSUFBSSxHQUNaLDBEQUEwRCxDQUM3RCxDQUFDO0tBQ0g7R0FDRjs7O0FBR0QsTUFBSSxTQUFTLEdBQUc7QUFDZCxVQUFNLEVBQUUsZ0JBQVMsR0FBRyxFQUFFLElBQUksRUFBRSxHQUFHLEVBQUU7QUFDL0IsVUFBSSxDQUFDLEdBQUcsSUFBSSxFQUFFLElBQUksSUFBSSxHQUFHLENBQUEsQUFBQyxFQUFFO0FBQzFCLGNBQU0sMkJBQWMsR0FBRyxHQUFHLElBQUksR0FBRyxtQkFBbUIsR0FBRyxHQUFHLEVBQUU7QUFDMUQsYUFBRyxFQUFFLEdBQUc7U0FDVCxDQUFDLENBQUM7T0FDSjtBQUNELGFBQU8sU0FBUyxDQUFDLGNBQWMsQ0FBQyxHQUFHLEVBQUUsSUFBSSxDQUFDLENBQUM7S0FDNUM7QUFDRCxrQkFBYyxFQUFFLHdCQUFTLE1BQU0sRUFBRSxZQUFZLEVBQUU7QUFDN0MsVUFBSSxNQUFNLEdBQUcsTUFBTSxDQUFDLFlBQVksQ0FBQyxDQUFDO0FBQ2xDLFVBQUksTUFBTSxJQUFJLElBQUksRUFBRTtBQUNsQixlQUFPLE1BQU0sQ0FBQztPQUNmO0FBQ0QsVUFBSSxNQUFNLENBQUMsU0FBUyxDQUFDLGNBQWMsQ0FBQyxJQUFJLENBQUMsTUFBTSxFQUFFLFlBQVksQ0FBQyxFQUFFO0FBQzlELGVBQU8sTUFBTSxDQUFDO09BQ2Y7O0FBRUQsVUFBSSxxQ0FBZ0IsTUFBTSxFQUFFLFNBQVMsQ0FBQyxrQkFBa0IsRUFBRSxZQUFZLENBQUMsRUFBRTtBQUN2RSxlQUFPLE1BQU0sQ0FBQztPQUNmO0FBQ0QsYUFBTyxTQUFTLENBQUM7S0FDbEI7QUFDRCxVQUFNLEVBQUUsZ0JBQVMsTUFBTSxFQUFFLElBQUksRUFBRTtBQUM3QixVQUFNLEdBQUcsR0FBRyxNQUFNLENBQUMsTUFBTSxDQUFDO0FBQzFCLFdBQUssSUFBSSxDQUFDLEdBQUcsQ0FBQyxFQUFFLENBQUMsR0FBRyxHQUFHLEVBQUUsQ0FBQyxFQUFFLEVBQUU7QUFDNUIsWUFBSSxNQUFNLEdBQUcsTUFBTSxDQUFDLENBQUMsQ0FBQyxJQUFJLFNBQVMsQ0FBQyxjQUFjLENBQUMsTUFBTSxDQUFDLENBQUMsQ0FBQyxFQUFFLElBQUksQ0FBQyxDQUFDO0FBQ3BFLFlBQUksTUFBTSxJQUFJLElBQUksRUFBRTtBQUNsQixpQkFBTyxNQUFNLENBQUMsQ0FBQyxDQUFDLENBQUMsSUFBSSxDQUFDLENBQUM7U0FDeEI7T0FDRjtLQUNGO0FBQ0QsVUFBTSxFQUFFLGdCQUFTLE9BQU8sRUFBRSxPQUFPLEVBQUU7QUFDakMsYUFBTyxPQUFPLE9BQU8sS0FBSyxVQUFVLEdBQUcsT0FBTyxDQUFDLElBQUksQ0FBQyxPQUFPLENBQUMsR0FBRyxPQUFPLENBQUM7S0FDeEU7O0FBRUQsb0JBQWdCLEVBQUUsS0FBSyxDQUFDLGdCQUFnQjtBQUN4QyxpQkFBYSxFQUFFLG9CQUFvQjs7QUFFbkMsTUFBRSxFQUFFLFlBQVMsQ0FBQyxFQUFFO0FBQ2QsVUFBSSxHQUFHLEdBQUcsWUFBWSxDQUFDLENBQUMsQ0FBQyxDQUFDO0FBQzFCLFNBQUcsQ0FBQyxTQUFTLEdBQUcsWUFBWSxDQUFDLENBQUMsR0FBRyxJQUFJLENBQUMsQ0FBQztBQUN2QyxhQUFPLEdBQUcsQ0FBQztLQUNaOztBQUVELFlBQVEsRUFBRSxFQUFFO0FBQ1osV0FBTyxFQUFFLGlCQUFTLENBQUMsRUFBRSxJQUFJLEVBQUUsbUJBQW1CLEVBQUUsV0FBVyxFQUFFLE1BQU0sRUFBRTtBQUNuRSxVQUFJLGNBQWMsR0FBRyxJQUFJLENBQUMsUUFBUSxDQUFDLENBQUMsQ0FBQztVQUNuQyxFQUFFLEdBQUcsSUFBSSxDQUFDLEVBQUUsQ0FBQyxDQUFDLENBQUMsQ0FBQztBQUNsQixVQUFJLElBQUksSUFBSSxNQUFNLElBQUksV0FBVyxJQUFJLG1CQUFtQixFQUFFO0FBQ3hELHNCQUFjLEdBQUcsV0FBVyxDQUMxQixJQUFJLEVBQ0osQ0FBQyxFQUNELEVBQUUsRUFDRixJQUFJLEVBQ0osbUJBQW1CLEVBQ25CLFdBQVcsRUFDWCxNQUFNLENBQ1AsQ0FBQztPQUNILE1BQU0sSUFBSSxDQUFDLGNBQWMsRUFBRTtBQUMxQixzQkFBYyxHQUFHLElBQUksQ0FBQyxRQUFRLENBQUMsQ0FBQyxDQUFDLEdBQUcsV0FBVyxDQUFDLElBQUksRUFBRSxDQUFDLEVBQUUsRUFBRSxDQUFDLENBQUM7T0FDOUQ7QUFDRCxhQUFPLGNBQWMsQ0FBQztLQUN2Qjs7QUFFRCxRQUFJLEVBQUUsY0FBUyxLQUFLLEVBQUUsS0FBSyxFQUFFO0FBQzNCLGFBQU8sS0FBSyxJQUFJLEtBQUssRUFBRSxFQUFFO0FBQ3ZCLGFBQUssR0FBRyxLQUFLLENBQUMsT0FBTyxDQUFDO09BQ3ZCO0FBQ0QsYUFBTyxLQUFLLENBQUM7S0FDZDtBQUNELGlCQUFhLEVBQUUsdUJBQVMsS0FBSyxFQUFFLE1BQU0sRUFBRTtBQUNyQyxVQUFJLEdBQUcsR0FBRyxLQUFLLElBQUksTUFBTSxDQUFDOztBQUUxQixVQUFJLEtBQUssSUFBSSxNQUFNLElBQUksS0FBSyxLQUFLLE1BQU0sRUFBRTtBQUN2QyxXQUFHLEdBQUcsS0FBSyxDQUFDLE1BQU0sQ0FBQyxFQUFFLEVBQUUsTUFBTSxFQUFFLEtBQUssQ0FBQyxDQUFDO09BQ3ZDOztBQUVELGFBQU8sR0FBRyxDQUFDO0tBQ1o7O0FBRUQsZUFBVyxFQUFFLE1BQU0sQ0FBQyxJQUFJLENBQUMsRUFBRSxDQUFDOztBQUU1QixRQUFJLEVBQUUsR0FBRyxDQUFDLEVBQUUsQ0FBQyxJQUFJO0FBQ2pCLGdCQUFZLEVBQUUsWUFBWSxDQUFDLFFBQVE7R0FDcEMsQ0FBQzs7QUFFRixXQUFTLEdBQUcsQ0FBQyxPQUFPLEVBQWdCO1FBQWQsT0FBTyx5REFBRyxFQUFFOztBQUNoQyxRQUFJLElBQUksR0FBRyxPQUFPLENBQUMsSUFBSSxDQUFDOztBQUV4QixPQUFHLENBQUMsTUFBTSxDQUFDLE9BQU8sQ0FBQyxDQUFDO0FBQ3BCLFFBQUksQ0FBQyxPQUFPLENBQUMsT0FBTyxJQUFJLFlBQVksQ0FBQyxPQUFPLEVBQUU7QUFDNUMsVUFBSSxHQUFHLFFBQVEsQ0FBQyxPQUFPLEVBQUUsSUFBSSxDQUFDLENBQUM7S0FDaEM7QUFDRCxRQUFJLE1BQU0sWUFBQTtRQUNSLFdBQVcsR0FBRyxZQUFZLENBQUMsY0FBYyxHQUFHLEVBQUUsR0FBRyxTQUFTLENBQUM7QUFDN0QsUUFBSSxZQUFZLENBQUMsU0FBUyxFQUFFO0FBQzFCLFVBQUksT0FBTyxDQUFDLE1BQU0sRUFBRTtBQUNsQixjQUFNLEdBQ0osT0FBTyxJQUFJLE9BQU8sQ0FBQyxNQUFNLENBQUMsQ0FBQyxDQUFDLEdBQ3hCLENBQUMsT0FBTyxDQUFDLENBQUMsTUFBTSxDQUFDLE9BQU8sQ0FBQyxNQUFNLENBQUMsR0FDaEMsT0FBTyxDQUFDLE1BQU0sQ0FBQztPQUN0QixNQUFNO0FBQ0wsY0FBTSxHQUFHLENBQUMsT0FBTyxDQUFDLENBQUM7T0FDcEI7S0FDRjs7QUFFRCxhQUFTLElBQUksQ0FBQyxPQUFPLGdCQUFnQjtBQUNuQyxhQUNFLEVBQUUsR0FDRixZQUFZLENBQUMsSUFBSSxDQUNmLFNBQVMsRUFDVCxPQUFPLEVBQ1AsU0FBUyxDQUFDLE9BQU8sRUFDakIsU0FBUyxDQUFDLFFBQVEsRUFDbEIsSUFBSSxFQUNKLFdBQVcsRUFDWCxNQUFNLENBQ1AsQ0FDRDtLQUNIOztBQUVELFFBQUksR0FBRyxpQkFBaUIsQ0FDdEIsWUFBWSxDQUFDLElBQUksRUFDakIsSUFBSSxFQUNKLFNBQVMsRUFDVCxPQUFPLENBQUMsTUFBTSxJQUFJLEVBQUUsRUFDcEIsSUFBSSxFQUNKLFdBQVcsQ0FDWixDQUFDO0FBQ0YsV0FBTyxJQUFJLENBQUMsT0FBTyxFQUFFLE9BQU8sQ0FBQyxDQUFDO0dBQy9COztBQUVELEtBQUcsQ0FBQyxLQUFLLEdBQUcsSUFBSSxDQUFDOztBQUVqQixLQUFHLENBQUMsTUFBTSxHQUFHLFVBQVMsT0FBTyxFQUFFO0FBQzdCLFFBQUksQ0FBQyxPQUFPLENBQUMsT0FBTyxFQUFFO0FBQ3BCLFVBQUksYUFBYSxHQUFHLEtBQUssQ0FBQyxNQUFNLENBQUMsRUFBRSxFQUFFLEdBQUcsQ0FBQyxPQUFPLEVBQUUsT0FBTyxDQUFDLE9BQU8sQ0FBQyxDQUFDO0FBQ25FLHFDQUErQixDQUFDLGFBQWEsRUFBRSxTQUFTLENBQUMsQ0FBQztBQUMxRCxlQUFTLENBQUMsT0FBTyxHQUFHLGFBQWEsQ0FBQzs7QUFFbEMsVUFBSSxZQUFZLENBQUMsVUFBVSxFQUFFOztBQUUzQixpQkFBUyxDQUFDLFFBQVEsR0FBRyxTQUFTLENBQUMsYUFBYSxDQUMxQyxPQUFPLENBQUMsUUFBUSxFQUNoQixHQUFHLENBQUMsUUFBUSxDQUNiLENBQUM7T0FDSDtBQUNELFVBQUksWUFBWSxDQUFDLFVBQVUsSUFBSSxZQUFZLENBQUMsYUFBYSxFQUFFO0FBQ3pELGlCQUFTLENBQUMsVUFBVSxHQUFHLEtBQUssQ0FBQyxNQUFNLENBQ2pDLEVBQUUsRUFDRixHQUFHLENBQUMsVUFBVSxFQUNkLE9BQU8sQ0FBQyxVQUFVLENBQ25CLENBQUM7T0FDSDs7QUFFRCxlQUFTLENBQUMsS0FBSyxHQUFHLEVBQUUsQ0FBQztBQUNyQixlQUFTLENBQUMsa0JBQWtCLEdBQUcsOENBQXlCLE9BQU8sQ0FBQyxDQUFDOztBQUVqRSxVQUFJLG1CQUFtQixHQUNyQixPQUFPLENBQUMseUJBQXlCLElBQ2pDLG9DQUFvQyxDQUFDO0FBQ3ZDLGlDQUFrQixTQUFTLEVBQUUsZUFBZSxFQUFFLG1CQUFtQixDQUFDLENBQUM7QUFDbkUsaUNBQWtCLFNBQVMsRUFBRSxvQkFBb0IsRUFBRSxtQkFBbUIsQ0FBQyxDQUFDO0tBQ3pFLE1BQU07QUFDTCxlQUFTLENBQUMsa0JBQWtCLEdBQUcsT0FBTyxDQUFDLGtCQUFrQixDQUFDO0FBQzFELGVBQVMsQ0FBQyxPQUFPLEdBQUcsT0FBTyxDQUFDLE9BQU8sQ0FBQztBQUNwQyxlQUFTLENBQUMsUUFBUSxHQUFHLE9BQU8sQ0FBQyxRQUFRLENBQUM7QUFDdEMsZUFBUyxDQUFDLFVBQVUsR0FBRyxPQUFPLENBQUMsVUFBVSxDQUFDO0FBQzFDLGVBQVMsQ0FBQyxLQUFLLEdBQUcsT0FBTyxDQUFDLEtBQUssQ0FBQztLQUNqQztHQUNGLENBQUM7O0FBRUYsS0FBRyxDQUFDLE1BQU0sR0FBRyxVQUFTLENBQUMsRUFBRSxJQUFJLEVBQUUsV0FBVyxFQUFFLE1BQU0sRUFBRTtBQUNsRCxRQUFJLFlBQVksQ0FBQyxjQUFjLElBQUksQ0FBQyxXQUFXLEVBQUU7QUFDL0MsWUFBTSwyQkFBYyx3QkFBd0IsQ0FBQyxDQUFDO0tBQy9DO0FBQ0QsUUFBSSxZQUFZLENBQUMsU0FBUyxJQUFJLENBQUMsTUFBTSxFQUFFO0FBQ3JDLFlBQU0sMkJBQWMseUJBQXlCLENBQUMsQ0FBQztLQUNoRDs7QUFFRCxXQUFPLFdBQVcsQ0FDaEIsU0FBUyxFQUNULENBQUMsRUFDRCxZQUFZLENBQUMsQ0FBQyxDQUFDLEVBQ2YsSUFBSSxFQUNKLENBQUMsRUFDRCxXQUFXLEVBQ1gsTUFBTSxDQUNQLENBQUM7R0FDSCxDQUFDO0FBQ0YsU0FBTyxHQUFHLENBQUM7Q0FDWjs7QUFFTSxTQUFTLFdBQVcsQ0FDekIsU0FBUyxFQUNULENBQUMsRUFDRCxFQUFFLEVBQ0YsSUFBSSxFQUNKLG1CQUFtQixFQUNuQixXQUFXLEVBQ1gsTUFBTSxFQUNOO0FBQ0EsV0FBUyxJQUFJLENBQUMsT0FBTyxFQUFnQjtRQUFkLE9BQU8seURBQUcsRUFBRTs7QUFDakMsUUFBSSxhQUFhLEdBQUcsTUFBTSxDQUFDO0FBQzNCLFFBQ0UsTUFBTSxJQUNOLE9BQU8sSUFBSSxNQUFNLENBQUMsQ0FBQyxDQUFDLElBQ3BCLEVBQUUsT0FBTyxLQUFLLFNBQVMsQ0FBQyxXQUFXLElBQUksTUFBTSxDQUFDLENBQUMsQ0FBQyxLQUFLLElBQUksQ0FBQSxBQUFDLEVBQzFEO0FBQ0EsbUJBQWEsR0FBRyxDQUFDLE9BQU8sQ0FBQyxDQUFDLE1BQU0sQ0FBQyxNQUFNLENBQUMsQ0FBQztLQUMxQzs7QUFFRCxXQUFPLEVBQUUsQ0FDUCxTQUFTLEVBQ1QsT0FBTyxFQUNQLFNBQVMsQ0FBQyxPQUFPLEVBQ2pCLFNBQVMsQ0FBQyxRQUFRLEVBQ2xCLE9BQU8sQ0FBQyxJQUFJLElBQUksSUFBSSxFQUNwQixXQUFXLElBQUksQ0FBQyxPQUFPLENBQUMsV0FBVyxDQUFDLENBQUMsTUFBTSxDQUFDLFdBQVcsQ0FBQyxFQUN4RCxhQUFhLENBQ2QsQ0FBQztHQUNIOztBQUVELE1BQUksR0FBRyxpQkFBaUIsQ0FBQyxFQUFFLEVBQUUsSUFBSSxFQUFFLFNBQVMsRUFBRSxNQUFNLEVBQUUsSUFBSSxFQUFFLFdBQVcsQ0FBQyxDQUFDOztBQUV6RSxNQUFJLENBQUMsT0FBTyxHQUFHLENBQUMsQ0FBQztBQUNqQixNQUFJLENBQUMsS0FBSyxHQUFHLE1BQU0sR0FBRyxNQUFNLENBQUMsTUFBTSxHQUFHLENBQUMsQ0FBQztBQUN4QyxNQUFJLENBQUMsV0FBVyxHQUFHLG1CQUFtQixJQUFJLENBQUMsQ0FBQztBQUM1QyxTQUFPLElBQUksQ0FBQztDQUNiOzs7Ozs7QUFLTSxTQUFTLGNBQWMsQ0FBQyxPQUFPLEVBQUUsT0FBTyxFQUFFLE9BQU8sRUFBRTtBQUN4RCxNQUFJLENBQUMsT0FBTyxFQUFFO0FBQ1osUUFBSSxPQUFPLENBQUMsSUFBSSxLQUFLLGdCQUFnQixFQUFFO0FBQ3JDLGFBQU8sR0FBRyxPQUFPLENBQUMsSUFBSSxDQUFDLGVBQWUsQ0FBQyxDQUFDO0tBQ3pDLE1BQU07QUFDTCxhQUFPLEdBQUcsT0FBTyxDQUFDLFFBQVEsQ0FBQyxPQUFPLENBQUMsSUFBSSxDQUFDLENBQUM7S0FDMUM7R0FDRixNQUFNLElBQUksQ0FBQyxPQUFPLENBQUMsSUFBSSxJQUFJLENBQUMsT0FBTyxDQUFDLElBQUksRUFBRTs7QUFFekMsV0FBTyxDQUFDLElBQUksR0FBRyxPQUFPLENBQUM7QUFDdkIsV0FBTyxHQUFHLE9BQU8sQ0FBQyxRQUFRLENBQUMsT0FBTyxDQUFDLENBQUM7R0FDckM7QUFDRCxTQUFPLE9BQU8sQ0FBQztDQUNoQjs7QUFFTSxTQUFTLGFBQWEsQ0FBQyxPQUFPLEVBQUUsT0FBTyxFQUFFLE9BQU8sRUFBRTs7QUFFdkQsTUFBTSxtQkFBbUIsR0FBRyxPQUFPLENBQUMsSUFBSSxJQUFJLE9BQU8sQ0FBQyxJQUFJLENBQUMsZUFBZSxDQUFDLENBQUM7QUFDMUUsU0FBTyxDQUFDLE9BQU8sR0FBRyxJQUFJLENBQUM7QUFDdkIsTUFBSSxPQUFPLENBQUMsR0FBRyxFQUFFO0FBQ2YsV0FBTyxDQUFDLElBQUksQ0FBQyxXQUFXLEdBQUcsT0FBTyxDQUFDLEdBQUcsQ0FBQyxDQUFDLENBQUMsSUFBSSxPQUFPLENBQUMsSUFBSSxDQUFDLFdBQVcsQ0FBQztHQUN2RTs7QUFFRCxNQUFJLFlBQVksWUFBQSxDQUFDO0FBQ2pCLE1BQUksT0FBTyxDQUFDLEVBQUUsSUFBSSxPQUFPLENBQUMsRUFBRSxLQUFLLElBQUksRUFBRTs7QUFDckMsYUFBTyxDQUFDLElBQUksR0FBRyxrQkFBWSxPQUFPLENBQUMsSUFBSSxDQUFDLENBQUM7O0FBRXpDLFVBQUksRUFBRSxHQUFHLE9BQU8sQ0FBQyxFQUFFLENBQUM7QUFDcEIsa0JBQVksR0FBRyxPQUFPLENBQUMsSUFBSSxDQUFDLGVBQWUsQ0FBQyxHQUFHLFNBQVMsbUJBQW1CLENBQ3pFLE9BQU8sRUFFUDtZQURBLE9BQU8seURBQUcsRUFBRTs7OztBQUlaLGVBQU8sQ0FBQyxJQUFJLEdBQUcsa0JBQVksT0FBTyxDQUFDLElBQUksQ0FBQyxDQUFDO0FBQ3pDLGVBQU8sQ0FBQyxJQUFJLENBQUMsZUFBZSxDQUFDLEdBQUcsbUJBQW1CLENBQUM7QUFDcEQsZUFBTyxFQUFFLENBQUMsT0FBTyxFQUFFLE9BQU8sQ0FBQyxDQUFDO09BQzdCLENBQUM7QUFDRixVQUFJLEVBQUUsQ0FBQyxRQUFRLEVBQUU7QUFDZixlQUFPLENBQUMsUUFBUSxHQUFHLEtBQUssQ0FBQyxNQUFNLENBQUMsRUFBRSxFQUFFLE9BQU8sQ0FBQyxRQUFRLEVBQUUsRUFBRSxDQUFDLFFBQVEsQ0FBQyxDQUFDO09BQ3BFOztHQUNGOztBQUVELE1BQUksT0FBTyxLQUFLLFNBQVMsSUFBSSxZQUFZLEVBQUU7QUFDekMsV0FBTyxHQUFHLFlBQVksQ0FBQztHQUN4Qjs7QUFFRCxNQUFJLE9BQU8sS0FBSyxTQUFTLEVBQUU7QUFDekIsVUFBTSwyQkFBYyxjQUFjLEdBQUcsT0FBTyxDQUFDLElBQUksR0FBRyxxQkFBcUIsQ0FBQyxDQUFDO0dBQzVFLE1BQU0sSUFBSSxPQUFPLFlBQVksUUFBUSxFQUFFO0FBQ3RDLFdBQU8sT0FBTyxDQUFDLE9BQU8sRUFBRSxPQUFPLENBQUMsQ0FBQztHQUNsQztDQUNGOztBQUVNLFNBQVMsSUFBSSxHQUFHO0FBQ3JCLFNBQU8sRUFBRSxDQUFDO0NBQ1g7O0FBRUQsU0FBUyxRQUFRLENBQUMsT0FBTyxFQUFFLElBQUksRUFBRTtBQUMvQixNQUFJLENBQUMsSUFBSSxJQUFJLEVBQUUsTUFBTSxJQUFJLElBQUksQ0FBQSxBQUFDLEVBQUU7QUFDOUIsUUFBSSxHQUFHLElBQUksR0FBRyxrQkFBWSxJQUFJLENBQUMsR0FBRyxFQUFFLENBQUM7QUFDckMsUUFBSSxDQUFDLElBQUksR0FBRyxPQUFPLENBQUM7R0FDckI7QUFDRCxTQUFPLElBQUksQ0FBQztDQUNiOztBQUVELFNBQVMsaUJBQWlCLENBQUMsRUFBRSxFQUFFLElBQUksRUFBRSxTQUFTLEVBQUUsTUFBTSxFQUFFLElBQUksRUFBRSxXQUFXLEVBQUU7QUFDekUsTUFBSSxFQUFFLENBQUMsU0FBUyxFQUFFO0FBQ2hCLFFBQUksS0FBSyxHQUFHLEVBQUUsQ0FBQztBQUNmLFFBQUksR0FBRyxFQUFFLENBQUMsU0FBUyxDQUNqQixJQUFJLEVBQ0osS0FBSyxFQUNMLFNBQVMsRUFDVCxNQUFNLElBQUksTUFBTSxDQUFDLENBQUMsQ0FBQyxFQUNuQixJQUFJLEVBQ0osV0FBVyxFQUNYLE1BQU0sQ0FDUCxDQUFDO0FBQ0YsU0FBSyxDQUFDLE1BQU0sQ0FBQyxJQUFJLEVBQUUsS0FBSyxDQUFDLENBQUM7R0FDM0I7QUFDRCxTQUFPLElBQUksQ0FBQztDQUNiOztBQUVELFNBQVMsK0JBQStCLENBQUMsYUFBYSxFQUFFLFNBQVMsRUFBRTtBQUNqRSxRQUFNLENBQUMsSUFBSSxDQUFDLGFBQWEsQ0FBQyxDQUFDLE9BQU8sQ0FBQyxVQUFBLFVBQVUsRUFBSTtBQUMvQyxRQUFJLE1BQU0sR0FBRyxhQUFhLENBQUMsVUFBVSxDQUFDLENBQUM7QUFDdkMsaUJBQWEsQ0FBQyxVQUFVLENBQUMsR0FBRyx3QkFBd0IsQ0FBQyxNQUFNLEVBQUUsU0FBUyxDQUFDLENBQUM7R0FDekUsQ0FBQyxDQUFDO0NBQ0o7O0FBRUQsU0FBUyx3QkFBd0IsQ0FBQyxNQUFNLEVBQUUsU0FBUyxFQUFFO0FBQ25ELE1BQU0sY0FBYyxHQUFHLFNBQVMsQ0FBQyxjQUFjLENBQUM7QUFDaEQsU0FBTywrQkFBVyxNQUFNLEVBQUUsVUFBQSxPQUFPLEVBQUk7QUFDbkMsV0FBTyxLQUFLLENBQUMsTUFBTSxDQUFDLEVBQUUsY0FBYyxFQUFkLGNBQWMsRUFBRSxFQUFFLE9BQU8sQ0FBQyxDQUFDO0dBQ2xELENBQUMsQ0FBQztDQUNKIiwiZmlsZSI6InJ1bnRpbWUuanMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgKiBhcyBVdGlscyBmcm9tICcuL3V0aWxzJztcbmltcG9ydCBFeGNlcHRpb24gZnJvbSAnLi9leGNlcHRpb24nO1xuaW1wb3J0IHtcbiAgQ09NUElMRVJfUkVWSVNJT04sXG4gIGNyZWF0ZUZyYW1lLFxuICBMQVNUX0NPTVBBVElCTEVfQ09NUElMRVJfUkVWSVNJT04sXG4gIFJFVklTSU9OX0NIQU5HRVNcbn0gZnJvbSAnLi9iYXNlJztcbmltcG9ydCB7IG1vdmVIZWxwZXJUb0hvb2tzIH0gZnJvbSAnLi9oZWxwZXJzJztcbmltcG9ydCB7IHdyYXBIZWxwZXIgfSBmcm9tICcuL2ludGVybmFsL3dyYXBIZWxwZXInO1xuaW1wb3J0IHtcbiAgY3JlYXRlUHJvdG9BY2Nlc3NDb250cm9sLFxuICByZXN1bHRJc0FsbG93ZWRcbn0gZnJvbSAnLi9pbnRlcm5hbC9wcm90by1hY2Nlc3MnO1xuXG5leHBvcnQgZnVuY3Rpb24gY2hlY2tSZXZpc2lvbihjb21waWxlckluZm8pIHtcbiAgY29uc3QgY29tcGlsZXJSZXZpc2lvbiA9IChjb21waWxlckluZm8gJiYgY29tcGlsZXJJbmZvWzBdKSB8fCAxLFxuICAgIGN1cnJlbnRSZXZpc2lvbiA9IENPTVBJTEVSX1JFVklTSU9OO1xuXG4gIGlmIChcbiAgICBjb21waWxlclJldmlzaW9uID49IExBU1RfQ09NUEFUSUJMRV9DT01QSUxFUl9SRVZJU0lPTiAmJlxuICAgIGNvbXBpbGVyUmV2aXNpb24gPD0gQ09NUElMRVJfUkVWSVNJT05cbiAgKSB7XG4gICAgcmV0dXJuO1xuICB9XG5cbiAgaWYgKGNvbXBpbGVyUmV2aXNpb24gPCBMQVNUX0NPTVBBVElCTEVfQ09NUElMRVJfUkVWSVNJT04pIHtcbiAgICBjb25zdCBydW50aW1lVmVyc2lvbnMgPSBSRVZJU0lPTl9DSEFOR0VTW2N1cnJlbnRSZXZpc2lvbl0sXG4gICAgICBjb21waWxlclZlcnNpb25zID0gUkVWSVNJT05fQ0hBTkdFU1tjb21waWxlclJldmlzaW9uXTtcbiAgICB0aHJvdyBuZXcgRXhjZXB0aW9uKFxuICAgICAgJ1RlbXBsYXRlIHdhcyBwcmVjb21waWxlZCB3aXRoIGFuIG9sZGVyIHZlcnNpb24gb2YgSGFuZGxlYmFycyB0aGFuIHRoZSBjdXJyZW50IHJ1bnRpbWUuICcgK1xuICAgICAgICAnUGxlYXNlIHVwZGF0ZSB5b3VyIHByZWNvbXBpbGVyIHRvIGEgbmV3ZXIgdmVyc2lvbiAoJyArXG4gICAgICAgIHJ1bnRpbWVWZXJzaW9ucyArXG4gICAgICAgICcpIG9yIGRvd25ncmFkZSB5b3VyIHJ1bnRpbWUgdG8gYW4gb2xkZXIgdmVyc2lvbiAoJyArXG4gICAgICAgIGNvbXBpbGVyVmVyc2lvbnMgK1xuICAgICAgICAnKS4nXG4gICAgKTtcbiAgfSBlbHNlIHtcbiAgICAvLyBVc2UgdGhlIGVtYmVkZGVkIHZlcnNpb24gaW5mbyBzaW5jZSB0aGUgcnVudGltZSBkb2Vzbid0IGtub3cgYWJvdXQgdGhpcyByZXZpc2lvbiB5ZXRcbiAgICB0aHJvdyBuZXcgRXhjZXB0aW9uKFxuICAgICAgJ1RlbXBsYXRlIHdhcyBwcmVjb21waWxlZCB3aXRoIGEgbmV3ZXIgdmVyc2lvbiBvZiBIYW5kbGViYXJzIHRoYW4gdGhlIGN1cnJlbnQgcnVudGltZS4gJyArXG4gICAgICAgICdQbGVhc2UgdXBkYXRlIHlvdXIgcnVudGltZSB0byBhIG5ld2VyIHZlcnNpb24gKCcgK1xuICAgICAgICBjb21waWxlckluZm9bMV0gK1xuICAgICAgICAnKS4nXG4gICAgKTtcbiAgfVxufVxuXG5leHBvcnQgZnVuY3Rpb24gdGVtcGxhdGUodGVtcGxhdGVTcGVjLCBlbnYpIHtcbiAgLyogaXN0YW5idWwgaWdub3JlIG5leHQgKi9cbiAgaWYgKCFlbnYpIHtcbiAgICB0aHJvdyBuZXcgRXhjZXB0aW9uKCdObyBlbnZpcm9ubWVudCBwYXNzZWQgdG8gdGVtcGxhdGUnKTtcbiAgfVxuICBpZiAoIXRlbXBsYXRlU3BlYyB8fCAhdGVtcGxhdGVTcGVjLm1haW4pIHtcbiAgICB0aHJvdyBuZXcgRXhjZXB0aW9uKCdVbmtub3duIHRlbXBsYXRlIG9iamVjdDogJyArIHR5cGVvZiB0ZW1wbGF0ZVNwZWMpO1xuICB9XG5cbiAgdGVtcGxhdGVTcGVjLm1haW4uZGVjb3JhdG9yID0gdGVtcGxhdGVTcGVjLm1haW5fZDtcblxuICAvLyBOb3RlOiBVc2luZyBlbnYuVk0gcmVmZXJlbmNlcyByYXRoZXIgdGhhbiBsb2NhbCB2YXIgcmVmZXJlbmNlcyB0aHJvdWdob3V0IHRoaXMgc2VjdGlvbiB0byBhbGxvd1xuICAvLyBmb3IgZXh0ZXJuYWwgdXNlcnMgdG8gb3ZlcnJpZGUgdGhlc2UgYXMgcHNldWRvLXN1cHBvcnRlZCBBUElzLlxuICBlbnYuVk0uY2hlY2tSZXZpc2lvbih0ZW1wbGF0ZVNwZWMuY29tcGlsZXIpO1xuXG4gIC8vIGJhY2t3YXJkcyBjb21wYXRpYmlsaXR5IGZvciBwcmVjb21waWxlZCB0ZW1wbGF0ZXMgd2l0aCBjb21waWxlci12ZXJzaW9uIDcgKDw0LjMuMClcbiAgY29uc3QgdGVtcGxhdGVXYXNQcmVjb21waWxlZFdpdGhDb21waWxlclY3ID1cbiAgICB0ZW1wbGF0ZVNwZWMuY29tcGlsZXIgJiYgdGVtcGxhdGVTcGVjLmNvbXBpbGVyWzBdID09PSA3O1xuXG4gIGZ1bmN0aW9uIGludm9rZVBhcnRpYWxXcmFwcGVyKHBhcnRpYWwsIGNvbnRleHQsIG9wdGlvbnMpIHtcbiAgICBpZiAob3B0aW9ucy5oYXNoKSB7XG4gICAgICBjb250ZXh0ID0gVXRpbHMuZXh0ZW5kKHt9LCBjb250ZXh0LCBvcHRpb25zLmhhc2gpO1xuICAgICAgaWYgKG9wdGlvbnMuaWRzKSB7XG4gICAgICAgIG9wdGlvbnMuaWRzWzBdID0gdHJ1ZTtcbiAgICAgIH1cbiAgICB9XG4gICAgcGFydGlhbCA9IGVudi5WTS5yZXNvbHZlUGFydGlhbC5jYWxsKHRoaXMsIHBhcnRpYWwsIGNvbnRleHQsIG9wdGlvbnMpO1xuXG4gICAgbGV0IGV4dGVuZGVkT3B0aW9ucyA9IFV0aWxzLmV4dGVuZCh7fSwgb3B0aW9ucywge1xuICAgICAgaG9va3M6IHRoaXMuaG9va3MsXG4gICAgICBwcm90b0FjY2Vzc0NvbnRyb2w6IHRoaXMucHJvdG9BY2Nlc3NDb250cm9sXG4gICAgfSk7XG5cbiAgICBsZXQgcmVzdWx0ID0gZW52LlZNLmludm9rZVBhcnRpYWwuY2FsbChcbiAgICAgIHRoaXMsXG4gICAgICBwYXJ0aWFsLFxuICAgICAgY29udGV4dCxcbiAgICAgIGV4dGVuZGVkT3B0aW9uc1xuICAgICk7XG5cbiAgICBpZiAocmVzdWx0ID09IG51bGwgJiYgZW52LmNvbXBpbGUpIHtcbiAgICAgIG9wdGlvbnMucGFydGlhbHNbb3B0aW9ucy5uYW1lXSA9IGVudi5jb21waWxlKFxuICAgICAgICBwYXJ0aWFsLFxuICAgICAgICB0ZW1wbGF0ZVNwZWMuY29tcGlsZXJPcHRpb25zLFxuICAgICAgICBlbnZcbiAgICAgICk7XG4gICAgICByZXN1bHQgPSBvcHRpb25zLnBhcnRpYWxzW29wdGlvbnMubmFtZV0oY29udGV4dCwgZXh0ZW5kZWRPcHRpb25zKTtcbiAgICB9XG4gICAgaWYgKHJlc3VsdCAhPSBudWxsKSB7XG4gICAgICBpZiAob3B0aW9ucy5pbmRlbnQpIHtcbiAgICAgICAgbGV0IGxpbmVzID0gcmVzdWx0LnNwbGl0KCdcXG4nKTtcbiAgICAgICAgZm9yIChsZXQgaSA9IDAsIGwgPSBsaW5lcy5sZW5ndGg7IGkgPCBsOyBpKyspIHtcbiAgICAgICAgICBpZiAoIWxpbmVzW2ldICYmIGkgKyAxID09PSBsKSB7XG4gICAgICAgICAgICBicmVhaztcbiAgICAgICAgICB9XG5cbiAgICAgICAgICBsaW5lc1tpXSA9IG9wdGlvbnMuaW5kZW50ICsgbGluZXNbaV07XG4gICAgICAgIH1cbiAgICAgICAgcmVzdWx0ID0gbGluZXMuam9pbignXFxuJyk7XG4gICAgICB9XG4gICAgICByZXR1cm4gcmVzdWx0O1xuICAgIH0gZWxzZSB7XG4gICAgICB0aHJvdyBuZXcgRXhjZXB0aW9uKFxuICAgICAgICAnVGhlIHBhcnRpYWwgJyArXG4gICAgICAgICAgb3B0aW9ucy5uYW1lICtcbiAgICAgICAgICAnIGNvdWxkIG5vdCBiZSBjb21waWxlZCB3aGVuIHJ1bm5pbmcgaW4gcnVudGltZS1vbmx5IG1vZGUnXG4gICAgICApO1xuICAgIH1cbiAgfVxuXG4gIC8vIEp1c3QgYWRkIHdhdGVyXG4gIGxldCBjb250YWluZXIgPSB7XG4gICAgc3RyaWN0OiBmdW5jdGlvbihvYmosIG5hbWUsIGxvYykge1xuICAgICAgaWYgKCFvYmogfHwgIShuYW1lIGluIG9iaikpIHtcbiAgICAgICAgdGhyb3cgbmV3IEV4Y2VwdGlvbignXCInICsgbmFtZSArICdcIiBub3QgZGVmaW5lZCBpbiAnICsgb2JqLCB7XG4gICAgICAgICAgbG9jOiBsb2NcbiAgICAgICAgfSk7XG4gICAgICB9XG4gICAgICByZXR1cm4gY29udGFpbmVyLmxvb2t1cFByb3BlcnR5KG9iaiwgbmFtZSk7XG4gICAgfSxcbiAgICBsb29rdXBQcm9wZXJ0eTogZnVuY3Rpb24ocGFyZW50LCBwcm9wZXJ0eU5hbWUpIHtcbiAgICAgIGxldCByZXN1bHQgPSBwYXJlbnRbcHJvcGVydHlOYW1lXTtcbiAgICAgIGlmIChyZXN1bHQgPT0gbnVsbCkge1xuICAgICAgICByZXR1cm4gcmVzdWx0O1xuICAgICAgfVxuICAgICAgaWYgKE9iamVjdC5wcm90b3R5cGUuaGFzT3duUHJvcGVydHkuY2FsbChwYXJlbnQsIHByb3BlcnR5TmFtZSkpIHtcbiAgICAgICAgcmV0dXJuIHJlc3VsdDtcbiAgICAgIH1cblxuICAgICAgaWYgKHJlc3VsdElzQWxsb3dlZChyZXN1bHQsIGNvbnRhaW5lci5wcm90b0FjY2Vzc0NvbnRyb2wsIHByb3BlcnR5TmFtZSkpIHtcbiAgICAgICAgcmV0dXJuIHJlc3VsdDtcbiAgICAgIH1cbiAgICAgIHJldHVybiB1bmRlZmluZWQ7XG4gICAgfSxcbiAgICBsb29rdXA6IGZ1bmN0aW9uKGRlcHRocywgbmFtZSkge1xuICAgICAgY29uc3QgbGVuID0gZGVwdGhzLmxlbmd0aDtcbiAgICAgIGZvciAobGV0IGkgPSAwOyBpIDwgbGVuOyBpKyspIHtcbiAgICAgICAgbGV0IHJlc3VsdCA9IGRlcHRoc1tpXSAmJiBjb250YWluZXIubG9va3VwUHJvcGVydHkoZGVwdGhzW2ldLCBuYW1lKTtcbiAgICAgICAgaWYgKHJlc3VsdCAhPSBudWxsKSB7XG4gICAgICAgICAgcmV0dXJuIGRlcHRoc1tpXVtuYW1lXTtcbiAgICAgICAgfVxuICAgICAgfVxuICAgIH0sXG4gICAgbGFtYmRhOiBmdW5jdGlvbihjdXJyZW50LCBjb250ZXh0KSB7XG4gICAgICByZXR1cm4gdHlwZW9mIGN1cnJlbnQgPT09ICdmdW5jdGlvbicgPyBjdXJyZW50LmNhbGwoY29udGV4dCkgOiBjdXJyZW50O1xuICAgIH0sXG5cbiAgICBlc2NhcGVFeHByZXNzaW9uOiBVdGlscy5lc2NhcGVFeHByZXNzaW9uLFxuICAgIGludm9rZVBhcnRpYWw6IGludm9rZVBhcnRpYWxXcmFwcGVyLFxuXG4gICAgZm46IGZ1bmN0aW9uKGkpIHtcbiAgICAgIGxldCByZXQgPSB0ZW1wbGF0ZVNwZWNbaV07XG4gICAgICByZXQuZGVjb3JhdG9yID0gdGVtcGxhdGVTcGVjW2kgKyAnX2QnXTtcbiAgICAgIHJldHVybiByZXQ7XG4gICAgfSxcblxuICAgIHByb2dyYW1zOiBbXSxcbiAgICBwcm9ncmFtOiBmdW5jdGlvbihpLCBkYXRhLCBkZWNsYXJlZEJsb2NrUGFyYW1zLCBibG9ja1BhcmFtcywgZGVwdGhzKSB7XG4gICAgICBsZXQgcHJvZ3JhbVdyYXBwZXIgPSB0aGlzLnByb2dyYW1zW2ldLFxuICAgICAgICBmbiA9IHRoaXMuZm4oaSk7XG4gICAgICBpZiAoZGF0YSB8fCBkZXB0aHMgfHwgYmxvY2tQYXJhbXMgfHwgZGVjbGFyZWRCbG9ja1BhcmFtcykge1xuICAgICAgICBwcm9ncmFtV3JhcHBlciA9IHdyYXBQcm9ncmFtKFxuICAgICAgICAgIHRoaXMsXG4gICAgICAgICAgaSxcbiAgICAgICAgICBmbixcbiAgICAgICAgICBkYXRhLFxuICAgICAgICAgIGRlY2xhcmVkQmxvY2tQYXJhbXMsXG4gICAgICAgICAgYmxvY2tQYXJhbXMsXG4gICAgICAgICAgZGVwdGhzXG4gICAgICAgICk7XG4gICAgICB9IGVsc2UgaWYgKCFwcm9ncmFtV3JhcHBlcikge1xuICAgICAgICBwcm9ncmFtV3JhcHBlciA9IHRoaXMucHJvZ3JhbXNbaV0gPSB3cmFwUHJvZ3JhbSh0aGlzLCBpLCBmbik7XG4gICAgICB9XG4gICAgICByZXR1cm4gcHJvZ3JhbVdyYXBwZXI7XG4gICAgfSxcblxuICAgIGRhdGE6IGZ1bmN0aW9uKHZhbHVlLCBkZXB0aCkge1xuICAgICAgd2hpbGUgKHZhbHVlICYmIGRlcHRoLS0pIHtcbiAgICAgICAgdmFsdWUgPSB2YWx1ZS5fcGFyZW50O1xuICAgICAgfVxuICAgICAgcmV0dXJuIHZhbHVlO1xuICAgIH0sXG4gICAgbWVyZ2VJZk5lZWRlZDogZnVuY3Rpb24ocGFyYW0sIGNvbW1vbikge1xuICAgICAgbGV0IG9iaiA9IHBhcmFtIHx8IGNvbW1vbjtcblxuICAgICAgaWYgKHBhcmFtICYmIGNvbW1vbiAmJiBwYXJhbSAhPT0gY29tbW9uKSB7XG4gICAgICAgIG9iaiA9IFV0aWxzLmV4dGVuZCh7fSwgY29tbW9uLCBwYXJhbSk7XG4gICAgICB9XG5cbiAgICAgIHJldHVybiBvYmo7XG4gICAgfSxcbiAgICAvLyBBbiBlbXB0eSBvYmplY3QgdG8gdXNlIGFzIHJlcGxhY2VtZW50IGZvciBudWxsLWNvbnRleHRzXG4gICAgbnVsbENvbnRleHQ6IE9iamVjdC5zZWFsKHt9KSxcblxuICAgIG5vb3A6IGVudi5WTS5ub29wLFxuICAgIGNvbXBpbGVySW5mbzogdGVtcGxhdGVTcGVjLmNvbXBpbGVyXG4gIH07XG5cbiAgZnVuY3Rpb24gcmV0KGNvbnRleHQsIG9wdGlvbnMgPSB7fSkge1xuICAgIGxldCBkYXRhID0gb3B0aW9ucy5kYXRhO1xuXG4gICAgcmV0Ll9zZXR1cChvcHRpb25zKTtcbiAgICBpZiAoIW9wdGlvbnMucGFydGlhbCAmJiB0ZW1wbGF0ZVNwZWMudXNlRGF0YSkge1xuICAgICAgZGF0YSA9IGluaXREYXRhKGNvbnRleHQsIGRhdGEpO1xuICAgIH1cbiAgICBsZXQgZGVwdGhzLFxuICAgICAgYmxvY2tQYXJhbXMgPSB0ZW1wbGF0ZVNwZWMudXNlQmxvY2tQYXJhbXMgPyBbXSA6IHVuZGVmaW5lZDtcbiAgICBpZiAodGVtcGxhdGVTcGVjLnVzZURlcHRocykge1xuICAgICAgaWYgKG9wdGlvbnMuZGVwdGhzKSB7XG4gICAgICAgIGRlcHRocyA9XG4gICAgICAgICAgY29udGV4dCAhPSBvcHRpb25zLmRlcHRoc1swXVxuICAgICAgICAgICAgPyBbY29udGV4dF0uY29uY2F0KG9wdGlvbnMuZGVwdGhzKVxuICAgICAgICAgICAgOiBvcHRpb25zLmRlcHRocztcbiAgICAgIH0gZWxzZSB7XG4gICAgICAgIGRlcHRocyA9IFtjb250ZXh0XTtcbiAgICAgIH1cbiAgICB9XG5cbiAgICBmdW5jdGlvbiBtYWluKGNvbnRleHQgLyosIG9wdGlvbnMqLykge1xuICAgICAgcmV0dXJuIChcbiAgICAgICAgJycgK1xuICAgICAgICB0ZW1wbGF0ZVNwZWMubWFpbihcbiAgICAgICAgICBjb250YWluZXIsXG4gICAgICAgICAgY29udGV4dCxcbiAgICAgICAgICBjb250YWluZXIuaGVscGVycyxcbiAgICAgICAgICBjb250YWluZXIucGFydGlhbHMsXG4gICAgICAgICAgZGF0YSxcbiAgICAgICAgICBibG9ja1BhcmFtcyxcbiAgICAgICAgICBkZXB0aHNcbiAgICAgICAgKVxuICAgICAgKTtcbiAgICB9XG5cbiAgICBtYWluID0gZXhlY3V0ZURlY29yYXRvcnMoXG4gICAgICB0ZW1wbGF0ZVNwZWMubWFpbixcbiAgICAgIG1haW4sXG4gICAgICBjb250YWluZXIsXG4gICAgICBvcHRpb25zLmRlcHRocyB8fCBbXSxcbiAgICAgIGRhdGEsXG4gICAgICBibG9ja1BhcmFtc1xuICAgICk7XG4gICAgcmV0dXJuIG1haW4oY29udGV4dCwgb3B0aW9ucyk7XG4gIH1cblxuICByZXQuaXNUb3AgPSB0cnVlO1xuXG4gIHJldC5fc2V0dXAgPSBmdW5jdGlvbihvcHRpb25zKSB7XG4gICAgaWYgKCFvcHRpb25zLnBhcnRpYWwpIHtcbiAgICAgIGxldCBtZXJnZWRIZWxwZXJzID0gVXRpbHMuZXh0ZW5kKHt9LCBlbnYuaGVscGVycywgb3B0aW9ucy5oZWxwZXJzKTtcbiAgICAgIHdyYXBIZWxwZXJzVG9QYXNzTG9va3VwUHJvcGVydHkobWVyZ2VkSGVscGVycywgY29udGFpbmVyKTtcbiAgICAgIGNvbnRhaW5lci5oZWxwZXJzID0gbWVyZ2VkSGVscGVycztcblxuICAgICAgaWYgKHRlbXBsYXRlU3BlYy51c2VQYXJ0aWFsKSB7XG4gICAgICAgIC8vIFVzZSBtZXJnZUlmTmVlZGVkIGhlcmUgdG8gcHJldmVudCBjb21waWxpbmcgZ2xvYmFsIHBhcnRpYWxzIG11bHRpcGxlIHRpbWVzXG4gICAgICAgIGNvbnRhaW5lci5wYXJ0aWFscyA9IGNvbnRhaW5lci5tZXJnZUlmTmVlZGVkKFxuICAgICAgICAgIG9wdGlvbnMucGFydGlhbHMsXG4gICAgICAgICAgZW52LnBhcnRpYWxzXG4gICAgICAgICk7XG4gICAgICB9XG4gICAgICBpZiAodGVtcGxhdGVTcGVjLnVzZVBhcnRpYWwgfHwgdGVtcGxhdGVTcGVjLnVzZURlY29yYXRvcnMpIHtcbiAgICAgICAgY29udGFpbmVyLmRlY29yYXRvcnMgPSBVdGlscy5leHRlbmQoXG4gICAgICAgICAge30sXG4gICAgICAgICAgZW52LmRlY29yYXRvcnMsXG4gICAgICAgICAgb3B0aW9ucy5kZWNvcmF0b3JzXG4gICAgICAgICk7XG4gICAgICB9XG5cbiAgICAgIGNvbnRhaW5lci5ob29rcyA9IHt9O1xuICAgICAgY29udGFpbmVyLnByb3RvQWNjZXNzQ29udHJvbCA9IGNyZWF0ZVByb3RvQWNjZXNzQ29udHJvbChvcHRpb25zKTtcblxuICAgICAgbGV0IGtlZXBIZWxwZXJJbkhlbHBlcnMgPVxuICAgICAgICBvcHRpb25zLmFsbG93Q2FsbHNUb0hlbHBlck1pc3NpbmcgfHxcbiAgICAgICAgdGVtcGxhdGVXYXNQcmVjb21waWxlZFdpdGhDb21waWxlclY3O1xuICAgICAgbW92ZUhlbHBlclRvSG9va3MoY29udGFpbmVyLCAnaGVscGVyTWlzc2luZycsIGtlZXBIZWxwZXJJbkhlbHBlcnMpO1xuICAgICAgbW92ZUhlbHBlclRvSG9va3MoY29udGFpbmVyLCAnYmxvY2tIZWxwZXJNaXNzaW5nJywga2VlcEhlbHBlckluSGVscGVycyk7XG4gICAgfSBlbHNlIHtcbiAgICAgIGNvbnRhaW5lci5wcm90b0FjY2Vzc0NvbnRyb2wgPSBvcHRpb25zLnByb3RvQWNjZXNzQ29udHJvbDsgLy8gaW50ZXJuYWwgb3B0aW9uXG4gICAgICBjb250YWluZXIuaGVscGVycyA9IG9wdGlvbnMuaGVscGVycztcbiAgICAgIGNvbnRhaW5lci5wYXJ0aWFscyA9IG9wdGlvbnMucGFydGlhbHM7XG4gICAgICBjb250YWluZXIuZGVjb3JhdG9ycyA9IG9wdGlvbnMuZGVjb3JhdG9ycztcbiAgICAgIGNvbnRhaW5lci5ob29rcyA9IG9wdGlvbnMuaG9va3M7XG4gICAgfVxuICB9O1xuXG4gIHJldC5fY2hpbGQgPSBmdW5jdGlvbihpLCBkYXRhLCBibG9ja1BhcmFtcywgZGVwdGhzKSB7XG4gICAgaWYgKHRlbXBsYXRlU3BlYy51c2VCbG9ja1BhcmFtcyAmJiAhYmxvY2tQYXJhbXMpIHtcbiAgICAgIHRocm93IG5ldyBFeGNlcHRpb24oJ211c3QgcGFzcyBibG9jayBwYXJhbXMnKTtcbiAgICB9XG4gICAgaWYgKHRlbXBsYXRlU3BlYy51c2VEZXB0aHMgJiYgIWRlcHRocykge1xuICAgICAgdGhyb3cgbmV3IEV4Y2VwdGlvbignbXVzdCBwYXNzIHBhcmVudCBkZXB0aHMnKTtcbiAgICB9XG5cbiAgICByZXR1cm4gd3JhcFByb2dyYW0oXG4gICAgICBjb250YWluZXIsXG4gICAgICBpLFxuICAgICAgdGVtcGxhdGVTcGVjW2ldLFxuICAgICAgZGF0YSxcbiAgICAgIDAsXG4gICAgICBibG9ja1BhcmFtcyxcbiAgICAgIGRlcHRoc1xuICAgICk7XG4gIH07XG4gIHJldHVybiByZXQ7XG59XG5cbmV4cG9ydCBmdW5jdGlvbiB3cmFwUHJvZ3JhbShcbiAgY29udGFpbmVyLFxuICBpLFxuICBmbixcbiAgZGF0YSxcbiAgZGVjbGFyZWRCbG9ja1BhcmFtcyxcbiAgYmxvY2tQYXJhbXMsXG4gIGRlcHRoc1xuKSB7XG4gIGZ1bmN0aW9uIHByb2coY29udGV4dCwgb3B0aW9ucyA9IHt9KSB7XG4gICAgbGV0IGN1cnJlbnREZXB0aHMgPSBkZXB0aHM7XG4gICAgaWYgKFxuICAgICAgZGVwdGhzICYmXG4gICAgICBjb250ZXh0ICE9IGRlcHRoc1swXSAmJlxuICAgICAgIShjb250ZXh0ID09PSBjb250YWluZXIubnVsbENvbnRleHQgJiYgZGVwdGhzWzBdID09PSBudWxsKVxuICAgICkge1xuICAgICAgY3VycmVudERlcHRocyA9IFtjb250ZXh0XS5jb25jYXQoZGVwdGhzKTtcbiAgICB9XG5cbiAgICByZXR1cm4gZm4oXG4gICAgICBjb250YWluZXIsXG4gICAgICBjb250ZXh0LFxuICAgICAgY29udGFpbmVyLmhlbHBlcnMsXG4gICAgICBjb250YWluZXIucGFydGlhbHMsXG4gICAgICBvcHRpb25zLmRhdGEgfHwgZGF0YSxcbiAgICAgIGJsb2NrUGFyYW1zICYmIFtvcHRpb25zLmJsb2NrUGFyYW1zXS5jb25jYXQoYmxvY2tQYXJhbXMpLFxuICAgICAgY3VycmVudERlcHRoc1xuICAgICk7XG4gIH1cblxuICBwcm9nID0gZXhlY3V0ZURlY29yYXRvcnMoZm4sIHByb2csIGNvbnRhaW5lciwgZGVwdGhzLCBkYXRhLCBibG9ja1BhcmFtcyk7XG5cbiAgcHJvZy5wcm9ncmFtID0gaTtcbiAgcHJvZy5kZXB0aCA9IGRlcHRocyA/IGRlcHRocy5sZW5ndGggOiAwO1xuICBwcm9nLmJsb2NrUGFyYW1zID0gZGVjbGFyZWRCbG9ja1BhcmFtcyB8fCAwO1xuICByZXR1cm4gcHJvZztcbn1cblxuLyoqXG4gKiBUaGlzIGlzIGN1cnJlbnRseSBwYXJ0IG9mIHRoZSBvZmZpY2lhbCBBUEksIHRoZXJlZm9yZSBpbXBsZW1lbnRhdGlvbiBkZXRhaWxzIHNob3VsZCBub3QgYmUgY2hhbmdlZC5cbiAqL1xuZXhwb3J0IGZ1bmN0aW9uIHJlc29sdmVQYXJ0aWFsKHBhcnRpYWwsIGNvbnRleHQsIG9wdGlvbnMpIHtcbiAgaWYgKCFwYXJ0aWFsKSB7XG4gICAgaWYgKG9wdGlvbnMubmFtZSA9PT0gJ0BwYXJ0aWFsLWJsb2NrJykge1xuICAgICAgcGFydGlhbCA9IG9wdGlvbnMuZGF0YVsncGFydGlhbC1ibG9jayddO1xuICAgIH0gZWxzZSB7XG4gICAgICBwYXJ0aWFsID0gb3B0aW9ucy5wYXJ0aWFsc1tvcHRpb25zLm5hbWVdO1xuICAgIH1cbiAgfSBlbHNlIGlmICghcGFydGlhbC5jYWxsICYmICFvcHRpb25zLm5hbWUpIHtcbiAgICAvLyBUaGlzIGlzIGEgZHluYW1pYyBwYXJ0aWFsIHRoYXQgcmV0dXJuZWQgYSBzdHJpbmdcbiAgICBvcHRpb25zLm5hbWUgPSBwYXJ0aWFsO1xuICAgIHBhcnRpYWwgPSBvcHRpb25zLnBhcnRpYWxzW3BhcnRpYWxdO1xuICB9XG4gIHJldHVybiBwYXJ0aWFsO1xufVxuXG5leHBvcnQgZnVuY3Rpb24gaW52b2tlUGFydGlhbChwYXJ0aWFsLCBjb250ZXh0LCBvcHRpb25zKSB7XG4gIC8vIFVzZSB0aGUgY3VycmVudCBjbG9zdXJlIGNvbnRleHQgdG8gc2F2ZSB0aGUgcGFydGlhbC1ibG9jayBpZiB0aGlzIHBhcnRpYWxcbiAgY29uc3QgY3VycmVudFBhcnRpYWxCbG9jayA9IG9wdGlvbnMuZGF0YSAmJiBvcHRpb25zLmRhdGFbJ3BhcnRpYWwtYmxvY2snXTtcbiAgb3B0aW9ucy5wYXJ0aWFsID0gdHJ1ZTtcbiAgaWYgKG9wdGlvbnMuaWRzKSB7XG4gICAgb3B0aW9ucy5kYXRhLmNvbnRleHRQYXRoID0gb3B0aW9ucy5pZHNbMF0gfHwgb3B0aW9ucy5kYXRhLmNvbnRleHRQYXRoO1xuICB9XG5cbiAgbGV0IHBhcnRpYWxCbG9jaztcbiAgaWYgKG9wdGlvbnMuZm4gJiYgb3B0aW9ucy5mbiAhPT0gbm9vcCkge1xuICAgIG9wdGlvbnMuZGF0YSA9IGNyZWF0ZUZyYW1lKG9wdGlvbnMuZGF0YSk7XG4gICAgLy8gV3JhcHBlciBmdW5jdGlvbiB0byBnZXQgYWNjZXNzIHRvIGN1cnJlbnRQYXJ0aWFsQmxvY2sgZnJvbSB0aGUgY2xvc3VyZVxuICAgIGxldCBmbiA9IG9wdGlvbnMuZm47XG4gICAgcGFydGlhbEJsb2NrID0gb3B0aW9ucy5kYXRhWydwYXJ0aWFsLWJsb2NrJ10gPSBmdW5jdGlvbiBwYXJ0aWFsQmxvY2tXcmFwcGVyKFxuICAgICAgY29udGV4dCxcbiAgICAgIG9wdGlvbnMgPSB7fVxuICAgICkge1xuICAgICAgLy8gUmVzdG9yZSB0aGUgcGFydGlhbC1ibG9jayBmcm9tIHRoZSBjbG9zdXJlIGZvciB0aGUgZXhlY3V0aW9uIG9mIHRoZSBibG9ja1xuICAgICAgLy8gaS5lLiB0aGUgcGFydCBpbnNpZGUgdGhlIGJsb2NrIG9mIHRoZSBwYXJ0aWFsIGNhbGwuXG4gICAgICBvcHRpb25zLmRhdGEgPSBjcmVhdGVGcmFtZShvcHRpb25zLmRhdGEpO1xuICAgICAgb3B0aW9ucy5kYXRhWydwYXJ0aWFsLWJsb2NrJ10gPSBjdXJyZW50UGFydGlhbEJsb2NrO1xuICAgICAgcmV0dXJuIGZuKGNvbnRleHQsIG9wdGlvbnMpO1xuICAgIH07XG4gICAgaWYgKGZuLnBhcnRpYWxzKSB7XG4gICAgICBvcHRpb25zLnBhcnRpYWxzID0gVXRpbHMuZXh0ZW5kKHt9LCBvcHRpb25zLnBhcnRpYWxzLCBmbi5wYXJ0aWFscyk7XG4gICAgfVxuICB9XG5cbiAgaWYgKHBhcnRpYWwgPT09IHVuZGVmaW5lZCAmJiBwYXJ0aWFsQmxvY2spIHtcbiAgICBwYXJ0aWFsID0gcGFydGlhbEJsb2NrO1xuICB9XG5cbiAgaWYgKHBhcnRpYWwgPT09IHVuZGVmaW5lZCkge1xuICAgIHRocm93IG5ldyBFeGNlcHRpb24oJ1RoZSBwYXJ0aWFsICcgKyBvcHRpb25zLm5hbWUgKyAnIGNvdWxkIG5vdCBiZSBmb3VuZCcpO1xuICB9IGVsc2UgaWYgKHBhcnRpYWwgaW5zdGFuY2VvZiBGdW5jdGlvbikge1xuICAgIHJldHVybiBwYXJ0aWFsKGNvbnRleHQsIG9wdGlvbnMpO1xuICB9XG59XG5cbmV4cG9ydCBmdW5jdGlvbiBub29wKCkge1xuICByZXR1cm4gJyc7XG59XG5cbmZ1bmN0aW9uIGluaXREYXRhKGNvbnRleHQsIGRhdGEpIHtcbiAgaWYgKCFkYXRhIHx8ICEoJ3Jvb3QnIGluIGRhdGEpKSB7XG4gICAgZGF0YSA9IGRhdGEgPyBjcmVhdGVGcmFtZShkYXRhKSA6IHt9O1xuICAgIGRhdGEucm9vdCA9IGNvbnRleHQ7XG4gIH1cbiAgcmV0dXJuIGRhdGE7XG59XG5cbmZ1bmN0aW9uIGV4ZWN1dGVEZWNvcmF0b3JzKGZuLCBwcm9nLCBjb250YWluZXIsIGRlcHRocywgZGF0YSwgYmxvY2tQYXJhbXMpIHtcbiAgaWYgKGZuLmRlY29yYXRvcikge1xuICAgIGxldCBwcm9wcyA9IHt9O1xuICAgIHByb2cgPSBmbi5kZWNvcmF0b3IoXG4gICAgICBwcm9nLFxuICAgICAgcHJvcHMsXG4gICAgICBjb250YWluZXIsXG4gICAgICBkZXB0aHMgJiYgZGVwdGhzWzBdLFxuICAgICAgZGF0YSxcbiAgICAgIGJsb2NrUGFyYW1zLFxuICAgICAgZGVwdGhzXG4gICAgKTtcbiAgICBVdGlscy5leHRlbmQocHJvZywgcHJvcHMpO1xuICB9XG4gIHJldHVybiBwcm9nO1xufVxuXG5mdW5jdGlvbiB3cmFwSGVscGVyc1RvUGFzc0xvb2t1cFByb3BlcnR5KG1lcmdlZEhlbHBlcnMsIGNvbnRhaW5lcikge1xuICBPYmplY3Qua2V5cyhtZXJnZWRIZWxwZXJzKS5mb3JFYWNoKGhlbHBlck5hbWUgPT4ge1xuICAgIGxldCBoZWxwZXIgPSBtZXJnZWRIZWxwZXJzW2hlbHBlck5hbWVdO1xuICAgIG1lcmdlZEhlbHBlcnNbaGVscGVyTmFtZV0gPSBwYXNzTG9va3VwUHJvcGVydHlPcHRpb24oaGVscGVyLCBjb250YWluZXIpO1xuICB9KTtcbn1cblxuZnVuY3Rpb24gcGFzc0xvb2t1cFByb3BlcnR5T3B0aW9uKGhlbHBlciwgY29udGFpbmVyKSB7XG4gIGNvbnN0IGxvb2t1cFByb3BlcnR5ID0gY29udGFpbmVyLmxvb2t1cFByb3BlcnR5O1xuICByZXR1cm4gd3JhcEhlbHBlcihoZWxwZXIsIG9wdGlvbnMgPT4ge1xuICAgIHJldHVybiBVdGlscy5leHRlbmQoeyBsb29rdXBQcm9wZXJ0eSB9LCBvcHRpb25zKTtcbiAgfSk7XG59XG4iXX0=
 
 
-/***/ }),
+/***/ },
 
-/***/ "./node_modules/handlebars/dist/cjs/handlebars/safe-string.js":
+/***/ "./node_modules/handlebars/dist/cjs/handlebars/safe-string.js"
 /*!********************************************************************!*\
   !*** ./node_modules/handlebars/dist/cjs/handlebars/safe-string.js ***!
   \********************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+(module, exports) {
 
 "use strict";
 // Build out our basic SafeString type
@@ -1768,19 +2489,18 @@ SafeString.prototype.toString = SafeString.prototype.toHTML = function () {
   return '' + this.string;
 };
 
-exports['default'] = SafeString;
+exports["default"] = SafeString;
 module.exports = exports['default'];
 //# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uLy4uL2xpYi9oYW5kbGViYXJzL3NhZmUtc3RyaW5nLmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7QUFDQSxTQUFTLFVBQVUsQ0FBQyxNQUFNLEVBQUU7QUFDMUIsTUFBSSxDQUFDLE1BQU0sR0FBRyxNQUFNLENBQUM7Q0FDdEI7O0FBRUQsVUFBVSxDQUFDLFNBQVMsQ0FBQyxRQUFRLEdBQUcsVUFBVSxDQUFDLFNBQVMsQ0FBQyxNQUFNLEdBQUcsWUFBVztBQUN2RSxTQUFPLEVBQUUsR0FBRyxJQUFJLENBQUMsTUFBTSxDQUFDO0NBQ3pCLENBQUM7O3FCQUVhLFVBQVUiLCJmaWxlIjoic2FmZS1zdHJpbmcuanMiLCJzb3VyY2VzQ29udGVudCI6WyIvLyBCdWlsZCBvdXQgb3VyIGJhc2ljIFNhZmVTdHJpbmcgdHlwZVxuZnVuY3Rpb24gU2FmZVN0cmluZyhzdHJpbmcpIHtcbiAgdGhpcy5zdHJpbmcgPSBzdHJpbmc7XG59XG5cblNhZmVTdHJpbmcucHJvdG90eXBlLnRvU3RyaW5nID0gU2FmZVN0cmluZy5wcm90b3R5cGUudG9IVE1MID0gZnVuY3Rpb24oKSB7XG4gIHJldHVybiAnJyArIHRoaXMuc3RyaW5nO1xufTtcblxuZXhwb3J0IGRlZmF1bHQgU2FmZVN0cmluZztcbiJdfQ==
 
 
-/***/ }),
+/***/ },
 
-/***/ "./node_modules/handlebars/dist/cjs/handlebars/utils.js":
+/***/ "./node_modules/handlebars/dist/cjs/handlebars/utils.js"
 /*!**************************************************************!*\
   !*** ./node_modules/handlebars/dist/cjs/handlebars/utils.js ***!
   \**************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+(__unused_webpack_module, exports) {
 
 "use strict";
 
@@ -1909,28 +2629,26 @@ function appendContextPath(contextPath, id) {
 //# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uLy4uL2xpYi9oYW5kbGViYXJzL3V0aWxzLmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7Ozs7Ozs7QUFBQSxJQUFNLE1BQU0sR0FBRztBQUNiLEtBQUcsRUFBRSxPQUFPO0FBQ1osS0FBRyxFQUFFLE1BQU07QUFDWCxLQUFHLEVBQUUsTUFBTTtBQUNYLEtBQUcsRUFBRSxRQUFRO0FBQ2IsS0FBRyxFQUFFLFFBQVE7QUFDYixLQUFHLEVBQUUsUUFBUTtBQUNiLEtBQUcsRUFBRSxRQUFRO0NBQ2QsQ0FBQzs7QUFFRixJQUFNLFFBQVEsR0FBRyxZQUFZO0lBQzNCLFFBQVEsR0FBRyxXQUFXLENBQUM7O0FBRXpCLFNBQVMsVUFBVSxDQUFDLEdBQUcsRUFBRTtBQUN2QixTQUFPLE1BQU0sQ0FBQyxHQUFHLENBQUMsQ0FBQztDQUNwQjs7QUFFTSxTQUFTLE1BQU0sQ0FBQyxHQUFHLG9CQUFvQjtBQUM1QyxPQUFLLElBQUksQ0FBQyxHQUFHLENBQUMsRUFBRSxDQUFDLEdBQUcsU0FBUyxDQUFDLE1BQU0sRUFBRSxDQUFDLEVBQUUsRUFBRTtBQUN6QyxTQUFLLElBQUksR0FBRyxJQUFJLFNBQVMsQ0FBQyxDQUFDLENBQUMsRUFBRTtBQUM1QixVQUFJLE1BQU0sQ0FBQyxTQUFTLENBQUMsY0FBYyxDQUFDLElBQUksQ0FBQyxTQUFTLENBQUMsQ0FBQyxDQUFDLEVBQUUsR0FBRyxDQUFDLEVBQUU7QUFDM0QsV0FBRyxDQUFDLEdBQUcsQ0FBQyxHQUFHLFNBQVMsQ0FBQyxDQUFDLENBQUMsQ0FBQyxHQUFHLENBQUMsQ0FBQztPQUM5QjtLQUNGO0dBQ0Y7O0FBRUQsU0FBTyxHQUFHLENBQUM7Q0FDWjs7QUFFTSxJQUFJLFFBQVEsR0FBRyxNQUFNLENBQUMsU0FBUyxDQUFDLFFBQVEsQ0FBQzs7Ozs7O0FBS2hELElBQUksVUFBVSxHQUFHLG9CQUFTLEtBQUssRUFBRTtBQUMvQixTQUFPLE9BQU8sS0FBSyxLQUFLLFVBQVUsQ0FBQztDQUNwQyxDQUFDOzs7QUFHRixJQUFJLFVBQVUsQ0FBQyxHQUFHLENBQUMsRUFBRTtBQUNuQixVQU9PLFVBQVUsR0FQakIsVUFBVSxHQUFHLFVBQVMsS0FBSyxFQUFFO0FBQzNCLFdBQ0UsT0FBTyxLQUFLLEtBQUssVUFBVSxJQUMzQixRQUFRLENBQUMsSUFBSSxDQUFDLEtBQUssQ0FBQyxLQUFLLG1CQUFtQixDQUM1QztHQUNILENBQUM7Q0FDSDtRQUNRLFVBQVUsR0FBVixVQUFVOzs7OztBQUlaLElBQU0sT0FBTyxHQUNsQixLQUFLLENBQUMsT0FBTyxJQUNiLFVBQVMsS0FBSyxFQUFFO0FBQ2QsU0FBTyxLQUFLLElBQUksT0FBTyxLQUFLLEtBQUssUUFBUSxHQUNyQyxRQUFRLENBQUMsSUFBSSxDQUFDLEtBQUssQ0FBQyxLQUFLLGdCQUFnQixHQUN6QyxLQUFLLENBQUM7Q0FDWCxDQUFDOzs7OztBQUdHLFNBQVMsT0FBTyxDQUFDLEtBQUssRUFBRSxLQUFLLEVBQUU7QUFDcEMsT0FBSyxJQUFJLENBQUMsR0FBRyxDQUFDLEVBQUUsR0FBRyxHQUFHLEtBQUssQ0FBQyxNQUFNLEVBQUUsQ0FBQyxHQUFHLEdBQUcsRUFBRSxDQUFDLEVBQUUsRUFBRTtBQUNoRCxRQUFJLEtBQUssQ0FBQyxDQUFDLENBQUMsS0FBSyxLQUFLLEVBQUU7QUFDdEIsYUFBTyxDQUFDLENBQUM7S0FDVjtHQUNGO0FBQ0QsU0FBTyxDQUFDLENBQUMsQ0FBQztDQUNYOztBQUVNLFNBQVMsZ0JBQWdCLENBQUMsTUFBTSxFQUFFO0FBQ3ZDLE1BQUksT0FBTyxNQUFNLEtBQUssUUFBUSxFQUFFOztBQUU5QixRQUFJLE1BQU0sSUFBSSxNQUFNLENBQUMsTUFBTSxFQUFFO0FBQzNCLGFBQU8sTUFBTSxDQUFDLE1BQU0sRUFBRSxDQUFDO0tBQ3hCLE1BQU0sSUFBSSxNQUFNLElBQUksSUFBSSxFQUFFO0FBQ3pCLGFBQU8sRUFBRSxDQUFDO0tBQ1gsTUFBTSxJQUFJLENBQUMsTUFBTSxFQUFFO0FBQ2xCLGFBQU8sTUFBTSxHQUFHLEVBQUUsQ0FBQztLQUNwQjs7Ozs7QUFLRCxVQUFNLEdBQUcsRUFBRSxHQUFHLE1BQU0sQ0FBQztHQUN0Qjs7QUFFRCxNQUFJLENBQUMsUUFBUSxDQUFDLElBQUksQ0FBQyxNQUFNLENBQUMsRUFBRTtBQUMxQixXQUFPLE1BQU0sQ0FBQztHQUNmO0FBQ0QsU0FBTyxNQUFNLENBQUMsT0FBTyxDQUFDLFFBQVEsRUFBRSxVQUFVLENBQUMsQ0FBQztDQUM3Qzs7QUFFTSxTQUFTLE9BQU8sQ0FBQyxLQUFLLEVBQUU7QUFDN0IsTUFBSSxDQUFDLEtBQUssSUFBSSxLQUFLLEtBQUssQ0FBQyxFQUFFO0FBQ3pCLFdBQU8sSUFBSSxDQUFDO0dBQ2IsTUFBTSxJQUFJLE9BQU8sQ0FBQyxLQUFLLENBQUMsSUFBSSxLQUFLLENBQUMsTUFBTSxLQUFLLENBQUMsRUFBRTtBQUMvQyxXQUFPLElBQUksQ0FBQztHQUNiLE1BQU07QUFDTCxXQUFPLEtBQUssQ0FBQztHQUNkO0NBQ0Y7O0FBRU0sU0FBUyxXQUFXLENBQUMsTUFBTSxFQUFFO0FBQ2xDLE1BQUksS0FBSyxHQUFHLE1BQU0sQ0FBQyxFQUFFLEVBQUUsTUFBTSxDQUFDLENBQUM7QUFDL0IsT0FBSyxDQUFDLE9BQU8sR0FBRyxNQUFNLENBQUM7QUFDdkIsU0FBTyxLQUFLLENBQUM7Q0FDZDs7QUFFTSxTQUFTLFdBQVcsQ0FBQyxNQUFNLEVBQUUsR0FBRyxFQUFFO0FBQ3ZDLFFBQU0sQ0FBQyxJQUFJLEdBQUcsR0FBRyxDQUFDO0FBQ2xCLFNBQU8sTUFBTSxDQUFDO0NBQ2Y7O0FBRU0sU0FBUyxpQkFBaUIsQ0FBQyxXQUFXLEVBQUUsRUFBRSxFQUFFO0FBQ2pELFNBQU8sQ0FBQyxXQUFXLEdBQUcsV0FBVyxHQUFHLEdBQUcsR0FBRyxFQUFFLENBQUEsR0FBSSxFQUFFLENBQUM7Q0FDcEQiLCJmaWxlIjoidXRpbHMuanMiLCJzb3VyY2VzQ29udGVudCI6WyJjb25zdCBlc2NhcGUgPSB7XG4gICcmJzogJyZhbXA7JyxcbiAgJzwnOiAnJmx0OycsXG4gICc+JzogJyZndDsnLFxuICAnXCInOiAnJnF1b3Q7JyxcbiAgXCInXCI6ICcmI3gyNzsnLFxuICAnYCc6ICcmI3g2MDsnLFxuICAnPSc6ICcmI3gzRDsnXG59O1xuXG5jb25zdCBiYWRDaGFycyA9IC9bJjw+XCInYD1dL2csXG4gIHBvc3NpYmxlID0gL1smPD5cIidgPV0vO1xuXG5mdW5jdGlvbiBlc2NhcGVDaGFyKGNocikge1xuICByZXR1cm4gZXNjYXBlW2Nocl07XG59XG5cbmV4cG9ydCBmdW5jdGlvbiBleHRlbmQob2JqIC8qICwgLi4uc291cmNlICovKSB7XG4gIGZvciAobGV0IGkgPSAxOyBpIDwgYXJndW1lbnRzLmxlbmd0aDsgaSsrKSB7XG4gICAgZm9yIChsZXQga2V5IGluIGFyZ3VtZW50c1tpXSkge1xuICAgICAgaWYgKE9iamVjdC5wcm90b3R5cGUuaGFzT3duUHJvcGVydHkuY2FsbChhcmd1bWVudHNbaV0sIGtleSkpIHtcbiAgICAgICAgb2JqW2tleV0gPSBhcmd1bWVudHNbaV1ba2V5XTtcbiAgICAgIH1cbiAgICB9XG4gIH1cblxuICByZXR1cm4gb2JqO1xufVxuXG5leHBvcnQgbGV0IHRvU3RyaW5nID0gT2JqZWN0LnByb3RvdHlwZS50b1N0cmluZztcblxuLy8gU291cmNlZCBmcm9tIGxvZGFzaFxuLy8gaHR0cHM6Ly9naXRodWIuY29tL2Jlc3RpZWpzL2xvZGFzaC9ibG9iL21hc3Rlci9MSUNFTlNFLnR4dFxuLyogZXNsaW50LWRpc2FibGUgZnVuYy1zdHlsZSAqL1xubGV0IGlzRnVuY3Rpb24gPSBmdW5jdGlvbih2YWx1ZSkge1xuICByZXR1cm4gdHlwZW9mIHZhbHVlID09PSAnZnVuY3Rpb24nO1xufTtcbi8vIGZhbGxiYWNrIGZvciBvbGRlciB2ZXJzaW9ucyBvZiBDaHJvbWUgYW5kIFNhZmFyaVxuLyogaXN0YW5idWwgaWdub3JlIG5leHQgKi9cbmlmIChpc0Z1bmN0aW9uKC94LykpIHtcbiAgaXNGdW5jdGlvbiA9IGZ1bmN0aW9uKHZhbHVlKSB7XG4gICAgcmV0dXJuIChcbiAgICAgIHR5cGVvZiB2YWx1ZSA9PT0gJ2Z1bmN0aW9uJyAmJlxuICAgICAgdG9TdHJpbmcuY2FsbCh2YWx1ZSkgPT09ICdbb2JqZWN0IEZ1bmN0aW9uXSdcbiAgICApO1xuICB9O1xufVxuZXhwb3J0IHsgaXNGdW5jdGlvbiB9O1xuLyogZXNsaW50LWVuYWJsZSBmdW5jLXN0eWxlICovXG5cbi8qIGlzdGFuYnVsIGlnbm9yZSBuZXh0ICovXG5leHBvcnQgY29uc3QgaXNBcnJheSA9XG4gIEFycmF5LmlzQXJyYXkgfHxcbiAgZnVuY3Rpb24odmFsdWUpIHtcbiAgICByZXR1cm4gdmFsdWUgJiYgdHlwZW9mIHZhbHVlID09PSAnb2JqZWN0J1xuICAgICAgPyB0b1N0cmluZy5jYWxsKHZhbHVlKSA9PT0gJ1tvYmplY3QgQXJyYXldJ1xuICAgICAgOiBmYWxzZTtcbiAgfTtcblxuLy8gT2xkZXIgSUUgdmVyc2lvbnMgZG8gbm90IGRpcmVjdGx5IHN1cHBvcnQgaW5kZXhPZiBzbyB3ZSBtdXN0IGltcGxlbWVudCBvdXIgb3duLCBzYWRseS5cbmV4cG9ydCBmdW5jdGlvbiBpbmRleE9mKGFycmF5LCB2YWx1ZSkge1xuICBmb3IgKGxldCBpID0gMCwgbGVuID0gYXJyYXkubGVuZ3RoOyBpIDwgbGVuOyBpKyspIHtcbiAgICBpZiAoYXJyYXlbaV0gPT09IHZhbHVlKSB7XG4gICAgICByZXR1cm4gaTtcbiAgICB9XG4gIH1cbiAgcmV0dXJuIC0xO1xufVxuXG5leHBvcnQgZnVuY3Rpb24gZXNjYXBlRXhwcmVzc2lvbihzdHJpbmcpIHtcbiAgaWYgKHR5cGVvZiBzdHJpbmcgIT09ICdzdHJpbmcnKSB7XG4gICAgLy8gZG9uJ3QgZXNjYXBlIFNhZmVTdHJpbmdzLCBzaW5jZSB0aGV5J3JlIGFscmVhZHkgc2FmZVxuICAgIGlmIChzdHJpbmcgJiYgc3RyaW5nLnRvSFRNTCkge1xuICAgICAgcmV0dXJuIHN0cmluZy50b0hUTUwoKTtcbiAgICB9IGVsc2UgaWYgKHN0cmluZyA9PSBudWxsKSB7XG4gICAgICByZXR1cm4gJyc7XG4gICAgfSBlbHNlIGlmICghc3RyaW5nKSB7XG4gICAgICByZXR1cm4gc3RyaW5nICsgJyc7XG4gICAgfVxuXG4gICAgLy8gRm9yY2UgYSBzdHJpbmcgY29udmVyc2lvbiBhcyB0aGlzIHdpbGwgYmUgZG9uZSBieSB0aGUgYXBwZW5kIHJlZ2FyZGxlc3MgYW5kXG4gICAgLy8gdGhlIHJlZ2V4IHRlc3Qgd2lsbCBkbyB0aGlzIHRyYW5zcGFyZW50bHkgYmVoaW5kIHRoZSBzY2VuZXMsIGNhdXNpbmcgaXNzdWVzIGlmXG4gICAgLy8gYW4gb2JqZWN0J3MgdG8gc3RyaW5nIGhhcyBlc2NhcGVkIGNoYXJhY3RlcnMgaW4gaXQuXG4gICAgc3RyaW5nID0gJycgKyBzdHJpbmc7XG4gIH1cblxuICBpZiAoIXBvc3NpYmxlLnRlc3Qoc3RyaW5nKSkge1xuICAgIHJldHVybiBzdHJpbmc7XG4gIH1cbiAgcmV0dXJuIHN0cmluZy5yZXBsYWNlKGJhZENoYXJzLCBlc2NhcGVDaGFyKTtcbn1cblxuZXhwb3J0IGZ1bmN0aW9uIGlzRW1wdHkodmFsdWUpIHtcbiAgaWYgKCF2YWx1ZSAmJiB2YWx1ZSAhPT0gMCkge1xuICAgIHJldHVybiB0cnVlO1xuICB9IGVsc2UgaWYgKGlzQXJyYXkodmFsdWUpICYmIHZhbHVlLmxlbmd0aCA9PT0gMCkge1xuICAgIHJldHVybiB0cnVlO1xuICB9IGVsc2Uge1xuICAgIHJldHVybiBmYWxzZTtcbiAgfVxufVxuXG5leHBvcnQgZnVuY3Rpb24gY3JlYXRlRnJhbWUob2JqZWN0KSB7XG4gIGxldCBmcmFtZSA9IGV4dGVuZCh7fSwgb2JqZWN0KTtcbiAgZnJhbWUuX3BhcmVudCA9IG9iamVjdDtcbiAgcmV0dXJuIGZyYW1lO1xufVxuXG5leHBvcnQgZnVuY3Rpb24gYmxvY2tQYXJhbXMocGFyYW1zLCBpZHMpIHtcbiAgcGFyYW1zLnBhdGggPSBpZHM7XG4gIHJldHVybiBwYXJhbXM7XG59XG5cbmV4cG9ydCBmdW5jdGlvbiBhcHBlbmRDb250ZXh0UGF0aChjb250ZXh0UGF0aCwgaWQpIHtcbiAgcmV0dXJuIChjb250ZXh0UGF0aCA/IGNvbnRleHRQYXRoICsgJy4nIDogJycpICsgaWQ7XG59XG4iXX0=
 
 
-/***/ }),
+/***/ },
 
-/***/ "./node_modules/handlebars/runtime.js":
+/***/ "./node_modules/handlebars/runtime.js"
 /*!********************************************!*\
   !*** ./node_modules/handlebars/runtime.js ***!
   \********************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+(module, __unused_webpack_exports, __webpack_require__) {
 
 // Create a simple path alias to allow browserify to resolve
 // the runtime on a supported path.
-module.exports = __webpack_require__(/*! ./dist/cjs/handlebars.runtime */ "./node_modules/handlebars/dist/cjs/handlebars.runtime.js")['default'];
+module.exports = __webpack_require__(/*! ./dist/cjs/handlebars.runtime */ "./node_modules/handlebars/dist/cjs/handlebars.runtime.js")["default"];
 
 
-/***/ }),
+/***/ },
 
-/***/ "./node_modules/jquery/dist/jquery.js":
+/***/ "./node_modules/jquery/dist/jquery.js"
 /*!********************************************!*\
   !*** ./node_modules/jquery/dist/jquery.js ***!
   \********************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+(module, exports) {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
  * jQuery JavaScript Library v3.7.1
@@ -12611,7 +13329,7 @@ if ( true ) {
 	!(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_RESULT__ = (function() {
 		return jQuery;
 	}).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
-				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+		__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 }
 
 
@@ -12651,285 +13369,343 @@ return jQuery;
 } );
 
 
-/***/ }),
+/***/ },
 
-/***/ "./node_modules/raw-loader/index.js!./node_modules/accessibility-developer-tools/dist/js/axs_testing.js":
-/*!*****************************************************************************************************!*\
-  !*** ./node_modules/raw-loader!./node_modules/accessibility-developer-tools/dist/js/axs_testing.js ***!
-  \*****************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+/***/ "./node_modules/raw-loader/index.js!./node_modules/accessibility-developer-tools/dist/js/axs_testing.js"
+/*!**************************************************************************************************************!*\
+  !*** ./node_modules/raw-loader/index.js!./node_modules/accessibility-developer-tools/dist/js/axs_testing.js ***!
+  \**************************************************************************************************************/
+(module) {
 
 module.exports = "/*\n * Copyright 2016 Google Inc.\n *\n * Licensed under the Apache License, Version 2.0 (the \"License\");\n * you may not use this file except in compliance with the License.\n * You may obtain a copy of the License at\n *\n *      http://www.apache.org/licenses/LICENSE-2.0\n *\n * Unless required by applicable law or agreed to in writing, software\n * distributed under the License is distributed on an \"AS IS\" BASIS,\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n * See the License for the specific language governing permissions and\n * limitations under the License.\n *\n * Generated from http://github.com/GoogleChrome/accessibility-developer-tools/tree/7d778f7da58af341a47b3a6f6457c2842b24d4d8\n *\n * See project README for build steps.\n */\n\n// AUTO-GENERATED CONTENT BELOW: DO NOT EDIT! See above for details.\n\nvar fn = (function() {\n  var COMPILED = !0, goog = goog || {};\ngoog.global = this;\ngoog.isDef = function(a) {\n  return void 0 !== a;\n};\ngoog.exportPath_ = function(a, b, c) {\n  a = a.split(\".\");\n  c = c || goog.global;\n  a[0] in c || !c.execScript || c.execScript(\"var \" + a[0]);\n  for (var d;a.length && (d = a.shift());) {\n    !a.length && goog.isDef(b) ? c[d] = b : c = c[d] ? c[d] : c[d] = {};\n  }\n};\ngoog.define = function(a, b) {\n  var c = b;\n  COMPILED || (goog.global.CLOSURE_UNCOMPILED_DEFINES && Object.prototype.hasOwnProperty.call(goog.global.CLOSURE_UNCOMPILED_DEFINES, a) ? c = goog.global.CLOSURE_UNCOMPILED_DEFINES[a] : goog.global.CLOSURE_DEFINES && Object.prototype.hasOwnProperty.call(goog.global.CLOSURE_DEFINES, a) && (c = goog.global.CLOSURE_DEFINES[a]));\n  goog.exportPath_(a, c);\n};\ngoog.DEBUG = !0;\ngoog.LOCALE = \"en\";\ngoog.TRUSTED_SITE = !0;\ngoog.STRICT_MODE_COMPATIBLE = !1;\ngoog.DISALLOW_TEST_ONLY_CODE = COMPILED && !goog.DEBUG;\ngoog.ENABLE_CHROME_APP_SAFE_SCRIPT_LOADING = !1;\ngoog.provide = function(a) {\n  if (goog.isInModuleLoader_()) {\n    throw Error(\"goog.provide can not be used within a goog.module.\");\n  }\n  if (!COMPILED && goog.isProvided_(a)) {\n    throw Error('Namespace \"' + a + '\" already declared.');\n  }\n  goog.constructNamespace_(a);\n};\ngoog.constructNamespace_ = function(a, b) {\n  if (!COMPILED) {\n    delete goog.implicitNamespaces_[a];\n    for (var c = a;(c = c.substring(0, c.lastIndexOf(\".\"))) && !goog.getObjectByName(c);) {\n      goog.implicitNamespaces_[c] = !0;\n    }\n  }\n  goog.exportPath_(a, b);\n};\ngoog.VALID_MODULE_RE_ = /^[a-zA-Z_$][a-zA-Z0-9._$]*$/;\ngoog.module = function(a) {\n  if (!goog.isString(a) || !a || -1 == a.search(goog.VALID_MODULE_RE_)) {\n    throw Error(\"Invalid module identifier\");\n  }\n  if (!goog.isInModuleLoader_()) {\n    throw Error(\"Module \" + a + \" has been loaded incorrectly.\");\n  }\n  if (goog.moduleLoaderState_.moduleName) {\n    throw Error(\"goog.module may only be called once per module.\");\n  }\n  goog.moduleLoaderState_.moduleName = a;\n  if (!COMPILED) {\n    if (goog.isProvided_(a)) {\n      throw Error('Namespace \"' + a + '\" already declared.');\n    }\n    delete goog.implicitNamespaces_[a];\n  }\n};\ngoog.module.get = function(a) {\n  return goog.module.getInternal_(a);\n};\ngoog.module.getInternal_ = function(a) {\n  if (!COMPILED) {\n    return goog.isProvided_(a) ? a in goog.loadedModules_ ? goog.loadedModules_[a] : goog.getObjectByName(a) : null;\n  }\n};\ngoog.moduleLoaderState_ = null;\ngoog.isInModuleLoader_ = function() {\n  return null != goog.moduleLoaderState_;\n};\ngoog.module.declareLegacyNamespace = function() {\n  if (!COMPILED && !goog.isInModuleLoader_()) {\n    throw Error(\"goog.module.declareLegacyNamespace must be called from within a goog.module\");\n  }\n  if (!COMPILED && !goog.moduleLoaderState_.moduleName) {\n    throw Error(\"goog.module must be called prior to goog.module.declareLegacyNamespace.\");\n  }\n  goog.moduleLoaderState_.declareLegacyNamespace = !0;\n};\ngoog.setTestOnly = function(a) {\n  if (goog.DISALLOW_TEST_ONLY_CODE) {\n    throw a = a || \"\", Error(\"Importing test-only code into non-debug environment\" + (a ? \": \" + a : \".\"));\n  }\n};\ngoog.forwardDeclare = function(a) {\n};\nCOMPILED || (goog.isProvided_ = function(a) {\n  return a in goog.loadedModules_ || !goog.implicitNamespaces_[a] && goog.isDefAndNotNull(goog.getObjectByName(a));\n}, goog.implicitNamespaces_ = {\"goog.module\":!0});\ngoog.getObjectByName = function(a, b) {\n  for (var c = a.split(\".\"), d = b || goog.global, e;e = c.shift();) {\n    if (goog.isDefAndNotNull(d[e])) {\n      d = d[e];\n    } else {\n      return null;\n    }\n  }\n  return d;\n};\ngoog.globalize = function(a, b) {\n  var c = b || goog.global, d;\n  for (d in a) {\n    c[d] = a[d];\n  }\n};\ngoog.addDependency = function(a, b, c, d) {\n  if (goog.DEPENDENCIES_ENABLED) {\n    var e;\n    a = a.replace(/\\\\/g, \"/\");\n    var f = goog.dependencies_;\n    d && \"boolean\" !== typeof d || (d = d ? {module:\"goog\"} : {});\n    for (var g = 0;e = b[g];g++) {\n      f.nameToPath[e] = a, f.loadFlags[a] = d;\n    }\n    for (d = 0;b = c[d];d++) {\n      a in f.requires || (f.requires[a] = {}), f.requires[a][b] = !0;\n    }\n  }\n};\ngoog.ENABLE_DEBUG_LOADER = !0;\ngoog.logToConsole_ = function(a) {\n  goog.global.console && goog.global.console.error(a);\n};\ngoog.require = function(a) {\n  if (!COMPILED) {\n    goog.ENABLE_DEBUG_LOADER && goog.IS_OLD_IE_ && goog.maybeProcessDeferredDep_(a);\n    if (goog.isProvided_(a)) {\n      return goog.isInModuleLoader_() ? goog.module.getInternal_(a) : null;\n    }\n    if (goog.ENABLE_DEBUG_LOADER) {\n      var b = goog.getPathFromDeps_(a);\n      if (b) {\n        return goog.writeScripts_(b), null;\n      }\n    }\n    a = \"goog.require could not find: \" + a;\n    goog.logToConsole_(a);\n    throw Error(a);\n  }\n};\ngoog.basePath = \"\";\ngoog.nullFunction = function() {\n};\ngoog.abstractMethod = function() {\n  throw Error(\"unimplemented abstract method\");\n};\ngoog.addSingletonGetter = function(a) {\n  a.getInstance = function() {\n    if (a.instance_) {\n      return a.instance_;\n    }\n    goog.DEBUG && (goog.instantiatedSingletons_[goog.instantiatedSingletons_.length] = a);\n    return a.instance_ = new a;\n  };\n};\ngoog.instantiatedSingletons_ = [];\ngoog.LOAD_MODULE_USING_EVAL = !0;\ngoog.SEAL_MODULE_EXPORTS = goog.DEBUG;\ngoog.loadedModules_ = {};\ngoog.DEPENDENCIES_ENABLED = !COMPILED && goog.ENABLE_DEBUG_LOADER;\ngoog.ALWAYS_TRANSPILE = !1;\ngoog.NEVER_TRANSPILE = !1;\ngoog.DEPENDENCIES_ENABLED && (goog.dependencies_ = {loadFlags:{}, nameToPath:{}, requires:{}, visited:{}, written:{}, deferred:{}}, goog.inHtmlDocument_ = function() {\n  var a = goog.global.document;\n  return null != a && \"write\" in a;\n}, goog.findBasePath_ = function() {\n  if (goog.isDef(goog.global.CLOSURE_BASE_PATH)) {\n    goog.basePath = goog.global.CLOSURE_BASE_PATH;\n  } else {\n    if (goog.inHtmlDocument_()) {\n      for (var a = goog.global.document.getElementsByTagName(\"SCRIPT\"), b = a.length - 1;0 <= b;--b) {\n        var c = a[b].src, d = c.lastIndexOf(\"?\"), d = -1 == d ? c.length : d;\n        if (\"base.js\" == c.substr(d - 7, 7)) {\n          goog.basePath = c.substr(0, d - 7);\n          break;\n        }\n      }\n    }\n  }\n}, goog.importScript_ = function(a, b) {\n  (goog.global.CLOSURE_IMPORT_SCRIPT || goog.writeScriptTag_)(a, b) && (goog.dependencies_.written[a] = !0);\n}, goog.IS_OLD_IE_ = !(goog.global.atob || !goog.global.document || !goog.global.document.all), goog.importProcessedScript_ = function(a, b, c) {\n  goog.importScript_(\"\", 'goog.retrieveAndExec_(\"' + a + '\", ' + b + \", \" + c + \");\");\n}, goog.queuedModules_ = [], goog.wrapModule_ = function(a, b) {\n  return goog.LOAD_MODULE_USING_EVAL && goog.isDef(goog.global.JSON) ? \"goog.loadModule(\" + goog.global.JSON.stringify(b + \"\\n//# sourceURL=\" + a + \"\\n\") + \");\" : 'goog.loadModule(function(exports) {\"use strict\";' + b + \"\\n;return exports});\\n//# sourceURL=\" + a + \"\\n\";\n}, goog.loadQueuedModules_ = function() {\n  var a = goog.queuedModules_.length;\n  if (0 < a) {\n    var b = goog.queuedModules_;\n    goog.queuedModules_ = [];\n    for (var c = 0;c < a;c++) {\n      goog.maybeProcessDeferredPath_(b[c]);\n    }\n  }\n}, goog.maybeProcessDeferredDep_ = function(a) {\n  goog.isDeferredModule_(a) && goog.allDepsAreAvailable_(a) && (a = goog.getPathFromDeps_(a), goog.maybeProcessDeferredPath_(goog.basePath + a));\n}, goog.isDeferredModule_ = function(a) {\n  var b = (a = goog.getPathFromDeps_(a)) && goog.dependencies_.loadFlags[a] || {};\n  return a && (\"goog\" == b.module || goog.needsTranspile_(b.lang)) ? goog.basePath + a in goog.dependencies_.deferred : !1;\n}, goog.allDepsAreAvailable_ = function(a) {\n  if ((a = goog.getPathFromDeps_(a)) && a in goog.dependencies_.requires) {\n    for (var b in goog.dependencies_.requires[a]) {\n      if (!goog.isProvided_(b) && !goog.isDeferredModule_(b)) {\n        return !1;\n      }\n    }\n  }\n  return !0;\n}, goog.maybeProcessDeferredPath_ = function(a) {\n  if (a in goog.dependencies_.deferred) {\n    var b = goog.dependencies_.deferred[a];\n    delete goog.dependencies_.deferred[a];\n    goog.globalEval(b);\n  }\n}, goog.loadModuleFromUrl = function(a) {\n  goog.retrieveAndExec_(a, !0, !1);\n}, goog.loadModule = function(a) {\n  var b = goog.moduleLoaderState_;\n  try {\n    goog.moduleLoaderState_ = {moduleName:void 0, declareLegacyNamespace:!1};\n    var c;\n    if (goog.isFunction(a)) {\n      c = a.call(goog.global, {});\n    } else {\n      if (goog.isString(a)) {\n        c = goog.loadModuleFromSource_.call(goog.global, a);\n      } else {\n        throw Error(\"Invalid module definition\");\n      }\n    }\n    var d = goog.moduleLoaderState_.moduleName;\n    if (!goog.isString(d) || !d) {\n      throw Error('Invalid module name \"' + d + '\"');\n    }\n    goog.moduleLoaderState_.declareLegacyNamespace ? goog.constructNamespace_(d, c) : goog.SEAL_MODULE_EXPORTS && Object.seal && Object.seal(c);\n    goog.loadedModules_[d] = c;\n  } finally {\n    goog.moduleLoaderState_ = b;\n  }\n}, goog.loadModuleFromSource_ = function(a) {\n  eval(a);\n  return {};\n}, goog.writeScriptSrcNode_ = function(a) {\n  goog.global.document.write('<script type=\"text/javascript\" src=\"' + a + '\">\\x3c/script>');\n}, goog.appendScriptSrcNode_ = function(a) {\n  var b = goog.global.document, c = b.createElement(\"script\");\n  c.type = \"text/javascript\";\n  c.src = a;\n  c.defer = !1;\n  c.async = !1;\n  b.head.appendChild(c);\n}, goog.writeScriptTag_ = function(a, b) {\n  if (goog.inHtmlDocument_()) {\n    var c = goog.global.document;\n    if (!goog.ENABLE_CHROME_APP_SAFE_SCRIPT_LOADING && \"complete\" == c.readyState) {\n      if (/\\bdeps.js$/.test(a)) {\n        return !1;\n      }\n      throw Error('Cannot write \"' + a + '\" after document load');\n    }\n    if (void 0 === b) {\n      if (goog.IS_OLD_IE_) {\n        var d = \" onreadystatechange='goog.onScriptLoad_(this, \" + ++goog.lastNonModuleScriptIndex_ + \")' \";\n        c.write('<script type=\"text/javascript\" src=\"' + a + '\"' + d + \">\\x3c/script>\");\n      } else {\n        goog.ENABLE_CHROME_APP_SAFE_SCRIPT_LOADING ? goog.appendScriptSrcNode_(a) : goog.writeScriptSrcNode_(a);\n      }\n    } else {\n      c.write('<script type=\"text/javascript\">' + b + \"\\x3c/script>\");\n    }\n    return !0;\n  }\n  return !1;\n}, goog.needsTranspile_ = function(a) {\n  if (goog.ALWAYS_TRANSPILE) {\n    return !0;\n  }\n  if (goog.NEVER_TRANSPILE) {\n    return !1;\n  }\n  if (!goog.transpiledLanguages_) {\n    goog.transpiledLanguages_ = {es5:!0, es6:!0, \"es6-impl\":!0};\n    try {\n      goog.transpiledLanguages_.es5 = eval(\"[1,].length!=1\"), eval('(()=>{\"use strict\";let a={};const X=class{constructor(){}x(z){return new Map([...arguments]).get(z[0])==3}};return new X().x([a,3])})()') && (goog.transpiledLanguages_[\"es6-impl\"] = !1), eval('(()=>{\"use strict\";class X{constructor(){if(new.target!=String)throw 1;this.x=42}}let q=Reflect.construct(X,[],String);if(q.x!=42||!(q instanceof String))throw 1;for(const a of[2,3]){if(a==2)continue;function f(z={a}){let a=0;return z.a}{function f(){return 0;}}return f()==3}})()') && \n      (goog.transpiledLanguages_.es6 = !1);\n    } catch (b) {\n    }\n  }\n  return !!goog.transpiledLanguages_[a];\n}, goog.transpiledLanguages_ = null, goog.lastNonModuleScriptIndex_ = 0, goog.onScriptLoad_ = function(a, b) {\n  \"complete\" == a.readyState && goog.lastNonModuleScriptIndex_ == b && goog.loadQueuedModules_();\n  return !0;\n}, goog.writeScripts_ = function(a) {\n  function b(a) {\n    if (!(a in e.written || a in e.visited)) {\n      e.visited[a] = !0;\n      if (a in e.requires) {\n        for (var f in e.requires[a]) {\n          if (!goog.isProvided_(f)) {\n            if (f in e.nameToPath) {\n              b(e.nameToPath[f]);\n            } else {\n              throw Error(\"Undefined nameToPath for \" + f);\n            }\n          }\n        }\n      }\n      a in d || (d[a] = !0, c.push(a));\n    }\n  }\n  var c = [], d = {}, e = goog.dependencies_;\n  b(a);\n  for (a = 0;a < c.length;a++) {\n    var f = c[a];\n    goog.dependencies_.written[f] = !0;\n  }\n  var g = goog.moduleLoaderState_;\n  goog.moduleLoaderState_ = null;\n  for (a = 0;a < c.length;a++) {\n    if (f = c[a]) {\n      var h = e.loadFlags[f] || {}, k = goog.needsTranspile_(h.lang);\n      \"goog\" == h.module || k ? goog.importProcessedScript_(goog.basePath + f, \"goog\" == h.module, k) : goog.importScript_(goog.basePath + f);\n    } else {\n      throw goog.moduleLoaderState_ = g, Error(\"Undefined script input\");\n    }\n  }\n  goog.moduleLoaderState_ = g;\n}, goog.getPathFromDeps_ = function(a) {\n  return a in goog.dependencies_.nameToPath ? goog.dependencies_.nameToPath[a] : null;\n}, goog.findBasePath_(), goog.global.CLOSURE_NO_DEPS || goog.importScript_(goog.basePath + \"deps.js\"));\ngoog.normalizePath_ = function(a) {\n  a = a.split(\"/\");\n  for (var b = 0;b < a.length;) {\n    \".\" == a[b] ? a.splice(b, 1) : b && \"..\" == a[b] && a[b - 1] && \"..\" != a[b - 1] ? a.splice(--b, 2) : b++;\n  }\n  return a.join(\"/\");\n};\ngoog.loadFileSync_ = function(a) {\n  if (goog.global.CLOSURE_LOAD_FILE_SYNC) {\n    return goog.global.CLOSURE_LOAD_FILE_SYNC(a);\n  }\n  try {\n    var b = new goog.global.XMLHttpRequest;\n    b.open(\"get\", a, !1);\n    b.send();\n    return 0 == b.status || 200 == b.status ? b.responseText : null;\n  } catch (c) {\n    return null;\n  }\n};\ngoog.retrieveAndExec_ = function(a, b, c) {\n  if (!COMPILED) {\n    var d = a;\n    a = goog.normalizePath_(a);\n    var e = goog.global.CLOSURE_IMPORT_SCRIPT || goog.writeScriptTag_, f = goog.loadFileSync_(a);\n    if (null == f) {\n      throw Error('Load of \"' + a + '\" failed');\n    }\n    c && (f = goog.transpile_.call(goog.global, f, a));\n    f = b ? goog.wrapModule_(a, f) : f + (\"\\n//# sourceURL=\" + a);\n    goog.IS_OLD_IE_ ? (goog.dependencies_.deferred[d] = f, goog.queuedModules_.push(d)) : e(a, f);\n  }\n};\ngoog.transpile_ = function(a, b) {\n  var c = goog.global.$jscomp;\n  c || (goog.global.$jscomp = c = {});\n  var d = c.transpile;\n  if (!d) {\n    var e = goog.basePath + \"transpile.js\", f = goog.loadFileSync_(e);\n    f && (eval(f + \"\\n//# sourceURL=\" + e), c = goog.global.$jscomp, d = c.transpile);\n  }\n  d || (d = c.transpile = function(a, b) {\n    goog.logToConsole_(b + \" requires transpilation but no transpiler was found.\");\n    return a;\n  });\n  return d(a, b);\n};\ngoog.typeOf = function(a) {\n  var b = typeof a;\n  if (\"object\" == b) {\n    if (a) {\n      if (a instanceof Array) {\n        return \"array\";\n      }\n      if (a instanceof Object) {\n        return b;\n      }\n      var c = Object.prototype.toString.call(a);\n      if (\"[object Window]\" == c) {\n        return \"object\";\n      }\n      if (\"[object Array]\" == c || \"number\" == typeof a.length && \"undefined\" != typeof a.splice && \"undefined\" != typeof a.propertyIsEnumerable && !a.propertyIsEnumerable(\"splice\")) {\n        return \"array\";\n      }\n      if (\"[object Function]\" == c || \"undefined\" != typeof a.call && \"undefined\" != typeof a.propertyIsEnumerable && !a.propertyIsEnumerable(\"call\")) {\n        return \"function\";\n      }\n    } else {\n      return \"null\";\n    }\n  } else {\n    if (\"function\" == b && \"undefined\" == typeof a.call) {\n      return \"object\";\n    }\n  }\n  return b;\n};\ngoog.isNull = function(a) {\n  return null === a;\n};\ngoog.isDefAndNotNull = function(a) {\n  return null != a;\n};\ngoog.isArray = function(a) {\n  return \"array\" == goog.typeOf(a);\n};\ngoog.isArrayLike = function(a) {\n  var b = goog.typeOf(a);\n  return \"array\" == b || \"object\" == b && \"number\" == typeof a.length;\n};\ngoog.isDateLike = function(a) {\n  return goog.isObject(a) && \"function\" == typeof a.getFullYear;\n};\ngoog.isString = function(a) {\n  return \"string\" == typeof a;\n};\ngoog.isBoolean = function(a) {\n  return \"boolean\" == typeof a;\n};\ngoog.isNumber = function(a) {\n  return \"number\" == typeof a;\n};\ngoog.isFunction = function(a) {\n  return \"function\" == goog.typeOf(a);\n};\ngoog.isObject = function(a) {\n  var b = typeof a;\n  return \"object\" == b && null != a || \"function\" == b;\n};\ngoog.getUid = function(a) {\n  return a[goog.UID_PROPERTY_] || (a[goog.UID_PROPERTY_] = ++goog.uidCounter_);\n};\ngoog.hasUid = function(a) {\n  return !!a[goog.UID_PROPERTY_];\n};\ngoog.removeUid = function(a) {\n  null !== a && \"removeAttribute\" in a && a.removeAttribute(goog.UID_PROPERTY_);\n  try {\n    delete a[goog.UID_PROPERTY_];\n  } catch (b) {\n  }\n};\ngoog.UID_PROPERTY_ = \"closure_uid_\" + (1E9 * Math.random() >>> 0);\ngoog.uidCounter_ = 0;\ngoog.getHashCode = goog.getUid;\ngoog.removeHashCode = goog.removeUid;\ngoog.cloneObject = function(a) {\n  var b = goog.typeOf(a);\n  if (\"object\" == b || \"array\" == b) {\n    if (a.clone) {\n      return a.clone();\n    }\n    var b = \"array\" == b ? [] : {}, c;\n    for (c in a) {\n      b[c] = goog.cloneObject(a[c]);\n    }\n    return b;\n  }\n  return a;\n};\ngoog.bindNative_ = function(a, b, c) {\n  return a.call.apply(a.bind, arguments);\n};\ngoog.bindJs_ = function(a, b, c) {\n  if (!a) {\n    throw Error();\n  }\n  if (2 < arguments.length) {\n    var d = Array.prototype.slice.call(arguments, 2);\n    return function() {\n      var c = Array.prototype.slice.call(arguments);\n      Array.prototype.unshift.apply(c, d);\n      return a.apply(b, c);\n    };\n  }\n  return function() {\n    return a.apply(b, arguments);\n  };\n};\ngoog.bind = function(a, b, c) {\n  Function.prototype.bind && -1 != Function.prototype.bind.toString().indexOf(\"native code\") ? goog.bind = goog.bindNative_ : goog.bind = goog.bindJs_;\n  return goog.bind.apply(null, arguments);\n};\ngoog.partial = function(a, b) {\n  var c = Array.prototype.slice.call(arguments, 1);\n  return function() {\n    var b = c.slice();\n    b.push.apply(b, arguments);\n    return a.apply(this, b);\n  };\n};\ngoog.mixin = function(a, b) {\n  for (var c in b) {\n    a[c] = b[c];\n  }\n};\ngoog.now = goog.TRUSTED_SITE && Date.now || function() {\n  return +new Date;\n};\ngoog.globalEval = function(a) {\n  if (goog.global.execScript) {\n    goog.global.execScript(a, \"JavaScript\");\n  } else {\n    if (goog.global.eval) {\n      if (null == goog.evalWorksForGlobals_) {\n        if (goog.global.eval(\"var _evalTest_ = 1;\"), \"undefined\" != typeof goog.global._evalTest_) {\n          try {\n            delete goog.global._evalTest_;\n          } catch (d) {\n          }\n          goog.evalWorksForGlobals_ = !0;\n        } else {\n          goog.evalWorksForGlobals_ = !1;\n        }\n      }\n      if (goog.evalWorksForGlobals_) {\n        goog.global.eval(a);\n      } else {\n        var b = goog.global.document, c = b.createElement(\"SCRIPT\");\n        c.type = \"text/javascript\";\n        c.defer = !1;\n        c.appendChild(b.createTextNode(a));\n        b.body.appendChild(c);\n        b.body.removeChild(c);\n      }\n    } else {\n      throw Error(\"goog.globalEval not available\");\n    }\n  }\n};\ngoog.evalWorksForGlobals_ = null;\ngoog.getCssName = function(a, b) {\n  var c = function(a) {\n    return goog.cssNameMapping_[a] || a;\n  }, d = function(a) {\n    a = a.split(\"-\");\n    for (var b = [], d = 0;d < a.length;d++) {\n      b.push(c(a[d]));\n    }\n    return b.join(\"-\");\n  }, d = goog.cssNameMapping_ ? \"BY_WHOLE\" == goog.cssNameMappingStyle_ ? c : d : function(a) {\n    return a;\n  };\n  return b ? a + \"-\" + d(b) : d(a);\n};\ngoog.setCssNameMapping = function(a, b) {\n  goog.cssNameMapping_ = a;\n  goog.cssNameMappingStyle_ = b;\n};\n!COMPILED && goog.global.CLOSURE_CSS_NAME_MAPPING && (goog.cssNameMapping_ = goog.global.CLOSURE_CSS_NAME_MAPPING);\ngoog.getMsg = function(a, b) {\n  b && (a = a.replace(/\\{\\$([^}]+)}/g, function(a, d) {\n    return null != b && d in b ? b[d] : a;\n  }));\n  return a;\n};\ngoog.getMsgWithFallback = function(a, b) {\n  return a;\n};\ngoog.exportSymbol = function(a, b, c) {\n  goog.exportPath_(a, b, c);\n};\ngoog.exportProperty = function(a, b, c) {\n  a[b] = c;\n};\ngoog.inherits = function(a, b) {\n  function c() {\n  }\n  c.prototype = b.prototype;\n  a.superClass_ = b.prototype;\n  a.prototype = new c;\n  a.prototype.constructor = a;\n  a.base = function(a, c, f) {\n    for (var g = Array(arguments.length - 2), h = 2;h < arguments.length;h++) {\n      g[h - 2] = arguments[h];\n    }\n    return b.prototype[c].apply(a, g);\n  };\n};\ngoog.base = function(a, b, c) {\n  var d = arguments.callee.caller;\n  if (goog.STRICT_MODE_COMPATIBLE || goog.DEBUG && !d) {\n    throw Error(\"arguments.caller not defined.  goog.base() cannot be used with strict mode code. See http://www.ecma-international.org/ecma-262/5.1/#sec-C\");\n  }\n  if (d.superClass_) {\n    for (var e = Array(arguments.length - 1), f = 1;f < arguments.length;f++) {\n      e[f - 1] = arguments[f];\n    }\n    return d.superClass_.constructor.apply(a, e);\n  }\n  e = Array(arguments.length - 2);\n  for (f = 2;f < arguments.length;f++) {\n    e[f - 2] = arguments[f];\n  }\n  for (var f = !1, g = a.constructor;g;g = g.superClass_ && g.superClass_.constructor) {\n    if (g.prototype[b] === d) {\n      f = !0;\n    } else {\n      if (f) {\n        return g.prototype[b].apply(a, e);\n      }\n    }\n  }\n  if (a[b] === d) {\n    return a.constructor.prototype[b].apply(a, e);\n  }\n  throw Error(\"goog.base called from a method of one name to a method of a different name\");\n};\ngoog.scope = function(a) {\n  if (goog.isInModuleLoader_()) {\n    throw Error(\"goog.scope is not supported within a goog.module.\");\n  }\n  a.call(goog.global);\n};\nCOMPILED || (goog.global.COMPILED = COMPILED);\ngoog.defineClass = function(a, b) {\n  var c = b.constructor, d = b.statics;\n  c && c != Object.prototype.constructor || (c = function() {\n    throw Error(\"cannot instantiate an interface (no constructor defined).\");\n  });\n  c = goog.defineClass.createSealingConstructor_(c, a);\n  a && goog.inherits(c, a);\n  delete b.constructor;\n  delete b.statics;\n  goog.defineClass.applyProperties_(c.prototype, b);\n  null != d && (d instanceof Function ? d(c) : goog.defineClass.applyProperties_(c, d));\n  return c;\n};\ngoog.defineClass.SEAL_CLASS_INSTANCES = goog.DEBUG;\ngoog.defineClass.createSealingConstructor_ = function(a, b) {\n  if (!goog.defineClass.SEAL_CLASS_INSTANCES) {\n    return a;\n  }\n  var c = !goog.defineClass.isUnsealable_(b), d = function() {\n    var b = a.apply(this, arguments) || this;\n    b[goog.UID_PROPERTY_] = b[goog.UID_PROPERTY_];\n    this.constructor === d && c && Object.seal instanceof Function && Object.seal(b);\n    return b;\n  };\n  return d;\n};\ngoog.defineClass.isUnsealable_ = function(a) {\n  return a && a.prototype && a.prototype[goog.UNSEALABLE_CONSTRUCTOR_PROPERTY_];\n};\ngoog.defineClass.OBJECT_PROTOTYPE_FIELDS_ = \"constructor hasOwnProperty isPrototypeOf propertyIsEnumerable toLocaleString toString valueOf\".split(\" \");\ngoog.defineClass.applyProperties_ = function(a, b) {\n  for (var c in b) {\n    Object.prototype.hasOwnProperty.call(b, c) && (a[c] = b[c]);\n  }\n  for (var d = 0;d < goog.defineClass.OBJECT_PROTOTYPE_FIELDS_.length;d++) {\n    c = goog.defineClass.OBJECT_PROTOTYPE_FIELDS_[d], Object.prototype.hasOwnProperty.call(b, c) && (a[c] = b[c]);\n  }\n};\ngoog.tagUnsealableClass = function(a) {\n  !COMPILED && goog.defineClass.SEAL_CLASS_INSTANCES && (a.prototype[goog.UNSEALABLE_CONSTRUCTOR_PROPERTY_] = !0);\n};\ngoog.UNSEALABLE_CONSTRUCTOR_PROPERTY_ = \"goog_defineClass_legacy_unsealable\";\nvar axs = {};\naxs.browserUtils = {};\naxs.browserUtils.matchSelector = function(a, b) {\n  return a.matches ? a.matches(b) : a.webkitMatchesSelector ? a.webkitMatchesSelector(b) : a.mozMatchesSelector ? a.mozMatchesSelector(b) : a.msMatchesSelector ? a.msMatchesSelector(b) : !1;\n};\naxs.constants = {};\naxs.constants.ARIA_ROLES = {alert:{namefrom:[\"author\"], parent:[\"region\"]}, alertdialog:{namefrom:[\"author\"], namerequired:!0, parent:[\"alert\", \"dialog\"]}, application:{namefrom:[\"author\"], namerequired:!0, parent:[\"landmark\"]}, article:{namefrom:[\"author\"], parent:[\"document\", \"region\"]}, banner:{namefrom:[\"author\"], parent:[\"landmark\"]}, button:{childpresentational:!0, namefrom:[\"contents\", \"author\"], namerequired:!0, parent:[\"command\"], properties:[\"aria-expanded\", \"aria-pressed\"]}, checkbox:{namefrom:[\"contents\", \n\"author\"], namerequired:!0, parent:[\"input\"], requiredProperties:[\"aria-checked\"], properties:[\"aria-checked\"]}, columnheader:{namefrom:[\"contents\", \"author\"], namerequired:!0, parent:[\"gridcell\", \"sectionhead\", \"widget\"], properties:[\"aria-sort\"], scope:[\"row\"]}, combobox:{mustcontain:[\"listbox\", \"textbox\"], namefrom:[\"author\"], namerequired:!0, parent:[\"select\"], requiredProperties:[\"aria-expanded\"], properties:[\"aria-expanded\", \"aria-autocomplete\", \"aria-required\"]}, command:{\"abstract\":!0, namefrom:[\"author\"], \nparent:[\"widget\"]}, complementary:{namefrom:[\"author\"], parent:[\"landmark\"]}, composite:{\"abstract\":!0, childpresentational:!1, namefrom:[\"author\"], parent:[\"widget\"], properties:[\"aria-activedescendant\"]}, contentinfo:{namefrom:[\"author\"], parent:[\"landmark\"]}, definition:{namefrom:[\"author\"], parent:[\"section\"]}, dialog:{namefrom:[\"author\"], namerequired:!0, parent:[\"window\"]}, directory:{namefrom:[\"contents\", \"author\"], parent:[\"list\"]}, document:{namefrom:[\" author\"], namerequired:!0, parent:[\"structure\"], \nproperties:[\"aria-expanded\"]}, form:{namefrom:[\"author\"], parent:[\"landmark\"]}, grid:{mustcontain:[\"row\", \"rowgroup\"], namefrom:[\"author\"], namerequired:!0, parent:[\"composite\", \"region\"], properties:[\"aria-level\", \"aria-multiselectable\", \"aria-readonly\"]}, gridcell:{namefrom:[\"contents\", \"author\"], namerequired:!0, parent:[\"section\", \"widget\"], properties:[\"aria-readonly\", \"aria-required\", \"aria-selected\"], scope:[\"row\"]}, group:{namefrom:[\" author\"], parent:[\"section\"], properties:[\"aria-activedescendant\"]}, \nheading:{namerequired:!0, parent:[\"sectionhead\"], properties:[\"aria-level\"]}, img:{childpresentational:!0, namefrom:[\"author\"], namerequired:!0, parent:[\"section\"]}, input:{\"abstract\":!0, namefrom:[\"author\"], parent:[\"widget\"]}, landmark:{\"abstract\":!0, namefrom:[\"contents\", \"author\"], namerequired:!1, parent:[\"region\"]}, link:{namefrom:[\"contents\", \"author\"], namerequired:!0, parent:[\"command\"], properties:[\"aria-expanded\"]}, list:{mustcontain:[\"group\", \"listitem\"], namefrom:[\"author\"], parent:[\"region\"]}, \nlistbox:{mustcontain:[\"option\"], namefrom:[\"author\"], namerequired:!0, parent:[\"list\", \"select\"], properties:[\"aria-multiselectable\", \"aria-required\"]}, listitem:{namefrom:[\"contents\", \"author\"], namerequired:!0, parent:[\"section\"], properties:[\"aria-level\", \"aria-posinset\", \"aria-setsize\"], scope:[\"list\"]}, log:{namefrom:[\" author\"], namerequired:!0, parent:[\"region\"]}, main:{namefrom:[\"author\"], parent:[\"landmark\"]}, marquee:{namerequired:!0, parent:[\"section\"]}, math:{childpresentational:!0, namefrom:[\"author\"], \nparent:[\"section\"]}, menu:{mustcontain:[\"group\", \"menuitemradio\", \"menuitem\", \"menuitemcheckbox\"], namefrom:[\"author\"], namerequired:!0, parent:[\"list\", \"select\"]}, menubar:{namefrom:[\"author\"], parent:[\"menu\"]}, menuitem:{namefrom:[\"contents\", \"author\"], namerequired:!0, parent:[\"command\"], scope:[\"menu\", \"menubar\"]}, menuitemcheckbox:{namefrom:[\"contents\", \"author\"], namerequired:!0, parent:[\"checkbox\", \"menuitem\"], scope:[\"menu\", \"menubar\"]}, menuitemradio:{namefrom:[\"contents\", \"author\"], namerequired:!0, \nparent:[\"menuitemcheckbox\", \"radio\"], scope:[\"menu\", \"menubar\"]}, navigation:{namefrom:[\"author\"], parent:[\"landmark\"]}, note:{namefrom:[\"author\"], parent:[\"section\"]}, option:{namefrom:[\"contents\", \"author\"], namerequired:!0, parent:[\"input\"], properties:[\"aria-checked\", \"aria-posinset\", \"aria-selected\", \"aria-setsize\"]}, presentation:{parent:[\"structure\"]}, progressbar:{childpresentational:!0, namefrom:[\"author\"], namerequired:!0, parent:[\"range\"]}, radio:{namefrom:[\"contents\", \"author\"], namerequired:!0, \nparent:[\"checkbox\", \"option\"]}, radiogroup:{mustcontain:[\"radio\"], namefrom:[\"author\"], namerequired:!0, parent:[\"select\"], properties:[\"aria-required\"]}, range:{\"abstract\":!0, namefrom:[\"author\"], parent:[\"widget\"], properties:[\"aria-valuemax\", \"aria-valuemin\", \"aria-valuenow\", \"aria-valuetext\"]}, region:{namefrom:[\" author\"], parent:[\"section\"]}, roletype:{\"abstract\":!0, properties:\"aria-atomic aria-busy aria-controls aria-describedby aria-disabled aria-dropeffect aria-flowto aria-grabbed aria-haspopup aria-hidden aria-invalid aria-label aria-labelledby aria-live aria-owns aria-relevant\".split(\" \")}, \nrow:{mustcontain:[\"columnheader\", \"gridcell\", \"rowheader\"], namefrom:[\"contents\", \"author\"], parent:[\"group\", \"widget\"], properties:[\"aria-level\", \"aria-selected\"], scope:[\"grid\", \"rowgroup\", \"treegrid\"]}, rowgroup:{mustcontain:[\"row\"], namefrom:[\"contents\", \"author\"], parent:[\"group\"], scope:[\"grid\"]}, rowheader:{namefrom:[\"contents\", \"author\"], namerequired:!0, parent:[\"gridcell\", \"sectionhead\", \"widget\"], properties:[\"aria-sort\"], scope:[\"row\"]}, search:{namefrom:[\"author\"], parent:[\"landmark\"]}, \nsection:{\"abstract\":!0, namefrom:[\"contents\", \"author\"], parent:[\"structure\"], properties:[\"aria-expanded\"]}, sectionhead:{\"abstract\":!0, namefrom:[\"contents\", \"author\"], parent:[\"structure\"], properties:[\"aria-expanded\"]}, select:{\"abstract\":!0, namefrom:[\"author\"], parent:[\"composite\", \"group\", \"input\"]}, separator:{childpresentational:!0, namefrom:[\"author\"], parent:[\"structure\"], properties:[\"aria-expanded\", \"aria-orientation\"]}, scrollbar:{childpresentational:!0, namefrom:[\"author\"], namerequired:!1, \nparent:[\"input\", \"range\"], requiredProperties:[\"aria-controls\", \"aria-orientation\", \"aria-valuemax\", \"aria-valuemin\", \"aria-valuenow\"], properties:[\"aria-controls\", \"aria-orientation\", \"aria-valuemax\", \"aria-valuemin\", \"aria-valuenow\"]}, slider:{childpresentational:!0, namefrom:[\"author\"], namerequired:!0, parent:[\"input\", \"range\"], requiredProperties:[\"aria-valuemax\", \"aria-valuemin\", \"aria-valuenow\"], properties:[\"aria-valuemax\", \"aria-valuemin\", \"aria-valuenow\", \"aria-orientation\"]}, spinbutton:{namefrom:[\"author\"], \nnamerequired:!0, parent:[\"input\", \"range\"], requiredProperties:[\"aria-valuemax\", \"aria-valuemin\", \"aria-valuenow\"], properties:[\"aria-valuemax\", \"aria-valuemin\", \"aria-valuenow\", \"aria-required\"]}, status:{parent:[\"region\"]}, structure:{\"abstract\":!0, parent:[\"roletype\"]}, tab:{namefrom:[\"contents\", \"author\"], parent:[\"sectionhead\", \"widget\"], properties:[\"aria-selected\"], scope:[\"tablist\"]}, tablist:{mustcontain:[\"tab\"], namefrom:[\"author\"], parent:[\"composite\", \"directory\"], properties:[\"aria-level\"]}, \ntabpanel:{namefrom:[\"author\"], namerequired:!0, parent:[\"region\"]}, textbox:{namefrom:[\"author\"], namerequired:!0, parent:[\"input\"], properties:[\"aria-activedescendant\", \"aria-autocomplete\", \"aria-multiline\", \"aria-readonly\", \"aria-required\"]}, timer:{namefrom:[\"author\"], namerequired:!0, parent:[\"status\"]}, toolbar:{namefrom:[\"author\"], parent:[\"group\"]}, tooltip:{namerequired:!0, parent:[\"section\"]}, tree:{mustcontain:[\"group\", \"treeitem\"], namefrom:[\"author\"], namerequired:!0, parent:[\"select\"], \nproperties:[\"aria-multiselectable\", \"aria-required\"]}, treegrid:{mustcontain:[\"row\"], namefrom:[\"author\"], namerequired:!0, parent:[\"grid\", \"tree\"]}, treeitem:{namefrom:[\"contents\", \"author\"], namerequired:!0, parent:[\"listitem\", \"option\"], scope:[\"group\", \"tree\"]}, widget:{\"abstract\":!0, parent:[\"roletype\"]}, window:{\"abstract\":!0, namefrom:[\" author\"], parent:[\"roletype\"], properties:[\"aria-expanded\"]}};\naxs.constants.WIDGET_ROLES = {};\naxs.constants.addAllParentRolesToSet_ = function(a, b) {\n  if (a.parent) {\n    for (var c = a.parent, d = 0;d < c.length;d++) {\n      var e = c[d];\n      b[e] = !0;\n      axs.constants.addAllParentRolesToSet_(axs.constants.ARIA_ROLES[e], b);\n    }\n  }\n};\naxs.constants.addAllPropertiesToSet_ = function(a, b, c) {\n  var d = a[b];\n  if (d) {\n    for (var e = 0;e < d.length;e++) {\n      c[d[e]] = !0;\n    }\n  }\n  if (a.parent) {\n    for (a = a.parent, d = 0;d < a.length;d++) {\n      axs.constants.addAllPropertiesToSet_(axs.constants.ARIA_ROLES[a[d]], b, c);\n    }\n  }\n};\nfor (var roleName in axs.constants.ARIA_ROLES) {\n  var role = axs.constants.ARIA_ROLES[roleName], propertiesSet = {};\n  axs.constants.addAllPropertiesToSet_(role, \"properties\", propertiesSet);\n  role.propertiesSet = propertiesSet;\n  var requiredPropertiesSet = {};\n  axs.constants.addAllPropertiesToSet_(role, \"requiredProperties\", requiredPropertiesSet);\n  role.requiredPropertiesSet = requiredPropertiesSet;\n  var parentRolesSet = {};\n  axs.constants.addAllParentRolesToSet_(role, parentRolesSet);\n  role.allParentRolesSet = parentRolesSet;\n  \"widget\" in parentRolesSet && (axs.constants.WIDGET_ROLES[roleName] = role);\n}\naxs.constants.ARIA_PROPERTIES = {activedescendant:{type:\"property\", valueType:\"idref\"}, atomic:{defaultValue:\"false\", type:\"property\", valueType:\"boolean\"}, autocomplete:{defaultValue:\"none\", type:\"property\", valueType:\"token\", values:[\"inline\", \"list\", \"both\", \"none\"]}, busy:{defaultValue:\"false\", type:\"state\", valueType:\"boolean\"}, checked:{defaultValue:\"undefined\", type:\"state\", valueType:\"token\", values:[\"true\", \"false\", \"mixed\", \"undefined\"]}, controls:{type:\"property\", valueType:\"idref_list\"}, \ndescribedby:{type:\"property\", valueType:\"idref_list\"}, disabled:{defaultValue:\"false\", type:\"state\", valueType:\"boolean\"}, dropeffect:{defaultValue:\"none\", type:\"property\", valueType:\"token_list\", values:\"copy move link execute popup none\".split(\" \")}, expanded:{defaultValue:\"undefined\", type:\"state\", valueType:\"token\", values:[\"true\", \"false\", \"undefined\"]}, flowto:{type:\"property\", valueType:\"idref_list\"}, grabbed:{defaultValue:\"undefined\", type:\"state\", valueType:\"token\", values:[\"true\", \"false\", \n\"undefined\"]}, haspopup:{defaultValue:\"false\", type:\"property\", valueType:\"boolean\"}, hidden:{defaultValue:\"false\", type:\"state\", valueType:\"boolean\"}, invalid:{defaultValue:\"false\", type:\"state\", valueType:\"token\", values:[\"grammar\", \"false\", \"spelling\", \"true\"]}, label:{type:\"property\", valueType:\"string\"}, labelledby:{type:\"property\", valueType:\"idref_list\"}, level:{type:\"property\", valueType:\"integer\"}, live:{defaultValue:\"off\", type:\"property\", valueType:\"token\", values:[\"off\", \"polite\", \"assertive\"]}, \nmultiline:{defaultValue:\"false\", type:\"property\", valueType:\"boolean\"}, multiselectable:{defaultValue:\"false\", type:\"property\", valueType:\"boolean\"}, orientation:{defaultValue:\"vertical\", type:\"property\", valueType:\"token\", values:[\"horizontal\", \"vertical\"]}, owns:{type:\"property\", valueType:\"idref_list\"}, posinset:{type:\"property\", valueType:\"integer\"}, pressed:{defaultValue:\"undefined\", type:\"state\", valueType:\"token\", values:[\"true\", \"false\", \"mixed\", \"undefined\"]}, readonly:{defaultValue:\"false\", \ntype:\"property\", valueType:\"boolean\"}, relevant:{defaultValue:\"additions text\", type:\"property\", valueType:\"token_list\", values:[\"additions\", \"removals\", \"text\", \"all\"]}, required:{defaultValue:\"false\", type:\"property\", valueType:\"boolean\"}, selected:{defaultValue:\"undefined\", type:\"state\", valueType:\"token\", values:[\"true\", \"false\", \"undefined\"]}, setsize:{type:\"property\", valueType:\"integer\"}, sort:{defaultValue:\"none\", type:\"property\", valueType:\"token\", values:[\"ascending\", \"descending\", \"none\", \n\"other\"]}, valuemax:{type:\"property\", valueType:\"decimal\"}, valuemin:{type:\"property\", valueType:\"decimal\"}, valuenow:{type:\"property\", valueType:\"decimal\"}, valuetext:{type:\"property\", valueType:\"string\"}};\n(function() {\n  for (var a in axs.constants.ARIA_PROPERTIES) {\n    var b = axs.constants.ARIA_PROPERTIES[a];\n    if (b.values) {\n      for (var c = {}, d = 0;d < b.values.length;d++) {\n        c[b.values[d]] = !0;\n      }\n      b.valuesSet = c;\n    }\n  }\n})();\naxs.constants.GLOBAL_PROPERTIES = axs.constants.ARIA_ROLES.roletype.propertiesSet;\naxs.constants.NO_ROLE_NAME = \" \";\naxs.constants.WIDGET_ROLE_TO_NAME = {alert:\"aria_role_alert\", alertdialog:\"aria_role_alertdialog\", button:\"aria_role_button\", checkbox:\"aria_role_checkbox\", columnheader:\"aria_role_columnheader\", combobox:\"aria_role_combobox\", dialog:\"aria_role_dialog\", grid:\"aria_role_grid\", gridcell:\"aria_role_gridcell\", link:\"aria_role_link\", listbox:\"aria_role_listbox\", log:\"aria_role_log\", marquee:\"aria_role_marquee\", menu:\"aria_role_menu\", menubar:\"aria_role_menubar\", menuitem:\"aria_role_menuitem\", menuitemcheckbox:\"aria_role_menuitemcheckbox\", \nmenuitemradio:\"aria_role_menuitemradio\", option:axs.constants.NO_ROLE_NAME, progressbar:\"aria_role_progressbar\", radio:\"aria_role_radio\", radiogroup:\"aria_role_radiogroup\", rowheader:\"aria_role_rowheader\", scrollbar:\"aria_role_scrollbar\", slider:\"aria_role_slider\", spinbutton:\"aria_role_spinbutton\", status:\"aria_role_status\", tab:\"aria_role_tab\", tabpanel:\"aria_role_tabpanel\", textbox:\"aria_role_textbox\", timer:\"aria_role_timer\", toolbar:\"aria_role_toolbar\", tooltip:\"aria_role_tooltip\", treeitem:\"aria_role_treeitem\"};\naxs.constants.STRUCTURE_ROLE_TO_NAME = {article:\"aria_role_article\", application:\"aria_role_application\", banner:\"aria_role_banner\", columnheader:\"aria_role_columnheader\", complementary:\"aria_role_complementary\", contentinfo:\"aria_role_contentinfo\", definition:\"aria_role_definition\", directory:\"aria_role_directory\", document:\"aria_role_document\", form:\"aria_role_form\", group:\"aria_role_group\", heading:\"aria_role_heading\", img:\"aria_role_img\", list:\"aria_role_list\", listitem:\"aria_role_listitem\", \nmain:\"aria_role_main\", math:\"aria_role_math\", navigation:\"aria_role_navigation\", note:\"aria_role_note\", region:\"aria_role_region\", rowheader:\"aria_role_rowheader\", search:\"aria_role_search\", separator:\"aria_role_separator\"};\naxs.constants.ATTRIBUTE_VALUE_TO_STATUS = [{name:\"aria-autocomplete\", values:{inline:\"aria_autocomplete_inline\", list:\"aria_autocomplete_list\", both:\"aria_autocomplete_both\"}}, {name:\"aria-checked\", values:{\"true\":\"aria_checked_true\", \"false\":\"aria_checked_false\", mixed:\"aria_checked_mixed\"}}, {name:\"aria-disabled\", values:{\"true\":\"aria_disabled_true\"}}, {name:\"aria-expanded\", values:{\"true\":\"aria_expanded_true\", \"false\":\"aria_expanded_false\"}}, {name:\"aria-invalid\", values:{\"true\":\"aria_invalid_true\", \ngrammar:\"aria_invalid_grammar\", spelling:\"aria_invalid_spelling\"}}, {name:\"aria-multiline\", values:{\"true\":\"aria_multiline_true\"}}, {name:\"aria-multiselectable\", values:{\"true\":\"aria_multiselectable_true\"}}, {name:\"aria-pressed\", values:{\"true\":\"aria_pressed_true\", \"false\":\"aria_pressed_false\", mixed:\"aria_pressed_mixed\"}}, {name:\"aria-readonly\", values:{\"true\":\"aria_readonly_true\"}}, {name:\"aria-required\", values:{\"true\":\"aria_required_true\"}}, {name:\"aria-selected\", values:{\"true\":\"aria_selected_true\", \n\"false\":\"aria_selected_false\"}}];\naxs.constants.INPUT_TYPE_TO_INFORMATION_TABLE_MSG = {button:\"input_type_button\", checkbox:\"input_type_checkbox\", color:\"input_type_color\", datetime:\"input_type_datetime\", \"datetime-local\":\"input_type_datetime_local\", date:\"input_type_date\", email:\"input_type_email\", file:\"input_type_file\", image:\"input_type_image\", month:\"input_type_month\", number:\"input_type_number\", password:\"input_type_password\", radio:\"input_type_radio\", range:\"input_type_range\", reset:\"input_type_reset\", search:\"input_type_search\", \nsubmit:\"input_type_submit\", tel:\"input_type_tel\", text:\"input_type_text\", url:\"input_type_url\", week:\"input_type_week\"};\naxs.constants.TAG_TO_INFORMATION_TABLE_VERBOSE_MSG = {A:\"tag_link\", BUTTON:\"tag_button\", H1:\"tag_h1\", H2:\"tag_h2\", H3:\"tag_h3\", H4:\"tag_h4\", H5:\"tag_h5\", H6:\"tag_h6\", LI:\"tag_li\", OL:\"tag_ol\", SELECT:\"tag_select\", TEXTAREA:\"tag_textarea\", UL:\"tag_ul\", SECTION:\"tag_section\", NAV:\"tag_nav\", ARTICLE:\"tag_article\", ASIDE:\"tag_aside\", HGROUP:\"tag_hgroup\", HEADER:\"tag_header\", FOOTER:\"tag_footer\", TIME:\"tag_time\", MARK:\"tag_mark\"};\naxs.constants.TAG_TO_INFORMATION_TABLE_BRIEF_MSG = {BUTTON:\"tag_button\", SELECT:\"tag_select\", TEXTAREA:\"tag_textarea\"};\naxs.constants.MIXED_VALUES = {\"true\":!0, \"false\":!0, mixed:!0};\naxs.constants.Severity = {INFO:\"Info\", WARNING:\"Warning\", SEVERE:\"Severe\"};\naxs.constants.AuditResult = {PASS:\"PASS\", FAIL:\"FAIL\", NA:\"NA\"};\naxs.constants.InlineElements = {TT:!0, I:!0, B:!0, BIG:!0, SMALL:!0, EM:!0, STRONG:!0, DFN:!0, CODE:!0, SAMP:!0, KBD:!0, VAR:!0, CITE:!0, ABBR:!0, ACRONYM:!0, A:!0, IMG:!0, OBJECT:!0, BR:!0, SCRIPT:!0, MAP:!0, Q:!0, SUB:!0, SUP:!0, SPAN:!0, BDO:!0, INPUT:!0, SELECT:!0, TEXTAREA:!0, LABEL:!0, BUTTON:!0};\naxs.constants.NATIVELY_DISABLEABLE = {BUTTON:!0, INPUT:!0, SELECT:!0, TEXTAREA:!0, FIELDSET:!0, OPTGROUP:!0, OPTION:!0};\naxs.constants.ARIA_TO_HTML_ATTRIBUTE = {\"aria-checked\":\"checked\", \"aria-disabled\":\"disabled\", \"aria-hidden\":\"hidden\", \"aria-expanded\":\"open\", \"aria-valuemax\":\"max\", \"aria-valuemin\":\"min\", \"aria-readonly\":\"readonly\", \"aria-required\":\"required\", \"aria-selected\":\"selected\", \"aria-valuenow\":\"value\"};\naxs.constants.TAG_TO_IMPLICIT_SEMANTIC_INFO = {A:[{role:\"link\", allowed:\"button checkbox menuitem menuitemcheckbox menuitemradio tab treeitem\".split(\" \"), selector:\"a[href]\"}], ADDRESS:[{role:\"\", allowed:[\"contentinfo\", \"presentation\"]}], AREA:[{role:\"link\", selector:\"area[href]\"}], ARTICLE:[{role:\"article\", allowed:[\"presentation\", \"article\", \"document\", \"application\", \"main\"]}], ASIDE:[{role:\"complementary\", allowed:[\"note\", \"complementary\", \"search\", \"presentation\"]}], AUDIO:[{role:\"\", allowed:[\"application\", \n\"presentation\"]}], BASE:[{role:\"\", reserved:!0}], BODY:[{role:\"document\", allowed:[\"presentation\"]}], BUTTON:[{role:\"button\", allowed:[\"link\", \"menuitem\", \"menuitemcheckbox\", \"menuitemradio\", \"radio\"], selector:'button:not([aria-pressed]):not([type=\"menu\"])'}, {role:\"button\", allowed:[\"button\"], selector:\"button[aria-pressed]\"}, {role:\"button\", attributes:{\"aria-haspopup\":!0}, allowed:[\"link\", \"menuitem\", \"menuitemcheckbox\", \"menuitemradio\", \"radio\"], selector:'button[type=\"menu\"]'}], CAPTION:[{role:\"\", \nallowed:[\"presentation\"]}], COL:[{role:\"\", reserved:!0}], COLGROUP:[{role:\"\", reserved:!0}], DATALIST:[{role:\"listbox\", attributes:{\"aria-multiselectable\":!1}, allowed:[\"presentation\"]}], DEL:[{role:\"\", allowed:[\"*\"]}], DD:[{role:\"\", allowed:[\"presentation\"]}], DT:[{role:\"\", allowed:[\"presentation\"]}], DETAILS:[{role:\"group\", allowed:[\"group\", \"presentation\"]}], DIALOG:[{role:\"dialog\", allowed:\"dialog alert alertdialog application log marquee status\".split(\" \"), selector:\"dialog[open]\"}, {role:\"dialog\", \nattributes:{\"aria-hidden\":!0}, allowed:\"dialog alert alertdialog application log marquee status\".split(\" \"), selector:\"dialog:not([open])\"}], DIV:[{role:\"\", allowed:[\"*\"]}], DL:[{role:\"list\", allowed:[\"presentation\"]}], EMBED:[{role:\"\", allowed:[\"application\", \"document\", \"img\", \"presentation\"]}], FIGURE:[{role:\"\", allowed:[\"*\"]}], FOOTER:[{role:\"\", allowed:[\"contentinfo\", \"presentation\"]}], FORM:[{role:\"form\", allowed:[\"presentation\"]}], P:[{role:\"\", allowed:[\"*\"]}], PRE:[{role:\"\", allowed:[\"*\"]}], \nBLOCKQUOTE:[{role:\"\", allowed:[\"*\"]}], H1:[{role:\"heading\"}], H2:[{role:\"heading\"}], H3:[{role:\"heading\"}], H4:[{role:\"heading\"}], H5:[{role:\"heading\"}], H6:[{role:\"heading\"}], HEAD:[{role:\"\", reserved:!0}], HEADER:[{role:\"\", allowed:[\"banner\", \"presentation\"]}], HR:[{role:\"separator\", allowed:[\"presentation\"]}], HTML:[{role:\"\", reserved:!0}], IFRAME:[{role:\"\", allowed:[\"application\", \"document\", \"img\", \"presentation\"], selector:\"iframe:not([seamless])\"}, {role:\"\", allowed:[\"application\", \"document\", \n\"img\", \"presentation\", \"group\"], selector:\"iframe[seamless]\"}], IMG:[{role:\"presentation\", reserved:!0, selector:'img[alt=\"\"]'}, {role:\"img\", allowed:[\"*\"], selector:'img[alt]:not([alt=\"\"])'}], INPUT:[{role:\"button\", allowed:[\"link\", \"menuitem\", \"menuitemcheckbox\", \"menuitemradio\", \"radio\"], selector:'input[type=\"button\"]:not([aria-pressed])'}, {role:\"button\", allowed:[\"button\"], selector:'input[type=\"button\"][aria-pressed]'}, {role:\"checkbox\", allowed:[\"checkbox\"], selector:'input[type=\"checkbox\"]'}, \n{role:\"\", selector:'input[type=\"color\"]'}, {role:\"\", selector:'input[type=\"date\"]'}, {role:\"\", selector:'input[type=\"datetime\"]'}, {role:\"textbox\", selector:'input[type=\"email\"]:not([list])'}, {role:\"\", selector:'input[type=\"file\"]'}, {role:\"\", reserved:!0, selector:'input[type=\"hidden\"]'}, {role:\"button\", allowed:[\"button\"], selector:'input[type=\"image\"][aria-pressed]'}, {role:\"button\", allowed:[\"link\", \"menuitem\", \"menuitemcheckbox\", \"menuitemradio\", \"radio\"], selector:'input[type=\"image\"]:not([aria-pressed])'}, \n{role:\"\", selector:'input[type=\"month\"]'}, {role:\"\", selector:'input[type=\"number\"]'}, {role:\"textbox\", selector:'input[type=\"password\"]'}, {role:\"radio\", allowed:[\"menuitemradio\"], selector:'input[type=\"radio\"]'}, {role:\"slider\", selector:'input[type=\"range\"]'}, {role:\"button\", selector:'input[type=\"reset\"]'}, {role:\"combobox\", selector:'input[type=\"search\"][list]'}, {role:\"textbox\", selector:'input[type=\"search\"]:not([list])'}, {role:\"button\", selector:'input[type=\"submit\"]'}, {role:\"combobox\", \nselector:'input[type=\"tel\"][list]'}, {role:\"textbox\", selector:'input[type=\"tel\"]:not([list])'}, {role:\"combobox\", selector:'input[type=\"text\"][list]'}, {role:\"textbox\", selector:'input[type=\"text\"]:not([list])'}, {role:\"textbox\", selector:\"input:not([type])\"}, {role:\"\", selector:'input[type=\"time\"]'}, {role:\"combobox\", selector:'input[type=\"url\"][list]'}, {role:\"textbox\", selector:'input[type=\"url\"]:not([list])'}, {role:\"\", selector:'input[type=\"week\"]'}], INS:[{role:\"\", allowed:[\"*\"]}], KEYGEN:[{role:\"\"}], \nLABEL:[{role:\"\", allowed:[\"presentation\"]}], LI:[{role:\"listitem\", allowed:\"menuitem menuitemcheckbox menuitemradio option tab treeitem presentation\".split(\" \"), selector:'ol:not([role=\"presentation\"])>li, ul:not([role=\"presentation\"])>li'}, {role:\"listitem\", allowed:\"listitem menuitem menuitemcheckbox menuitemradio option tab treeitem presentation\".split(\" \"), selector:'ol[role=\"presentation\"]>li, ul[role=\"presentation\"]>li'}], LINK:[{role:\"link\", reserved:!0, selector:\"link[href]\"}], MAIN:[{role:\"\", \nallowed:[\"main\", \"presentation\"]}], MAP:[{role:\"\", reserved:!0}], MATH:[{role:\"\", allowed:[\"presentation\"]}], MENU:[{role:\"toolbar\", selector:'menu[type=\"toolbar\"]'}], MENUITEM:[{role:\"menuitem\", selector:'menuitem[type=\"command\"]'}, {role:\"menuitemcheckbox\", selector:'menuitem[type=\"checkbox\"]'}, {role:\"menuitemradio\", selector:'menuitem[type=\"radio\"]'}], META:[{role:\"\", reserved:!0}], METER:[{role:\"progressbar\", allowed:[\"presentation\"]}], NAV:[{role:\"navigation\", allowed:[\"navigation\", \"presentation\"]}], \nNOSCRIPT:[{role:\"\", reserved:!0}], OBJECT:[{role:\"\", allowed:[\"application\", \"document\", \"img\", \"presentation\"]}], OL:[{role:\"list\", allowed:\"directory group listbox menu menubar tablist toolbar tree presentation\".split(\" \")}], OPTGROUP:[{role:\"\", allowed:[\"presentation\"]}], OPTION:[{role:\"option\"}], OUTPUT:[{role:\"status\", allowed:[\"*\"]}], PARAM:[{role:\"\", reserved:!0}], PICTURE:[{role:\"\", reserved:!0}], PROGRESS:[{role:\"progressbar\", allowed:[\"presentation\"]}], SCRIPT:[{role:\"\", reserved:!0}], \nSECTION:[{role:\"region\", allowed:\"alert alertdialog application contentinfo dialog document log marquee search status presentation\".split(\" \")}], SELECT:[{role:\"listbox\"}], SOURCE:[{role:\"\", reserved:!0}], SPAN:[{role:\"\", allowed:[\"*\"]}], STYLE:[{role:\"\", reserved:!0}], SVG:[{role:\"\", allowed:[\"application\", \"document\", \"img\", \"presentation\"]}], SUMMARY:[{role:\"\", allowed:[\"presentation\"]}], TABLE:[{role:\"\", allowed:[\"*\"]}], TEMPLATE:[{role:\"\", reserved:!0}], TEXTAREA:[{role:\"textbox\"}], TBODY:[{role:\"rowgroup\", \nallowed:[\"*\"]}], THEAD:[{role:\"rowgroup\", allowed:[\"*\"]}], TFOOT:[{role:\"rowgroup\", allowed:[\"*\"]}], TITLE:[{role:\"\", reserved:!0}], TD:[{role:\"\", allowed:[\"*\"]}], TH:[{role:\"\", allowed:[\"*\"]}], TR:[{role:\"\", allowed:[\"*\"]}], TRACK:[{role:\"\", reserved:!0}], UL:[{role:\"list\", allowed:\"directory group listbox menu menubar tablist toolbar tree presentation\".split(\" \")}], VIDEO:[{role:\"\", allowed:[\"application\", \"presentation\"]}]};\naxs.color = {};\naxs.color.Color = function(a, b, c, d) {\n  this.red = a;\n  this.green = b;\n  this.blue = c;\n  this.alpha = d;\n};\naxs.color.YCbCr = function(a) {\n  this.luma = this.z = a[0];\n  this.Cb = this.x = a[1];\n  this.Cr = this.y = a[2];\n};\naxs.color.YCbCr.prototype = {multiply:function(a) {\n  return new axs.color.YCbCr([this.luma * a, this.Cb * a, this.Cr * a]);\n}, add:function(a) {\n  return new axs.color.YCbCr([this.luma + a.luma, this.Cb + a.Cb, this.Cr + a.Cr]);\n}, subtract:function(a) {\n  return new axs.color.YCbCr([this.luma - a.luma, this.Cb - a.Cb, this.Cr - a.Cr]);\n}};\naxs.color.calculateContrastRatio = function(a, b) {\n  1 > a.alpha && (a = axs.color.flattenColors(a, b));\n  var c = axs.color.calculateLuminance(a), d = axs.color.calculateLuminance(b);\n  return (Math.max(c, d) + .05) / (Math.min(c, d) + .05);\n};\naxs.color.calculateLuminance = function(a) {\n  return axs.color.toYCbCr(a).luma;\n};\naxs.color.luminanceRatio = function(a, b) {\n  return (Math.max(a, b) + .05) / (Math.min(a, b) + .05);\n};\naxs.color.parseColor = function(a) {\n  if (\"transparent\" === a) {\n    return new axs.color.Color(0, 0, 0, 0);\n  }\n  var b = a.match(/^rgb\\((\\d+), (\\d+), (\\d+)\\)$/);\n  if (b) {\n    a = parseInt(b[1], 10);\n    var c = parseInt(b[2], 10), d = parseInt(b[3], 10);\n    return new axs.color.Color(a, c, d, 1);\n  }\n  return (b = a.match(/^rgba\\((\\d+), (\\d+), (\\d+), (\\d*(\\.\\d+)?)\\)/)) ? (a = parseInt(b[1], 10), c = parseInt(b[2], 10), d = parseInt(b[3], 10), b = parseFloat(b[4]), new axs.color.Color(a, c, d, b)) : null;\n};\naxs.color.colorChannelToString = function(a) {\n  a = Math.round(a);\n  return 15 >= a ? \"0\" + a.toString(16) : a.toString(16);\n};\naxs.color.colorToString = function(a) {\n  return 1 == a.alpha ? \"#\" + axs.color.colorChannelToString(a.red) + axs.color.colorChannelToString(a.green) + axs.color.colorChannelToString(a.blue) : \"rgba(\" + [a.red, a.green, a.blue, a.alpha].join() + \")\";\n};\naxs.color.luminanceFromContrastRatio = function(a, b, c) {\n  return c ? (a + .05) * b - .05 : (a + .05) / b - .05;\n};\naxs.color.translateColor = function(a, b) {\n  for (var c = b > a.luma ? axs.color.WHITE_YCC : axs.color.BLACK_YCC, d = c == axs.color.WHITE_YCC ? axs.color.YCC_CUBE_FACES_WHITE : axs.color.YCC_CUBE_FACES_BLACK, e = new axs.color.YCbCr([0, a.Cb, a.Cr]), f = new axs.color.YCbCr([1, a.Cb, a.Cr]), f = {a:e, b:f}, e = null, g = 0;g < d.length && !(e = axs.color.findIntersection(f, d[g]), 0 <= e.z && 1 >= e.z);g++) {\n  }\n  if (!e) {\n    throw \"Couldn't find intersection with YCbCr color cube for Cb=\" + a.Cb + \", Cr=\" + a.Cr + \".\";\n  }\n  if (e.x != a.x || e.y != a.y) {\n    throw \"Intersection has wrong Cb/Cr values.\";\n  }\n  if (Math.abs(c.luma - e.luma) < Math.abs(c.luma - b)) {\n    return c = [b, a.Cb, a.Cr], axs.color.fromYCbCrArray(c);\n  }\n  c = (b - e.luma) / (c.luma - e.luma);\n  c = [b, e.Cb - e.Cb * c, e.Cr - e.Cr * c];\n  return axs.color.fromYCbCrArray(c);\n};\naxs.color.suggestColors = function(a, b, c) {\n  var d = {}, e = axs.color.calculateLuminance(a), f = axs.color.calculateLuminance(b), g = f > e, h = axs.color.toYCbCr(b), k = axs.color.toYCbCr(a), m;\n  for (m in c) {\n    var l = c[m], n = axs.color.luminanceFromContrastRatio(e, l + .02, g);\n    if (1 >= n && 0 <= n) {\n      var p = axs.color.translateColor(h, n), l = axs.color.calculateContrastRatio(p, a), n = {};\n      n.fg = axs.color.colorToString(p);\n      n.bg = axs.color.colorToString(a);\n      n.contrast = l.toFixed(2);\n      d[m] = n;\n    } else {\n      l = axs.color.luminanceFromContrastRatio(f, l + .02, !g), 1 >= l && 0 <= l && (p = axs.color.translateColor(k, l), l = axs.color.calculateContrastRatio(b, p), n = {}, n.bg = axs.color.colorToString(p), n.fg = axs.color.colorToString(b), n.contrast = l.toFixed(2), d[m] = n);\n    }\n  }\n  return d;\n};\naxs.color.flattenColors = function(a, b) {\n  var c = a.alpha;\n  return new axs.color.Color((1 - c) * b.red + c * a.red, (1 - c) * b.green + c * a.green, (1 - c) * b.blue + c * a.blue, a.alpha + b.alpha * (1 - a.alpha));\n};\naxs.color.multiplyMatrixVector = function(a, b) {\n  var c = b[0], d = b[1], e = b[2];\n  return [a[0][0] * c + a[0][1] * d + a[0][2] * e, a[1][0] * c + a[1][1] * d + a[1][2] * e, a[2][0] * c + a[2][1] * d + a[2][2] * e];\n};\naxs.color.toYCbCr = function(a) {\n  var b = a.red / 255, c = a.green / 255;\n  a = a.blue / 255;\n  return new axs.color.YCbCr(axs.color.multiplyMatrixVector(axs.color.YCC_MATRIX, [.03928 >= b ? b / 12.92 : Math.pow((b + .055) / 1.055, 2.4), .03928 >= c ? c / 12.92 : Math.pow((c + .055) / 1.055, 2.4), .03928 >= a ? a / 12.92 : Math.pow((a + .055) / 1.055, 2.4)]));\n};\naxs.color.fromYCbCr = function(a) {\n  return axs.color.fromYCbCrArray([a.luma, a.Cb, a.Cr]);\n};\naxs.color.fromYCbCrArray = function(a) {\n  var b = axs.color.multiplyMatrixVector(axs.color.INVERTED_YCC_MATRIX, a);\n  a = b[0];\n  var c = b[1], b = b[2];\n  return new axs.color.Color(Math.min(Math.max(Math.round(255 * (.00303949 >= a ? 12.92 * a : 1.055 * Math.pow(a, 1 / 2.4) - .055)), 0), 255), Math.min(Math.max(Math.round(255 * (.00303949 >= c ? 12.92 * c : 1.055 * Math.pow(c, 1 / 2.4) - .055)), 0), 255), Math.min(Math.max(Math.round(255 * (.00303949 >= b ? 12.92 * b : 1.055 * Math.pow(b, 1 / 2.4) - .055)), 0), 255), 1);\n};\naxs.color.RGBToYCbCrMatrix = function(a, b) {\n  return [[a, 1 - a - b, b], [-a / (2 - 2 * b), (a + b - 1) / (2 - 2 * b), (1 - b) / (2 - 2 * b)], [(1 - a) / (2 - 2 * a), (a + b - 1) / (2 - 2 * a), -b / (2 - 2 * a)]];\n};\naxs.color.invert3x3Matrix = function(a) {\n  var b = a[0][0], c = a[0][1], d = a[0][2], e = a[1][0], f = a[1][1], g = a[1][2], h = a[2][0], k = a[2][1];\n  a = a[2][2];\n  return axs.color.scalarMultiplyMatrix([[f * a - g * k, d * k - c * a, c * g - d * f], [g * h - e * a, b * a - d * h, d * e - b * g], [e * k - f * h, h * c - b * k, b * f - c * e]], 1 / (b * (f * a - g * k) - c * (a * e - g * h) + d * (e * k - f * h)));\n};\naxs.color.findIntersection = function(a, b) {\n  var c = [a.a.x - b.p0.x, a.a.y - b.p0.y, a.a.z - b.p0.z], d = axs.color.invert3x3Matrix([[a.a.x - a.b.x, b.p1.x - b.p0.x, b.p2.x - b.p0.x], [a.a.y - a.b.y, b.p1.y - b.p0.y, b.p2.y - b.p0.y], [a.a.z - a.b.z, b.p1.z - b.p0.z, b.p2.z - b.p0.z]]), c = axs.color.multiplyMatrixVector(d, c)[0];\n  return a.a.add(a.b.subtract(a.a).multiply(c));\n};\naxs.color.scalarMultiplyMatrix = function(a, b) {\n  for (var c = [], d = 0;3 > d;d++) {\n    c[d] = axs.color.scalarMultiplyVector(a[d], b);\n  }\n  return c;\n};\naxs.color.scalarMultiplyVector = function(a, b) {\n  for (var c = [], d = 0;d < a.length;d++) {\n    c[d] = a[d] * b;\n  }\n  return c;\n};\naxs.color.kR = .2126;\naxs.color.kB = .0722;\naxs.color.YCC_MATRIX = axs.color.RGBToYCbCrMatrix(axs.color.kR, axs.color.kB);\naxs.color.INVERTED_YCC_MATRIX = axs.color.invert3x3Matrix(axs.color.YCC_MATRIX);\naxs.color.BLACK = new axs.color.Color(0, 0, 0, 1);\naxs.color.BLACK_YCC = axs.color.toYCbCr(axs.color.BLACK);\naxs.color.WHITE = new axs.color.Color(255, 255, 255, 1);\naxs.color.WHITE_YCC = axs.color.toYCbCr(axs.color.WHITE);\naxs.color.RED = new axs.color.Color(255, 0, 0, 1);\naxs.color.RED_YCC = axs.color.toYCbCr(axs.color.RED);\naxs.color.GREEN = new axs.color.Color(0, 255, 0, 1);\naxs.color.GREEN_YCC = axs.color.toYCbCr(axs.color.GREEN);\naxs.color.BLUE = new axs.color.Color(0, 0, 255, 1);\naxs.color.BLUE_YCC = axs.color.toYCbCr(axs.color.BLUE);\naxs.color.CYAN = new axs.color.Color(0, 255, 255, 1);\naxs.color.CYAN_YCC = axs.color.toYCbCr(axs.color.CYAN);\naxs.color.MAGENTA = new axs.color.Color(255, 0, 255, 1);\naxs.color.MAGENTA_YCC = axs.color.toYCbCr(axs.color.MAGENTA);\naxs.color.YELLOW = new axs.color.Color(255, 255, 0, 1);\naxs.color.YELLOW_YCC = axs.color.toYCbCr(axs.color.YELLOW);\naxs.color.YCC_CUBE_FACES_BLACK = [{p0:axs.color.BLACK_YCC, p1:axs.color.RED_YCC, p2:axs.color.GREEN_YCC}, {p0:axs.color.BLACK_YCC, p1:axs.color.GREEN_YCC, p2:axs.color.BLUE_YCC}, {p0:axs.color.BLACK_YCC, p1:axs.color.BLUE_YCC, p2:axs.color.RED_YCC}];\naxs.color.YCC_CUBE_FACES_WHITE = [{p0:axs.color.WHITE_YCC, p1:axs.color.CYAN_YCC, p2:axs.color.MAGENTA_YCC}, {p0:axs.color.WHITE_YCC, p1:axs.color.MAGENTA_YCC, p2:axs.color.YELLOW_YCC}, {p0:axs.color.WHITE_YCC, p1:axs.color.YELLOW_YCC, p2:axs.color.CYAN_YCC}];\naxs.dom = {};\naxs.dom.parentElement = function(a) {\n  if (!a) {\n    return null;\n  }\n  a = axs.dom.composedParentNode(a);\n  if (!a) {\n    return null;\n  }\n  switch(a.nodeType) {\n    case Node.ELEMENT_NODE:\n      return a;\n    default:\n      return axs.dom.parentElement(a);\n  }\n};\naxs.dom.shadowHost = function(a) {\n  return \"host\" in a ? a.host : null;\n};\naxs.dom.composedParentNode = function(a) {\n  if (!a) {\n    return null;\n  }\n  if (a.nodeType === Node.DOCUMENT_FRAGMENT_NODE) {\n    return axs.dom.shadowHost(a);\n  }\n  var b = a.parentNode;\n  if (!b) {\n    return null;\n  }\n  if (b.nodeType === Node.DOCUMENT_FRAGMENT_NODE) {\n    return axs.dom.shadowHost(b);\n  }\n  if (!b.shadowRoot) {\n    return b;\n  }\n  a = a.getDestinationInsertionPoints();\n  return 0 < a.length ? axs.dom.composedParentNode(a[a.length - 1]) : null;\n};\naxs.dom.asElement = function(a) {\n  switch(a.nodeType) {\n    case Node.COMMENT_NODE:\n      break;\n    case Node.ELEMENT_NODE:\n      if (\"script\" == a.localName || \"template\" == a.localName) {\n        break;\n      }\n      return a;\n    case Node.DOCUMENT_FRAGMENT_NODE:\n      return a.host;\n    case Node.TEXT_NODE:\n      return axs.dom.parentElement(a);\n    default:\n      console.warn(\"Unhandled node type: \", a.nodeType);\n  }\n  return null;\n};\naxs.dom.composedTreeSearch = function(a, b, c, d, e) {\n  if (a === b) {\n    return !0;\n  }\n  if (a.nodeType == Node.ELEMENT_NODE) {\n    var f = a\n  }\n  var g = !1;\n  d = Object.create(d);\n  if (f) {\n    var h = f.localName;\n    d.collectIdRefs && (d.idrefs = axs.utils.getReferencedIds(f));\n    if (!d.disabled || \"legend\" === h && axs.browserUtils.matchSelector(f, \"fieldset>legend:first-of-type\")) {\n      d.disabled = axs.utils.isElementDisabled(f, !0);\n    }\n    d.hidden || (d.hidden = axs.utils.isElementHidden(f));\n    if (c.preorder && !c.preorder(f, d)) {\n      return g;\n    }\n    var k = f.shadowRoot || f.webkitShadowRoot;\n    if (k) {\n      return d.level++, g = axs.dom.composedTreeSearch(k, b, c, d, k), f && c.postorder && !g && c.postorder(f, d), g;\n    }\n    if (\"content\" == h) {\n      a = f.getDistributedNodes();\n      for (h = 0;h < a.length && !g;h++) {\n        g = axs.dom.composedTreeSearch(a[h], b, c, d, e);\n      }\n      c.postorder && !g && c.postorder.call(null, f, d);\n      return g;\n    }\n  }\n  for (a = a.firstChild;null != a && !g;) {\n    g = axs.dom.composedTreeSearch(a, b, c, d, e), a = a.nextSibling;\n  }\n  f && c.postorder && !g && c.postorder.call(null, f, d);\n  return g;\n};\naxs.utils = {};\naxs.utils.FOCUSABLE_ELEMENTS_SELECTOR = \"input:not([type=hidden]):not([disabled]),select:not([disabled]),textarea:not([disabled]),button:not([disabled]),a[href],iframe,[tabindex]\";\naxs.utils.LABELABLE_ELEMENTS_SELECTOR = \"button,input:not([type=hidden]),keygen,meter,output,progress,select,textarea\";\naxs.utils.elementIsTransparent = function(a) {\n  return \"0\" == a.style.opacity;\n};\naxs.utils.elementHasZeroArea = function(a) {\n  a = a.getBoundingClientRect();\n  var b = a.top - a.bottom;\n  return a.right - a.left && b ? !1 : !0;\n};\naxs.utils.elementIsOutsideScrollArea = function(a) {\n  for (var b = axs.dom.parentElement(a), c = a.ownerDocument.defaultView;b != c.document.body;) {\n    if (axs.utils.isClippedBy(a, b)) {\n      return !0;\n    }\n    if (axs.utils.canScrollTo(a, b) && !axs.utils.elementIsOutsideScrollArea(b)) {\n      return !1;\n    }\n    b = axs.dom.parentElement(b);\n  }\n  return !axs.utils.canScrollTo(a, c.document.body);\n};\naxs.utils.canScrollTo = function(a, b) {\n  var c = a.getBoundingClientRect(), d = b.getBoundingClientRect();\n  if (b == b.ownerDocument.body) {\n    var e = d.top, f = d.left\n  } else {\n    e = d.top - b.scrollTop, f = d.left - b.scrollLeft;\n  }\n  var g = e + b.scrollHeight, h = f + b.scrollWidth;\n  if (c.right < f || c.bottom < e || c.left > h || c.top > g) {\n    return !1;\n  }\n  e = a.ownerDocument.defaultView;\n  f = e.getComputedStyle(b);\n  return c.left > d.right || c.top > d.bottom ? \"scroll\" == f.overflow || \"auto\" == f.overflow || b instanceof e.HTMLBodyElement : !0;\n};\naxs.utils.isClippedBy = function(a, b) {\n  var c = a.getBoundingClientRect(), d = b.getBoundingClientRect(), e = d.top - b.scrollTop, f = d.left - b.scrollLeft, g = a.ownerDocument.defaultView.getComputedStyle(b);\n  return (c.right < d.left || c.bottom < d.top || c.left > d.right || c.top > d.bottom) && \"hidden\" == g.overflow ? !0 : c.right < f || c.bottom < e ? \"visible\" != g.overflow : !1;\n};\naxs.utils.isAncestor = function(a, b) {\n  if (null == b) {\n    return !1;\n  }\n  if (b === a) {\n    return !0;\n  }\n  var c = axs.dom.composedParentNode(b);\n  return axs.utils.isAncestor(a, c);\n};\naxs.utils.overlappingElements = function(a) {\n  if (axs.utils.elementHasZeroArea(a)) {\n    return null;\n  }\n  for (var b = [], c = a.getClientRects(), d = 0;d < c.length;d++) {\n    var e = c[d], e = document.elementFromPoint((e.left + e.right) / 2, (e.top + e.bottom) / 2);\n    if (null != e && e != a && !axs.utils.isAncestor(e, a) && !axs.utils.isAncestor(a, e)) {\n      var f = window.getComputedStyle(e, null);\n      f && (f = axs.utils.getBgColor(f, e)) && 0 < f.alpha && 0 > b.indexOf(e) && b.push(e);\n    }\n  }\n  return b;\n};\naxs.utils.elementIsHtmlControl = function(a) {\n  var b = a.ownerDocument.defaultView;\n  return a instanceof b.HTMLButtonElement || a instanceof b.HTMLInputElement || a instanceof b.HTMLSelectElement || a instanceof b.HTMLTextAreaElement ? !0 : !1;\n};\naxs.utils.elementIsAriaWidget = function(a) {\n  return a.hasAttribute(\"role\") && (a = a.getAttribute(\"role\")) && (a = axs.constants.ARIA_ROLES[a]) && \"widget\" in a.allParentRolesSet ? !0 : !1;\n};\naxs.utils.elementIsVisible = function(a) {\n  return axs.utils.elementIsTransparent(a) || axs.utils.elementHasZeroArea(a) || axs.utils.elementIsOutsideScrollArea(a) || axs.utils.overlappingElements(a).length ? !1 : !0;\n};\naxs.utils.isLargeFont = function(a) {\n  var b = a.fontSize;\n  a = \"bold\" == a.fontWeight;\n  var c = b.match(/(\\d+)px/);\n  if (c) {\n    b = parseInt(c[1], 10);\n    if (c = window.getComputedStyle(document.body, null).fontSize.match(/(\\d+)px/)) {\n      var d = parseInt(c[1], 10), c = 1.2 * d, d = 1.5 * d\n    } else {\n      c = 19.2, d = 24;\n    }\n    return a && b >= c || b >= d;\n  }\n  if (c = b.match(/(\\d+)em/)) {\n    return b = parseInt(c[1], 10), a && 1.2 <= b || 1.5 <= b ? !0 : !1;\n  }\n  if (c = b.match(/(\\d+)%/)) {\n    return b = parseInt(c[1], 10), a && 120 <= b || 150 <= b ? !0 : !1;\n  }\n  if (c = b.match(/(\\d+)pt/)) {\n    if (b = parseInt(c[1], 10), a && 14 <= b || 18 <= b) {\n      return !0;\n    }\n  }\n  return !1;\n};\naxs.utils.getBgColor = function(a, b) {\n  var c = axs.color.parseColor(a.backgroundColor);\n  if (!c) {\n    return null;\n  }\n  1 > a.opacity && (c.alpha *= a.opacity);\n  if (1 > c.alpha) {\n    var d = axs.utils.getParentBgColor(b);\n    if (null == d) {\n      return null;\n    }\n    c = axs.color.flattenColors(c, d);\n  }\n  return c;\n};\naxs.utils.getParentBgColor = function(a) {\n  var b = a;\n  a = [];\n  for (var c = null;b = axs.dom.parentElement(b);) {\n    var d = window.getComputedStyle(b, null);\n    if (d) {\n      var e = axs.color.parseColor(d.backgroundColor);\n      if (e && (1 > d.opacity && (e.alpha *= d.opacity), 0 != e.alpha && (a.push(e), 1 == e.alpha))) {\n        c = !0;\n        break;\n      }\n    }\n  }\n  c || a.push(new axs.color.Color(255, 255, 255, 1));\n  for (b = a.pop();a.length;) {\n    c = a.pop(), b = axs.color.flattenColors(c, b);\n  }\n  return b;\n};\naxs.utils.getFgColor = function(a, b, c) {\n  var d = axs.color.parseColor(a.color);\n  if (!d) {\n    return null;\n  }\n  1 > d.alpha && (d = axs.color.flattenColors(d, c));\n  1 > a.opacity && (b = axs.utils.getParentBgColor(b), d.alpha *= a.opacity, d = axs.color.flattenColors(d, b));\n  return d;\n};\naxs.utils.getContrastRatioForElement = function(a) {\n  var b = window.getComputedStyle(a, null);\n  return axs.utils.getContrastRatioForElementWithComputedStyle(b, a);\n};\naxs.utils.getContrastRatioForElementWithComputedStyle = function(a, b) {\n  if (axs.utils.isElementHidden(b)) {\n    return null;\n  }\n  var c = axs.utils.getBgColor(a, b);\n  if (!c) {\n    return null;\n  }\n  var d = axs.utils.getFgColor(a, b, c);\n  return d ? axs.color.calculateContrastRatio(d, c) : null;\n};\naxs.utils.isNativeTextElement = function(a) {\n  var b = a.tagName.toLowerCase();\n  a = a.type ? a.type.toLowerCase() : \"\";\n  if (\"textarea\" == b) {\n    return !0;\n  }\n  if (\"input\" != b) {\n    return !1;\n  }\n  switch(a) {\n    case \"email\":\n    ;\n    case \"number\":\n    ;\n    case \"password\":\n    ;\n    case \"search\":\n    ;\n    case \"text\":\n    ;\n    case \"tel\":\n    ;\n    case \"url\":\n    ;\n    case \"\":\n      return !0;\n    default:\n      return !1;\n  }\n};\naxs.utils.isLowContrast = function(a, b, c) {\n  a = Math.round(10 * a) / 10;\n  return c ? 4.5 > a || !axs.utils.isLargeFont(b) && 7 > a : 3 > a || !axs.utils.isLargeFont(b) && 4.5 > a;\n};\naxs.utils.hasLabel = function(a) {\n  var b = a.tagName.toLowerCase(), c = a.type ? a.type.toLowerCase() : \"\";\n  if (a.hasAttribute(\"aria-label\") || a.hasAttribute(\"title\") || \"img\" == b && a.hasAttribute(\"alt\") || \"input\" == b && \"image\" == c && a.hasAttribute(\"alt\") || \"input\" == b && (\"submit\" == c || \"reset\" == c) || a.hasAttribute(\"aria-labelledby\") || a.hasAttribute(\"id\") && 0 < document.querySelectorAll('label[for=\"' + a.id + '\"]').length) {\n    return !0;\n  }\n  for (b = axs.dom.parentElement(a);b;) {\n    if (\"label\" == b.tagName.toLowerCase() && b.control == a) {\n      return !0;\n    }\n    b = axs.dom.parentElement(b);\n  }\n  return !1;\n};\naxs.utils.isNativelyDisableable = function(a) {\n  return a.tagName.toUpperCase() in axs.constants.NATIVELY_DISABLEABLE;\n};\naxs.utils.isElementDisabled = function(a, b) {\n  if (axs.browserUtils.matchSelector(a, b ? \"[aria-disabled=true]\" : \"[aria-disabled=true], [aria-disabled=true] *\")) {\n    return !0;\n  }\n  if (!axs.utils.isNativelyDisableable(a) || axs.browserUtils.matchSelector(a, \"fieldset>legend:first-of-type *\")) {\n    return !1;\n  }\n  for (var c = a;null !== c;c = axs.dom.parentElement(c)) {\n    if (c.hasAttribute(\"disabled\")) {\n      return !0;\n    }\n    if (b) {\n      break;\n    }\n  }\n  return !1;\n};\naxs.utils.isElementHidden = function(a) {\n  if (!(a instanceof a.ownerDocument.defaultView.HTMLElement)) {\n    return !1;\n  }\n  if (a.hasAttribute(\"chromevoxignoreariahidden\")) {\n    var b = !0\n  }\n  var c = window.getComputedStyle(a, null);\n  return \"none\" == c.display || \"hidden\" == c.visibility ? !0 : a.hasAttribute(\"aria-hidden\") && \"true\" == a.getAttribute(\"aria-hidden\").toLowerCase() ? !b : !1;\n};\naxs.utils.isElementOrAncestorHidden = function(a) {\n  return axs.utils.isElementHidden(a) ? !0 : axs.dom.parentElement(a) ? axs.utils.isElementOrAncestorHidden(axs.dom.parentElement(a)) : !1;\n};\naxs.utils.isInlineElement = function(a) {\n  a = a.tagName.toUpperCase();\n  return axs.constants.InlineElements[a];\n};\naxs.utils.getRoles = function(a, b) {\n  if (!a || a.nodeType !== Node.ELEMENT_NODE || !a.hasAttribute(\"role\") && !b) {\n    return null;\n  }\n  var c = a.getAttribute(\"role\");\n  !c && b && (c = axs.properties.getImplicitRole(a));\n  if (!c) {\n    return null;\n  }\n  for (var c = c.split(\" \"), d = {roles:[], valid:!1}, e = 0;e < c.length;e++) {\n    var f = c[e], g = axs.constants.ARIA_ROLES[f], f = {name:f};\n    g && !g[\"abstract\"] ? (f.details = g, d.applied || (d.applied = f), f.valid = d.valid = !0) : f.valid = !1;\n    d.roles.push(f);\n  }\n  return d;\n};\naxs.utils.getAriaPropertyValue = function(a, b, c) {\n  var d = a.replace(/^aria-/, \"\"), e = axs.constants.ARIA_PROPERTIES[d], d = {name:a, rawValue:b};\n  if (!e) {\n    return d.valid = !1, d.reason = '\"' + a + '\" is not a valid ARIA property', d;\n  }\n  e = e.valueType;\n  if (!e) {\n    return d.valid = !1, d.reason = '\"' + a + '\" is not a valid ARIA property', d;\n  }\n  switch(e) {\n    case \"idref\":\n      a = axs.utils.isValidIDRefValue(b, c), d.valid = a.valid, d.reason = a.reason, d.idref = a.idref;\n    case \"idref_list\":\n      a = b.split(/\\s+/);\n      d.valid = !0;\n      for (b = 0;b < a.length;b++) {\n        e = axs.utils.isValidIDRefValue(a[b], c), e.valid || (d.valid = !1), d.values ? d.values.push(e) : d.values = [e];\n      }\n      return d;\n    case \"integer\":\n      c = axs.utils.isValidNumber(b);\n      if (!c.valid) {\n        return d.valid = !1, d.reason = c.reason, d;\n      }\n      Math.floor(c.value) !== c.value ? (d.valid = !1, d.reason = \"\" + b + \" is not a whole integer\") : (d.valid = !0, d.value = c.value);\n      return d;\n    case \"decimal\":\n    ;\n    case \"number\":\n      c = axs.utils.isValidNumber(b);\n      d.valid = c.valid;\n      if (!c.valid) {\n        return d.reason = c.reason, d;\n      }\n      d.value = c.value;\n      return d;\n    case \"string\":\n      return d.valid = !0, d.value = b, d;\n    case \"token\":\n      return c = axs.utils.isValidTokenValue(a, b.toLowerCase()), c.valid ? (d.valid = !0, d.value = c.value) : (d.valid = !1, d.value = b, d.reason = c.reason), d;\n    case \"token_list\":\n      e = b.split(/\\s+/);\n      d.valid = !0;\n      for (b = 0;b < e.length;b++) {\n        c = axs.utils.isValidTokenValue(a, e[b].toLowerCase()), c.valid || (d.valid = !1, d.reason ? (d.reason = [d.reason], d.reason.push(c.reason)) : (d.reason = c.reason, d.possibleValues = c.possibleValues)), d.values ? d.values.push(c.value) : d.values = [c.value];\n      }\n      return d;\n    case \"tristate\":\n      return c = axs.utils.isPossibleValue(b.toLowerCase(), axs.constants.MIXED_VALUES, a), c.valid ? (d.valid = !0, d.value = c.value) : (d.valid = !1, d.value = b, d.reason = c.reason), d;\n    case \"boolean\":\n      return c = axs.utils.isValidBoolean(b), c.valid ? (d.valid = !0, d.value = c.value) : (d.valid = !1, d.value = b, d.reason = c.reason), d;\n  }\n  d.valid = !1;\n  d.reason = \"Not a valid ARIA property\";\n  return d;\n};\naxs.utils.isValidTokenValue = function(a, b) {\n  var c = a.replace(/^aria-/, \"\");\n  return axs.utils.isPossibleValue(b, axs.constants.ARIA_PROPERTIES[c].valuesSet, a);\n};\naxs.utils.isPossibleValue = function(a, b, c) {\n  return b[a] ? {valid:!0, value:a} : {valid:!1, value:a, reason:'\"' + a + '\" is not a valid value for ' + c, possibleValues:Object.keys(b)};\n};\naxs.utils.isValidBoolean = function(a) {\n  try {\n    var b = JSON.parse(a);\n  } catch (c) {\n    b = \"\";\n  }\n  return \"boolean\" != typeof b ? {valid:!1, value:a, reason:'\"' + a + '\" is not a true/false value'} : {valid:!0, value:b};\n};\naxs.utils.isValidIDRefValue = function(a, b) {\n  return 0 == a.length ? {valid:!0, idref:a} : b.ownerDocument.getElementById(a) ? {valid:!0, idref:a} : {valid:!1, idref:a, reason:'No element with ID \"' + a + '\"'};\n};\naxs.utils.isValidNumber = function(a) {\n  var b = {valid:!1, value:a, reason:'\"' + a + '\" is not a number'};\n  if (!a) {\n    return b;\n  }\n  if (/^0x/i.test(a)) {\n    return b.reason = '\"' + a + '\" is not a decimal number', b;\n  }\n  a *= 1;\n  return isFinite(a) ? {valid:!0, value:a} : b;\n};\naxs.utils.isElementImplicitlyFocusable = function(a) {\n  var b = a.ownerDocument.defaultView;\n  return a instanceof b.HTMLAnchorElement || a instanceof b.HTMLAreaElement ? a.hasAttribute(\"href\") : a instanceof b.HTMLInputElement || a instanceof b.HTMLSelectElement || a instanceof b.HTMLTextAreaElement || a instanceof b.HTMLButtonElement || a instanceof b.HTMLIFrameElement ? !a.disabled : !1;\n};\naxs.utils.values = function(a) {\n  var b = [], c;\n  for (c in a) {\n    a.hasOwnProperty(c) && \"function\" != typeof a[c] && b.push(a[c]);\n  }\n  return b;\n};\naxs.utils.namedValues = function(a) {\n  var b = {}, c;\n  for (c in a) {\n    a.hasOwnProperty(c) && \"function\" != typeof a[c] && (b[c] = a[c]);\n  }\n  return b;\n};\nfunction escapeId(a) {\n  return a.replace(/[^a-zA-Z0-9_-]/g, function(a) {\n    return \"\\\\\" + a;\n  });\n}\naxs.utils.getQuerySelectorText = function(a) {\n  if (null == a || \"HTML\" == a.tagName) {\n    return \"html\";\n  }\n  if (\"BODY\" == a.tagName) {\n    return \"body\";\n  }\n  if (a.hasAttribute) {\n    if (a.id) {\n      return \"#\" + escapeId(a.id);\n    }\n    if (a.className) {\n      for (var b = \"\", c = 0;c < a.classList.length;c++) {\n        b += \".\" + a.classList[c];\n      }\n      var d = 0;\n      if (a.parentNode) {\n        for (c = 0;c < a.parentNode.children.length;c++) {\n          var e = a.parentNode.children[c];\n          axs.browserUtils.matchSelector(e, b) && d++;\n          if (e === a) {\n            break;\n          }\n        }\n      } else {\n        d = 1;\n      }\n      if (1 == d) {\n        return axs.utils.getQuerySelectorText(a.parentNode) + \" > \" + b;\n      }\n    }\n    if (a.parentNode) {\n      b = a.parentNode.children;\n      d = 1;\n      for (c = 0;b[c] !== a;) {\n        b[c].tagName == a.tagName && d++, c++;\n      }\n      c = \"\";\n      \"BODY\" != a.parentNode.tagName && (c = axs.utils.getQuerySelectorText(a.parentNode) + \" > \");\n      return 1 == d ? c + a.tagName : c + a.tagName + \":nth-of-type(\" + d + \")\";\n    }\n  } else {\n    if (a.selectorText) {\n      return a.selectorText;\n    }\n  }\n  return \"\";\n};\naxs.utils.getAriaIdReferrers = function(a, b) {\n  var c = function(a) {\n    var b = axs.constants.ARIA_PROPERTIES[a];\n    if (b) {\n      if (\"idref\" === b.valueType) {\n        return \"[aria-\" + a + \"='\" + d + \"']\";\n      }\n      if (\"idref_list\" === b.valueType) {\n        return \"[aria-\" + a + \"~='\" + d + \"']\";\n      }\n    }\n    return \"\";\n  };\n  if (!a) {\n    return null;\n  }\n  var d = a.id;\n  if (!d) {\n    return null;\n  }\n  d = d.replace(/'/g, \"\\\\'\");\n  if (b) {\n    var e = b.replace(/^aria-/, \"\"), f = c(e);\n    if (f) {\n      return a.ownerDocument.querySelectorAll(f);\n    }\n  } else {\n    var g = [];\n    for (e in axs.constants.ARIA_PROPERTIES) {\n      (f = c(e)) && g.push(f);\n    }\n    return a.ownerDocument.querySelectorAll(g.join(\",\"));\n  }\n  return null;\n};\naxs.utils.getHtmlIdReferrers = function(a) {\n  if (!a) {\n    return null;\n  }\n  var b = a.id;\n  if (!b) {\n    return null;\n  }\n  var b = b.replace(/'/g, \"\\\\'\"), c = \"[contextmenu='{id}'] [itemref~='{id}'] button[form='{id}'] button[menu='{id}'] fieldset[form='{id}'] input[form='{id}'] input[list='{id}'] keygen[form='{id}'] label[for='{id}'] label[form='{id}'] menuitem[command='{id}'] object[form='{id}'] output[for~='{id}'] output[form='{id}'] select[form='{id}'] td[headers~='{id}'] textarea[form='{id}'] tr[headers~='{id}']\".split(\" \").map(function(a) {\n    return a.replace(\"{id}\", b);\n  });\n  return a.ownerDocument.querySelectorAll(c.join(\",\"));\n};\naxs.utils.getReferencedIds = function(a) {\n  for (var b = [], c = function(a) {\n    a && (0 < a.indexOf(\" \") ? b = b.concat(f.value.split(\" \")) : b.push(a));\n  }, d = 0;d < a.attributes.length;d++) {\n    var e = a.tagName.toLowerCase(), f = a.attributes[d];\n    if (f.specified) {\n      var g = f.name, h = g.match(/aria-(.+)/);\n      if (h) {\n        e = axs.constants.ARIA_PROPERTIES[h[1]], !e || \"idref\" !== e.valueType && \"idref_list\" !== e.valueType || c(f.value);\n      } else {\n        switch(g) {\n          case \"contextmenu\":\n          ;\n          case \"itemref\":\n            c(f.value);\n            break;\n          case \"form\":\n            \"button\" != e && \"fieldset\" != e && \"input\" != e && \"keygen\" != e && \"label\" != e && \"object\" != e && \"output\" != e && \"select\" != e && \"textarea\" != e || c(f.value);\n            break;\n          case \"for\":\n            \"label\" != e && \"output\" != e || c(f.value);\n            break;\n          case \"menu\":\n            \"button\" == e && c(f.value);\n            break;\n          case \"list\":\n            \"input\" == e && c(f.value);\n            break;\n          case \"command\":\n            \"menuitem\" == e && c(f.value);\n            break;\n          case \"headers\":\n            \"td\" != e && \"tr\" != e || c(f.value);\n        }\n      }\n    }\n  }\n  return b;\n};\naxs.utils.getIdReferrers = function(a) {\n  var b = [], c = axs.utils.getHtmlIdReferrers(a);\n  c && (b = b.concat(Array.prototype.slice.call(c)));\n  (c = axs.utils.getAriaIdReferrers(a)) && (b = b.concat(Array.prototype.slice.call(c)));\n  return b;\n};\naxs.utils.getIdReferents = function(a, b) {\n  var c = [], d = a.replace(/^aria-/, \"\"), d = axs.constants.ARIA_PROPERTIES[d];\n  if (!d || !b.hasAttribute(a)) {\n    return c;\n  }\n  d = d.valueType;\n  if (\"idref_list\" === d || \"idref\" === d) {\n    for (var d = b.ownerDocument, e = b.getAttribute(a), e = e.split(/\\s+/), f = 0, g = e.length;f < g;f++) {\n      var h = d.getElementById(e[f]);\n      h && (c[c.length] = h);\n    }\n  }\n  return c;\n};\naxs.utils.getAriaPropertiesByValueType = function(a) {\n  var b = {}, c;\n  for (c in axs.constants.ARIA_PROPERTIES) {\n    var d = axs.constants.ARIA_PROPERTIES[c];\n    d && 0 <= a.indexOf(d.valueType) && (b[c] = d);\n  }\n  return b;\n};\naxs.utils.getSelectorForAriaProperties = function(a) {\n  a = Object.keys(a).map(function(a) {\n    return \"[aria-\" + a + \"]\";\n  });\n  a.sort();\n  return a.join(\",\");\n};\naxs.utils.findDescendantsWithRole = function(a, b) {\n  if (!a || !b) {\n    return [];\n  }\n  var c = axs.properties.getSelectorForRole(b);\n  if (c && (c = a.querySelectorAll(c))) {\n    c = Array.prototype.map.call(c, function(a) {\n      return a;\n    });\n  } else {\n    return [];\n  }\n  return c;\n};\naxs.properties = {};\naxs.properties.TEXT_CONTENT_XPATH = './/text()[normalize-space(.)!=\"\"]/parent::*[name()!=\"script\"]';\naxs.properties.getFocusProperties = function(a) {\n  var b = {}, c = a.getAttribute(\"tabindex\");\n  void 0 != c ? b.tabindex = {value:c, valid:!0} : axs.utils.isElementImplicitlyFocusable(a) && (b.implicitlyFocusable = {value:!0, valid:!0});\n  if (0 == Object.keys(b).length) {\n    return null;\n  }\n  var d = axs.utils.elementIsTransparent(a), e = axs.utils.elementHasZeroArea(a), f = axs.utils.elementIsOutsideScrollArea(a), g = axs.utils.overlappingElements(a);\n  if (d || e || f || 0 < g.length) {\n    var c = axs.utils.isElementOrAncestorHidden(a), h = {value:!1, valid:c};\n    d && (h.transparent = !0);\n    e && (h.zeroArea = !0);\n    f && (h.outsideScrollArea = !0);\n    g && 0 < g.length && (h.overlappingElements = g);\n    d = {value:c, valid:c};\n    c && (d.reason = axs.properties.getHiddenReason(a));\n    h.hidden = d;\n    b.visible = h;\n  } else {\n    b.visible = {value:!0, valid:!0};\n  }\n  return b;\n};\naxs.properties.getHiddenReason = function(a) {\n  if (!(a && a instanceof a.ownerDocument.defaultView.HTMLElement)) {\n    return null;\n  }\n  if (a.hasAttribute(\"chromevoxignoreariahidden\")) {\n    var b = !0\n  }\n  var c = window.getComputedStyle(a, null);\n  return \"none\" == c.display ? {property:\"display: none\", on:a} : \"hidden\" == c.visibility ? {property:\"visibility: hidden\", on:a} : a.hasAttribute(\"aria-hidden\") && \"true\" == a.getAttribute(\"aria-hidden\").toLowerCase() && !b ? {property:\"aria-hidden\", on:a} : axs.properties.getHiddenReason(axs.dom.parentElement(a));\n};\naxs.properties.getColorProperties = function(a) {\n  var b = {};\n  (a = axs.properties.getContrastRatioProperties(a)) && (b.contrastRatio = a);\n  return 0 == Object.keys(b).length ? null : b;\n};\naxs.properties.hasDirectTextDescendant = function(a) {\n  function b() {\n    for (var b = c.evaluate(axs.properties.TEXT_CONTENT_XPATH, a, null, XPathResult.ANY_TYPE, null), e = b.iterateNext();null != e;e = b.iterateNext()) {\n      if (e === a) {\n        return !0;\n      }\n    }\n    return !1;\n  }\n  var c;\n  c = a.nodeType == Node.DOCUMENT_NODE ? a : a.ownerDocument;\n  return c.evaluate ? b() : function() {\n    for (var b = c.createTreeWalker(a, NodeFilter.SHOW_TEXT, null, !1);b.nextNode();) {\n      var e = b.currentNode, f = e.parentNode.tagName.toLowerCase();\n      if (e.nodeValue.trim() && \"script\" !== f && a !== e) {\n        return !0;\n      }\n    }\n    return !1;\n  }();\n};\naxs.properties.getContrastRatioProperties = function(a) {\n  if (!axs.properties.hasDirectTextDescendant(a)) {\n    return null;\n  }\n  var b = {}, c = window.getComputedStyle(a, null), d = axs.utils.getBgColor(c, a);\n  if (!d) {\n    return null;\n  }\n  b.backgroundColor = axs.color.colorToString(d);\n  var e = axs.utils.getFgColor(c, a, d);\n  b.foregroundColor = axs.color.colorToString(e);\n  a = axs.utils.getContrastRatioForElementWithComputedStyle(c, a);\n  if (!a) {\n    return null;\n  }\n  b.value = a.toFixed(2);\n  axs.utils.isLowContrast(a, c) && (b.alert = !0);\n  var f = axs.utils.isLargeFont(c) ? 3 : 4.5, c = axs.utils.isLargeFont(c) ? 4.5 : 7, g = {};\n  f > a && (g.AA = f);\n  c > a && (g.AAA = c);\n  if (!Object.keys(g).length) {\n    return b;\n  }\n  (d = axs.color.suggestColors(d, e, g)) && Object.keys(d).length && (b.suggestedColors = d);\n  return b;\n};\naxs.properties.findTextAlternatives = function(a, b, c, d) {\n  var e = c || !1;\n  c = axs.dom.asElement(a);\n  if (!c || !d && axs.utils.isElementOrAncestorHidden(c)) {\n    return null;\n  }\n  if (a.nodeType == Node.TEXT_NODE) {\n    return c = {type:\"text\"}, c.text = a.textContent, c.lastWord = axs.properties.getLastWord(c.text), b.content = c, a.textContent;\n  }\n  a = null;\n  e || (a = axs.properties.getTextFromAriaLabelledby(c, b));\n  if (c.hasAttribute(\"aria-label\")) {\n    var f = {type:\"text\"};\n    f.text = c.getAttribute(\"aria-label\");\n    f.lastWord = axs.properties.getLastWord(f.text);\n    a ? f.unused = !0 : e && axs.utils.elementIsHtmlControl(c) || (a = f.text);\n    b.ariaLabel = f;\n  }\n  c.hasAttribute(\"role\") && \"presentation\" == c.getAttribute(\"role\") || (a = axs.properties.getTextFromHostLanguageAttributes(c, b, a, e));\n  e && axs.utils.elementIsHtmlControl(c) && (f = c.ownerDocument.defaultView, c instanceof f.HTMLInputElement && (\"text\" == c.type && c.value && 0 < c.value.length && (b.controlValue = {text:c.value}), \"range\" == c.type && (b.controlValue = {text:c.value})), c instanceof f.HTMLSelectElement && (b.controlValue = {text:c.value}), b.controlValue && (f = b.controlValue, a ? f.unused = !0 : a = f.text));\n  if (e && axs.utils.elementIsAriaWidget(c)) {\n    e = c.getAttribute(\"role\");\n    \"textbox\" == e && c.textContent && 0 < c.textContent.length && (b.controlValue = {text:c.textContent});\n    if (\"slider\" == e || \"spinbutton\" == e) {\n      c.hasAttribute(\"aria-valuetext\") ? b.controlValue = {text:c.getAttribute(\"aria-valuetext\")} : c.hasAttribute(\"aria-valuenow\") && (b.controlValue = {value:c.getAttribute(\"aria-valuenow\"), text:\"\" + c.getAttribute(\"aria-valuenow\")});\n    }\n    if (\"menu\" == e) {\n      for (var g = c.querySelectorAll(\"[role=menuitemcheckbox], [role=menuitemradio]\"), f = [], h = 0;h < g.length;h++) {\n        \"true\" == g[h].getAttribute(\"aria-checked\") && f.push(g[h]);\n      }\n      if (0 < f.length) {\n        g = \"\";\n        for (h = 0;h < f.length;h++) {\n          g += axs.properties.findTextAlternatives(f[h], {}, !0), h < f.length - 1 && (g += \", \");\n        }\n        b.controlValue = {text:g};\n      }\n    }\n    if (\"combobox\" == e || \"select\" == e) {\n      b.controlValue = {text:\"TODO\"};\n    }\n    b.controlValue && (f = b.controlValue, a ? f.unused = !0 : a = f.text);\n  }\n  f = !0;\n  c.hasAttribute(\"role\") && (e = c.getAttribute(\"role\"), (e = axs.constants.ARIA_ROLES[e]) && (!e.namefrom || 0 > e.namefrom.indexOf(\"contents\")) && (f = !1));\n  (d = axs.properties.getTextFromDescendantContent(c, d)) && f && (e = {type:\"text\"}, e.text = d, e.lastWord = axs.properties.getLastWord(e.text), a ? e.unused = !0 : a = d, b.content = e);\n  c.hasAttribute(\"title\") && (d = {type:\"string\", valid:!0}, d.text = c.getAttribute(\"title\"), d.lastWord = axs.properties.getLastWord(d.lastWord), a ? d.unused = !0 : a = d.text, b.title = d);\n  return 0 == Object.keys(b).length && null == a ? null : a;\n};\naxs.properties.getTextFromDescendantContent = function(a, b) {\n  for (var c = a.childNodes, d = [], e = 0;e < c.length;e++) {\n    var f = axs.properties.findTextAlternatives(c[e], {}, !0, b);\n    f && d.push(f.trim());\n  }\n  if (d.length) {\n    c = \"\";\n    for (e = 0;e < d.length;e++) {\n      c = [c, d[e]].join(\" \").trim();\n    }\n    return c;\n  }\n  return null;\n};\naxs.properties.getTextFromAriaLabelledby = function(a, b) {\n  var c = null;\n  if (!a.hasAttribute(\"aria-labelledby\")) {\n    return c;\n  }\n  for (var d = a.getAttribute(\"aria-labelledby\").split(/\\s+/), e = {valid:!0}, f = [], g = [], h = 0;h < d.length;h++) {\n    var k = {type:\"element\"}, m = d[h];\n    k.value = m;\n    var l = document.getElementById(m);\n    l ? (k.valid = !0, k.text = axs.properties.findTextAlternatives(l, {}, !0, !0), k.lastWord = axs.properties.getLastWord(k.text), f.push(k.text), k.element = l) : (k.valid = !1, e.valid = !1, k.errorMessage = {messageKey:\"noElementWithId\", args:[m]});\n    g.push(k);\n  }\n  0 < g.length && (g[g.length - 1].last = !0, e.values = g, e.text = f.join(\" \"), e.lastWord = axs.properties.getLastWord(e.text), c = e.text, b.ariaLabelledby = e);\n  return c;\n};\naxs.properties.getTextFromHostLanguageAttributes = function(a, b, c, d) {\n  if (axs.browserUtils.matchSelector(a, \"img\") && a.hasAttribute(\"alt\")) {\n    var e = {type:\"string\", valid:!0};\n    e.text = a.getAttribute(\"alt\");\n    c ? e.unused = !0 : c = e.text;\n    b.alt = e;\n  }\n  if (axs.browserUtils.matchSelector(a, 'input:not([type=\"hidden\"]):not([disabled]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), video:not([disabled])') && !d) {\n    if (a.hasAttribute(\"id\")) {\n      d = document.querySelectorAll('label[for=\"' + a.id + '\"]');\n      for (var e = {}, f = [], g = [], h = 0;h < d.length;h++) {\n        var k = {type:\"element\"}, m = d[h], l = axs.properties.findTextAlternatives(m, {}, !0);\n        l && 0 < l.trim().length && (k.text = l.trim(), g.push(l.trim()));\n        k.element = m;\n        f.push(k);\n      }\n      0 < f.length && (f[f.length - 1].last = !0, e.values = f, e.text = g.join(\" \"), e.lastWord = axs.properties.getLastWord(e.text), c ? e.unused = !0 : c = e.text, b.labelFor = e);\n    }\n    d = axs.dom.parentElement(a);\n    for (e = {};d;) {\n      if (\"label\" == d.tagName.toLowerCase() && (f = d, f.control == a)) {\n        e.type = \"element\";\n        e.text = axs.properties.findTextAlternatives(f, {}, !0);\n        e.lastWord = axs.properties.getLastWord(e.text);\n        e.element = f;\n        break;\n      }\n      d = axs.dom.parentElement(d);\n    }\n    e.text && (c ? e.unused = !0 : c = e.text, b.labelWrapped = e);\n    axs.browserUtils.matchSelector(a, 'input[type=\"image\"]') && a.hasAttribute(\"alt\") && (e = {type:\"string\", valid:!0}, e.text = a.getAttribute(\"alt\"), c ? e.unused = !0 : c = e.text, b.alt = e);\n    Object.keys(b).length || (b.noLabel = !0);\n  }\n  return c;\n};\naxs.properties.getLastWord = function(a) {\n  if (!a) {\n    return null;\n  }\n  var b = a.lastIndexOf(\" \") + 1, c = a.length - 10;\n  return a.substring(b > c ? b : c);\n};\naxs.properties.getTextProperties = function(a) {\n  var b = {}, c = axs.properties.findTextAlternatives(a, b, !1, !0);\n  if (0 == Object.keys(b).length && ((a = axs.dom.asElement(a)) && axs.browserUtils.matchSelector(a, \"img\") && (b.alt = {valid:!1, errorMessage:\"No alt value provided\"}, a = a.src, \"string\" == typeof a && (c = a.split(\"/\").pop(), b.filename = {text:c})), !c)) {\n    return null;\n  }\n  b.hasProperties = !!Object.keys(b).length;\n  b.computedText = c;\n  b.lastWord = axs.properties.getLastWord(c);\n  return b;\n};\naxs.properties.getAriaProperties = function(a) {\n  var b = {}, c = axs.properties.getGlobalAriaProperties(a), d;\n  for (d in axs.constants.ARIA_PROPERTIES) {\n    var e = \"aria-\" + d;\n    if (a.hasAttribute(e)) {\n      var f = a.getAttribute(e);\n      c[e] = axs.utils.getAriaPropertyValue(e, f, a);\n    }\n  }\n  0 < Object.keys(c).length && (b.properties = axs.utils.values(c));\n  f = axs.utils.getRoles(a);\n  if (!f) {\n    return Object.keys(b).length ? b : null;\n  }\n  b.roles = f;\n  if (!f.valid || !f.roles) {\n    return b;\n  }\n  for (var e = f.roles, g = 0;g < e.length;g++) {\n    var h = e[g];\n    if (h.details && h.details.propertiesSet) {\n      for (d in h.details.propertiesSet) {\n        d in c || (a.hasAttribute(d) ? (f = a.getAttribute(d), c[d] = axs.utils.getAriaPropertyValue(d, f, a), \"values\" in c[d] && (f = c[d].values, f[f.length - 1].isLast = !0)) : h.details.requiredPropertiesSet[d] && (c[d] = {name:d, valid:!1, reason:\"Required property not set\"}));\n      }\n    }\n  }\n  0 < Object.keys(c).length && (b.properties = axs.utils.values(c));\n  return 0 < Object.keys(b).length ? b : null;\n};\naxs.properties.getGlobalAriaProperties = function(a) {\n  var b = {}, c;\n  for (c in axs.constants.GLOBAL_PROPERTIES) {\n    if (a.hasAttribute(c)) {\n      var d = a.getAttribute(c);\n      b[c] = axs.utils.getAriaPropertyValue(c, d, a);\n    }\n  }\n  return b;\n};\naxs.properties.getVideoProperties = function(a) {\n  if (!axs.browserUtils.matchSelector(a, \"video\")) {\n    return null;\n  }\n  var b = {};\n  b.captionTracks = axs.properties.getTrackElements(a, \"captions\");\n  b.descriptionTracks = axs.properties.getTrackElements(a, \"descriptions\");\n  b.chapterTracks = axs.properties.getTrackElements(a, \"chapters\");\n  return b;\n};\naxs.properties.getTrackElements = function(a, b) {\n  var c = a.querySelectorAll(\"track[kind=\" + b + \"]\"), d = {};\n  if (!c.length) {\n    return d.valid = !1, d.reason = {messageKey:\"noTracksProvided\", args:[[b]]}, d;\n  }\n  d.valid = !0;\n  for (var e = [], f = 0;f < c.length;f++) {\n    var g = {}, h = c[f].getAttribute(\"src\"), k = c[f].getAttribute(\"srcLang\"), m = c[f].getAttribute(\"label\");\n    h ? (g.valid = !0, g.src = h) : (g.valid = !1, g.reason = {messageKey:\"noSrcProvided\"});\n    h = \"\";\n    m && (h += m, k && (h += \" \"));\n    k && (h += \"(\" + k + \")\");\n    \"\" == h && (h = \"[[object Object]]\");\n    g.name = h;\n    e.push(g);\n  }\n  d.values = e;\n  return d;\n};\naxs.properties.getAllProperties = function(a) {\n  var b = axs.dom.asElement(a);\n  if (!b) {\n    return {};\n  }\n  var c = {};\n  c.ariaProperties = axs.properties.getAriaProperties(b);\n  c.colorProperties = axs.properties.getColorProperties(b);\n  c.focusProperties = axs.properties.getFocusProperties(b);\n  c.textProperties = axs.properties.getTextProperties(a);\n  c.videoProperties = axs.properties.getVideoProperties(b);\n  return c;\n};\n(function() {\n  function a(a) {\n    if (!a) {\n      return null;\n    }\n    var c = a.tagName;\n    if (!c) {\n      return null;\n    }\n    c = c.toUpperCase();\n    c = axs.constants.TAG_TO_IMPLICIT_SEMANTIC_INFO[c];\n    if (!c || !c.length) {\n      return null;\n    }\n    for (var d = null, e = 0, f = c.length;e < f;e++) {\n      var g = c[e];\n      if (g.selector) {\n        if (axs.browserUtils.matchSelector(a, g.selector)) {\n          return g;\n        }\n      } else {\n        d = g;\n      }\n    }\n    return d;\n  }\n  axs.properties.getImplicitRole = function(b) {\n    return (b = a(b)) ? b.role : \"\";\n  };\n  axs.properties.canTakeAriaAttributes = function(b) {\n    return (b = a(b)) ? !b.reserved : !0;\n  };\n})();\naxs.properties.getNativelySupportedAttributes = function(a) {\n  var b = [];\n  if (!a) {\n    return b;\n  }\n  a = a.cloneNode(!1);\n  for (var c = Object.keys(axs.constants.ARIA_TO_HTML_ATTRIBUTE), d = 0;d < c.length;d++) {\n    var e = c[d];\n    axs.constants.ARIA_TO_HTML_ATTRIBUTE[e] in a && (b[b.length] = e);\n  }\n  return b;\n};\n(function() {\n  var a = {};\n  axs.properties.getSelectorForRole = function(b) {\n    if (!b) {\n      return \"\";\n    }\n    if (a[b] && a.hasOwnProperty(b)) {\n      return a[b];\n    }\n    var c = ['[role=\"' + b + '\"]'];\n    Object.keys(axs.constants.TAG_TO_IMPLICIT_SEMANTIC_INFO).forEach(function(a) {\n      var e = axs.constants.TAG_TO_IMPLICIT_SEMANTIC_INFO[a];\n      if (e && e.length) {\n        for (var f = 0;f < e.length;f++) {\n          var g = e[f];\n          if (g.role === b) {\n            if (g.selector) {\n              c[c.length] = g.selector;\n            } else {\n              c[c.length] = a;\n              break;\n            }\n          }\n        }\n      }\n    });\n    return a[b] = c.join(\",\");\n  };\n})();\naxs.AuditRule = function(a) {\n  for (var b = a.opt_requires || {}, c = !0, d = [], e = 0;e < axs.AuditRule.requiredFields.length;e++) {\n    var f = axs.AuditRule.requiredFields[e];\n    f in a || (c = !1, d.push(f));\n  }\n  if (!c) {\n    throw \"Invalid spec; the following fields were not specified: \" + d.join(\", \") + \"\\n\" + JSON.stringify(a);\n  }\n  this.name = a.name;\n  this.severity = a.severity;\n  this.relevantElementMatcher_ = a.relevantElementMatcher;\n  this.isRelevant_ = a.isRelevant || function(a, b) {\n    return !0;\n  };\n  this.test_ = a.test;\n  this.code = a.code;\n  this.heading = a.heading || \"\";\n  this.url = a.url || \"\";\n  this.requiresConsoleAPI = !!b.consoleAPI;\n  this.relevantElements = [];\n  this.relatedElements = [];\n  this.collectIdRefs = b.idRefs || !1;\n};\naxs.AuditRule.requiredFields = \"name severity relevantElementMatcher test code heading\".split(\" \");\naxs.AuditRule.NOT_APPLICABLE = {result:axs.constants.AuditResult.NA};\naxs.AuditRule.prototype.addElement = function(a, b) {\n  a.push(b);\n};\naxs.AuditRule.prototype.collectMatchingElement = function(a, b) {\n  return this.relevantElementMatcher_(a, b) && b.inScope ? (this.relevantElements.push({element:a, flags:b}), !0) : !1;\n};\naxs.AuditRule.prototype.canRun = function(a) {\n  return this.disabled || !a.withConsoleApi && this.requiresConsoleAPI ? !1 : !0;\n};\naxs.AuditRule.Result = function(a, b) {\n  var c = axs.utils.namedValues(b);\n  c.severity = a.getSeverity(b.name) || c.severity;\n  this.rule = c;\n  this.maxResults = a.maxResults;\n  this.update(axs.constants.AuditResult.NA);\n};\naxs.AuditRule.Result.prototype.update = function(a, b) {\n  if (a === axs.constants.AuditResult.FAIL) {\n    var c = this.elements || (this.elements = []);\n    this.result = a;\n    this.maxResults && this.elements.length >= this.maxResults ? this.resultsTruncated = !0 : b && c.push(b);\n  } else {\n    a === axs.constants.AuditResult.PASS ? (this.elements || (this.elements = []), this.result !== axs.constants.AuditResult.FAIL && (this.result = a)) : this.result || (this.result = a);\n  }\n};\naxs.AuditRule.prototype.run = function(a) {\n  try {\n    for (var b = this._options || {}, c = new axs.AuditRule.Result(a, this), d;d = this.relevantElements.shift();) {\n      var e = d.element, f = d.flags;\n      this.isRelevant_(e, f) && (this.test_(e, f, b.config) ? c.update(axs.constants.AuditResult.FAIL, e) : c.update(axs.constants.AuditResult.PASS, e));\n    }\n    return c;\n  } finally {\n    this.relatedElements.length = 0;\n  }\n};\naxs.AuditRules = {};\n(function() {\n  var a = {}, b = {};\n  axs.AuditRules.specs = {};\n  axs.AuditRules.addRule = function(c) {\n    var d = new axs.AuditRule(c);\n    if (d.code in b) {\n      throw Error('Can not add audit rule with same code: \"' + d.code + '\"');\n    }\n    if (d.name in a) {\n      throw Error('Can not add audit rule with same name: \"' + d.name + '\"');\n    }\n    a[d.name] = b[d.code] = d;\n    axs.AuditRules.specs[c.name] = c;\n  };\n  axs.AuditRules.getRule = function(c) {\n    return a[c] || b[c] || null;\n  };\n  axs.AuditRules.getRules = function(b) {\n    var d = Object.keys(a);\n    return b ? d : d.map(function(a) {\n      return this.getRule(a);\n    }, axs.AuditRules);\n  };\n  axs.AuditRules.getActiveRules = function(a) {\n    var b;\n    b = a.auditRulesToRun && 0 < a.auditRulesToRun.length ? a.auditRulesToRun : axs.AuditRules.getRules(!0);\n    if (a.auditRulesToIgnore) {\n      for (var e = 0;e < a.auditRulesToIgnore.length;e++) {\n        var f = a.auditRulesToIgnore[e];\n        0 > b.indexOf(f) || b.splice(b.indexOf(f), 1);\n      }\n    }\n    return b.map(axs.AuditRules.getRule);\n  };\n})();\naxs.AuditResults = function() {\n  this.errors_ = [];\n  this.warnings_ = [];\n};\ngoog.exportSymbol(\"axs.AuditResults\", axs.AuditResults);\naxs.AuditResults.prototype.addError = function(a) {\n  \"\" != a && this.errors_.push(a);\n};\ngoog.exportProperty(axs.AuditResults.prototype, \"addError\", axs.AuditResults.prototype.addError);\naxs.AuditResults.prototype.addWarning = function(a) {\n  \"\" != a && this.warnings_.push(a);\n};\ngoog.exportProperty(axs.AuditResults.prototype, \"addWarning\", axs.AuditResults.prototype.addWarning);\naxs.AuditResults.prototype.numErrors = function() {\n  return this.errors_.length;\n};\ngoog.exportProperty(axs.AuditResults.prototype, \"numErrors\", axs.AuditResults.prototype.numErrors);\naxs.AuditResults.prototype.numWarnings = function() {\n  return this.warnings_.length;\n};\ngoog.exportProperty(axs.AuditResults.prototype, \"numWarnings\", axs.AuditResults.prototype.numWarnings);\naxs.AuditResults.prototype.getErrors = function() {\n  return this.errors_;\n};\ngoog.exportProperty(axs.AuditResults.prototype, \"getErrors\", axs.AuditResults.prototype.getErrors);\naxs.AuditResults.prototype.getWarnings = function() {\n  return this.warnings_;\n};\ngoog.exportProperty(axs.AuditResults.prototype, \"getWarnings\", axs.AuditResults.prototype.getWarnings);\naxs.AuditResults.prototype.toString = function() {\n  for (var a = \"\", b = 0;b < this.errors_.length;b++) {\n    0 == b && (a += \"\\nErrors:\\n\");\n    var c = this.errors_[b], a = a + (c + \"\\n\\n\");\n  }\n  for (b = 0;b < this.warnings_.length;b++) {\n    0 == b && (a += \"\\nWarnings:\\n\"), c = this.warnings_[b], a += c + \"\\n\\n\";\n  }\n  return a;\n};\ngoog.exportProperty(axs.AuditResults.prototype, \"toString\", axs.AuditResults.prototype.toString);\naxs.Audit = {};\naxs.AuditConfiguration = function(a) {\n  null == a && (a = {});\n  this.rules_ = {};\n  this.maxResults = this.auditRulesToIgnore = this.auditRulesToRun = this.scope = null;\n  this.withConsoleApi = !1;\n  this.showUnsupportedRulesWarning = this.walkDom = !0;\n  for (var b in this) {\n    this.hasOwnProperty(b) && b in a && (this[b] = a[b]);\n  }\n  goog.exportProperty(this, \"scope\", this.scope);\n  goog.exportProperty(this, \"auditRulesToRun\", this.auditRulesToRun);\n  goog.exportProperty(this, \"auditRulesToIgnore\", this.auditRulesToIgnore);\n  goog.exportProperty(this, \"withConsoleApi\", this.withConsoleApi);\n  goog.exportProperty(this, \"walkDom\", this.walkDom);\n  goog.exportProperty(this, \"showUnsupportedRulesWarning\", this.showUnsupportedRulesWarning);\n};\ngoog.exportSymbol(\"axs.AuditConfiguration\", axs.AuditConfiguration);\naxs.AuditConfiguration.prototype = {ignoreSelectors:function(a, b) {\n  a in this.rules_ || (this.rules_[a] = {});\n  \"ignore\" in this.rules_[a] || (this.rules_[a].ignore = []);\n  Array.prototype.push.call(this.rules_[a].ignore, b);\n}, getIgnoreSelectors:function(a) {\n  return a in this.rules_ && \"ignore\" in this.rules_[a] ? this.rules_[a].ignore : [];\n}, setSeverity:function(a, b) {\n  a in this.rules_ || (this.rules_[a] = {});\n  this.rules_[a].severity = b;\n}, getSeverity:function(a) {\n  return a in this.rules_ && \"severity\" in this.rules_[a] ? this.rules_[a].severity : null;\n}, setRuleConfig:function(a, b) {\n  a in this.rules_ || (this.rules_[a] = {});\n  this.rules_[a].config = b;\n}, getRuleConfig:function(a) {\n  return a in this.rules_ && \"config\" in this.rules_[a] ? this.rules_[a].config : null;\n}};\ngoog.exportProperty(axs.AuditConfiguration.prototype, \"ignoreSelectors\", axs.AuditConfiguration.prototype.ignoreSelectors);\ngoog.exportProperty(axs.AuditConfiguration.prototype, \"getIgnoreSelectors\", axs.AuditConfiguration.prototype.getIgnoreSelectors);\naxs.Audit.unsupportedRulesWarningShown = !1;\naxs.Audit.getRulesCannotRun = function(a) {\n  return a.withConsoleApi ? [] : axs.AuditRules.getRules().filter(function(a) {\n    return a.requiresConsoleAPI;\n  }).map(function(a) {\n    return a.code;\n  });\n};\naxs.Audit.run = function(a) {\n  a = a || new axs.AuditConfiguration;\n  if (!axs.Audit.unsupportedRulesWarningShown && a.showUnsupportedRulesWarning) {\n    var b = axs.Audit.getRulesCannotRun(a);\n    0 < b.length && (console.warn(\"Some rules cannot be checked using the axs.Audit.run() method call. Use the Chrome plugin to check these rules: \" + b.join(\", \")), console.warn(\"To remove this message, pass an AuditConfiguration object to axs.Audit.run() and set configuration.showUnsupportedRulesWarning = false.\"));\n    axs.Audit.unsupportedRulesWarningShown = !0;\n  }\n  b = axs.AuditRules.getActiveRules(a);\n  a.collectIdRefs = b.some(function(a) {\n    return a.collectIdRefs;\n  });\n  a.scope || (a.scope = document.documentElement);\n  axs.Audit.collectMatchingElements(a, b);\n  for (var c = [], d = 0;d < b.length;d++) {\n    var e = b[d];\n    e.canRun(a) && c.push(e.run(a));\n  }\n  return c;\n};\ngoog.exportSymbol(\"axs.Audit.run\", axs.Audit.run);\n(function() {\n  function a(a, c) {\n    var d = a.getIgnoreSelectors(c.name);\n    if (0 < d.length || a.scope) {\n      this.ignoreSelectors = d;\n    }\n    if (d = a.getRuleConfig(c.name)) {\n      this.config = d;\n    }\n  }\n  axs.Audit.collectMatchingElements = function(b, c) {\n    axs.dom.composedTreeSearch(b.walkDom ? document.documentElement : b.scope, null, {preorder:function(d, e) {\n      e.inScope || (e.inScope = d === b.scope);\n      for (var f = 0;f < c.length;f++) {\n        var g = c[f];\n        g.canRun(b) && (g._options = new a(b, g), e.ignoring[g.name] || (e.ignoring[g.name] = g._options.shouldIgnore(d)) || g.collectMatchingElement(d, e));\n      }\n      return !0;\n    }}, {walkDom:b.walkDom, collectIdRefs:b.collectIdRefs, level:0, ignoring:{}, disabled:!1, hidden:!1});\n  };\n  a.prototype.shouldIgnore = function(a) {\n    var c = this.ignoreSelectors;\n    if (c) {\n      for (var d = 0;d < c.length;d++) {\n        if (axs.browserUtils.matchSelector(a, c[d])) {\n          return !0;\n        }\n      }\n    }\n    return !1;\n  };\n})();\naxs.Audit.auditResults = function(a) {\n  for (var b = new axs.AuditResults, c = 0;c < a.length;c++) {\n    var d = a[c];\n    d.result == axs.constants.AuditResult.FAIL && (d.rule.severity == axs.constants.Severity.SEVERE ? b.addError(axs.Audit.accessibilityErrorMessage(d)) : b.addWarning(axs.Audit.accessibilityErrorMessage(d)));\n  }\n  return b;\n};\ngoog.exportSymbol(\"axs.Audit.auditResults\", axs.Audit.auditResults);\naxs.Audit.createReport = function(a, b) {\n  var c;\n  c = \"*** Begin accessibility audit results ***\\nAn accessibility audit found \" + axs.Audit.auditResults(a).toString();\n  b && (c = c + \"\\nFor more information, please see \" + b);\n  return c + \"\\n*** End accessibility audit results ***\";\n};\ngoog.exportSymbol(\"axs.Audit.createReport\", axs.Audit.createReport);\naxs.Audit.accessibilityErrorMessage = function(a) {\n  for (var b = a.rule.severity == axs.constants.Severity.SEVERE ? \"Error: \" : \"Warning: \", b = b + (a.rule.code + \" (\" + a.rule.heading + \") failed on the following \" + (1 == a.elements.length ? \"element\" : \"elements\")), b = 1 == a.elements.length ? b + \":\" : b + (\" (1 - \" + Math.min(5, a.elements.length) + \" of \" + a.elements.length + \"):\"), c = Math.min(a.elements.length, 5), d = 0;d < c;d++) {\n    var e = a.elements[d], b = b + \"\\n\";\n    try {\n      b += axs.utils.getQuerySelectorText(e);\n    } catch (f) {\n      b += \" tagName:\" + e.tagName, b += \" id:\" + e.id;\n    }\n  }\n  \"\" != a.rule.url && (b += \"\\nSee \" + a.rule.url + \" for more information.\");\n  return b;\n};\ngoog.exportSymbol(\"axs.Audit.accessibilityErrorMessage\", axs.Audit.accessibilityErrorMessage);\naxs.AuditRules.addRule({name:\"ariaOnReservedElement\", heading:\"This element does not support ARIA roles, states and properties\", url:\"https://github.com/GoogleChrome/accessibility-developer-tools/wiki/Audit-Rules#ax_aria_12\", severity:axs.constants.Severity.WARNING, relevantElementMatcher:function(a) {\n  return !axs.properties.canTakeAriaAttributes(a);\n}, test:function(a) {\n  return null !== axs.properties.getAriaProperties(a);\n}, code:\"AX_ARIA_12\"});\naxs.AuditRules.addRule({name:\"ariaOwnsDescendant\", heading:\"aria-owns should not be used if ownership is implicit in the DOM\", url:\"https://github.com/GoogleChrome/accessibility-developer-tools/wiki/Audit-Rules#ax_aria_06\", severity:axs.constants.Severity.WARNING, relevantElementMatcher:function(a) {\n  return axs.browserUtils.matchSelector(a, \"[aria-owns]\");\n}, test:function(a) {\n  return axs.utils.getIdReferents(\"aria-owns\", a).some(function(b) {\n    return a.compareDocumentPosition(b) & Node.DOCUMENT_POSITION_CONTAINED_BY;\n  });\n}, code:\"AX_ARIA_06\"});\naxs.AuditRules.addRule({name:\"ariaRoleNotScoped\", heading:\"Elements with ARIA roles must be in the correct scope\", url:\"https://github.com/GoogleChrome/accessibility-developer-tools/wiki/Audit-Rules#ax_aria_09\", severity:axs.constants.Severity.SEVERE, relevantElementMatcher:function(a) {\n  return axs.browserUtils.matchSelector(a, \"[role]\");\n}, test:function(a) {\n  var b = axs.utils.getRoles(a);\n  if (!b || !b.applied) {\n    return !1;\n  }\n  b = b.applied.details.scope;\n  if (!b || 0 === b.length) {\n    return !1;\n  }\n  for (var c = a;c = axs.dom.parentElement(c);) {\n    var d = axs.utils.getRoles(c, !0);\n    if (d && d.applied && 0 <= b.indexOf(d.applied.name)) {\n      return !1;\n    }\n  }\n  if (a = axs.utils.getAriaIdReferrers(a, \"aria-owns\")) {\n    for (c = 0;c < a.length;c++) {\n      if ((d = axs.utils.getRoles(a[c], !0)) && d.applied && 0 <= b.indexOf(d.applied.name)) {\n        return !1;\n      }\n    }\n  }\n  return !0;\n}, code:\"AX_ARIA_09\"});\naxs.AuditRules.addRule({name:\"audioWithoutControls\", heading:\"Audio elements should have controls\", url:\"https://github.com/GoogleChrome/accessibility-developer-tools/wiki/Audit-Rules#ax_audio_01\", severity:axs.constants.Severity.WARNING, relevantElementMatcher:function(a) {\n  return axs.browserUtils.matchSelector(a, \"audio[autoplay]\");\n}, test:function(a) {\n  return !a.querySelectorAll(\"[controls]\").length && 3 < a.duration;\n}, code:\"AX_AUDIO_01\"});\n(function() {\n  var a = /^aria\\-/;\n  axs.AuditRules.addRule({name:\"badAriaAttribute\", heading:\"This element has an invalid ARIA attribute\", url:\"https://github.com/GoogleChrome/accessibility-developer-tools/wiki/Audit-Rules#ax_aria_11\", severity:axs.constants.Severity.WARNING, relevantElementMatcher:function(b) {\n    b = b.attributes;\n    for (var c = 0, d = b.length;c < d;c++) {\n      if (a.test(b[c].name)) {\n        return !0;\n      }\n    }\n    return !1;\n  }, test:function(b) {\n    b = b.attributes;\n    for (var c = 0, d = b.length;c < d;c++) {\n      var e = b[c].name;\n      if (a.test(e) && (e = e.replace(a, \"\"), !axs.constants.ARIA_PROPERTIES.hasOwnProperty(e))) {\n        return !0;\n      }\n    }\n    return !1;\n  }, code:\"AX_ARIA_11\"});\n})();\naxs.AuditRules.addRule({name:\"badAriaAttributeValue\", heading:\"ARIA state and property values must be valid\", url:\"https://github.com/GoogleChrome/accessibility-developer-tools/wiki/Audit-Rules#ax_aria_04\", severity:axs.constants.Severity.SEVERE, relevantElementMatcher:function(a) {\n  var b = axs.utils.getSelectorForAriaProperties(axs.constants.ARIA_PROPERTIES);\n  return axs.browserUtils.matchSelector(a, b);\n}, test:function(a) {\n  for (var b in axs.constants.ARIA_PROPERTIES) {\n    var c = \"aria-\" + b;\n    if (a.hasAttribute(c)) {\n      var d = a.getAttribute(c);\n      if (!axs.utils.getAriaPropertyValue(c, d, a).valid) {\n        return !0;\n      }\n    }\n  }\n  return !1;\n}, code:\"AX_ARIA_04\"});\naxs.AuditRules.addRule({name:\"badAriaRole\", heading:\"Elements with ARIA roles must use a valid, non-abstract ARIA role\", url:\"https://github.com/GoogleChrome/accessibility-developer-tools/wiki/Audit-Rules#ax_aria_01\", severity:axs.constants.Severity.SEVERE, relevantElementMatcher:function(a) {\n  return axs.browserUtils.matchSelector(a, \"[role]\");\n}, test:function(a) {\n  return !axs.utils.getRoles(a).valid;\n}, code:\"AX_ARIA_01\"});\naxs.AuditRules.addRule({name:\"controlsWithoutLabel\", heading:\"Controls and media elements should have labels\", url:\"https://github.com/GoogleChrome/accessibility-developer-tools/wiki/Audit-Rules#ax_text_01\", severity:axs.constants.Severity.SEVERE, relevantElementMatcher:function(a) {\n  if (!axs.browserUtils.matchSelector(a, 'input:not([type=\"hidden\"]):not([disabled]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), video:not([disabled])') || \"presentation\" == a.getAttribute(\"role\")) {\n    return !1;\n  }\n  if (0 <= a.tabIndex) {\n    return !0;\n  }\n  for (a = axs.dom.parentElement(a);null != a;a = axs.dom.parentElement(a)) {\n    if (axs.utils.elementIsAriaWidget(a)) {\n      return !1;\n    }\n  }\n  return !0;\n}, test:function(a, b) {\n  if (b.hidden || \"input\" == a.tagName.toLowerCase() && \"button\" == a.type && a.value.length || \"button\" == a.tagName.toLowerCase() && a.textContent.replace(/^\\s+|\\s+$/g, \"\").length || axs.utils.hasLabel(a)) {\n    return !1;\n  }\n  var c = axs.properties.findTextAlternatives(a, {});\n  return null === c || \"\" === c.trim() ? !0 : !1;\n}, code:\"AX_TEXT_01\", ruleName:\"Controls and media elements should have labels\"});\naxs.AuditRules.addRule({name:\"duplicateId\", heading:\"Any ID referred to via an IDREF must be unique in the DOM\", url:\"https://github.com/GoogleChrome/accessibility-developer-tools/wiki/Audit-Rules#ax_html_02\", severity:axs.constants.Severity.SEVERE, opt_requires:{idRefs:!0}, relevantElementMatcher:function(a, b) {\n  b.idrefs.length && !b.hidden && this.relatedElements.push({element:a, flags:b});\n  return a.hasAttribute(\"id\") ? !0 : !1;\n}, isRelevant:function(a, b) {\n  var c = a.id, d = b.level;\n  return this.relatedElements.some(function(a) {\n    var b = a.flags.idrefs;\n    return a.flags.level === d && 0 <= b.indexOf(c);\n  });\n}, test:function(a) {\n  var b = \"[id='\" + a.id.replace(/'/g, \"\\\\'\") + \"']\";\n  return 1 < a.ownerDocument.querySelectorAll(b).length;\n}, code:\"AX_HTML_02\"});\naxs.AuditRules.addRule({name:\"focusableElementNotVisibleAndNotAriaHidden\", heading:\"These elements are focusable but either invisible or obscured by another element\", url:\"https://github.com/GoogleChrome/accessibility-developer-tools/wiki/Audit-Rules#ax_focus_01\", severity:axs.constants.Severity.WARNING, relevantElementMatcher:function(a) {\n  if (!axs.browserUtils.matchSelector(a, axs.utils.FOCUSABLE_ELEMENTS_SELECTOR)) {\n    return !1;\n  }\n  if (0 <= a.tabIndex) {\n    return !0;\n  }\n  for (var b = axs.dom.parentElement(a);null != b;b = axs.dom.parentElement(b)) {\n    if (axs.utils.elementIsAriaWidget(b)) {\n      return !1;\n    }\n  }\n  a = axs.properties.findTextAlternatives(a, {});\n  return null === a || \"\" === a.trim() ? !1 : !0;\n}, test:function(a, b) {\n  if (b.hidden) {\n    return !1;\n  }\n  a.focus();\n  return !axs.utils.elementIsVisible(a);\n}, code:\"AX_FOCUS_01\"});\naxs.AuditRules.addRule({name:\"humanLangMissing\", heading:\"The web page should have the content's human language indicated in the markup\", url:\"https://github.com/GoogleChrome/accessibility-developer-tools/wiki/Audit-Rules#ax_html_01\", severity:axs.constants.Severity.WARNING, relevantElementMatcher:function(a) {\n  return a instanceof a.ownerDocument.defaultView.HTMLHtmlElement;\n}, test:function(a) {\n  return a.lang ? !1 : !0;\n}, code:\"AX_HTML_01\"});\naxs.AuditRules.addRule({name:\"imagesWithoutAltText\", heading:\"Images should have a text alternative or presentational role\", url:\"https://github.com/GoogleChrome/accessibility-developer-tools/wiki/Audit-Rules#ax_text_02\", severity:axs.constants.Severity.WARNING, relevantElementMatcher:function(a, b) {\n  return axs.browserUtils.matchSelector(a, \"img\") && !b.hidden;\n}, test:function(a) {\n  if (a.hasAttribute(\"alt\") && \"\" == a.alt || \"presentation\" == a.getAttribute(\"role\")) {\n    return !1;\n  }\n  var b = {};\n  axs.properties.findTextAlternatives(a, b);\n  return 0 == Object.keys(b).length ? !0 : !1;\n}, code:\"AX_TEXT_02\"});\naxs.AuditRules.addRule({name:\"linkWithUnclearPurpose\", heading:\"The purpose of each link should be clear from the link text\", url:\"https://github.com/GoogleChrome/accessibility-developer-tools/wiki/Audit-Rules#ax_text_04\", severity:axs.constants.Severity.WARNING, relevantElementMatcher:function(a, b) {\n  return axs.browserUtils.matchSelector(a, \"a[href]\") && !b.hidden;\n}, test:function(a, b, c) {\n  c = c || {};\n  var d = c.blacklistPhrases || [], e = /\\s+/;\n  for (b = 0;b < d.length;b++) {\n    var f = \"^\\\\s*\" + d[b].trim().replace(e, \"\\\\s*\") + \"s*[^a-z]$\";\n    if ((new RegExp(f, \"i\")).test(a.textContent)) {\n      return !0;\n    }\n  }\n  c = c.stopwords || \"click tap go here learn more this page link about\".split(\" \");\n  a = axs.properties.findTextAlternatives(a, {});\n  if (null === a || \"\" === a.trim()) {\n    return !0;\n  }\n  a = a.replace(/[^a-zA-Z ]/g, \"\");\n  for (b = 0;b < c.length;b++) {\n    if (a = a.replace(new RegExp(\"\\\\b\" + c[b] + \"\\\\b\", \"ig\"), \"\"), \"\" == a.trim()) {\n      return !0;\n    }\n  }\n  return !1;\n}, code:\"AX_TEXT_04\"});\naxs.AuditRules.addRule({name:\"lowContrastElements\", heading:\"Text elements should have a reasonable contrast ratio\", url:\"https://github.com/GoogleChrome/accessibility-developer-tools/wiki/Audit-Rules#ax_color_01\", severity:axs.constants.Severity.WARNING, relevantElementMatcher:function(a, b) {\n  return !b.disabled && axs.properties.hasDirectTextDescendant(a);\n}, test:function(a) {\n  var b = window.getComputedStyle(a, null);\n  return (a = axs.utils.getContrastRatioForElementWithComputedStyle(b, a)) && axs.utils.isLowContrast(a, b);\n}, code:\"AX_COLOR_01\"});\naxs.AuditRules.addRule({name:\"mainRoleOnInappropriateElement\", heading:\"role=main should only appear on significant elements\", url:\"https://github.com/GoogleChrome/accessibility-developer-tools/wiki/Audit-Rules#ax_aria_05\", severity:axs.constants.Severity.WARNING, relevantElementMatcher:function(a) {\n  return axs.browserUtils.matchSelector(a, \"[role~=main]\");\n}, test:function(a) {\n  if (axs.utils.isInlineElement(a)) {\n    return !0;\n  }\n  a = axs.properties.getTextFromDescendantContent(a);\n  return !a || 50 > a.length ? !0 : !1;\n}, code:\"AX_ARIA_05\"});\naxs.AuditRules.addRule({name:\"elementsWithMeaningfulBackgroundImage\", severity:axs.constants.Severity.WARNING, relevantElementMatcher:function(a, b) {\n  return !b.hidden;\n}, heading:\"Meaningful images should not be used in element backgrounds\", url:\"https://github.com/GoogleChrome/accessibility-developer-tools/wiki/Audit-Rules#ax_image_01\", test:function(a) {\n  if (a.textContent && 0 < a.textContent.length) {\n    return !1;\n  }\n  a = window.getComputedStyle(a, null);\n  var b = a.backgroundImage;\n  if (!b || \"undefined\" === b || \"none\" === b || 0 != b.indexOf(\"url\")) {\n    return !1;\n  }\n  b = parseInt(a.width, 10);\n  a = parseInt(a.height, 10);\n  return 150 > b && 150 > a;\n}, code:\"AX_IMAGE_01\"});\naxs.AuditRules.addRule({name:\"multipleAriaOwners\", heading:\"An element's ID must not be present in more that one aria-owns attribute at any time\", url:\"https://github.com/GoogleChrome/accessibility-developer-tools/wiki/Audit-Rules#ax_aria_07\", severity:axs.constants.Severity.WARNING, relevantElementMatcher:function(a) {\n  return axs.browserUtils.matchSelector(a, \"[aria-owns]\");\n}, test:function(a) {\n  return axs.utils.getIdReferents(\"aria-owns\", a).some(function(a) {\n    return 1 < axs.utils.getAriaIdReferrers(a, \"aria-owns\").length;\n  });\n}, code:\"AX_ARIA_07\"});\naxs.AuditRules.addRule({name:\"multipleLabelableElementsPerLabel\", heading:\"A label element may not have labelable descendants other than its labeled control.\", url:\"https://github.com/GoogleChrome/accessibility-developer-tools/wiki/Audit-Rules#-ax_text_03--labels-should-only-contain-one-labelable-element\", severity:axs.constants.Severity.SEVERE, relevantElementMatcher:function(a) {\n  return axs.browserUtils.matchSelector(a, \"label\");\n}, test:function(a) {\n  if (1 < a.querySelectorAll(axs.utils.LABELABLE_ELEMENTS_SELECTOR).length) {\n    return !0;\n  }\n}, code:\"AX_TEXT_03\"});\naxs.AuditRules.addRule({name:\"nonExistentRelatedElement\", heading:\"Attributes which refer to other elements by ID should refer to elements which exist in the DOM\", url:\"https://github.com/GoogleChrome/accessibility-developer-tools/wiki/Audit-Rules#ax_html_03\", severity:axs.constants.Severity.SEVERE, opt_requires:{idRefs:!0}, relevantElementMatcher:function(a, b) {\n  return 0 < b.idrefs.length;\n}, test:function(a, b) {\n  return b.idrefs.some(function(a) {\n    return !document.getElementById(a);\n  });\n}, code:\"AX_HTML_03\"});\naxs.AuditRules.addRule({name:\"pageWithoutTitle\", heading:\"The web page should have a title that describes topic or purpose\", url:\"https://github.com/GoogleChrome/accessibility-developer-tools/wiki/Audit-Rules#ax_title_01\", severity:axs.constants.Severity.WARNING, relevantElementMatcher:function(a) {\n  return \"html\" == a.tagName.toLowerCase();\n}, test:function(a) {\n  a = a.querySelector(\"head\");\n  return a ? (a = a.querySelector(\"title\")) ? !a.textContent : !0 : !0;\n}, code:\"AX_TITLE_01\"});\naxs.AuditRules.addRule({name:\"requiredAriaAttributeMissing\", heading:\"Elements with ARIA roles must have all required attributes for that role\", url:\"https://github.com/GoogleChrome/accessibility-developer-tools/wiki/Audit-Rules#ax_aria_03\", severity:axs.constants.Severity.SEVERE, relevantElementMatcher:function(a) {\n  return axs.browserUtils.matchSelector(a, \"[role]\");\n}, test:function(a) {\n  var b = axs.utils.getRoles(a);\n  if (!b.valid) {\n    return !1;\n  }\n  for (var c = 0;c < b.roles.length;c++) {\n    var d = b.roles[c].details.requiredPropertiesSet, e;\n    for (e in d) {\n      if (d = e.replace(/^aria-/, \"\"), !(\"defaultValue\" in axs.constants.ARIA_PROPERTIES[d] || a.hasAttribute(e)) && 0 > axs.properties.getNativelySupportedAttributes(a).indexOf(e)) {\n        return !0;\n      }\n    }\n  }\n}, code:\"AX_ARIA_03\"});\n(function() {\n  function a(a) {\n    a = axs.utils.getRoles(a);\n    if (!a || !a.applied) {\n      return [];\n    }\n    a = a.applied;\n    return a.valid ? a.details.mustcontain || [] : [];\n  }\n  axs.AuditRules.addRule({name:\"requiredOwnedAriaRoleMissing\", heading:\"Elements with ARIA roles must ensure required owned elements are present\", url:\"https://github.com/GoogleChrome/accessibility-developer-tools/wiki/Audit-Rules#ax_aria_08\", severity:axs.constants.Severity.SEVERE, relevantElementMatcher:function(b) {\n    return axs.browserUtils.matchSelector(b, \"[role]\") ? 0 < a(b).length : !1;\n  }, test:function(b) {\n    if (\"true\" === b.getAttribute(\"aria-busy\")) {\n      return !1;\n    }\n    for (var c = a(b), d = c.length - 1;0 <= d;d--) {\n      var e = axs.utils.findDescendantsWithRole(b, c[d]);\n      if (e && e.length) {\n        return !1;\n      }\n    }\n    b = axs.utils.getIdReferents(\"aria-owns\", b);\n    for (d = b.length - 1;0 <= d;d--) {\n      if ((e = axs.utils.getRoles(b[d], !0)) && e.applied) {\n        for (var e = e.applied, f = c.length - 1;0 <= f;f--) {\n          if (e.name === c[f]) {\n            return !1;\n          }\n        }\n      }\n    }\n    return !0;\n  }, code:\"AX_ARIA_08\"});\n})();\naxs.AuditRules.addRule({name:\"roleTooltipRequiresDescribedby\", heading:\"Elements with role=tooltip should have a corresponding element with aria-describedby\", url:\"https://github.com/GoogleChrome/accessibility-developer-tools/wiki/Audit-Rules#ax_aria_02\", severity:axs.constants.Severity.SEVERE, relevantElementMatcher:function(a, b) {\n  return axs.browserUtils.matchSelector(a, \"[role=tooltip]\") && !b.hidden;\n}, test:function(a) {\n  a = axs.utils.getAriaIdReferrers(a, \"aria-describedby\");\n  return !a || 0 === a.length;\n}, code:\"AX_TOOLTIP_01\"});\naxs.AuditRules.addRule({name:\"tabIndexGreaterThanZero\", heading:\"Avoid positive integer values for tabIndex\", url:\"https://github.com/GoogleChrome/accessibility-developer-tools/wiki/Audit-Rules#ax_focus_03\", severity:axs.constants.Severity.WARNING, relevantElementMatcher:function(a) {\n  return axs.browserUtils.matchSelector(a, \"[tabindex]\");\n}, test:function(a) {\n  if (0 < a.tabIndex) {\n    return !0;\n  }\n}, code:\"AX_FOCUS_03\"});\n(function() {\n  function a(a) {\n    if (0 == a.childElementCount) {\n      return !0;\n    }\n    if (a.hasAttribute(\"role\") && \"presentation\" != a.getAttribute(\"role\")) {\n      return !1;\n    }\n    if (\"presentation\" == a.getAttribute(\"role\")) {\n      a = a.querySelectorAll(\"*\");\n      for (var c = 0;c < a.length;c++) {\n        if (\"TR\" != a[c].tagName && \"TD\" != a[c].tagName) {\n          return !1;\n        }\n      }\n      return !0;\n    }\n    return !1;\n  }\n  axs.AuditRules.addRule({name:\"tableHasAppropriateHeaders\", heading:\"Tables should have appropriate headers\", url:\"https://github.com/GoogleChrome/accessibility-developer-tools/wiki/Audit-Rules#ax_table_01\", severity:axs.constants.Severity.SEVERE, relevantElementMatcher:function(b) {\n    return axs.browserUtils.matchSelector(b, \"table\") && !a(b) && 0 < b.querySelectorAll(\"tr\").length;\n  }, test:function(a) {\n    a = a.querySelectorAll(\"tr\");\n    var c;\n    a: {\n      c = a[0].children;\n      for (var d = 0;d < c.length;d++) {\n        if (\"TH\" != c[d].tagName) {\n          c = !0;\n          break a;\n        }\n      }\n      c = !1;\n    }\n    if (c) {\n      a: {\n        for (c = 0;c < a.length;c++) {\n          if (\"TH\" != a[c].children[0].tagName) {\n            c = !0;\n            break a;\n          }\n        }\n        c = !1;\n      }\n    }\n    if (c) {\n      a: {\n        c = a[0].children;\n        for (d = 1;d < c.length;d++) {\n          if (\"TH\" != c[d].tagName) {\n            c = !0;\n            break a;\n          }\n        }\n        for (d = 1;d < a.length;d++) {\n          if (\"TH\" != a[d].children[0].tagName) {\n            c = !0;\n            break a;\n          }\n        }\n        c = !1;\n      }\n    }\n    return c;\n  }, code:\"AX_TABLE_01\"});\n})();\n(function() {\n  axs.AuditRules.addRule({name:\"uncontrolledTabpanel\", heading:\"A tabpanel should be related to a tab via aria-controls or aria-labelledby\", url:\"https://github.com/GoogleChrome/accessibility-developer-tools/wiki/Audit-Rules#ax_aria_13\", severity:axs.constants.Severity.WARNING, relevantElementMatcher:function(a) {\n    return axs.browserUtils.matchSelector(a, '[role=\"tabpanel\"]');\n  }, test:function(a) {\n    var b;\n    b = document.querySelectorAll('[role=\"tab\"][aria-controls=\"' + a.id + '\"]');\n    (b = a.id && 1 === b.length) || (a.hasAttribute(\"aria-labelledby\") ? (a = document.querySelectorAll(\"#\" + a.getAttribute(\"aria-labelledby\")), b = 1 === a.length && \"tab\" === a[0].getAttribute(\"role\")) : b = !1);\n    return !b;\n  }, code:\"AX_ARIA_13\"});\n})();\naxs.AuditRules.addRule({name:\"unfocusableElementsWithOnClick\", heading:\"Elements with onclick handlers must be focusable\", url:\"https://github.com/GoogleChrome/accessibility-developer-tools/wiki/Audit-Rules#ax_focus_02\", severity:axs.constants.Severity.WARNING, opt_requires:{consoleAPI:!0}, relevantElementMatcher:function(a, b) {\n  return a instanceof a.ownerDocument.defaultView.HTMLBodyElement || b.hidden ? !1 : \"click\" in getEventListeners(a) ? !0 : !1;\n}, test:function(a) {\n  return !a.hasAttribute(\"tabindex\") && !axs.utils.isElementImplicitlyFocusable(a) && !a.disabled;\n}, code:\"AX_FOCUS_02\"});\n(function() {\n  var a = /^aria\\-/, b = axs.utils.getSelectorForAriaProperties(axs.constants.ARIA_PROPERTIES);\n  axs.AuditRules.addRule({name:\"unsupportedAriaAttribute\", heading:\"This element has an unsupported ARIA attribute\", url:\"https://github.com/GoogleChrome/accessibility-developer-tools/wiki/Audit-Rules#ax_aria_10\", severity:axs.constants.Severity.SEVERE, relevantElementMatcher:function(a) {\n    return axs.browserUtils.matchSelector(a, b);\n  }, test:function(b) {\n    var d = axs.utils.getRoles(b, !0), d = d && d.applied ? d.applied.details.propertiesSet : axs.constants.GLOBAL_PROPERTIES;\n    b = b.attributes;\n    for (var e = 0, f = b.length;e < f;e++) {\n      var g = b[e].name;\n      if (a.test(g)) {\n        var h = g.replace(a, \"\");\n        if (axs.constants.ARIA_PROPERTIES.hasOwnProperty(h) && !(g in d)) {\n          return !0;\n        }\n      }\n    }\n    return !1;\n  }, code:\"AX_ARIA_10\"});\n})();\naxs.AuditRules.addRule({name:\"videoWithoutCaptions\", heading:\"Video elements should use <track> elements to provide captions\", url:\"https://github.com/GoogleChrome/accessibility-developer-tools/wiki/Audit-Rules#ax_video_01\", severity:axs.constants.Severity.WARNING, relevantElementMatcher:function(a) {\n  return axs.browserUtils.matchSelector(a, \"video\");\n}, test:function(a) {\n  return !a.querySelectorAll(\"track[kind=captions]\").length;\n}, code:\"AX_VIDEO_01\"});\n\n  return axs;\n});\n\n// Define AMD module if possible, export globals otherwise.\nif (typeof define !== 'undefined' && define.amd) {\n  define([], fn);\n} else {\n  var axs = fn.call(this);\n}\n\n"
 
-/***/ }),
+/***/ },
 
-/***/ "./node_modules/script-loader/addScript.js":
+/***/ "./node_modules/script-loader/addScript.js"
 /*!*************************************************!*\
   !*** ./node_modules/script-loader/addScript.js ***!
   \*************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+(module) {
 
 /*
 	MIT License http://www.opensource.org/licenses/mit-license.php
 	Author Tobias Koppers @sokra
 */
 module.exports = function(src) {
-	if (typeof execScript === "function")
-		execScript(src);
-	else
-		eval.call(null, src);
-}
-
-/***/ }),
-
-/***/ "./node_modules/script-loader/index.js!./node_modules/accessibility-developer-tools/dist/js/axs_testing.js":
-/*!********************************************************************************************************!*\
-  !*** ./node_modules/script-loader!./node_modules/accessibility-developer-tools/dist/js/axs_testing.js ***!
-  \********************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-__webpack_require__(/*! !./node_modules/script-loader/addScript.js */ "./node_modules/script-loader/addScript.js")(__webpack_require__(/*! !./node_modules/raw-loader!./node_modules/accessibility-developer-tools/dist/js/axs_testing.js */ "./node_modules/raw-loader/index.js!./node_modules/accessibility-developer-tools/dist/js/axs_testing.js")+"\n\n// SCRIPT-LOADER FOOTER\n//# sourceURL=script:///home/skeletonxf/Documents/Web/taas/totally-automated-a11y-scanner/node_modules/accessibility-developer-tools/dist/js/axs_testing.js")
-
-/***/ }),
-
-/***/ "./node_modules/style-loader/addStyles.js":
-/*!************************************************!*\
-  !*** ./node_modules/style-loader/addStyles.js ***!
-  \************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-/*
-	MIT License http://www.opensource.org/licenses/mit-license.php
-	Author Tobias Koppers @sokra
-*/
-var stylesInDom = {},
-	memoize = function(fn) {
-		var memo;
-		return function () {
-			if (typeof memo === "undefined") memo = fn.apply(this, arguments);
-			return memo;
-		};
-	},
-	isOldIE = memoize(function() {
-		return /msie [6-9]\b/.test(window.navigator.userAgent.toLowerCase());
-	}),
-	getHeadElement = memoize(function () {
-		return document.head || document.getElementsByTagName("head")[0];
-	}),
-	singletonElement = null,
-	singletonCounter = 0;
-
-module.exports = function(list, options) {
-	if(typeof DEBUG !== "undefined" && DEBUG) {
-		if(typeof document !== "object") throw new Error("The style-loader cannot be used in a non-browser environment");
+	function log(error) {
+		(typeof console !== "undefined")
+		&& (console.error || console.log)("[Script Loader]", error);
 	}
 
-	options = options || {};
-	// Force single-tag solution on IE6-9, which has a hard limit on the # of <style>
-	// tags it will allow on a page
-	if (typeof options.singleton === "undefined") options.singleton = isOldIE();
+	// Check for IE =< 8
+	function isIE() {
+		return typeof attachEvent !== "undefined" && typeof addEventListener === "undefined";
+	}
 
-	var styles = listToStyles(list);
-	addStylesToDom(styles, options);
-
-	return function update(newList) {
-		var mayRemove = [];
-		for(var i = 0; i < styles.length; i++) {
-			var item = styles[i];
-			var domStyle = stylesInDom[item.id];
-			domStyle.refs--;
-			mayRemove.push(domStyle);
-		}
-		if(newList) {
-			var newStyles = listToStyles(newList);
-			addStylesToDom(newStyles, options);
-		}
-		for(var i = 0; i < mayRemove.length; i++) {
-			var domStyle = mayRemove[i];
-			if(domStyle.refs === 0) {
-				for(var j = 0; j < domStyle.parts.length; j++)
-					domStyle.parts[j]();
-				delete stylesInDom[domStyle.id];
-			}
-		}
-	};
-}
-
-function addStylesToDom(styles, options) {
-	for(var i = 0; i < styles.length; i++) {
-		var item = styles[i];
-		var domStyle = stylesInDom[item.id];
-		if(domStyle) {
-			domStyle.refs++;
-			for(var j = 0; j < domStyle.parts.length; j++) {
-				domStyle.parts[j](item.parts[j]);
-			}
-			for(; j < item.parts.length; j++) {
-				domStyle.parts.push(addStyle(item.parts[j], options));
-			}
+	try {
+		if (typeof execScript !== "undefined" && isIE()) {
+			execScript(src);
+		} else if (typeof eval !== "undefined") {
+			eval.call(null, src);
 		} else {
-			var parts = [];
-			for(var j = 0; j < item.parts.length; j++) {
-				parts.push(addStyle(item.parts[j], options));
-			}
-			stylesInDom[item.id] = {id: item.id, refs: 1, parts: parts};
+			log("EvalError: No eval function available");
 		}
+	} catch (error) {
+		log(error);
 	}
 }
 
-function listToStyles(list) {
-	var styles = [];
-	var newStyles = {};
-	for(var i = 0; i < list.length; i++) {
-		var item = list[i];
-		var id = item[0];
-		var css = item[1];
-		var media = item[2];
-		var sourceMap = item[3];
-		var part = {css: css, media: media, sourceMap: sourceMap};
-		if(!newStyles[id])
-			styles.push(newStyles[id] = {id: id, parts: [part]});
-		else
-			newStyles[id].parts.push(part);
-	}
-	return styles;
+
+/***/ },
+
+/***/ "./node_modules/script-loader/index.js!./node_modules/accessibility-developer-tools/dist/js/axs_testing.js"
+/*!*****************************************************************************************************************!*\
+  !*** ./node_modules/script-loader/index.js!./node_modules/accessibility-developer-tools/dist/js/axs_testing.js ***!
+  \*****************************************************************************************************************/
+(__unused_webpack_module, __unused_webpack_exports, __webpack_require__) {
+
+__webpack_require__(/*! !!./node_modules/script-loader/addScript.js */ "./node_modules/script-loader/addScript.js")(__webpack_require__(/*! !!./node_modules/raw-loader/index.js!./node_modules/accessibility-developer-tools/dist/js/axs_testing.js */ "./node_modules/raw-loader/index.js!./node_modules/accessibility-developer-tools/dist/js/axs_testing.js"))
+
+/***/ },
+
+/***/ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js"
+/*!****************************************************************************!*\
+  !*** ./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js ***!
+  \****************************************************************************/
+(module) {
+
+"use strict";
+
+
+var stylesInDOM = [];
+function getIndexByIdentifier(identifier) {
+  var result = -1;
+  for (var i = 0; i < stylesInDOM.length; i++) {
+    if (stylesInDOM[i].identifier === identifier) {
+      result = i;
+      break;
+    }
+  }
+  return result;
+}
+function modulesToDom(list, options) {
+  var idCountMap = {};
+  var identifiers = [];
+  for (var i = 0; i < list.length; i++) {
+    var item = list[i];
+    var id = options.base ? item[0] + options.base : item[0];
+    var count = idCountMap[id] || 0;
+    var identifier = "".concat(id, " ").concat(count);
+    idCountMap[id] = count + 1;
+    var indexByIdentifier = getIndexByIdentifier(identifier);
+    var obj = {
+      css: item[1],
+      media: item[2],
+      sourceMap: item[3],
+      supports: item[4],
+      layer: item[5]
+    };
+    if (indexByIdentifier !== -1) {
+      stylesInDOM[indexByIdentifier].references++;
+      stylesInDOM[indexByIdentifier].updater(obj);
+    } else {
+      var updater = addElementStyle(obj, options);
+      options.byIndex = i;
+      stylesInDOM.splice(i, 0, {
+        identifier: identifier,
+        updater: updater,
+        references: 1
+      });
+    }
+    identifiers.push(identifier);
+  }
+  return identifiers;
+}
+function addElementStyle(obj, options) {
+  var api = options.domAPI(options);
+  api.update(obj);
+  var updater = function updater(newObj) {
+    if (newObj) {
+      if (newObj.css === obj.css && newObj.media === obj.media && newObj.sourceMap === obj.sourceMap && newObj.supports === obj.supports && newObj.layer === obj.layer) {
+        return;
+      }
+      api.update(obj = newObj);
+    } else {
+      api.remove();
+    }
+  };
+  return updater;
+}
+module.exports = function (list, options) {
+  options = options || {};
+  list = list || [];
+  var lastIdentifiers = modulesToDom(list, options);
+  return function update(newList) {
+    newList = newList || [];
+    for (var i = 0; i < lastIdentifiers.length; i++) {
+      var identifier = lastIdentifiers[i];
+      var index = getIndexByIdentifier(identifier);
+      stylesInDOM[index].references--;
+    }
+    var newLastIdentifiers = modulesToDom(newList, options);
+    for (var _i = 0; _i < lastIdentifiers.length; _i++) {
+      var _identifier = lastIdentifiers[_i];
+      var _index = getIndexByIdentifier(_identifier);
+      if (stylesInDOM[_index].references === 0) {
+        stylesInDOM[_index].updater();
+        stylesInDOM.splice(_index, 1);
+      }
+    }
+    lastIdentifiers = newLastIdentifiers;
+  };
+};
+
+/***/ },
+
+/***/ "./node_modules/style-loader/dist/runtime/insertBySelector.js"
+/*!********************************************************************!*\
+  !*** ./node_modules/style-loader/dist/runtime/insertBySelector.js ***!
+  \********************************************************************/
+(module) {
+
+"use strict";
+
+
+var memo = {};
+
+/* istanbul ignore next  */
+function getTarget(target) {
+  if (typeof memo[target] === "undefined") {
+    var styleTarget = document.querySelector(target);
+
+    // Special case to return head of iframe instead of iframe itself
+    if (window.HTMLIFrameElement && styleTarget instanceof window.HTMLIFrameElement) {
+      try {
+        // This will throw an exception if access to iframe is blocked
+        // due to cross-origin restrictions
+        styleTarget = styleTarget.contentDocument.head;
+      } catch (e) {
+        // istanbul ignore next
+        styleTarget = null;
+      }
+    }
+    memo[target] = styleTarget;
+  }
+  return memo[target];
 }
 
-function createStyleElement() {
-	var styleElement = document.createElement("style");
-	var head = getHeadElement();
-	styleElement.type = "text/css";
-	head.appendChild(styleElement);
-	return styleElement;
+/* istanbul ignore next  */
+function insertBySelector(insert, style) {
+  var target = getTarget(insert);
+  if (!target) {
+    throw new Error("Couldn't find a style target. This probably means that the value for the 'insert' parameter is invalid.");
+  }
+  target.appendChild(style);
+}
+module.exports = insertBySelector;
+
+/***/ },
+
+/***/ "./node_modules/style-loader/dist/runtime/insertStyleElement.js"
+/*!**********************************************************************!*\
+  !*** ./node_modules/style-loader/dist/runtime/insertStyleElement.js ***!
+  \**********************************************************************/
+(module) {
+
+"use strict";
+
+
+/* istanbul ignore next  */
+function insertStyleElement(options) {
+  var element = document.createElement("style");
+  options.setAttributes(element, options.attributes);
+  options.insert(element, options.options);
+  return element;
+}
+module.exports = insertStyleElement;
+
+/***/ },
+
+/***/ "./node_modules/style-loader/dist/runtime/setAttributesWithoutAttributes.js"
+/*!**********************************************************************************!*\
+  !*** ./node_modules/style-loader/dist/runtime/setAttributesWithoutAttributes.js ***!
+  \**********************************************************************************/
+(module, __unused_webpack_exports, __webpack_require__) {
+
+"use strict";
+
+
+/* istanbul ignore next  */
+function setAttributesWithoutAttributes(styleElement) {
+  var nonce =  true ? __webpack_require__.nc : 0;
+  if (nonce) {
+    styleElement.setAttribute("nonce", nonce);
+  }
+}
+module.exports = setAttributesWithoutAttributes;
+
+/***/ },
+
+/***/ "./node_modules/style-loader/dist/runtime/styleDomAPI.js"
+/*!***************************************************************!*\
+  !*** ./node_modules/style-loader/dist/runtime/styleDomAPI.js ***!
+  \***************************************************************/
+(module) {
+
+"use strict";
+
+
+/* istanbul ignore next  */
+function apply(styleElement, options, obj) {
+  var css = "";
+  if (obj.supports) {
+    css += "@supports (".concat(obj.supports, ") {");
+  }
+  if (obj.media) {
+    css += "@media ".concat(obj.media, " {");
+  }
+  var needLayer = typeof obj.layer !== "undefined";
+  if (needLayer) {
+    css += "@layer".concat(obj.layer.length > 0 ? " ".concat(obj.layer) : "", " {");
+  }
+  css += obj.css;
+  if (needLayer) {
+    css += "}";
+  }
+  if (obj.media) {
+    css += "}";
+  }
+  if (obj.supports) {
+    css += "}";
+  }
+  var sourceMap = obj.sourceMap;
+  if (sourceMap && typeof btoa !== "undefined") {
+    css += "\n/*# sourceMappingURL=data:application/json;base64,".concat(btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap)))), " */");
+  }
+
+  // For old IE
+  /* istanbul ignore if  */
+  options.styleTagTransform(css, styleElement, options.options);
+}
+function removeStyleElement(styleElement) {
+  // istanbul ignore if
+  if (styleElement.parentNode === null) {
+    return false;
+  }
+  styleElement.parentNode.removeChild(styleElement);
 }
 
-function createLinkElement() {
-	var linkElement = document.createElement("link");
-	var head = getHeadElement();
-	linkElement.rel = "stylesheet";
-	head.appendChild(linkElement);
-	return linkElement;
+/* istanbul ignore next  */
+function domAPI(options) {
+  if (typeof document === "undefined") {
+    return {
+      update: function update() {},
+      remove: function remove() {}
+    };
+  }
+  var styleElement = options.insertStyleElement(options);
+  return {
+    update: function update(obj) {
+      apply(styleElement, options, obj);
+    },
+    remove: function remove() {
+      removeStyleElement(styleElement);
+    }
+  };
 }
+module.exports = domAPI;
 
-function addStyle(obj, options) {
-	var styleElement, update, remove;
+/***/ },
 
-	if (options.singleton) {
-		var styleIndex = singletonCounter++;
-		styleElement = singletonElement || (singletonElement = createStyleElement());
-		update = applyToSingletonTag.bind(null, styleElement, styleIndex, false);
-		remove = applyToSingletonTag.bind(null, styleElement, styleIndex, true);
-	} else if(obj.sourceMap &&
-		typeof URL === "function" &&
-		typeof URL.createObjectURL === "function" &&
-		typeof URL.revokeObjectURL === "function" &&
-		typeof Blob === "function" &&
-		typeof btoa === "function") {
-		styleElement = createLinkElement();
-		update = updateLink.bind(null, styleElement);
-		remove = function() {
-			styleElement.parentNode.removeChild(styleElement);
-			if(styleElement.href)
-				URL.revokeObjectURL(styleElement.href);
-		};
-	} else {
-		styleElement = createStyleElement();
-		update = applyToTag.bind(null, styleElement);
-		remove = function() {
-			styleElement.parentNode.removeChild(styleElement);
-		};
-	}
+/***/ "./node_modules/style-loader/dist/runtime/styleTagTransform.js"
+/*!*********************************************************************!*\
+  !*** ./node_modules/style-loader/dist/runtime/styleTagTransform.js ***!
+  \*********************************************************************/
+(module) {
 
-	update(obj);
+"use strict";
 
-	return function updateStyle(newObj) {
-		if(newObj) {
-			if(newObj.css === obj.css && newObj.media === obj.media && newObj.sourceMap === obj.sourceMap)
-				return;
-			update(obj = newObj);
-		} else {
-			remove();
-		}
-	};
+
+/* istanbul ignore next  */
+function styleTagTransform(css, styleElement) {
+  if (styleElement.styleSheet) {
+    styleElement.styleSheet.cssText = css;
+  } else {
+    while (styleElement.firstChild) {
+      styleElement.removeChild(styleElement.firstChild);
+    }
+    styleElement.appendChild(document.createTextNode(css));
+  }
 }
+module.exports = styleTagTransform;
 
-var replaceText = (function () {
-	var textStore = [];
+/***/ },
 
-	return function (index, replacement) {
-		textStore[index] = replacement;
-		return textStore.filter(Boolean).join('\n');
-	};
-})();
-
-function applyToSingletonTag(styleElement, index, remove, obj) {
-	var css = remove ? "" : obj.css;
-
-	if (styleElement.styleSheet) {
-		styleElement.styleSheet.cssText = replaceText(index, css);
-	} else {
-		var cssNode = document.createTextNode(css);
-		var childNodes = styleElement.childNodes;
-		if (childNodes[index]) styleElement.removeChild(childNodes[index]);
-		if (childNodes.length) {
-			styleElement.insertBefore(cssNode, childNodes[index]);
-		} else {
-			styleElement.appendChild(cssNode);
-		}
-	}
-}
-
-function applyToTag(styleElement, obj) {
-	var css = obj.css;
-	var media = obj.media;
-	var sourceMap = obj.sourceMap;
-
-	if(media) {
-		styleElement.setAttribute("media", media)
-	}
-
-	if(styleElement.styleSheet) {
-		styleElement.styleSheet.cssText = css;
-	} else {
-		while(styleElement.firstChild) {
-			styleElement.removeChild(styleElement.firstChild);
-		}
-		styleElement.appendChild(document.createTextNode(css));
-	}
-}
-
-function updateLink(linkElement, obj) {
-	var css = obj.css;
-	var media = obj.media;
-	var sourceMap = obj.sourceMap;
-
-	if(sourceMap) {
-		css += "\n/*# sourceMappingURL=data:application/json;base64," + btoa(JSON.stringify(sourceMap)) + " */";
-	}
-
-	var blob = new Blob([css], { type: "text/css" });
-
-	var oldSrc = linkElement.href;
-
-	linkElement.href = URL.createObjectURL(blob);
-
-	if(oldSrc)
-		URL.revokeObjectURL(oldSrc);
-}
-
-
-/***/ }),
-
-/***/ "./plugins/a11y-name/about.handlebars":
+/***/ "./plugins/a11y-name/about.handlebars"
 /*!********************************************!*\
   !*** ./plugins/a11y-name/about.handlebars ***!
   \********************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+(module, __unused_webpack_exports, __webpack_require__) {
 
 var Handlebars = __webpack_require__(/*! ../../node_modules/handlebars/runtime.js */ "./node_modules/handlebars/runtime.js");
 function __default(obj) { return obj && (obj.__esModule ? obj["default"] : obj); }
@@ -12937,14 +13713,13 @@ module.exports = (Handlebars["default"] || Handlebars).template({"compiler":[8,"
     return "<div class=\"tota11y-info-about-title\">\n    <a\n            href=\"https://www.w3.org/TR/WCAG21/#label-in-name\"\n            target=\"_blank\" class=\"tota11y-info-link\">\n        <span class=\"tota11y-info-about-title-link\">\n            WCAG &sect; 2.5.3 (Level A)\n        </span>\n    </a>\n</div>\n<p>\n    Users that navigate by speech commands and / or text to speech will\n    have a better experience if the visual text that labels an element (not\n    just the <code>&lt;label&gt;</code> element) is the same as, or contained\n    in the programmatic label of the element. This programmatic label (also\n    known as the accessible name) includes text that is not presented visually\n    such as ARIA. Preferably the programmatic label should be the same as the\n    visual label or should start with the visual label.\n</p>\n<blockquote>\n    <a class=\"tota11y-click-to-expand\" aria-expanded=\"false\" href=\"javascript:void(0)\">\n        <p class=\"tota11y-expandable\">\n    Speech input users can navigate by speaking the visible text labels of\n    menus, links and buttons that appear on the screen. It’s confusing to\n    speech input users when they say a visible text label they see, but the\n    speech input does not work because the accessible name that is enabled as\n    a speech input command does not match the visible label.\n\n    In addition, when the accessible name is different from the visible label,\n    it essentially becomes an unknown hidden command for speech input users\n    that can be accidentally activated without the user knowing what has\n    happened.\n\n    Text-to-speech users will also have a better experience if the text they\n    hear matches the text they see on the screen.\n\n    This issue is even more important for speech input and text-to-speech users\n    who also have cognitive challenges. It’s an extra cognitive load for a\n    speech input user to remember and say a speech command that is different\n    from the visible label they see on a control. It’s also an extra cognitive\n    load for a text-to-speech user to absorb and understand speech output that\n    does not match the visible label.\n        <cite>\n            W3C\n        </cite>\n        </p>\n    </a>\n</blockquote>\n<p>\n    <a href=\"https://www.w3.org/WAI/WCAG21/Understanding/label-in-name.html\"\n            target=\"_blank\" class=\"tota11y-info-link\">\n        Understanding \"label in name\"\n    </a>\n</p>\n";
 },"useData":true});
 
-/***/ }),
+/***/ },
 
-/***/ "./plugins/a11y-name/error-template.handlebars":
+/***/ "./plugins/a11y-name/error-template.handlebars"
 /*!*****************************************************!*\
   !*** ./plugins/a11y-name/error-template.handlebars ***!
   \*****************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+(module, __unused_webpack_exports, __webpack_require__) {
 
 var Handlebars = __webpack_require__(/*! ../../node_modules/handlebars/runtime.js */ "./node_modules/handlebars/runtime.js");
 function __default(obj) { return obj && (obj.__esModule ? obj["default"] : obj); }
@@ -12965,14 +13740,13 @@ module.exports = (Handlebars["default"] || Handlebars).template({"compiler":[8,"
     + "</i>\"\n</p>\n<p>\n    <a\n            href=\"https://www.w3.org/TR/accname-1.1/#mapping_additional_nd_te\"\n            target=\"_blank\" class=\"tota11y-info-link\">\n        The accessible name is computed according to the steps by the W3C.\n    </a>\n</p>\n<p>\n    In short the name is recursively built up with the element's <code>\n    aria-labelledby</code> taking priority, followed by <code>aria-label</code>\n    then other labelling from the markup such as a <code>title</code> attribute\n    or an HTML <code>&lt;label&gt;</code> element.\n</p>\n";
 },"useData":true});
 
-/***/ }),
+/***/ },
 
-/***/ "./plugins/a11y-name/index.js":
+/***/ "./plugins/a11y-name/index.js"
 /*!************************************!*\
   !*** ./plugins/a11y-name/index.js ***!
   \************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+(module, __unused_webpack_exports, __webpack_require__) {
 
 let $ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
 let Plugin = __webpack_require__(/*! ../base */ "./plugins/base.js");
@@ -13104,33 +13878,66 @@ class A11yName extends Plugin {
 }
 module.exports = A11yName;
 
-/***/ }),
+/***/ },
 
-/***/ "./plugins/a11y-name/style.less":
+/***/ "./plugins/a11y-name/style.less"
 /*!**************************************!*\
   !*** ./plugins/a11y-name/style.less ***!
   \**************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
-// style-loader: Adds some css to the DOM by adding a <style> tag
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !../../node_modules/style-loader/dist/runtime/styleDomAPI.js */ "./node_modules/style-loader/dist/runtime/styleDomAPI.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../node_modules/style-loader/dist/runtime/insertBySelector.js */ "./node_modules/style-loader/dist/runtime/insertBySelector.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! !../../node_modules/style-loader/dist/runtime/setAttributesWithoutAttributes.js */ "./node_modules/style-loader/dist/runtime/setAttributesWithoutAttributes.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! !../../node_modules/style-loader/dist/runtime/insertStyleElement.js */ "./node_modules/style-loader/dist/runtime/insertStyleElement.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! !../../node_modules/style-loader/dist/runtime/styleTagTransform.js */ "./node_modules/style-loader/dist/runtime/styleTagTransform.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _node_modules_css_loader_dist_cjs_js_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_2_use_2_node_modules_less_loader_dist_cjs_js_style_less__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! !!../../node_modules/css-loader/dist/cjs.js!../../node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[2].use[2]!../../node_modules/less-loader/dist/cjs.js!./style.less */ "./node_modules/css-loader/dist/cjs.js!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[2].use[2]!./node_modules/less-loader/dist/cjs.js!./plugins/a11y-name/style.less");
 
-// load the styles
-var content = __webpack_require__(/*! !../../node_modules/css-loader!../../node_modules/postcss-loader/src??postcss!../../node_modules/less-loader/dist/cjs.js!./style.less */ "./node_modules/css-loader/index.js!./node_modules/postcss-loader/src/index.js?!./node_modules/less-loader/dist/cjs.js!./plugins/a11y-name/style.less");
-if(typeof content === 'string') content = [[module.i, content, '']];
-// add the styles to the DOM
-var update = __webpack_require__(/*! ../../node_modules/style-loader/addStyles.js */ "./node_modules/style-loader/addStyles.js")(content, {});
-// Hot Module Replacement
-if(false) {}
+      
+      
+      
+      
+      
+      
+      
+      
+      
 
-/***/ }),
+var options = {};
 
-/***/ "./plugins/a11y-text-wand/about.handlebars":
+options.styleTagTransform = (_node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5___default());
+options.setAttributes = (_node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3___default());
+options.insert = _node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2___default().bind(null, "head");
+options.domAPI = (_node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1___default());
+options.insertStyleElement = (_node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4___default());
+
+var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_2_use_2_node_modules_less_loader_dist_cjs_js_style_less__WEBPACK_IMPORTED_MODULE_6__["default"], options);
+
+
+
+
+       /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_2_use_2_node_modules_less_loader_dist_cjs_js_style_less__WEBPACK_IMPORTED_MODULE_6__["default"] && _node_modules_css_loader_dist_cjs_js_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_2_use_2_node_modules_less_loader_dist_cjs_js_style_less__WEBPACK_IMPORTED_MODULE_6__["default"].locals ? _node_modules_css_loader_dist_cjs_js_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_2_use_2_node_modules_less_loader_dist_cjs_js_style_less__WEBPACK_IMPORTED_MODULE_6__["default"].locals : undefined);
+
+
+/***/ },
+
+/***/ "./plugins/a11y-text-wand/about.handlebars"
 /*!*************************************************!*\
   !*** ./plugins/a11y-text-wand/about.handlebars ***!
   \*************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+(module, __unused_webpack_exports, __webpack_require__) {
 
 var Handlebars = __webpack_require__(/*! ../../node_modules/handlebars/runtime.js */ "./node_modules/handlebars/runtime.js");
 function __default(obj) { return obj && (obj.__esModule ? obj["default"] : obj); }
@@ -13138,16 +13945,16 @@ module.exports = (Handlebars["default"] || Handlebars).template({"compiler":[8,"
     return "<p>Screen reader wand</p>\n<p>Hover over elements to view them as a screen reader would</p>\n<p>\n    Note that real screen readers have a concept of focus (much like keyboard\n    focus) which users might navigate with by jumping to different headings,\n    links or input fields rather than in a mouse like way.\n</p>\n<p>\n    Firefox can enable Caret Browsing with F7 which is closer to the type of\n    navigation a screen reader might use.\n</p>\n";
 },"useData":true});
 
-/***/ }),
+/***/ },
 
-/***/ "./plugins/a11y-text-wand/index.js":
+/***/ "./plugins/a11y-text-wand/index.js"
 /*!*****************************************!*\
   !*** ./plugins/a11y-text-wand/index.js ***!
   \*****************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+(module, __unused_webpack_exports, __webpack_require__) {
 
-/* WEBPACK VAR INJECTION */(function(buildElement) {/**
+/* provided dependency */ var buildElement = __webpack_require__(/*! ./utils/element */ "./utils/element.js");
+/**
  * Allows users to see what screen readers would see.
  */
 
@@ -13191,35 +13998,67 @@ class A11yTextWand extends Plugin {
   }
 }
 module.exports = A11yTextWand;
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./utils/element */ "./utils/element.js")))
 
-/***/ }),
+/***/ },
 
-/***/ "./plugins/a11y-text-wand/style.less":
+/***/ "./plugins/a11y-text-wand/style.less"
 /*!*******************************************!*\
   !*** ./plugins/a11y-text-wand/style.less ***!
   \*******************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
-// style-loader: Adds some css to the DOM by adding a <style> tag
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !../../node_modules/style-loader/dist/runtime/styleDomAPI.js */ "./node_modules/style-loader/dist/runtime/styleDomAPI.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../node_modules/style-loader/dist/runtime/insertBySelector.js */ "./node_modules/style-loader/dist/runtime/insertBySelector.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! !../../node_modules/style-loader/dist/runtime/setAttributesWithoutAttributes.js */ "./node_modules/style-loader/dist/runtime/setAttributesWithoutAttributes.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! !../../node_modules/style-loader/dist/runtime/insertStyleElement.js */ "./node_modules/style-loader/dist/runtime/insertStyleElement.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! !../../node_modules/style-loader/dist/runtime/styleTagTransform.js */ "./node_modules/style-loader/dist/runtime/styleTagTransform.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _node_modules_css_loader_dist_cjs_js_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_2_use_2_node_modules_less_loader_dist_cjs_js_style_less__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! !!../../node_modules/css-loader/dist/cjs.js!../../node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[2].use[2]!../../node_modules/less-loader/dist/cjs.js!./style.less */ "./node_modules/css-loader/dist/cjs.js!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[2].use[2]!./node_modules/less-loader/dist/cjs.js!./plugins/a11y-text-wand/style.less");
 
-// load the styles
-var content = __webpack_require__(/*! !../../node_modules/css-loader!../../node_modules/postcss-loader/src??postcss!../../node_modules/less-loader/dist/cjs.js!./style.less */ "./node_modules/css-loader/index.js!./node_modules/postcss-loader/src/index.js?!./node_modules/less-loader/dist/cjs.js!./plugins/a11y-text-wand/style.less");
-if(typeof content === 'string') content = [[module.i, content, '']];
-// add the styles to the DOM
-var update = __webpack_require__(/*! ../../node_modules/style-loader/addStyles.js */ "./node_modules/style-loader/addStyles.js")(content, {});
-// Hot Module Replacement
-if(false) {}
+      
+      
+      
+      
+      
+      
+      
+      
+      
 
-/***/ }),
+var options = {};
 
-/***/ "./plugins/alt-text/about.handlebars":
+options.styleTagTransform = (_node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5___default());
+options.setAttributes = (_node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3___default());
+options.insert = _node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2___default().bind(null, "head");
+options.domAPI = (_node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1___default());
+options.insertStyleElement = (_node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4___default());
+
+var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_2_use_2_node_modules_less_loader_dist_cjs_js_style_less__WEBPACK_IMPORTED_MODULE_6__["default"], options);
+
+
+
+
+       /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_2_use_2_node_modules_less_loader_dist_cjs_js_style_less__WEBPACK_IMPORTED_MODULE_6__["default"] && _node_modules_css_loader_dist_cjs_js_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_2_use_2_node_modules_less_loader_dist_cjs_js_style_less__WEBPACK_IMPORTED_MODULE_6__["default"].locals ? _node_modules_css_loader_dist_cjs_js_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_2_use_2_node_modules_less_loader_dist_cjs_js_style_less__WEBPACK_IMPORTED_MODULE_6__["default"].locals : undefined);
+
+
+/***/ },
+
+/***/ "./plugins/alt-text/about.handlebars"
 /*!*******************************************!*\
   !*** ./plugins/alt-text/about.handlebars ***!
   \*******************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+(module, __unused_webpack_exports, __webpack_require__) {
 
 var Handlebars = __webpack_require__(/*! ../../node_modules/handlebars/runtime.js */ "./node_modules/handlebars/runtime.js");
 function __default(obj) { return obj && (obj.__esModule ? obj["default"] : obj); }
@@ -13227,14 +14066,13 @@ module.exports = (Handlebars["default"] || Handlebars).template({"compiler":[8,"
     return "<div class=\"tota11y-info-about-title\">\n    <a\n            href=\"https://www.w3.org/TR/WCAG21/#text-alternatives\"\n            target=\"_blank\" class=\"tota11y-info-link\">\n        <span class=\"tota11y-info-about-title-link\">\n            WCAG &sect; 1.1.1 (Level A)\n        </span>\n    </a>\n</div>\n<p>\n    Visual and audio information is not accessible to all users. Text\n    alternatives to audiovisual information can provide blind, deaf, hard of\n    hearing, and other users with access to the same information.\n</p>\n<p>\n    The Web Content Accessibility Guidelines list this criteria at the lowest\n    level of conformance and as first in the guidelines.\n    Providing alt text on all images is a good starting place.\n</p>\n<p>\n    <a\n            href=\"https://www.w3.org/WAI/WCAG21/Understanding/non-text-content.html\"\n            target=\"_blank\" class=\"tota11y-info-link\">\n        Understanding non text content\n    </a>\n</p>\n";
 },"useData":true});
 
-/***/ }),
+/***/ },
 
-/***/ "./plugins/alt-text/image-error-template.handlebars":
+/***/ "./plugins/alt-text/image-error-template.handlebars"
 /*!**********************************************************!*\
   !*** ./plugins/alt-text/image-error-template.handlebars ***!
   \**********************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+(module, __unused_webpack_exports, __webpack_require__) {
 
 var Handlebars = __webpack_require__(/*! ../../node_modules/handlebars/runtime.js */ "./node_modules/handlebars/runtime.js");
 function __default(obj) { return obj && (obj.__esModule ? obj["default"] : obj); }
@@ -13255,14 +14093,13 @@ module.exports = (Handlebars["default"] || Handlebars).template({"compiler":[8,"
     + " role=\"presentation\"&gt;</code></pre>\n\n<p>\n    Extended text descriptions can be provided using <a\n            href=\"https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Techniques/Using_the_aria-describedby_attribute\"\n            target=\"_blank\" class=\"tota11y-info-link\">\n        aria-describedby\n    </a>\n</p>\n";
 },"useData":true});
 
-/***/ }),
+/***/ },
 
-/***/ "./plugins/alt-text/index.js":
+/***/ "./plugins/alt-text/index.js"
 /*!***********************************!*\
   !*** ./plugins/alt-text/index.js ***!
   \***********************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+(module, __unused_webpack_exports, __webpack_require__) {
 
 /**
  * A plugin to check for valid alternative representations for images
@@ -13411,14 +14248,13 @@ class AltTextPlugin extends Plugin {
 }
 module.exports = AltTextPlugin;
 
-/***/ }),
+/***/ },
 
-/***/ "./plugins/alt-text/input-image-error-template.handlebars":
+/***/ "./plugins/alt-text/input-image-error-template.handlebars"
 /*!****************************************************************!*\
   !*** ./plugins/alt-text/input-image-error-template.handlebars ***!
   \****************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+(module, __unused_webpack_exports, __webpack_require__) {
 
 var Handlebars = __webpack_require__(/*! ../../node_modules/handlebars/runtime.js */ "./node_modules/handlebars/runtime.js");
 function __default(obj) { return obj && (obj.__esModule ? obj["default"] : obj); }
@@ -13439,14 +14275,13 @@ module.exports = (Handlebars["default"] || Handlebars).template({"compiler":[8,"
     + " role=\"presentation\"&gt;&lt;/input&gt;</code></pre>\n";
 },"useData":true});
 
-/***/ }),
+/***/ },
 
-/***/ "./plugins/alt-text/no-audio-description-error-template.handlebars":
+/***/ "./plugins/alt-text/no-audio-description-error-template.handlebars"
 /*!*************************************************************************!*\
   !*** ./plugins/alt-text/no-audio-description-error-template.handlebars ***!
   \*************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+(module, __unused_webpack_exports, __webpack_require__) {
 
 var Handlebars = __webpack_require__(/*! ../../node_modules/handlebars/runtime.js */ "./node_modules/handlebars/runtime.js");
 function __default(obj) { return obj && (obj.__esModule ? obj["default"] : obj); }
@@ -13463,14 +14298,13 @@ module.exports = (Handlebars["default"] || Handlebars).template({"compiler":[8,"
     + "&gt;</code> element does not have an\n    audio description. You should provide an audio description with <a\n            href=\"https://developer.mozilla.org/en-US/docs/Web/HTML/Element/track\"\n            target=\"_blank\" class=\"tota11y-info-link\">\n        the track element\n    </a> using <code>kind=\"descriptions\"</code> which will users to access\n    timed text alternatives to visual content in media. Audio descriptions\n    should include as much meaningful visual information as possible during\n    pauses in existing dialogue such as scene changes or on-screen text that\n    is not spoken in the main soundtrack.\n</p>\n<p>\n    Audio descriptions are important for blind or visually impaired users\n    who cannot see visual information to access the full content of videos.\n</p>\n<p>\n    If all the information in video is already provided in the audio of the\n    media then no audio description is neccessary.\n</p>\n<div class=\"tota11y-info-resources\">\n    <p>\n        Resources\n    </p>\n    <ul>\n        <li>\n            <a\n                    href=\"https://developer.mozilla.org/en-US/docs/Web/HTML/Element/track\"\n                    target=\"_blank\" class=\"tota11y-info-link\">\n                The track element\n            </a>\n        </li>\n        <li>\n            <a\n                    href=\"https://www.w3.org/TR/WCAG21/#audio-description-or-media-alternative-prerecorded\"\n                    target=\"_blank\" class=\"tota11y-info-link\">\n                WCAG &sect; 1.2.3 (Level A)\n            </a>\n        </li>\n        <li>\n            <a\n                    href=\"https://www.w3.org/TR/WCAG21/#audio-description-prerecorded\"\n                    target=\"_blank\" class=\"tota11y-info-link\">\n                WCAG &sect; 1.2.5 (Level AA)\n            </a>\n        </li>\n    </ul>\n</div>\n";
 },"useData":true});
 
-/***/ }),
+/***/ },
 
-/***/ "./plugins/alt-text/no-captions-error-template.handlebars":
+/***/ "./plugins/alt-text/no-captions-error-template.handlebars"
 /*!****************************************************************!*\
   !*** ./plugins/alt-text/no-captions-error-template.handlebars ***!
   \****************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+(module, __unused_webpack_exports, __webpack_require__) {
 
 var Handlebars = __webpack_require__(/*! ../../node_modules/handlebars/runtime.js */ "./node_modules/handlebars/runtime.js");
 function __default(obj) { return obj && (obj.__esModule ? obj["default"] : obj); }
@@ -13487,14 +14321,13 @@ module.exports = (Handlebars["default"] || Handlebars).template({"compiler":[8,"
     + "&gt;</code> element does not have any\n    captions. You should provide captions with <a\n            href=\"https://developer.mozilla.org/en-US/docs/Web/HTML/Element/track\"\n            target=\"_blank\" class=\"tota11y-info-link\">\n        the track element\n    </a> using <code>kind=\"captions\"</code> which will allow users to access\n    timed text alternatives to audio. Captions should include as much meaningful\n    audio information as possible, not just what is said but who is speaking\n    and sound descriptions.\n</p>\n<p>\n    Captions are important for deaf users and users who cannot listen\n    to audio in their current context to access the full content of videos.\n</p>\n<p>\n    Captions are not neccessary when the media is an alternative for text and\n    users can read the text instead.\n</p>\n<div class=\"tota11y-info-resources\">\n    <p>\n        Resources\n    </p>\n    <ul>\n        <li>\n            <a\n                    href=\"https://developer.mozilla.org/en-US/docs/Web/HTML/Element/track\"\n                    target=\"_blank\" class=\"tota11y-info-link\">\n                The track element\n            </a>\n        </li>\n        <li>\n            <a\n                    href=\"https://www.w3.org/TR/WCAG21/#captions-prerecorded\"\n                    target=\"_blank\" class=\"tota11y-info-link\">\n                WCAG &sect; 1.2.2 (Level A)\n            </a>\n        </li>\n    </ul>\n</div>\n";
 },"useData":true});
 
-/***/ }),
+/***/ },
 
-/***/ "./plugins/alt-text/no-fallback-text-error-template.handlebars":
+/***/ "./plugins/alt-text/no-fallback-text-error-template.handlebars"
 /*!*********************************************************************!*\
   !*** ./plugins/alt-text/no-fallback-text-error-template.handlebars ***!
   \*********************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+(module, __unused_webpack_exports, __webpack_require__) {
 
 var Handlebars = __webpack_require__(/*! ../../node_modules/handlebars/runtime.js */ "./node_modules/handlebars/runtime.js");
 function __default(obj) { return obj && (obj.__esModule ? obj["default"] : obj); }
@@ -13521,16 +14354,16 @@ module.exports = (Handlebars["default"] || Handlebars).template({"compiler":[8,"
     + " role=\"presentation\"&gt;</code></pre>\n\n<div class=\"tota11y-info-resources\">\n    <p>\n        Resources\n    </p>\n    <ul>\n        <li>\n            <a\n                    href=\"https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA\"\n                    target=\"_blank\" class=\"tota11y-info-link\">\n                ARIA\n            </a>\n        </li>\n        <li>\n            <a\n                    href=\"https://developer.mozilla.org/en-US/docs/Web/HTML/Element/track\"\n                    target=\"_blank\" class=\"tota11y-info-link\">\n                The track element\n            </a>\n        </li>\n    </ul>\n</div>\n";
 },"useData":true});
 
-/***/ }),
+/***/ },
 
-/***/ "./plugins/base.js":
+/***/ "./plugins/base.js"
 /*!*************************!*\
   !*** ./plugins/base.js ***!
   \*************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+(module, __unused_webpack_exports, __webpack_require__) {
 
-/* WEBPACK VAR INJECTION */(function(buildElement) {/**
+/* provided dependency */ var buildElement = __webpack_require__(/*! ./utils/element */ "./utils/element.js");
+/**
  * Base class for plugins.
  *
  * This module defines methods to render and mount plugins to the toolbar.
@@ -13638,16 +14471,14 @@ class Plugin {
   }
 }
 module.exports = Plugin;
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./utils/element */ "./utils/element.js")))
 
-/***/ }),
+/***/ },
 
-/***/ "./plugins/contrast/about.handlebars":
+/***/ "./plugins/contrast/about.handlebars"
 /*!*******************************************!*\
   !*** ./plugins/contrast/about.handlebars ***!
   \*******************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+(module, __unused_webpack_exports, __webpack_require__) {
 
 var Handlebars = __webpack_require__(/*! ../../node_modules/handlebars/runtime.js */ "./node_modules/handlebars/runtime.js");
 function __default(obj) { return obj && (obj.__esModule ? obj["default"] : obj); }
@@ -13655,14 +14486,13 @@ module.exports = (Handlebars["default"] || Handlebars).template({"compiler":[8,"
     return "<div>\n<div class=\"tota11y-info-about-title\">\n    <a href=\"https://www.w3.org/TR/WCAG21/#contrast-minimum\" target=\"_blank\">\n        <span class=\"tota11y-info-about-title-link\">\n            WCAG &sect; 1.4.3 (Level AA)\n        </span>\n    </a>\n</div>\n<p>\n    Text with low contract can be hard to read for some users, particularly\n    when the text is small or in direct sunlight.\n</p>\n<p>\n    The Web Content Accessibility Guidelines give criteria for minimum text\n    contrast standards, which depend on the size of the text.\n</p>\n<p>\n    This tool cannot identify text contrast against background images or\n    in images of text but these should also meet the minimum text contrast\n    guidelines to ensure that your website is accessible to people with\n    visual impairments.\n</p>\n<p>\n    <a\n            href=\"https://www.w3.org/WAI/WCAG21/Understanding/contrast-minimum.html\"\n            class=\"tota11y-info-link\">\n        Understanding minimum contrast\n    </a>\n</p>\n</div>\n";
 },"useData":true});
 
-/***/ }),
+/***/ },
 
-/***/ "./plugins/contrast/error-description.handlebars":
+/***/ "./plugins/contrast/error-description.handlebars"
 /*!*******************************************************!*\
   !*** ./plugins/contrast/error-description.handlebars ***!
   \*******************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+(module, __unused_webpack_exports, __webpack_require__) {
 
 var Handlebars = __webpack_require__(/*! ../../node_modules/handlebars/runtime.js */ "./node_modules/handlebars/runtime.js");
 function __default(obj) { return obj && (obj.__esModule ? obj["default"] : obj); }
@@ -13695,14 +14525,13 @@ module.exports = (Handlebars["default"] || Handlebars).template({"compiler":[8,"
     + "</strong>\n        <br />\n\n        <label>\n            Preview:\n            <input class=\"preview-contrast-fix\" type=\"checkbox\">\n        </label>\n    </div>\n</div>\n";
 },"useData":true});
 
-/***/ }),
+/***/ },
 
-/***/ "./plugins/contrast/error-title.handlebars":
+/***/ "./plugins/contrast/error-title.handlebars"
 /*!*************************************************!*\
   !*** ./plugins/contrast/error-title.handlebars ***!
   \*************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+(module, __unused_webpack_exports, __webpack_require__) {
 
 var Handlebars = __webpack_require__(/*! ../../node_modules/handlebars/runtime.js */ "./node_modules/handlebars/runtime.js");
 function __default(obj) { return obj && (obj.__esModule ? obj["default"] : obj); }
@@ -13725,14 +14554,13 @@ module.exports = (Handlebars["default"] || Handlebars).template({"compiler":[8,"
     + " !important\"></span>\n</span>\n";
 },"useData":true});
 
-/***/ }),
+/***/ },
 
-/***/ "./plugins/contrast/index.js":
+/***/ "./plugins/contrast/index.js"
 /*!***********************************!*\
   !*** ./plugins/contrast/index.js ***!
   \***********************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+(module, __unused_webpack_exports, __webpack_require__) {
 
 /**
  * A plugin to label different levels of contrast on the page, and highlight
@@ -13932,33 +14760,66 @@ class ContrastPlugin extends Plugin {
 }
 module.exports = ContrastPlugin;
 
-/***/ }),
+/***/ },
 
-/***/ "./plugins/contrast/style.less":
+/***/ "./plugins/contrast/style.less"
 /*!*************************************!*\
   !*** ./plugins/contrast/style.less ***!
   \*************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
-// style-loader: Adds some css to the DOM by adding a <style> tag
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !../../node_modules/style-loader/dist/runtime/styleDomAPI.js */ "./node_modules/style-loader/dist/runtime/styleDomAPI.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../node_modules/style-loader/dist/runtime/insertBySelector.js */ "./node_modules/style-loader/dist/runtime/insertBySelector.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! !../../node_modules/style-loader/dist/runtime/setAttributesWithoutAttributes.js */ "./node_modules/style-loader/dist/runtime/setAttributesWithoutAttributes.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! !../../node_modules/style-loader/dist/runtime/insertStyleElement.js */ "./node_modules/style-loader/dist/runtime/insertStyleElement.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! !../../node_modules/style-loader/dist/runtime/styleTagTransform.js */ "./node_modules/style-loader/dist/runtime/styleTagTransform.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _node_modules_css_loader_dist_cjs_js_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_2_use_2_node_modules_less_loader_dist_cjs_js_style_less__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! !!../../node_modules/css-loader/dist/cjs.js!../../node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[2].use[2]!../../node_modules/less-loader/dist/cjs.js!./style.less */ "./node_modules/css-loader/dist/cjs.js!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[2].use[2]!./node_modules/less-loader/dist/cjs.js!./plugins/contrast/style.less");
 
-// load the styles
-var content = __webpack_require__(/*! !../../node_modules/css-loader!../../node_modules/postcss-loader/src??postcss!../../node_modules/less-loader/dist/cjs.js!./style.less */ "./node_modules/css-loader/index.js!./node_modules/postcss-loader/src/index.js?!./node_modules/less-loader/dist/cjs.js!./plugins/contrast/style.less");
-if(typeof content === 'string') content = [[module.i, content, '']];
-// add the styles to the DOM
-var update = __webpack_require__(/*! ../../node_modules/style-loader/addStyles.js */ "./node_modules/style-loader/addStyles.js")(content, {});
-// Hot Module Replacement
-if(false) {}
+      
+      
+      
+      
+      
+      
+      
+      
+      
 
-/***/ }),
+var options = {};
 
-/***/ "./plugins/document/about.handlebars":
+options.styleTagTransform = (_node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5___default());
+options.setAttributes = (_node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3___default());
+options.insert = _node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2___default().bind(null, "head");
+options.domAPI = (_node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1___default());
+options.insertStyleElement = (_node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4___default());
+
+var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_2_use_2_node_modules_less_loader_dist_cjs_js_style_less__WEBPACK_IMPORTED_MODULE_6__["default"], options);
+
+
+
+
+       /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_2_use_2_node_modules_less_loader_dist_cjs_js_style_less__WEBPACK_IMPORTED_MODULE_6__["default"] && _node_modules_css_loader_dist_cjs_js_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_2_use_2_node_modules_less_loader_dist_cjs_js_style_less__WEBPACK_IMPORTED_MODULE_6__["default"].locals ? _node_modules_css_loader_dist_cjs_js_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_2_use_2_node_modules_less_loader_dist_cjs_js_style_less__WEBPACK_IMPORTED_MODULE_6__["default"].locals : undefined);
+
+
+/***/ },
+
+/***/ "./plugins/document/about.handlebars"
 /*!*******************************************!*\
   !*** ./plugins/document/about.handlebars ***!
   \*******************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+(module, __unused_webpack_exports, __webpack_require__) {
 
 var Handlebars = __webpack_require__(/*! ../../node_modules/handlebars/runtime.js */ "./node_modules/handlebars/runtime.js");
 function __default(obj) { return obj && (obj.__esModule ? obj["default"] : obj); }
@@ -13966,14 +14827,13 @@ module.exports = (Handlebars["default"] || Handlebars).template({"compiler":[8,"
     return "<p>\n    Meta information in HTML documents that are not visually seen on a page\n    can still be important for navigation, favicons and page titles are shown\n    in tabs to assist browsing, and page languages should be specified\n    so screen readers know what language to read text in.\n</p>\n<blockquote>\n    <p>\n        For multilingual sites targeting Conformance Level A, the Working\n        Group [WCAG authors] strongly encourages developers to follow <a\n            href=\"https://www.w3.org/TR/WCAG21/#language-of-parts\"\n            target=\"_blank\"\n            class=\"tota11y-info-link\">Success\n        Criterion 3.1.2\n        </a> as well even though that is a Level AA Success Criterion.\n        <cite>\n            W3C\n        </cite>\n    </p>\n</blockquote>\n<p>\n    This tool does not audit for specifying the language on every part of a\n    multilingual webpage which changes language as in\n    WCAG &sect; 3.1.2 (Level AA).\n</p>\n<div class=\"tota11y-info-resources\">\n    <p>\n        Resources\n    </p>\n    <ul>\n        <li>\n            <a\n                    href=\"https://www.w3.org/TR/WCAG21/#page-titled\"\n                    target=\"_blank\" class=\"tota11y-info-link\">\n                WCAG &sect; 2.4.2 (Level A)\n            </a>\n        </li>\n        <li>\n            <a\n                    href=\"https://www.w3.org/TR/WCAG21/#language-of-page\"\n                    target=\"_blank\" class=\"tota11y-info-link\">\n                WCAG &sect; 3.1.1 (Level A)\n            </a>\n        </li>\n        <li>\n            <a\n                    href=\"https://www.w3.org/TR/WCAG21/#language-of-parts\"\n                    target=\"_blank\" class=\"tota11y-info-link\">\n                WCAG &sect; 3.1.2 (Level AA)\n            </a>\n        </li>\n        <li>\n            <a\n                    href=\"https://www.w3.org/International/questions/qa-html-language-declarations\"\n                    target=\"_blank\" class=\"tota11y-info-link\">\n                Declaring the language of the page\n            </a>\n        </li>\n    </ul>\n</div>\n";
 },"useData":true});
 
-/***/ }),
+/***/ },
 
-/***/ "./plugins/document/index.js":
+/***/ "./plugins/document/index.js"
 /*!***********************************!*\
   !*** ./plugins/document/index.js ***!
   \***********************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+(module, __unused_webpack_exports, __webpack_require__) {
 
 /*
  * A plugin to check the document metadata for the presence of important data
@@ -14012,14 +14872,13 @@ class DocumentPlugin extends Plugin {
 }
 module.exports = DocumentPlugin;
 
-/***/ }),
+/***/ },
 
-/***/ "./plugins/document/no-lang-error-template.handlebars":
+/***/ "./plugins/document/no-lang-error-template.handlebars"
 /*!************************************************************!*\
   !*** ./plugins/document/no-lang-error-template.handlebars ***!
   \************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+(module, __unused_webpack_exports, __webpack_require__) {
 
 var Handlebars = __webpack_require__(/*! ../../node_modules/handlebars/runtime.js */ "./node_modules/handlebars/runtime.js");
 function __default(obj) { return obj && (obj.__esModule ? obj["default"] : obj); }
@@ -14027,14 +14886,13 @@ module.exports = (Handlebars["default"] || Handlebars).template({"compiler":[8,"
     return "<p>\n    This document does not have a language specified on\n    its <code>&lt;html&gt;</code> element. You can specify the language like so:\n</p>\n<pre><code>&lt;html lang=\"en\"&gt;</code></pre>\n<p>\n    It is important to specify the language of the HTML document (and around\n    any text that changes language) so that assistive tools like screen readers\n    know what language to read text in.\n</p>\n<p>\n    The text for the language attribute must be a valid language code such\n    as \"<i>en</i>\" for English, \"<i>en-GB</i>\" for British English, or\n    \"<i>fr</i>\" for French.\n</p>\n<div class=\"tota11y-info-resources\">\n    <p>\n        Learn more\n    </p>\n    <ul>\n        <li>\n            <a\n                    href=\"https://www.w3.org/International/questions/qa-html-language-declarations\"\n                    target=\"_blank\" class=\"tota11y-info-link\">\n                Declaring the language of the page\n            </a>\n        </li>\n        <li>\n            <a\n                    href=\"https://www.w3.org/TR/WCAG21/#language-of-page\"\n                    target=\"_blank\" class=\"tota11y-info-link\">\n                WCAG &sect; 3.1.1 (Level A)\n            </a>\n        </li>\n    </ul>\n</div>\n";
 },"useData":true});
 
-/***/ }),
+/***/ },
 
-/***/ "./plugins/document/no-page-title-error-template.handlebars":
+/***/ "./plugins/document/no-page-title-error-template.handlebars"
 /*!******************************************************************!*\
   !*** ./plugins/document/no-page-title-error-template.handlebars ***!
   \******************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+(module, __unused_webpack_exports, __webpack_require__) {
 
 var Handlebars = __webpack_require__(/*! ../../node_modules/handlebars/runtime.js */ "./node_modules/handlebars/runtime.js");
 function __default(obj) { return obj && (obj.__esModule ? obj["default"] : obj); }
@@ -14042,14 +14900,13 @@ module.exports = (Handlebars["default"] || Handlebars).template({"compiler":[8,"
     return "<p>\n    This document does not have a page title. You can provide a title like so:\n</p>\n<pre><code>&lt;head&gt;\n    &lt;title&gt;Descriptive title&lt;/title&gt;\n&lt;/head&gt;</code></pre>\n<p>\n    It is important to specify a descriptive title for every Web page for Search\n    Engine Optimisation and to help users navigate between pages.\n</p>\n<p><a\n        href=\"https://www.w3.org/TR/WCAG21/#page-titled\"\n        target=\"_blank\" class=\"tota11y-info-link\">\n    WCAG &sect; 2.4.2 (Level A)\n</a></p>\n";
 },"useData":true});
 
-/***/ }),
+/***/ },
 
-/***/ "./plugins/document/summary-template.handlebars":
+/***/ "./plugins/document/summary-template.handlebars"
 /*!******************************************************!*\
   !*** ./plugins/document/summary-template.handlebars ***!
   \******************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+(module, __unused_webpack_exports, __webpack_require__) {
 
 var Handlebars = __webpack_require__(/*! ../../node_modules/handlebars/runtime.js */ "./node_modules/handlebars/runtime.js");
 function __default(obj) { return obj && (obj.__esModule ? obj["default"] : obj); }
@@ -14068,14 +14925,13 @@ module.exports = (Handlebars["default"] || Handlebars).template({"compiler":[8,"
     + "</i>\"</p>\n";
 },"useData":true});
 
-/***/ }),
+/***/ },
 
-/***/ "./plugins/forms/about.handlebars":
+/***/ "./plugins/forms/about.handlebars"
 /*!****************************************!*\
   !*** ./plugins/forms/about.handlebars ***!
   \****************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+(module, __unused_webpack_exports, __webpack_require__) {
 
 var Handlebars = __webpack_require__(/*! ../../node_modules/handlebars/runtime.js */ "./node_modules/handlebars/runtime.js");
 function __default(obj) { return obj && (obj.__esModule ? obj["default"] : obj); }
@@ -14083,14 +14939,13 @@ module.exports = (Handlebars["default"] || Handlebars).template({"compiler":[8,"
     return "<div class=\"tota11y-info-about-title\">\n    <a\n            href=\"https://www.w3.org/TR/WCAG21/#info-and-relationships\"\n            target=\"_blank\" class=\"tota11y-info-link\">\n        <span class=\"tota11y-info-about-title-link\">\n            WCAG &sect; 1.3.1 (Level A)\n        </span>\n    </a>\n</div>\n<p>\n    Forms and form elements used outside of forms need a programmatically\n    accessible label (also known as the accessible name) for assistive\n    technologies to identify their purpose and so that users of these\n    technologies (like screen readers or speech input navigation) can fill them\n    in correctly. For most elements the contained text or\n    a <code>label</code> element is the best way to provide this name. Labels\n    and text inside buttons are visible by default which will also\n    help sighted users to understand the purpose of the form elements.\n</p>\n<p>\n    In some situations it might not be appropriate to use\n    a <code>label</code> element but you should still ensure the information,\n    structure and relationships visually shown can be programmatically\n    determined by using other semantic markup such as ARIA.\n</p>\n<a class=\"tota11y-click-to-expand\" aria-expanded=\"false\" href=\"javascript:void(0)\">\n    <div class=\"tota11y-expandable\">\n        <p>\n            You should not use <code>p</code> elements to label inputs as they\n            have no association.\n        </p>\n<pre><code>&lt;p&gt;\nName\n&lt;/p&gt;\n&lt;input id=\"my-input\"&gt;&lt;/input&gt;</code></pre>\n        <p>\n            The </code>label</code> element will be read out by screen readers\n            when a user interacts with the input because they are\n            programmatically associated.\n        </p>\n<pre><code>&lt;label for=\"my-input\"&gt;\nName\n&lt;/label&gt;\n&lt;input id=\"my-input\"&gt;&lt;/input&gt;</code></pre>\n        <p>\n            The <code>placeholder</code> attribute is not guaranteed to be read\n            by assistive technologies. It is better to include a proper label.\n        </p>\n<pre><code>&lt;input type=\"search\" placeholder=\"search\"&gt;&lt;/input&gt;</code></pre>\n        <p>\n            If a <label>label</label> element would not be appropriate due to\n            visual design the <code>aria-label</code> attribute can be used\n            instead to provide an accessible name to assistive tools without\n            affecting the visual presentation.\n        </p>\n<pre><code>&lt;input type=\"search\" placeholder=\"search\" aria-label=\"search\"&gt;&lt;/input&gt;</code></pre>\n        <p>\n            ARIA takes priority over other ways of determining the accessible\n            name of an element so should be used with care to avoid the\n            accessible name being completely different to the visually\n            presented label/name.\n        </p>\n    </div>\n</a>\n<div class=\"tota11y-info-resources\">\n    <p>\n        Resources\n    </p>\n    <ul>\n        <li>\n            <a\n                    href=\"https://www.w3.org/TR/WCAG21/#info-and-relationships\"\n                    target=\"_blank\" class=\"tota11y-info-link\">\n                WCAG &sect; 1.3.1 (Level A)\n            </a>\n        </li>\n        <li>\n            <a\n                    href=\"https://www.w3.org/WAI/WCAG21/Understanding/info-and-relationships.html\"\n                    target=\"_blank\" class=\"tota11y-info-link\">\n                Understanding Info and Relationships\n            </a>\n        </li>\n        <li>\n            <a\n                    href=\"https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA\"\n                    target=\"_blank\" class=\"tota11y-info-link\">\n                ARIA\n            </a>\n        </li>\n    </ul>\n</div>\n";
 },"useData":true});
 
-/***/ }),
+/***/ },
 
-/***/ "./plugins/forms/alt-text-error-template.handlebars":
+/***/ "./plugins/forms/alt-text-error-template.handlebars"
 /*!**********************************************************!*\
   !*** ./plugins/forms/alt-text-error-template.handlebars ***!
   \**********************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+(module, __unused_webpack_exports, __webpack_require__) {
 
 var Handlebars = __webpack_require__(/*! ../../node_modules/handlebars/runtime.js */ "./node_modules/handlebars/runtime.js");
 function __default(obj) { return obj && (obj.__esModule ? obj["default"] : obj); }
@@ -14136,14 +14991,13 @@ module.exports = (Handlebars["default"] || Handlebars).template({"1":function(co
     + ((stack1 = lookupProperty(helpers,"if").call(alias1,(depth0 != null ? lookupProperty(depth0,"type") : depth0),{"name":"if","hash":{},"fn":container.program(1, data, 0),"inverse":container.program(3, data, 0),"data":data,"loc":{"start":{"line":10,"column":0},"end":{"line":18,"column":7}}})) != null ? stack1 : "");
 },"useData":true});
 
-/***/ }),
+/***/ },
 
-/***/ "./plugins/forms/error-template.handlebars":
+/***/ "./plugins/forms/error-template.handlebars"
 /*!*************************************************!*\
   !*** ./plugins/forms/error-template.handlebars ***!
   \*************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+(module, __unused_webpack_exports, __webpack_require__) {
 
 var Handlebars = __webpack_require__(/*! ../../node_modules/handlebars/runtime.js */ "./node_modules/handlebars/runtime.js");
 function __default(obj) { return obj && (obj.__esModule ? obj["default"] : obj); }
@@ -14184,14 +15038,13 @@ module.exports = (Handlebars["default"] || Handlebars).template({"1":function(co
     + ((stack1 = lookupProperty(helpers,"if").call(alias1,(depth0 != null ? lookupProperty(depth0,"id") : depth0),{"name":"if","hash":{},"fn":container.program(3, data, 0),"inverse":container.program(5, data, 0),"data":data,"loc":{"start":{"line":8,"column":0},"end":{"line":28,"column":7}}})) != null ? stack1 : "");
 },"useData":true});
 
-/***/ }),
+/***/ },
 
-/***/ "./plugins/forms/index.js":
+/***/ "./plugins/forms/index.js"
 /*!********************************!*\
   !*** ./plugins/forms/index.js ***!
   \********************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+(module, __unused_webpack_exports, __webpack_require__) {
 
 /**
  * A plugin to identify unlabeled inputs
@@ -14322,14 +15175,13 @@ class FormsPlugin extends Plugin {
 }
 module.exports = FormsPlugin;
 
-/***/ }),
+/***/ },
 
-/***/ "./plugins/forms/read-only-click-event-error-template.handlebars":
+/***/ "./plugins/forms/read-only-click-event-error-template.handlebars"
 /*!***********************************************************************!*\
   !*** ./plugins/forms/read-only-click-event-error-template.handlebars ***!
   \***********************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+(module, __unused_webpack_exports, __webpack_require__) {
 
 var Handlebars = __webpack_require__(/*! ../../node_modules/handlebars/runtime.js */ "./node_modules/handlebars/runtime.js");
 function __default(obj) { return obj && (obj.__esModule ? obj["default"] : obj); }
@@ -14337,14 +15189,13 @@ module.exports = (Handlebars["default"] || Handlebars).template({"compiler":[8,"
     return "<p>\n    This input is marked as read only but has a click event associated with\n    it which suggests there may be JavaScript that interacts with this input\n    to set its value (such as a popup calandar date selector).\n</p>\n<p>\n    For people using screen readers any interactive popups such as a calendar\n    wiget may not be easily noticed or accessible via tabbing through the form.\n    If this input value should be filled in by users then you should remove the\n    readonly attribute as screen reader users may try to fill it in directly via\n    the keyboard and be unable to proceed.\n</p>\n<pre><code>&lt;input&gt;<del>readonly</del> onclick=\"...\"&lt;/input&gt;</code></pre>\n";
 },"useData":true});
 
-/***/ }),
+/***/ },
 
-/***/ "./plugins/headings/about.handlebars":
+/***/ "./plugins/headings/about.handlebars"
 /*!*******************************************!*\
   !*** ./plugins/headings/about.handlebars ***!
   \*******************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+(module, __unused_webpack_exports, __webpack_require__) {
 
 var Handlebars = __webpack_require__(/*! ../../node_modules/handlebars/runtime.js */ "./node_modules/handlebars/runtime.js");
 function __default(obj) { return obj && (obj.__esModule ? obj["default"] : obj); }
@@ -14352,16 +15203,16 @@ module.exports = (Handlebars["default"] || Handlebars).template({"compiler":[8,"
     return "<div class=\"tota11y-info-about-title\">\n    <a\n            href=\"https://www.w3.org/TR/WCAG21/#info-and-relationships\"\n            target=\"_blank\" class=\"tota11y-info-link\">\n        <span class=\"tota11y-info-about-title-link\">\n            WCAG &sect; 1.3.1 (Level A)\n        </span>\n    </a>\n</div>\n<p>\n    Headings mark webpages with semantic information which not only orders\n    content into logical sections but also allows users of assistive tools\n    to jump through content.\n</p>\n<p>\n    This tool cannot identify if elements such as styled p tags are used\n    instead of headings (in which case they should be changed to headings of\n    the appropriate level) but can detect when headings are used incorrectly\n    such as the first heading not being <codde>h1</code> or nonconsecutive\n    heading numbers.\n</p>\n<p>\n    <a\n            href=\"https://www.w3.org/WAI/WCAG21/Understanding/info-and-relationships.html\"\n            target=\"_blank\" class=\"tota11y-info-link\">\n        Understanding Info and Relationships\n    </a>\n</p>\n";
 },"useData":true});
 
-/***/ }),
+/***/ },
 
-/***/ "./plugins/headings/index.js":
+/***/ "./plugins/headings/index.js"
 /*!***********************************!*\
   !*** ./plugins/headings/index.js ***!
   \***********************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+(module, __unused_webpack_exports, __webpack_require__) {
 
-/* WEBPACK VAR INJECTION */(function(buildElement) {/**
+/* provided dependency */ var buildElement = __webpack_require__(/*! ./utils/element */ "./utils/element.js");
+/**
  * A plugin to identify and validate heading tags (<h1>, <h2>, etc.)
  */
 
@@ -14548,16 +15399,14 @@ class HeadingsPlugin extends Plugin {
   }
 }
 module.exports = HeadingsPlugin;
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./utils/element */ "./utils/element.js")))
 
-/***/ }),
+/***/ },
 
-/***/ "./plugins/headings/outline-item.handlebars":
+/***/ "./plugins/headings/outline-item.handlebars"
 /*!**************************************************!*\
   !*** ./plugins/headings/outline-item.handlebars ***!
   \**************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+(module, __unused_webpack_exports, __webpack_require__) {
 
 var Handlebars = __webpack_require__(/*! ../../node_modules/handlebars/runtime.js */ "./node_modules/handlebars/runtime.js");
 function __default(obj) { return obj && (obj.__esModule ? obj["default"] : obj); }
@@ -14578,33 +15427,66 @@ module.exports = (Handlebars["default"] || Handlebars).template({"compiler":[8,"
     + "</span>\n</div>\n";
 },"useData":true});
 
-/***/ }),
+/***/ },
 
-/***/ "./plugins/headings/style.less":
+/***/ "./plugins/headings/style.less"
 /*!*************************************!*\
   !*** ./plugins/headings/style.less ***!
   \*************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
-// style-loader: Adds some css to the DOM by adding a <style> tag
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !../../node_modules/style-loader/dist/runtime/styleDomAPI.js */ "./node_modules/style-loader/dist/runtime/styleDomAPI.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../node_modules/style-loader/dist/runtime/insertBySelector.js */ "./node_modules/style-loader/dist/runtime/insertBySelector.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! !../../node_modules/style-loader/dist/runtime/setAttributesWithoutAttributes.js */ "./node_modules/style-loader/dist/runtime/setAttributesWithoutAttributes.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! !../../node_modules/style-loader/dist/runtime/insertStyleElement.js */ "./node_modules/style-loader/dist/runtime/insertStyleElement.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! !../../node_modules/style-loader/dist/runtime/styleTagTransform.js */ "./node_modules/style-loader/dist/runtime/styleTagTransform.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _node_modules_css_loader_dist_cjs_js_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_2_use_2_node_modules_less_loader_dist_cjs_js_style_less__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! !!../../node_modules/css-loader/dist/cjs.js!../../node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[2].use[2]!../../node_modules/less-loader/dist/cjs.js!./style.less */ "./node_modules/css-loader/dist/cjs.js!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[2].use[2]!./node_modules/less-loader/dist/cjs.js!./plugins/headings/style.less");
 
-// load the styles
-var content = __webpack_require__(/*! !../../node_modules/css-loader!../../node_modules/postcss-loader/src??postcss!../../node_modules/less-loader/dist/cjs.js!./style.less */ "./node_modules/css-loader/index.js!./node_modules/postcss-loader/src/index.js?!./node_modules/less-loader/dist/cjs.js!./plugins/headings/style.less");
-if(typeof content === 'string') content = [[module.i, content, '']];
-// add the styles to the DOM
-var update = __webpack_require__(/*! ../../node_modules/style-loader/addStyles.js */ "./node_modules/style-loader/addStyles.js")(content, {});
-// Hot Module Replacement
-if(false) {}
+      
+      
+      
+      
+      
+      
+      
+      
+      
 
-/***/ }),
+var options = {};
 
-/***/ "./plugins/index.js":
+options.styleTagTransform = (_node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5___default());
+options.setAttributes = (_node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3___default());
+options.insert = _node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2___default().bind(null, "head");
+options.domAPI = (_node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1___default());
+options.insertStyleElement = (_node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4___default());
+
+var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_2_use_2_node_modules_less_loader_dist_cjs_js_style_less__WEBPACK_IMPORTED_MODULE_6__["default"], options);
+
+
+
+
+       /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_2_use_2_node_modules_less_loader_dist_cjs_js_style_less__WEBPACK_IMPORTED_MODULE_6__["default"] && _node_modules_css_loader_dist_cjs_js_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_2_use_2_node_modules_less_loader_dist_cjs_js_style_less__WEBPACK_IMPORTED_MODULE_6__["default"].locals ? _node_modules_css_loader_dist_cjs_js_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_2_use_2_node_modules_less_loader_dist_cjs_js_style_less__WEBPACK_IMPORTED_MODULE_6__["default"].locals : undefined);
+
+
+/***/ },
+
+/***/ "./plugins/index.js"
 /*!**************************!*\
   !*** ./plugins/index.js ***!
   \**************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+(module, __unused_webpack_exports, __webpack_require__) {
 
 /**
  * An index of plugins.
@@ -14629,14 +15511,13 @@ module.exports = {
   experimental: [new A11yTextWand()]
 };
 
-/***/ }),
+/***/ },
 
-/***/ "./plugins/landmarks/about.handlebars":
+/***/ "./plugins/landmarks/about.handlebars"
 /*!********************************************!*\
   !*** ./plugins/landmarks/about.handlebars ***!
   \********************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+(module, __unused_webpack_exports, __webpack_require__) {
 
 var Handlebars = __webpack_require__(/*! ../../node_modules/handlebars/runtime.js */ "./node_modules/handlebars/runtime.js");
 function __default(obj) { return obj && (obj.__esModule ? obj["default"] : obj); }
@@ -14644,14 +15525,13 @@ module.exports = (Handlebars["default"] || Handlebars).template({"compiler":[8,"
     return "<p>\n    ARIA stands for Accessible Rich Internet Applications. ARIA is a set\n    of attributes that can supplement the normal semantics of HTML elements\n    and pass rich information to assistive technologies.\n</p>\n<p>\n    ARIA landmarks can add semantic information to existing HTML elements\n    such as <code>&lt;div role=\"search\"&gt;</code> to provide richer navigation\n    to assistive technologies and machines, though HTML5 elements which\n    have this semantic information by default should be prefered when they\n    exist. Landmarks enable users of assistive tools to skip to relevant\n    content\n</p>\n<p><strong>\n    This plugin only visualises ARIA landmarks and does not report errors.\n</strong></p>\n<p>\n    Some advice on ARIA landmarks suggests using HTML5 semantic elements and\n    redundantly specifying their role to support older browsers and assistive\n    technologies. However the ARIA standard was completed by the WC3 in 2014\n    and <a\n            href=\"https://caniuse.com/#search=article\"\n            target=\"_blank\" class=\"tota11y-info-link\">\n        the HTML5 semantic elements are widely supported apart from IE\n    </a>.\n</p>\n<div class=\"tota11y-info-resources\">\n    <p>\n        Resources\n    </p>\n    <ul>\n        <li>\n            <a\n                    href=\"https://www.w3.org/TR/aria-in-html/#firstrule\"\n                    target=\"_blank\" class=\"tota11y-info-link\">\n                Using ARIA\n            </a>\n        </li>\n        <li>\n            <a\n                    href=\"https://developer.mozilla.org/en-US/docs/Web/HTML/Element#Content_sectioning\"\n                    target=\"_blank\" class=\"tota11y-info-link\">\n                HTML5 Semantic Sectioning Elements\n            </a>\n        </li>\n        <li>\n            <a\n                    href=\"https://a11yproject.com/posts/aria-landmark-roles/\"\n                    target=\"_blank\" class=\"tota11y-info-link\">\n                Mapping between ARIA Landmark roles &amp; HTML5 elements\n            </a>\n        </li>\n    </ul>\n</div>\n";
 },"useData":true});
 
-/***/ }),
+/***/ },
 
-/***/ "./plugins/landmarks/index.js":
+/***/ "./plugins/landmarks/index.js"
 /*!************************************!*\
   !*** ./plugins/landmarks/index.js ***!
   \************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+(module, __unused_webpack_exports, __webpack_require__) {
 
 /**
  * A plugin to label all ARIA landmark roles
@@ -14700,14 +15580,13 @@ class LandmarksPlugin extends Plugin {
 }
 module.exports = LandmarksPlugin;
 
-/***/ }),
+/***/ },
 
-/***/ "./plugins/layout/about.handlebars":
+/***/ "./plugins/layout/about.handlebars"
 /*!*****************************************!*\
   !*** ./plugins/layout/about.handlebars ***!
   \*****************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+(module, __unused_webpack_exports, __webpack_require__) {
 
 var Handlebars = __webpack_require__(/*! ../../node_modules/handlebars/runtime.js */ "./node_modules/handlebars/runtime.js");
 function __default(obj) { return obj && (obj.__esModule ? obj["default"] : obj); }
@@ -14715,14 +15594,13 @@ module.exports = (Handlebars["default"] || Handlebars).template({"compiler":[8,"
     return "<p>\n    Users may modify text properties like font size or text spacing\n    on webpages with their own user style sheets to help them read so it is\n    important to ensure all text is still legible when modified.\n</p>\n<p>\n    As enlarged text may overflow elements this creates a problem if the\n    elements are styled with <code>overflow: hidden;</code> which will hide\n    overflowing text. Other elements may also obscure overflowing text.\n</p>\n<p>\n    <label>\n        Preview 200% font size:\n        <input class=\"preview-font-size\" type=\"checkbox\">\n    </label>\n</p>\n<p>\n    <label>\n        Preview modified text spacing as outlined below:\n        <input class=\"preview-text-spacing\" type=\"checkbox\">\n    </label>\n</p>\n<div class=\"tota11y-info-resources\">\n    <ul>\n        <li>Line height to at least 1.5 times the font size</li>\n        <li>Spacing following paragraphs to at least 2 times the font size</li>\n        <li>Letter spacing to at least 0.12 times the font size</li>\n        <li>Word spacing to at least 0.16 times the font size.</li>\n    </ul>\n</div>\n<div class=\"tota11y-info-resources\">\n    <p>\n        Resources\n    </p>\n    <ul>\n        <li>\n            <a\n                    href=\"https://www.w3.org/TR/WCAG21/#resize-text\"\n                    target=\"_blank\" class=\"tota11y-info-link\">\n                WCAG &sect; 1.4.4 (Level AA)\n            </a>\n        </li>\n        <li>\n            <a\n                    href=\"https://www.w3.org/TR/WCAG21/#text-spacing\"\n                    target=\"_blank\" class=\"tota11y-info-link\">\n                WCAG &sect; 1.4.12 (Level AA)\n            </a>\n        </li>\n    </ul>\n</div>\n";
 },"useData":true});
 
-/***/ }),
+/***/ },
 
-/***/ "./plugins/layout/index.js":
+/***/ "./plugins/layout/index.js"
 /*!*********************************!*\
   !*** ./plugins/layout/index.js ***!
   \*********************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+(module, __unused_webpack_exports, __webpack_require__) {
 
 let $ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
 let Plugin = __webpack_require__(/*! ../base */ "./plugins/base.js");
@@ -14782,14 +15660,13 @@ class LayoutPlugin extends Plugin {
 }
 module.exports = LayoutPlugin;
 
-/***/ }),
+/***/ },
 
-/***/ "./plugins/layout/tests/base.js":
+/***/ "./plugins/layout/tests/base.js"
 /*!**************************************!*\
   !*** ./plugins/layout/tests/base.js ***!
   \**************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+(module) {
 
 class LayoutTest {
   /*
@@ -14820,14 +15697,13 @@ class LayoutTest {
 }
 module.exports = LayoutTest;
 
-/***/ }),
+/***/ },
 
-/***/ "./plugins/layout/tests/font-size/error-template.handlebars":
+/***/ "./plugins/layout/tests/font-size/error-template.handlebars"
 /*!******************************************************************!*\
   !*** ./plugins/layout/tests/font-size/error-template.handlebars ***!
   \******************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+(module, __unused_webpack_exports, __webpack_require__) {
 
 var Handlebars = __webpack_require__(/*! ../../../../node_modules/handlebars/runtime.js */ "./node_modules/handlebars/runtime.js");
 function __default(obj) { return obj && (obj.__esModule ? obj["default"] : obj); }
@@ -14867,14 +15743,13 @@ module.exports = (Handlebars["default"] || Handlebars).template({"1":function(co
     + "<p>\n    Users may modify the font size on webpages to help them read so it is\n    important to ensure all text is still legible when enlarged up to 200%.\n</p>\n<label>\n    Preview 200% font size:\n    <input class=\"preview-font-size\" type=\"checkbox\">\n</label>\n<p><a\n        href=\"https://www.w3.org/TR/WCAG21/#resize-text\"\n        target=\"_blank\" class=\"tota11y-info-link\">\n    WCAG &sect; 1.4.4 (Level AA)\n</a></p>\n";
 },"useData":true});
 
-/***/ }),
+/***/ },
 
-/***/ "./plugins/layout/tests/font-size/index.js":
+/***/ "./plugins/layout/tests/font-size/index.js"
 /*!*************************************************!*\
   !*** ./plugins/layout/tests/font-size/index.js ***!
   \*************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+(module, __unused_webpack_exports, __webpack_require__) {
 
 let $ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
 let annotate = __webpack_require__(/*! ../../../shared/annotate */ "./plugins/shared/annotate/index.js")("layout");
@@ -15012,27 +15887,25 @@ class FontSizeLayoutTest extends LayoutTest {
 }
 module.exports = FontSizeLayoutTest;
 
-/***/ }),
+/***/ },
 
-/***/ "./plugins/layout/tests/index.js":
+/***/ "./plugins/layout/tests/index.js"
 /*!***************************************!*\
   !*** ./plugins/layout/tests/index.js ***!
   \***************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+(module, __unused_webpack_exports, __webpack_require__) {
 
 let FontSizeLayoutTest = __webpack_require__(/*! ./font-size */ "./plugins/layout/tests/font-size/index.js");
 let TextSpacingLayoutTest = __webpack_require__(/*! ./text-spacing */ "./plugins/layout/tests/text-spacing/index.js");
 module.exports = [new FontSizeLayoutTest(), new TextSpacingLayoutTest()];
 
-/***/ }),
+/***/ },
 
-/***/ "./plugins/layout/tests/text-spacing/error-template.handlebars":
+/***/ "./plugins/layout/tests/text-spacing/error-template.handlebars"
 /*!*********************************************************************!*\
   !*** ./plugins/layout/tests/text-spacing/error-template.handlebars ***!
   \*********************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+(module, __unused_webpack_exports, __webpack_require__) {
 
 var Handlebars = __webpack_require__(/*! ../../../../node_modules/handlebars/runtime.js */ "./node_modules/handlebars/runtime.js");
 function __default(obj) { return obj && (obj.__esModule ? obj["default"] : obj); }
@@ -15072,14 +15945,13 @@ module.exports = (Handlebars["default"] || Handlebars).template({"1":function(co
     + "<p>\n    Users may modify text spacing values on webpages to help them read so it is\n    important to ensure all text is still legible when all of the following\n    is applied:\n</p>\n<div class=\"tota11y-info-resources\">\n    <ul>\n        <li>Line height to at least 1.5 times the font size</li>\n        <li>Spacing following paragraphs to at least 2 times the font size</li>\n        <li>Letter spacing to at least 0.12 times the font size</li>\n        <li>Word spacing to at least 0.16 times the font size.</li>\n    </ul>\n</div>\n<label>\n    Preview modified text spacing (minimums):\n    <input class=\"preview-text-spacing\" type=\"checkbox\">\n</label>\n<p><a\n        href=\"https://www.w3.org/TR/WCAG21/#text-spacing\"\n        target=\"_blank\" class=\"tota11y-info-link\">\n    WCAG &sect; 1.4.12 (Level AA)\n</a></p>\n";
 },"useData":true});
 
-/***/ }),
+/***/ },
 
-/***/ "./plugins/layout/tests/text-spacing/index.js":
+/***/ "./plugins/layout/tests/text-spacing/index.js"
 /*!****************************************************!*\
   !*** ./plugins/layout/tests/text-spacing/index.js ***!
   \****************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+(module, __unused_webpack_exports, __webpack_require__) {
 
 let $ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
 let annotate = __webpack_require__(/*! ../../../shared/annotate */ "./plugins/shared/annotate/index.js")("layout");
@@ -15237,14 +16109,13 @@ class TextSpacingLayoutTest extends LayoutTest {
 }
 module.exports = TextSpacingLayoutTest;
 
-/***/ }),
+/***/ },
 
-/***/ "./plugins/link-text/about.handlebars":
+/***/ "./plugins/link-text/about.handlebars"
 /*!********************************************!*\
   !*** ./plugins/link-text/about.handlebars ***!
   \********************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+(module, __unused_webpack_exports, __webpack_require__) {
 
 var Handlebars = __webpack_require__(/*! ../../node_modules/handlebars/runtime.js */ "./node_modules/handlebars/runtime.js");
 function __default(obj) { return obj && (obj.__esModule ? obj["default"] : obj); }
@@ -15252,14 +16123,13 @@ module.exports = (Handlebars["default"] || Handlebars).template({"compiler":[8,"
     return "<p>\n    Screen readers can pull all links out of a page and present them\n    in a single list but this loses all context information so the links must be\n    understandable from their link text alone for this type of navigation.\n</p>\n<p>\n    Even when users navigate through content sequentially any context which\n    depends on visual presentation will be lost to a screen reader so it is\n    preferable to provide link text that makes links understandable with no\n    context, or at least with immediately surrounding context such as a parent\n    <code>&lt;p&gt;</code> element.\n</p>\n<p><a\n        href=\"https://www.w3.org/WAI/WCAG21/Understanding/link-purpose-in-context.html\"\n        target=\"_blank\" class=\"tota11y-info-link\">\n    Understanding link purpose in context\n</a></p>\n<p><a\n        href=\"https://www.w3.org/WAI/WCAG21/Understanding/link-purpose-link-only.html\"\n        target=\"_blank\" class=\"tota11y-info-link\">\n    Understanding link purpose with no context\n</a></p>\n";
 },"useData":true});
 
-/***/ }),
+/***/ },
 
-/***/ "./plugins/link-text/in-context-error-template.handlebars":
+/***/ "./plugins/link-text/in-context-error-template.handlebars"
 /*!****************************************************************!*\
   !*** ./plugins/link-text/in-context-error-template.handlebars ***!
   \****************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+(module, __unused_webpack_exports, __webpack_require__) {
 
 var Handlebars = __webpack_require__(/*! ../../node_modules/handlebars/runtime.js */ "./node_modules/handlebars/runtime.js");
 function __default(obj) { return obj && (obj.__esModule ? obj["default"] : obj); }
@@ -15280,14 +16150,13 @@ module.exports = (Handlebars["default"] || Handlebars).template({"1":function(co
     + "</p>\n<p><a\n        href=\"https://www.w3.org/TR/WCAG21/#link-purpose-in-context\"\n        target=\"_blank\" class=\"tota11y-info-link\">\n    WCAG &sect; 2.4.4 (Level A)\n</a></p>\n";
 },"useData":true});
 
-/***/ }),
+/***/ },
 
-/***/ "./plugins/link-text/index.js":
+/***/ "./plugins/link-text/index.js"
 /*!************************************!*\
   !*** ./plugins/link-text/index.js ***!
   \************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+(module, __unused_webpack_exports, __webpack_require__) {
 
 /**
  * A plugin to identify unclear link text such as "more" and "click here,"
@@ -15448,14 +16317,13 @@ class LinkTextPlugin extends Plugin {
 }
 module.exports = LinkTextPlugin;
 
-/***/ }),
+/***/ },
 
-/***/ "./plugins/link-text/link-only-error-template.handlebars":
+/***/ "./plugins/link-text/link-only-error-template.handlebars"
 /*!***************************************************************!*\
   !*** ./plugins/link-text/link-only-error-template.handlebars ***!
   \***************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+(module, __unused_webpack_exports, __webpack_require__) {
 
 var Handlebars = __webpack_require__(/*! ../../node_modules/handlebars/runtime.js */ "./node_modules/handlebars/runtime.js");
 function __default(obj) { return obj && (obj.__esModule ? obj["default"] : obj); }
@@ -15476,14 +16344,13 @@ module.exports = (Handlebars["default"] || Handlebars).template({"1":function(co
     + "</p>\n<p>\n    Screen readers can pull all links out of a page and present them\n    in a single list but this loses all context information so the links must be\n    understandable from their link text alone for this type of navigation.\n</p>\n<p><a\n        href=\"https://www.w3.org/TR/WCAG21/#link-purpose-link-only\"\n        target=\"_blank\" class=\"tota11y-info-link\">\n    WCAG &sect; 2.4.9 (Level AAA)\n</a></p>\n";
 },"useData":true});
 
-/***/ }),
+/***/ },
 
-/***/ "./plugins/navigation/about.handlebars":
+/***/ "./plugins/navigation/about.handlebars"
 /*!*********************************************!*\
   !*** ./plugins/navigation/about.handlebars ***!
   \*********************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+(module, __unused_webpack_exports, __webpack_require__) {
 
 var Handlebars = __webpack_require__(/*! ../../node_modules/handlebars/runtime.js */ "./node_modules/handlebars/runtime.js");
 function __default(obj) { return obj && (obj.__esModule ? obj["default"] : obj); }
@@ -15491,14 +16358,13 @@ module.exports = (Handlebars["default"] || Handlebars).template({"compiler":[8,"
     return "<div class=\"tota11y-info-about-title\">\n    <a\n            href=\"https://www.w3.org/TR/WCAG21/#audio-control\"\n            target=\"_blank\" class=\"tota11y-info-link\">\n        <span class=\"tota11y-info-about-title-link\">\n            WCAG &sect; 1.4.2 (Level A)\n        </span>\n    </a>\n</div>\n<p>\n    Screen readers enable users to interact with websites through speech\n    output, however this becomes difficult if the webpage is already playing\n    audio. The recommended approach is to design an action that starts playing\n    sound rather an action to stop sound that plays automatically.\n</p>\n<p>\n    Note: <a\n        href=\"https://hacks.mozilla.org/2019/02/firefox-66-to-block-automatically-playing-audible-video-and-audio/\"\n        target=\"_blank\"\n        class=\"tota11y-info-link\">Firefox 66+ blocks autoplay by default\n    </a>, as might some assistive tools\n</p>\n<p><a\n        href=\"https://www.w3.org/WAI/WCAG21/Understanding/audio-control.html\"\n        target=\"_blank\" class=\"tota11y-info-link\">\n    Understanding audio control\n</a></p>\n";
 },"useData":true});
 
-/***/ }),
+/***/ },
 
-/***/ "./plugins/navigation/error-template.handlebars":
+/***/ "./plugins/navigation/error-template.handlebars"
 /*!******************************************************!*\
   !*** ./plugins/navigation/error-template.handlebars ***!
   \******************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+(module, __unused_webpack_exports, __webpack_require__) {
 
 var Handlebars = __webpack_require__(/*! ../../node_modules/handlebars/runtime.js */ "./node_modules/handlebars/runtime.js");
 function __default(obj) { return obj && (obj.__esModule ? obj["default"] : obj); }
@@ -15527,14 +16393,13 @@ module.exports = (Handlebars["default"] || Handlebars).template({"compiler":[8,"
     + "&gt;</code></pre>\n<p><a\n        href=\"https://www.w3.org/TR/WCAG21/#audio-control\"\n        target=\"_blank\" class=\"tota11y-info-link\">\n    WCAG &sect; 1.4.2 (Level A)\n</a></p>\n<p>\n    Note: Firefox 66+ blocks autoplay by default, as might some assistive tools\n</p>\n";
 },"useData":true});
 
-/***/ }),
+/***/ },
 
-/***/ "./plugins/navigation/index.js":
+/***/ "./plugins/navigation/index.js"
 /*!*************************************!*\
   !*** ./plugins/navigation/index.js ***!
   \*************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+(module, __unused_webpack_exports, __webpack_require__) {
 
 let $ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
 let Plugin = __webpack_require__(/*! ../base */ "./plugins/base.js");
@@ -15583,14 +16448,13 @@ class NavigationPlugin extends Plugin {
 }
 module.exports = NavigationPlugin;
 
-/***/ }),
+/***/ },
 
-/***/ "./plugins/shared/annotate/error-label.handlebars":
+/***/ "./plugins/shared/annotate/error-label.handlebars"
 /*!********************************************************!*\
   !*** ./plugins/shared/annotate/error-label.handlebars ***!
   \********************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+(module, __unused_webpack_exports, __webpack_require__) {
 
 var Handlebars = __webpack_require__(/*! ../../../node_modules/handlebars/runtime.js */ "./node_modules/handlebars/runtime.js");
 function __default(obj) { return obj && (obj.__esModule ? obj["default"] : obj); }
@@ -15613,14 +16477,13 @@ module.exports = (Handlebars["default"] || Handlebars).template({"1":function(co
     + "</div>\n</span>\n";
 },"useData":true});
 
-/***/ }),
+/***/ },
 
-/***/ "./plugins/shared/annotate/index.js":
+/***/ "./plugins/shared/annotate/index.js"
 /*!******************************************!*\
   !*** ./plugins/shared/annotate/index.js ***!
   \******************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+(module, __unused_webpack_exports, __webpack_require__) {
 
 /**
  * Utility functions to annotate particular site elements.
@@ -15804,33 +16667,66 @@ module.exports = namespace => {
   };
 };
 
-/***/ }),
+/***/ },
 
-/***/ "./plugins/shared/annotate/style.less":
+/***/ "./plugins/shared/annotate/style.less"
 /*!********************************************!*\
   !*** ./plugins/shared/annotate/style.less ***!
   \********************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
-// style-loader: Adds some css to the DOM by adding a <style> tag
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !../../../node_modules/style-loader/dist/runtime/styleDomAPI.js */ "./node_modules/style-loader/dist/runtime/styleDomAPI.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../node_modules/style-loader/dist/runtime/insertBySelector.js */ "./node_modules/style-loader/dist/runtime/insertBySelector.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! !../../../node_modules/style-loader/dist/runtime/setAttributesWithoutAttributes.js */ "./node_modules/style-loader/dist/runtime/setAttributesWithoutAttributes.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! !../../../node_modules/style-loader/dist/runtime/insertStyleElement.js */ "./node_modules/style-loader/dist/runtime/insertStyleElement.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! !../../../node_modules/style-loader/dist/runtime/styleTagTransform.js */ "./node_modules/style-loader/dist/runtime/styleTagTransform.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _node_modules_css_loader_dist_cjs_js_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_2_use_2_node_modules_less_loader_dist_cjs_js_style_less__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! !!../../../node_modules/css-loader/dist/cjs.js!../../../node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[2].use[2]!../../../node_modules/less-loader/dist/cjs.js!./style.less */ "./node_modules/css-loader/dist/cjs.js!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[2].use[2]!./node_modules/less-loader/dist/cjs.js!./plugins/shared/annotate/style.less");
 
-// load the styles
-var content = __webpack_require__(/*! !../../../node_modules/css-loader!../../../node_modules/postcss-loader/src??postcss!../../../node_modules/less-loader/dist/cjs.js!./style.less */ "./node_modules/css-loader/index.js!./node_modules/postcss-loader/src/index.js?!./node_modules/less-loader/dist/cjs.js!./plugins/shared/annotate/style.less");
-if(typeof content === 'string') content = [[module.i, content, '']];
-// add the styles to the DOM
-var update = __webpack_require__(/*! ../../../node_modules/style-loader/addStyles.js */ "./node_modules/style-loader/addStyles.js")(content, {});
-// Hot Module Replacement
-if(false) {}
+      
+      
+      
+      
+      
+      
+      
+      
+      
 
-/***/ }),
+var options = {};
 
-/***/ "./plugins/shared/audit.js":
+options.styleTagTransform = (_node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5___default());
+options.setAttributes = (_node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3___default());
+options.insert = _node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2___default().bind(null, "head");
+options.domAPI = (_node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1___default());
+options.insertStyleElement = (_node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4___default());
+
+var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_2_use_2_node_modules_less_loader_dist_cjs_js_style_less__WEBPACK_IMPORTED_MODULE_6__["default"], options);
+
+
+
+
+       /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_2_use_2_node_modules_less_loader_dist_cjs_js_style_less__WEBPACK_IMPORTED_MODULE_6__["default"] && _node_modules_css_loader_dist_cjs_js_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_2_use_2_node_modules_less_loader_dist_cjs_js_style_less__WEBPACK_IMPORTED_MODULE_6__["default"].locals ? _node_modules_css_loader_dist_cjs_js_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_2_use_2_node_modules_less_loader_dist_cjs_js_style_less__WEBPACK_IMPORTED_MODULE_6__["default"].locals : undefined);
+
+
+/***/ },
+
+/***/ "./plugins/shared/audit.js"
 /*!*********************************!*\
   !*** ./plugins/shared/audit.js ***!
   \*********************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+(module) {
 
 /**
  * Abstractions for how we use Accessibility Developer Tools
@@ -15935,14 +16831,13 @@ function audit(ruleName) {
 }
 module.exports = audit;
 
-/***/ }),
+/***/ },
 
-/***/ "./plugins/shared/info-panel/error.handlebars":
+/***/ "./plugins/shared/info-panel/error.handlebars"
 /*!****************************************************!*\
   !*** ./plugins/shared/info-panel/error.handlebars ***!
   \****************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+(module, __unused_webpack_exports, __webpack_require__) {
 
 var Handlebars = __webpack_require__(/*! ../../../node_modules/handlebars/runtime.js */ "./node_modules/handlebars/runtime.js");
 function __default(obj) { return obj && (obj.__esModule ? obj["default"] : obj); }
@@ -15959,16 +16854,16 @@ module.exports = (Handlebars["default"] || Handlebars).template({"compiler":[8,"
     + "\n        </div>\n    </a>\n    <div class=\"tota11y-info-error-description tota11y-collapsed\">\n        <div class=\"tota11y-info-error-description-code-container\">\n            <em>Relevant code:</em>\n            <code></code>\n        </div>\n    </div>\n</li>\n";
 },"useData":true});
 
-/***/ }),
+/***/ },
 
-/***/ "./plugins/shared/info-panel/index.js":
+/***/ "./plugins/shared/info-panel/index.js"
 /*!********************************************!*\
   !*** ./plugins/shared/info-panel/index.js ***!
   \********************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+(module, __unused_webpack_exports, __webpack_require__) {
 
-/* WEBPACK VAR INJECTION */(function(buildElement) {/**
+/* provided dependency */ var buildElement = __webpack_require__(/*! ./utils/element */ "./utils/element.js");
+/**
  * The following code defines an information panel that can be invoked from
  * any plugin to display summaries, errors, or more information about what
  * the plugin is doing.
@@ -16600,54 +17495,120 @@ module.exports = {
   panel: InfoPanel,
   port: PORT_NAME
 };
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./utils/element */ "./utils/element.js")))
 
-/***/ }),
+/***/ },
 
-/***/ "./plugins/shared/info-panel/style.less":
+/***/ "./plugins/shared/info-panel/style.less"
 /*!**********************************************!*\
   !*** ./plugins/shared/info-panel/style.less ***!
   \**********************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
-// style-loader: Adds some css to the DOM by adding a <style> tag
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !../../../node_modules/style-loader/dist/runtime/styleDomAPI.js */ "./node_modules/style-loader/dist/runtime/styleDomAPI.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../node_modules/style-loader/dist/runtime/insertBySelector.js */ "./node_modules/style-loader/dist/runtime/insertBySelector.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! !../../../node_modules/style-loader/dist/runtime/setAttributesWithoutAttributes.js */ "./node_modules/style-loader/dist/runtime/setAttributesWithoutAttributes.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! !../../../node_modules/style-loader/dist/runtime/insertStyleElement.js */ "./node_modules/style-loader/dist/runtime/insertStyleElement.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! !../../../node_modules/style-loader/dist/runtime/styleTagTransform.js */ "./node_modules/style-loader/dist/runtime/styleTagTransform.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _node_modules_css_loader_dist_cjs_js_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_2_use_2_node_modules_less_loader_dist_cjs_js_style_less__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! !!../../../node_modules/css-loader/dist/cjs.js!../../../node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[2].use[2]!../../../node_modules/less-loader/dist/cjs.js!./style.less */ "./node_modules/css-loader/dist/cjs.js!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[2].use[2]!./node_modules/less-loader/dist/cjs.js!./plugins/shared/info-panel/style.less");
 
-// load the styles
-var content = __webpack_require__(/*! !../../../node_modules/css-loader!../../../node_modules/postcss-loader/src??postcss!../../../node_modules/less-loader/dist/cjs.js!./style.less */ "./node_modules/css-loader/index.js!./node_modules/postcss-loader/src/index.js?!./node_modules/less-loader/dist/cjs.js!./plugins/shared/info-panel/style.less");
-if(typeof content === 'string') content = [[module.i, content, '']];
-// add the styles to the DOM
-var update = __webpack_require__(/*! ../../../node_modules/style-loader/addStyles.js */ "./node_modules/style-loader/addStyles.js")(content, {});
-// Hot Module Replacement
-if(false) {}
+      
+      
+      
+      
+      
+      
+      
+      
+      
 
-/***/ }),
+var options = {};
 
-/***/ "./plugins/style.less":
+options.styleTagTransform = (_node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5___default());
+options.setAttributes = (_node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3___default());
+options.insert = _node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2___default().bind(null, "head");
+options.domAPI = (_node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1___default());
+options.insertStyleElement = (_node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4___default());
+
+var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_2_use_2_node_modules_less_loader_dist_cjs_js_style_less__WEBPACK_IMPORTED_MODULE_6__["default"], options);
+
+
+
+
+       /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_2_use_2_node_modules_less_loader_dist_cjs_js_style_less__WEBPACK_IMPORTED_MODULE_6__["default"] && _node_modules_css_loader_dist_cjs_js_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_2_use_2_node_modules_less_loader_dist_cjs_js_style_less__WEBPACK_IMPORTED_MODULE_6__["default"].locals ? _node_modules_css_loader_dist_cjs_js_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_2_use_2_node_modules_less_loader_dist_cjs_js_style_less__WEBPACK_IMPORTED_MODULE_6__["default"].locals : undefined);
+
+
+/***/ },
+
+/***/ "./plugins/style.less"
 /*!****************************!*\
   !*** ./plugins/style.less ***!
   \****************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
-// style-loader: Adds some css to the DOM by adding a <style> tag
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !../node_modules/style-loader/dist/runtime/styleDomAPI.js */ "./node_modules/style-loader/dist/runtime/styleDomAPI.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../node_modules/style-loader/dist/runtime/insertBySelector.js */ "./node_modules/style-loader/dist/runtime/insertBySelector.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! !../node_modules/style-loader/dist/runtime/setAttributesWithoutAttributes.js */ "./node_modules/style-loader/dist/runtime/setAttributesWithoutAttributes.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! !../node_modules/style-loader/dist/runtime/insertStyleElement.js */ "./node_modules/style-loader/dist/runtime/insertStyleElement.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! !../node_modules/style-loader/dist/runtime/styleTagTransform.js */ "./node_modules/style-loader/dist/runtime/styleTagTransform.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _node_modules_css_loader_dist_cjs_js_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_2_use_2_node_modules_less_loader_dist_cjs_js_style_less__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! !!../node_modules/css-loader/dist/cjs.js!../node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[2].use[2]!../node_modules/less-loader/dist/cjs.js!./style.less */ "./node_modules/css-loader/dist/cjs.js!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[2].use[2]!./node_modules/less-loader/dist/cjs.js!./plugins/style.less");
 
-// load the styles
-var content = __webpack_require__(/*! !../node_modules/css-loader!../node_modules/postcss-loader/src??postcss!../node_modules/less-loader/dist/cjs.js!./style.less */ "./node_modules/css-loader/index.js!./node_modules/postcss-loader/src/index.js?!./node_modules/less-loader/dist/cjs.js!./plugins/style.less");
-if(typeof content === 'string') content = [[module.i, content, '']];
-// add the styles to the DOM
-var update = __webpack_require__(/*! ../node_modules/style-loader/addStyles.js */ "./node_modules/style-loader/addStyles.js")(content, {});
-// Hot Module Replacement
-if(false) {}
+      
+      
+      
+      
+      
+      
+      
+      
+      
 
-/***/ }),
+var options = {};
 
-/***/ "./plugins/tables/about.handlebars":
+options.styleTagTransform = (_node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5___default());
+options.setAttributes = (_node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3___default());
+options.insert = _node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2___default().bind(null, "head");
+options.domAPI = (_node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1___default());
+options.insertStyleElement = (_node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4___default());
+
+var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_2_use_2_node_modules_less_loader_dist_cjs_js_style_less__WEBPACK_IMPORTED_MODULE_6__["default"], options);
+
+
+
+
+       /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_2_use_2_node_modules_less_loader_dist_cjs_js_style_less__WEBPACK_IMPORTED_MODULE_6__["default"] && _node_modules_css_loader_dist_cjs_js_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_2_use_2_node_modules_less_loader_dist_cjs_js_style_less__WEBPACK_IMPORTED_MODULE_6__["default"].locals ? _node_modules_css_loader_dist_cjs_js_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_2_use_2_node_modules_less_loader_dist_cjs_js_style_less__WEBPACK_IMPORTED_MODULE_6__["default"].locals : undefined);
+
+
+/***/ },
+
+/***/ "./plugins/tables/about.handlebars"
 /*!*****************************************!*\
   !*** ./plugins/tables/about.handlebars ***!
   \*****************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+(module, __unused_webpack_exports, __webpack_require__) {
 
 var Handlebars = __webpack_require__(/*! ../../node_modules/handlebars/runtime.js */ "./node_modules/handlebars/runtime.js");
 function __default(obj) { return obj && (obj.__esModule ? obj["default"] : obj); }
@@ -16655,14 +17616,13 @@ module.exports = (Handlebars["default"] || Handlebars).template({"compiler":[8,"
     return "<div class=\"tota11y-info-about-title\">\n    <a\n            href=\"https://www.w3.org/TR/WCAG21/#info-and-relationships\"\n            target=\"_blank\" class=\"tota11y-info-link\">\n        <span class=\"tota11y-info-about-title-link\">\n            WCAG &sect; 1.3.1 (Level A)\n        </span>\n    </a>\n</div>\n<p>\n    Tables can provide a lot of information and relationships from\n    correctly used markup that might otherwise only be available from visual\n    presentation.\n</p>\n<p>\n    This tool checks for a number of table markup errors and ommisions such as\n    providing headers for each cell which allows screen readers to vocalise the\n    headers of each cell as a user navigates through a table.\n</p>\n<p>\n    <a\n            href=\"https://www.w3.org/WAI/WCAG21/Understanding/info-and-relationships.html\"\n            target=\"_blank\" class=\"tota11y-info-link\">\n        Understanding Info and Relationships\n    </a>\n</p>\n<p>\n    <a\n            href=\"https://www.w3.org/WAI/WCAG21/Techniques/html/H51\"\n            target=\"_blank\" class=\"tota11y-info-link\">\n        Using table markup to present tabular information\n    </a>\n</p>\n";
 },"useData":true});
 
-/***/ }),
+/***/ },
 
-/***/ "./plugins/tables/error-template.handlebars":
+/***/ "./plugins/tables/error-template.handlebars"
 /*!**************************************************!*\
   !*** ./plugins/tables/error-template.handlebars ***!
   \**************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+(module, __unused_webpack_exports, __webpack_require__) {
 
 var Handlebars = __webpack_require__(/*! ../../node_modules/handlebars/runtime.js */ "./node_modules/handlebars/runtime.js");
 function __default(obj) { return obj && (obj.__esModule ? obj["default"] : obj); }
@@ -16715,14 +17675,13 @@ module.exports = (Handlebars["default"] || Handlebars).template({"1":function(co
     + ((stack1 = lookupProperty(helpers,"if").call(alias1,(depth0 != null ? lookupProperty(depth0,"presentationError") : depth0),{"name":"if","hash":{},"fn":container.program(10, data, 0),"inverse":container.noop,"data":data,"loc":{"start":{"line":61,"column":0},"end":{"line":85,"column":7}}})) != null ? stack1 : "");
 },"useData":true});
 
-/***/ }),
+/***/ },
 
-/***/ "./plugins/tables/index.js":
+/***/ "./plugins/tables/index.js"
 /*!*********************************!*\
   !*** ./plugins/tables/index.js ***!
   \*********************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+(module, __unused_webpack_exports, __webpack_require__) {
 
 /**
  * A plugin to identify malformed tables
@@ -16847,14 +17806,13 @@ class TablesPlugin extends Plugin {
 }
 module.exports = TablesPlugin;
 
-/***/ }),
+/***/ },
 
-/***/ "./settings/audit-dev-only/index.js":
+/***/ "./settings/audit-dev-only/index.js"
 /*!******************************************!*\
   !*** ./settings/audit-dev-only/index.js ***!
   \******************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+(module, __unused_webpack_exports, __webpack_require__) {
 
 let $ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
 let Setting = __webpack_require__(/*! ../base */ "./settings/base.js");
@@ -16888,16 +17846,16 @@ class AuditDevOnly extends Setting {
 }
 module.exports = AuditDevOnly;
 
-/***/ }),
+/***/ },
 
-/***/ "./settings/base.js":
+/***/ "./settings/base.js"
 /*!**************************!*\
   !*** ./settings/base.js ***!
   \**************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+(module, __unused_webpack_exports, __webpack_require__) {
 
-/* WEBPACK VAR INJECTION */(function(buildElement) {/*
+/* provided dependency */ var buildElement = __webpack_require__(/*! ./utils/element */ "./utils/element.js");
+/*
  * A setting that configures the behaviour of the addon or bookmarklet
  * in some way.
  * This module defines methods to render settings in a similar style to plugins
@@ -16959,16 +17917,14 @@ class Setting {
   }
 }
 module.exports = Setting;
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./utils/element */ "./utils/element.js")))
 
-/***/ }),
+/***/ },
 
-/***/ "./settings/focus-opened/index.js":
+/***/ "./settings/focus-opened/index.js"
 /*!****************************************!*\
   !*** ./settings/focus-opened/index.js ***!
   \****************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+(module, __unused_webpack_exports, __webpack_require__) {
 
 let $ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
 let Setting = __webpack_require__(/*! ../base */ "./settings/base.js");
@@ -16999,14 +17955,13 @@ class FocusOpened extends Setting {
 }
 module.exports = FocusOpened;
 
-/***/ }),
+/***/ },
 
-/***/ "./settings/index.js":
+/***/ "./settings/index.js"
 /*!***************************!*\
   !*** ./settings/index.js ***!
   \***************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+(module, __unused_webpack_exports, __webpack_require__) {
 
 /**
  * An index of settings.
@@ -17019,14 +17974,13 @@ let AuditDevOnly = __webpack_require__(/*! ./audit-dev-only */ "./settings/audit
 let FocusOpened = __webpack_require__(/*! ./focus-opened */ "./settings/focus-opened/index.js");
 module.exports = [new TranslucentAnnotations(), new AuditDevOnly(), new FocusOpened()];
 
-/***/ }),
+/***/ },
 
-/***/ "./settings/translucent-annotations/index.js":
+/***/ "./settings/translucent-annotations/index.js"
 /*!***************************************************!*\
   !*** ./settings/translucent-annotations/index.js ***!
   \***************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+(module, __unused_webpack_exports, __webpack_require__) {
 
 let $ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
 let Setting = __webpack_require__(/*! ../base */ "./settings/base.js");
@@ -17063,14 +18017,13 @@ class TranslucentAnnotations extends Setting {
 }
 module.exports = TranslucentAnnotations;
 
-/***/ }),
+/***/ },
 
-/***/ "./templates/logo.handlebars":
+/***/ "./templates/logo.handlebars"
 /*!***********************************!*\
   !*** ./templates/logo.handlebars ***!
   \***********************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+(module, __unused_webpack_exports, __webpack_require__) {
 
 var Handlebars = __webpack_require__(/*! ../node_modules/handlebars/runtime.js */ "./node_modules/handlebars/runtime.js");
 function __default(obj) { return obj && (obj.__esModule ? obj["default"] : obj); }
@@ -17078,16 +18031,16 @@ module.exports = (Handlebars["default"] || Handlebars).template({"compiler":[8,"
     return "<!--\n    \"Glasses\" icon by Kyle Scott\n    https://thenounproject.com/Kyle/\n\n    Licensed under Creative Commons by 3.0 US\n    http://creativecommons.org/licenses/by/3.0/us/legalcode\n-->\n<svg xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" version=\"1.1\" id=\"Layer_1\" x=\"0px\" y=\"0px\" viewBox=\"0 0 100 100\" enable-background=\"new 0 0 100 100\" xml:space=\"preserve\">\n    <path fill=\"#ffffff\" d=\"M74.466,35.24c-1.069-0.19-2.208-0.267-3.228-0.562c-0.639-0.184-1.348-0.622-1.965-1.075  c-1.246-0.919-2.479-1.557-3.928-2.152c-0.671-0.276-1.617-0.698-2.432-0.608c-0.582,0.064-1.196,0.664-1.73,1.029  c-1.196,0.818-2.186,1.442-3.32,2.198c-0.524,0.35-1.308,0.798-1.543,1.263c-0.142,0.279-0.13,0.736-0.281,1.029  c-0.35,0.679-1.069,1.434-1.777,1.403c-0.835-0.038-1.773-1.518-1.449-2.619c0.177-0.602,1.126-0.902,1.776-1.262  c2.041-1.134,3.803-2.3,5.52-3.602c1.106-0.841,2.579-1.471,4.536-1.542c1.889-0.071,4.45-0.083,6.22,0  c1.465,0.066,2.698,0.164,3.976,0.42c7.308,1.469,14.698,2.788,21.607,4.77c0.739,0.213,2.896,0.613,3.086,1.311  c0.121,0.439-0.236,1.435-0.375,2.151c-0.165,0.865-0.292,1.626-0.42,2.246c-0.12,0.574-0.65,1.174-0.936,1.776  c-0.842,1.778-1.379,3.821-2.104,5.753c-0.954,2.545-2.02,4.859-3.554,6.968c-1.46,2.005-3.442,3.33-5.987,4.536  c-1.128,0.534-2.43,1.083-3.835,1.403c-1.355,0.311-3.263,0.63-4.817,0.28c-2.233-0.501-3.081-2.543-3.882-4.536  c-0.848-2.115-1.351-4.049-1.636-6.827c-2.692,0.176-3.259,2.014-4.163,3.928c-0.384,0.812-0.792,1.623-1.168,2.385  c-1.542,3.115-3.197,6.47-5.473,8.746c-1.215,1.213-2.581,2.03-4.35,2.758c-3.331,1.373-6.847,2.569-10.757,3.462  c-3.598,0.821-8.923,1.642-12.252-0.093c-2.136-1.113-3.105-3.939-4.023-6.268c-0.458-1.159-0.835-2.459-1.262-3.882  c-0.378-1.259-0.708-2.778-1.543-3.602c-1.053-1.037-2.78-1.414-3.227-2.993c-0.815-0.307-1.563-0.821-2.292-1.308  c-4.349-2.915-8.693-5.774-13.141-8.606c-0.727-0.462-1.667-0.958-2.151-1.497c-0.712-0.792-1.108-2.117-1.684-3.133  c-0.265-0.469-0.588-0.92-0.888-1.357c-0.275-0.4-0.536-0.997-1.076-1.076C2.223,36.823,2.365,37.469,2.349,38  c-0.017,0.549-0.077,1.172-0.047,1.823c0.028,0.606,0.297,1.049,0.28,1.544c-0.018,0.515-0.291,1.036-0.841,1.029  c-0.727-0.009-0.8-0.98-0.983-1.686c-0.209-0.807-0.483-1.551-0.421-2.245c0.049-0.531,0.341-1.223,0.468-2.057  c0.246-1.599,0.126-3.078,1.451-3.415C3.004,32.804,4,33.38,4.781,33.649c0.789,0.272,1.597,0.428,2.339,0.702  c0.854,0.316,1.706,0.875,2.524,1.355c2.526,1.484,4.626,3.112,7.062,4.63c3.273,2.041,6.545,3.955,9.307,6.267  c7.434-2.179,16.722-3.566,25.863-4.302c4.176-0.337,8.326-0.174,12.253,0.374c5.624,0.787,10.073-1.58,13.844-3.18  c2.035-0.864,4.078-1.653,6.173-2.573C80.804,36.331,77.705,35.814,74.466,35.24z M93.968,39.729  c-1.838-0.388-3.732-0.737-5.471-1.075c-0.059-0.012-0.127-0.067-0.188-0.046c-1.143,0.392-2.279,0.613-3.367,1.029  c-2.033,0.773-4.015,1.775-5.752,3.039C78.33,43.3,77.372,44,76.897,44.733c-1.609,2.489-1.206,7.214-0.467,10.149  c0.27,1.071,0.411,1.79,0.889,2.666c3.022,1.287,6.88-0.183,8.885-1.684c1.526-1.142,2.676-2.75,3.602-4.35  C91.815,48.042,93.102,43.946,93.968,39.729z M64.878,46.089c-6.121-1.937-14.865-0.822-21.232,0.467  c-4.477,0.907-9.474,1.92-10.944,5.753c-0.801,2.086-1.009,5.098-0.701,7.903c0.284,2.599,1.076,4.892,2.011,6.594  c2.943,2.698,10.038,1.581,14.124,0.375c2.523-0.745,4.112-1.389,5.845-2.197c1.973-0.921,4.636-1.939,5.285-4.116  c0.179-0.597,0.115-1.244,0.188-1.824c0.492-3.909,1.942-7.447,4.303-9.634c0.477-0.441,1.146-0.679,1.357-1.262  C65.37,47.428,65.13,46.709,64.878,46.089z\"/>\n</svg>\n";
 },"useData":true});
 
-/***/ }),
+/***/ },
 
-/***/ "./toolbar.js":
+/***/ "./toolbar.js"
 /*!********************!*\
   !*** ./toolbar.js ***!
   \********************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+(module, __unused_webpack_exports, __webpack_require__) {
 
-/* WEBPACK VAR INJECTION */(function(buildElement) {let $ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
+/* provided dependency */ var buildElement = __webpack_require__(/*! ./utils/element */ "./utils/element.js");
+let $ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
 let plugins = __webpack_require__(/*! ./plugins */ "./plugins/index.js");
 let settings = __webpack_require__(/*! ./settings */ "./settings/index.js");
 let logoTemplate = __webpack_require__(/*! ./templates/logo.handlebars */ "./templates/logo.handlebars");
@@ -17482,16 +18435,14 @@ module.exports = {
   toolbar: Toolbar,
   controller: ToolbarController
 };
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./utils/element */ "./utils/element.js")))
 
-/***/ }),
+/***/ },
 
-/***/ "./utils/debugging.js":
+/***/ "./utils/debugging.js"
 /*!****************************!*\
   !*** ./utils/debugging.js ***!
   \****************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+(module) {
 
 const DEBUGGING = false;
 
@@ -17515,14 +18466,13 @@ if (DEBUGGING) {
   };
 }
 
-/***/ }),
+/***/ },
 
-/***/ "./utils/element.js":
+/***/ "./utils/element.js"
 /*!**************************!*\
   !*** ./utils/element.js ***!
   \**************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+(module, __unused_webpack_exports, __webpack_require__) {
 
 /**
  * A function used by Babel to transpile JSX code into jQuery elements
@@ -17582,6 +18532,116 @@ function buildElement(type, props, ...children) {
 }
 module.exports = buildElement;
 
-/***/ })
+/***/ }
 
-/******/ });
+/******/ 	});
+/************************************************************************/
+/******/ 	// The module cache
+/******/ 	var __webpack_module_cache__ = {};
+/******/ 	
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/ 		// Check if module is in cache
+/******/ 		var cachedModule = __webpack_module_cache__[moduleId];
+/******/ 		if (cachedModule !== undefined) {
+/******/ 			return cachedModule.exports;
+/******/ 		}
+/******/ 		// Check if module exists (development only)
+/******/ 		if (__webpack_modules__[moduleId] === undefined) {
+/******/ 			var e = new Error("Cannot find module '" + moduleId + "'");
+/******/ 			e.code = 'MODULE_NOT_FOUND';
+/******/ 			throw e;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = __webpack_module_cache__[moduleId] = {
+/******/ 			id: moduleId,
+/******/ 			// no module.loaded needed
+/******/ 			exports: {}
+/******/ 		};
+/******/ 	
+/******/ 		// Execute the module function
+/******/ 		__webpack_modules__[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/ 	
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/ 	
+/************************************************************************/
+/******/ 	/* webpack/runtime/compat get default export */
+/******/ 	(() => {
+/******/ 		// getDefaultExport function for compatibility with non-harmony modules
+/******/ 		__webpack_require__.n = (module) => {
+/******/ 			var getter = module && module.__esModule ?
+/******/ 				() => (module['default']) :
+/******/ 				() => (module);
+/******/ 			__webpack_require__.d(getter, { a: getter });
+/******/ 			return getter;
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/define property getters */
+/******/ 	(() => {
+/******/ 		// define getter functions for harmony exports
+/******/ 		__webpack_require__.d = (exports, definition) => {
+/******/ 			for(var key in definition) {
+/******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
+/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
+/******/ 				}
+/******/ 			}
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
+/******/ 	(() => {
+/******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/make namespace object */
+/******/ 	(() => {
+/******/ 		// define __esModule on exports
+/******/ 		__webpack_require__.r = (exports) => {
+/******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 			}
+/******/ 			Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/nonce */
+/******/ 	(() => {
+/******/ 		__webpack_require__.nc = undefined;
+/******/ 	})();
+/******/ 	
+/************************************************************************/
+var __webpack_exports__ = {};
+// This entry needs to be wrapped in an IIFE because it needs to be isolated against other modules in the chunk.
+(() => {
+/*!******************!*\
+  !*** ./index.js ***!
+  \******************/
+/**
+ * The entry point for tota11y.
+ *
+ * Builds and mounts the toolbar.
+ */
+
+// Require the base tota11y styles right away so they can be overwritten
+__webpack_require__(/*! ./less/tota11y.less */ "./less/tota11y.less");
+let $ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
+let plugins = __webpack_require__(/*! ./plugins */ "./plugins/index.js");
+let toolbar = __webpack_require__(/*! ./toolbar.js */ "./toolbar.js");
+const Toolbar = toolbar.toolbar;
+
+// Chrome Accessibility Developer Tools - required once as a global
+__webpack_require__(/*! script-loader!./node_modules/accessibility-developer-tools/dist/js/axs_testing.js */ "./node_modules/script-loader/index.js!./node_modules/accessibility-developer-tools/dist/js/axs_testing.js");
+$(function () {
+  var bar = new Toolbar();
+  bar.delegate();
+
+  // TODO: Make this customizable
+  bar.appendTo($("body"));
+});
+})();
+
+/******/ })()
+;

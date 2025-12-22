@@ -37,19 +37,21 @@ const plugins = [
     // WebExtensions do not accept symlinking so copy
     // everything built into the web extension folder
     new FileManagerPlugin({
-      // copy after building
-        onEnd: {
-            copy: [
-                {
-                    source: "./build/tota11y.js",
-                    destination: "./addon/build/",
-                },
-                {
-                    source: "./build/sidebar.js",
-                    destination: "./addon/build/",
-                },
-            ],
-        },
+        events: {
+            // copy after building
+            onEnd: {
+                copy: [
+                    {
+                        source: "./build/tota11y.js",
+                        destination: "./addon/build/",
+                    },
+                    {
+                        source: "./build/sidebar.js",
+                        destination: "./addon/build/",
+                    },
+                ],
+            }
+        }
     }),
 ];
 
@@ -70,7 +72,7 @@ module.exports = {
             {
               test: /\.js$/,
               exclude: /node_modules/,
-              loader: 'babel-loader',
+              loader: "babel-loader",
             },
             {
               test: /\.handlebars$/,
@@ -84,11 +86,13 @@ module.exports = {
                 {
                   loader: "postcss-loader",
                   options: {
-                    ident: "postcss",
-                    plugins: [
-                      veryimportant,
-                      autoprefixer({browsers: ["> 1%"]}),
-                    ],
+                    //ident: "postcss",
+                    postcssOptions: {
+                      plugins: [
+                        veryimportant,
+                        autoprefixer({browsers: ["> 1%"]}),
+                      ],
+                    }
                   },
                 },
                 "less-loader",
