@@ -6,7 +6,7 @@ let webpack = require("webpack");
 let autoprefixer = require("autoprefixer");
 
 let options = require("./utils/options");
-const FileManagerPlugin = require('filemanager-webpack-plugin');
+const FileManagerPlugin = require("filemanager-webpack-plugin");
 
 // PostCSS plugin to append !important to every CSS rule
 let veryimportant = postcss.plugin("veryimportant", function() {
@@ -53,7 +53,7 @@ const plugins = [
     }),
 ];
 
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const TerserPlugin = require("terser-webpack-plugin");
 
 module.exports = {
     entry: {
@@ -99,9 +99,8 @@ module.exports = {
     plugins,
     optimization: {
         minimizer: [
-            // Suppress uglifyJS warnings from node_modules/
-            new UglifyJsPlugin({
-                uglifyOptions: {
+            new TerserPlugin({
+                terserOptions: {
                     compress: false,
                 },
             })
