@@ -4,3 +4,4 @@ tota11y/
 npm-debug.log
 
 *.zip
+*.js.map
