@@ -19,6 +19,15 @@
     ]
   },
 
+  "browser_specific_settings": {
+    "gecko": {
+      "strict_min_version": "140.0",
+      "data_collection_permissions": {
+        "required": ["none"]
+      }
+    }
+  },
+
   "sidebar_action": {
     "default_title": "Totally Automated A11y Scanner",
     "default_panel": "sidebar/index.html",
